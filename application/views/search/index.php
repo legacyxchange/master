@@ -1,5 +1,3 @@
-TESTing the ndev push to master thing
-<div style="position:absolute;top:0;left:0">NDEV</div>
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
     <!--war_outer start-->
     
