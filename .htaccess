@@ -1,0 +1,36 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+#RewriteBase /
+#RewriteCond %{HTTP_HOST} !karateasylums.com$ [NC]
+#RewriteRule ^(.*)$ http://karateasylums.com/$1 [L,R=301]
+
+
+#RewriteCond %{HTTP_HOST} ^greenstandardtechnologies.com$ [OR]
+#RewriteCond %{HTTP_HOST} ^www.greenstandardtechnologies.com$
+#RewriteRule (.*)$ http://www.greenstandardtechnologies.com/$1 [R=301,L]
+
+
+RewriteCond $1 !^(index\.php|wordpress|images|bms|login|min|public|robots\.txt|sitemap\.xml)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+
+
+
+
+#RewriteRule ^bms.$ user.html [R=301]
+
+RewriteRule ^bms/(.*)$ /application/third_party/bms/$1 [L]
+
+#RewriteRule ^min/(.*)$ /public/min/min/$1 [L]
+
+
+#RedirectMatch 301 ^/login$ /welcome\/index\/1
+<ifModule mod_headers.c>
+    Header set Access-Control-Allow-Origin: *
+</ifModule>
+
+AuthType Basic
+AuthName "Secure Content"
+AuthUserFile /etc/httpd/conf/.htpasswd
+require valid-user
