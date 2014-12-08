@@ -1,0 +1,572 @@
+
+/* extra large */
+@media only screen and (min-width : 1200px)
+{
+	span.findme
+    {
+	    display: inherit;
+	    visibility: visible;
+    }
+}
+
+/* extra large */
+@media only screen and (max-width : 1200px)
+{
+
+	#fixedTopNav .input-group > .form-control, .input-group .form-control
+	{
+		width:170px;
+		
+	}
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 992px) 
+{
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) 
+{
+	body
+	{
+		font-size:1.3em;
+	}
+	
+
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) 
+{
+	body
+	{
+		font-size: 1.2em;
+	}
+	.affix
+	{
+		position:inherit !important;
+	}
+
+	.info-content
+	{
+		/*
+		padding-left:0;
+		padding-right:0;
+		*/
+		padding:5px;
+		margin-right:0px;
+		margin-left:0px;
+
+	}
+	
+	.info-content .tab-content
+	{
+		margin-top:5px;
+	}
+	
+	.alert
+	{
+		padding:5px;
+	}
+	
+	.alert button.close
+	{
+		margin-top:-5px;
+	}
+
+	.resultstitle
+	{
+		font-size: 1em;
+	}
+	
+	.footer
+	{
+		padding-left:5px;
+		padding-right:5px;
+	}
+	
+	#mapWell
+	{
+		padding-left: 0;
+		padding-right:0;
+	}
+	p.locAddress
+	{
+		font-size:0.9em;
+	}
+	
+	.listContent h3
+	{
+		font-size:1em;
+	}
+
+	.col-bg
+	{
+		padding-bottom:0px;
+	}
+
+	.main-content
+	{
+		padding-left:0;
+		padding-top:0;
+		padding-right:0;
+	}
+	
+	body
+	{
+		font-size:1.2em;
+	}
+	.form-control
+	{
+		font-size:1em;
+		padding:3px 6px;
+		height: auto;
+	}
+	
+	.btn
+	{
+		font-size:1em;
+		padding:3px 6px;
+	}
+	
+	#loginModal .modal-content, #loginModal .modal-dialog
+	{
+		width:100%;
+		margin-left:0px;
+		margin-right:0px;
+		margin-top:0px;
+	}
+	
+	.modal-body, .modal-header, .modal-footer
+	{
+		padding:5px;
+	}
+	
+	.modal-dialog
+	{
+		max-width: 100%;
+
+	}
+	#loadingPanel, #mapWell
+	{
+		margin:0 0 0 0;
+		
+		width:100%;
+	}
+	#loadingPanel .well
+	{
+		-webkit-box-shadow:inset 1px 1px 5px 2px #C4C4C4;
+		-moz-box-shadow:inset 1px 1px 5px 2px #C4C4C4;
+		box-shadow:inset 1px 1px 5px 2px #C4C4C4;
+	
+		padding:5px 5px 10px 5px;
+		border:none;
+		border-radius:0px;
+		margin-bottom: 0;
+		
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	
+	.indexElements
+	{
+		margin-top:20px;
+	}
+	.mainlogobg
+	{
+		padding:20px 15px;
+	}
+
+	
+	.page-content
+	{
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-left:0;
+		padding-right:0;
+	}
+	
+	#mapWell .well
+	{
+		margin-bottom: 0px;
+		padding:0;
+	}
+	
+	#previewMap
+	{
+		margin-bottom: 0;
+		height: 150px;
+		min-height: 150px;
+	}
+	.listing-edit-btn
+	{
+		margin-right:0;
+	}
+	
+	.col-xs-8, .col-sm-8, .col-md-8
+	{
+		margin-bottom: 0;
+	}
+
+	.comment-well
+	{
+		margin-bottom: 10px;
+	}
+	
+	.info-map-col
+	{
+		padding:0;
+		margin-top:0px;
+		margin-bottom: 0px;
+	}
+	
+	.info-map-col p:last-child
+	{
+		margin-bottom:0;
+		padding-bottom:5px;
+	}
+	
+	.info-map-col .well
+	{
+		padding:0px 0px 0px 5px;
+
+		margin-bottom: 0;
+		border-radius: 0;
+	}
+	.review-row
+	{
+		padding:0;
+	}
+	
+	.info-header
+	{
+		padding:0px;
+	}
+
+	h1.profileName
+	{
+		font-size: 2em;
+		margin-top:5px;
+	}
+	.dojoinfotabs
+	{
+		margin:0 -15px 15px -15px;
+		margin-bottom:15px;
+		float:none;	
+	}
+    .name-email-review
+    {
+	    margin-left:0;
+	    margin-right:0;
+    }
+    
+    .name-email-review div[class*='col-']
+    {
+	    padding-left: 0;
+	    padding-right: 0;
+    }
+    
+    .user-info-dl
+    {
+	    margin-bottom: 0px;
+    }
+    
+    .user-info-dl dt
+    {
+	    float: left;
+	    clear:left;
+	    width: 100px;
+    }
+    
+    .user-info-dl dd
+    {
+		margin-left: 100px;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) 
+{
+
+	
+	h1
+	{
+		font-size: 2em;
+	}
+	
+	h2
+	{
+		font-size: 1.8em;
+	}
+	
+	h3
+	{
+		font-size: 1.6em;
+	}
+	
+	h4
+	{
+		font-size: 1.4em;
+	}
+	
+	h5
+	{
+		font-size: 1.2em;
+	}
+
+	h6
+	{
+		font-size: 1em;
+	}
+	
+	h1, h2, h3, h4, h5, h6
+	{
+		margin-bottom:10px;
+		margin-top:10px;
+	}
+	
+	.mainlogobg
+	{
+		padding:20px 15px;
+	}
+	
+	.indexElements
+	{
+		margin-top:15px;
+	}
+	
+	.landingbtn
+	{
+		padding:17px 20px;
+	}
+	
+	.listImg, .listImg img
+	{
+		width:45px ;
+		height:45px;
+	}
+	
+	.display-img
+	{
+
+		margin-right: 10px;
+		margin-left: 5px;
+	}
+	
+	h1.profileName
+	{
+		font-size: 1.8em;
+	}
+	
+	.dojoinfotabs
+	{
+		padding-left:5px;
+		padding-right:5px;
+	}
+	.dojoinfoicon
+	{
+		font-size: 0.8em;
+		margin-right: 3px;
+	}
+
+    ul.dojoinfotabs i, ul.dojoinfotabs a
+    {
+	    font-size:0.8em;
+    }
+    
+	.nav > li > a 
+	{
+		padding-bottom:4px;
+
+	}
+
+	.navbar-brand img
+	{
+		padding-top:7px;
+		width:180px;
+	}
+	
+	img.comment-img
+	{
+		margin-right:5px;
+	}
+	
+	.comment-container
+	{
+		padding:5px;
+	}
+	.comment-new-container
+	{
+		padding:5px;
+	}
+	
+	.comment-new-container textarea
+	{
+		height: 40px;
+	}
+	
+	.ct-container
+	{
+		margin-right: 45px;
+	}
+	.wallpost-container
+	{
+		margin:0 5px 10px 5px;
+		padding:0;
+	}
+	.wallpost
+	{
+		padding:5px;
+	}
+
+	.post-body
+	{
+		margin-top:5px;
+	}
+	
+	.profile-info
+	{
+		padding:0px 5px 0 5px;
+		margin: 0px;
+	}
+	
+	.profile-user
+	{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	
+	.profile-user-row
+	{
+		margin-left: 0px;
+		margin-right: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.profile-panel .panel-body
+	{
+		padding:5px;
+	}
+
+	#stream-display
+	{
+		overflow-x: hidden;
+		margin:0px -5px;
+	}
+	
+	.profile-blog-panel .panel-heading
+	{
+		padding:5px;
+	}
+	
+	.profile-blog-panel .panel-body
+	{
+		padding:5px;
+	}
+	
+	.excerpt-container
+	{
+		padding:5px;
+	}
+
+	.panel-title
+	{
+		font-size:1em;
+	}
+	
+	#blog-display .userTabContent:last-child
+	{
+		padding:5px;
+	}
+
+	#blog-display .row:last-child, #blog-display .row:nth-last-child(2)
+	{
+		margin: 0px;
+	}
+	
+	.user-write-comment
+	{
+		margin:0px;
+	}
+	
+	.user-write-comment > div[class*='col-'], .photo-actions div[class*='col-'], #photosTab .col-md-8
+	{
+		padding:0px;
+	}
+	
+	.photo-actions
+	{
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+	.photo-actions h2
+	{
+		font-size: 1.1em;
+	}
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px)
+{
+	.mainlogobg
+	{
+		padding:15px;
+	}
+
+	.nav>li>a
+	{
+		padding: 2px 5px;
+	}
+
+	.display-img
+	{
+		float:left;
+		height: 72px;
+		width: 75px;
+		margin-right: 10px;
+		margin-left: 5px;
+	}
+	
+	h1.profileName
+	{
+		font-size: 1.6em;
+	}
+	.listing
+	{
+		padding:10px 5px 10px 5px;
+	    min-height: 60px;
+	}
+	
+	#loginModal .modal-footer .row
+	{
+		margin-left:0;
+		margin-right:0;
+	}
+	
+	#loginModal .modal-footer .row div[class*='col-']:first-child
+	{
+		padding-left:0;
+	}
+	
+	#loginModal .modal-footer .row div[class*='col-']:last-child
+	{
+		padding-right:0;
+	}
+	
+    ul.dojoinfotabs i, ul.dojoinfotabs a
+    {
+	    font-size:0.7em;
+    }
+    
+   	.dojoinfoicon
+	{
+		font-size: 0.7em;
+		margin-right: 1px;
+	}
+}

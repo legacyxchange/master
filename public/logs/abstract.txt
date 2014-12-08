@@ -1,0 +1,45 @@
+
+
+INSERT INTO `chat` (`user_id`, `username`, `message`) VALUES ('220', 'tester', 'Search is getting there...there are so many variables to consider.')
+
+INSERT INTO `chat` (`user_id`, `username`, `message`) VALUES ('220', 'tester', 'actually 4 listings now.')
+
+UPDATE `users` SET `user_id` = '227', `status` = '1', `firstName` = 'My new User', `lastName` = 'last name', `email` = 'user@gmail.com', `passwd` = '601f1889667efaebb33b8c12572835da3f027f78' WHERE `user_id` = "227"
+
+UPDATE `users` SET `user_id` = '227', `status` = '1', `firstName` = 'My new User', `lastName` = 'last name', `email` = 'user@gmail.com', `passwd` = '601f1889667efaebb33b8c12572835da3f027f78', `permissions` = '1' WHERE `user_id` = "227"
+
+UPDATE `users` SET `user_id` = '227', `status` = '1', `firstName` = 'My new User', `lastName` = 'last name', `email` = 'user@gmail.com', `passwd` = '601f1889667efaebb33b8c12572835da3f027f78', `permissions` = '0' WHERE `user_id` = "227"
+
+UPDATE `users` SET `user_id` = '227', `status` = '1', `firstName` = 'My new User', `lastName` = 'last name', `email` = 'user@gmail.com', `passwd` = '601f1889667efaebb33b8c12572835da3f027f78', `permissions` = '0', `profileimg` = '1b88544210800e8a8e9f3ad76ceeb6da.jpg' WHERE `user_id` = 227
+
+UPDATE `users` SET `user_id` = '227', `status` = '1', `firstName` = 'My new User', `lastName` = 'last name', `email` = 'user@gmail.com', `passwd` = '601f1889667efaebb33b8c12572835da3f027f78', `permissions` = '0', `profileimg` = '1b88544210800e8a8e9f3ad76ceeb6da.jpg' WHERE `user_id` = "227"
+
+UPDATE `users` SET `user_id` = '220', `firstName` = 'test', `lastName` = 'test', `email` = 'test@testing.com', `dob` = '1966-03-18', `gender` = 'M', `heightFeet` = '6', `heightInches` = '2', `weight` = '180', `weightType` = 'lbs', `timezone` = 'America/Los_Angeles', `bio` = '&lt;p&gt;My Bio&lt;/p&gt;\n', `companyWebsiteUrl` = 'testbusiness.com' WHERE `user_id` = 220
+
+UPDATE `users` SET `user_id` = '220', `firstName` = 'test', `lastName` = 'test', `email` = 'test@testing.com', `dob` = '1966-03-18', `gender` = 'M', `heightFeet` = '5', `heightInches` = '11', `weight` = '180', `weightType` = 'lbs', `timezone` = 'America/Los_Angeles', `bio` = '&lt;p&gt;My Bio&lt;/p&gt;\n', `companyWebsiteUrl` = 'testbusiness.com' WHERE `user_id` = 220
+
+UPDATE `users` SET `user_id` = '220', `firstName` = 'test', `lastName` = 'test', `email` = 'test@testing.com', `dob` = '1966-03-18', `gender` = 'M', `heightFeet` = '5', `heightInches` = '11', `weight` = '186', `weightType` = 'lbs', `timezone` = 'America/Los_Angeles', `bio` = '&lt;p&gt;My Bio&lt;/p&gt;\n', `companyWebsiteUrl` = 'testbusiness.com' WHERE `user_id` = 220
+
+UPDATE `users` SET `user_id` = '220', `firstName` = 'test', `lastName` = 'test', `email` = 'test@testing.com', `dob` = '1966-03-18', `gender` = 'M', `heightFeet` = '5', `heightInches` = '11', `weight` = '186', `weightType` = 'lbs', `timezone` = 'America/Los_Angeles', `bio` = '&lt;p&gt;My Bio&lt;/p&gt;\n', `companyWebsiteUrl` = 'www.testbusiness.com' WHERE `user_id` = 220
+
+UPDATE `listings` SET `listing_id` = '13', `product_id` = '25', `listing_name` = 'Jeter Rookie Card', `start_time` = '2014-12-02 01:00:00', `end_time` = '2014-12-02 01:00:00', `buynow_price` = '200.00', `reserve_price` = '200.00' WHERE `listing_id` = "13"
+
+UPDATE `listings` SET `listing_id` = '13', `product_id` = '25', `listing_name` = 'Jeter Rookie Card', `start_time` = '2014-11-30 01:00:00', `end_time` = '2014-12-02 01:00:00', `buynow_price` = '200.00', `reserve_price` = '200.00' WHERE `listing_id` = "13"
+
+UPDATE `listings` SET `listing_id` = '10', `product_id` = '23', `listing_name` = 'Babe Ruth Signed Baseball. ', `start_time` = '2014-11-30 00:00:00', `end_time` = '2014-12-02 00:00:00', `buynow_price` = '400.00', `reserve_price` = '300.00' WHERE `listing_id` = "10"
+
+INSERT INTO `chat` (`user_id`, `username`, `message`) VALUES ('220', 'tester', 'testing the chat room')
+
+INSERT INTO `chat` (`user_id`, `username`, `message`) VALUES ('154', 'nicolino101', 'test back at ya')
+
+INSERT INTO `users` (`firstName`, `lastName`, `username`, `email`, `passwd`, `timezone`, `status`) VALUES ('testset', 'testset', 'testsetse', 'testset@tester.com', '123123123', 'America/Los_Angeles', '1')
+
+INSERT INTO `users` (`firstName`, `lastName`, `username`, `email`, `passwd`, `timezone`, `status`) VALUES ('testset', 'testset', 'testsetse', 'testset@tester.com', '123123123', NULL, '1')
+
+INSERT INTO `users` (`firstName`, `lastName`, `username`, `email`, `passwd`, `timezone`, `status`) VALUES ('testset', 'testset', 'testsetse', 'testset@tester.com', '88ea39439e74fa27c09a4fc0bc8ebe6d00978392', NULL, '1')
+
+INSERT INTO `users` (`firstName`, `lastName`, `username`, `email`, `passwd`, `timezone`, `status`) VALUES ('testset', 'testset', 'testsetse', 'testset@tester.com', '88ea39439e74fa27c09a4fc0bc8ebe6d00978392', 'America/Los_Angeles', '1')
+
+INSERT INTO `users` (`firstName`, `lastName`, `username`, `email`, `passwd`, `timezone`, `status`) VALUES ('testest', 'TESTset', 'testset', 'testest@tester.com', '601f1889667efaebb33b8c12572835da3f027f78', NULL, '1')
+
+UPDATE `products` SET `product_id` = '25', `product_type_id` = '2', `name` = 'Derek Jeter Rookie Card', `description` = 'Derik Jeter Rookie Card. This card is in excellent condition.', `short_description` = 'Derik Jeter Rookie Card. ', `cost` = '20.00', `retail_price` = '40.00' WHERE `product_id` = "25"

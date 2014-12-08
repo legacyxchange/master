@@ -1,0 +1,1 @@
+New Review by <?php echo $username; ?> for <?php echo $location_name; ?>:<div class='listRating largeStars'><?php for ($i = 1; $i <= 5; $i++) { ?><i class='fa fa-star<?php echo ($i <= $rating) ? ' setRating' : ''; ?>'></i><?php } ?></div><img src="/dojos/img/<?php echo $_POST['location']; ?>/50" /> <?php echo $_POST['reviewDesc'];
