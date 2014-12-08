@@ -61,7 +61,7 @@ include_once 'headinclude.php';
                 	<?php echo form_open('/search/index', false); ?>
                     <input type="text" class="input-text" placeholder="Search products, listings, etc." name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
-                    <button class="button" title="Search" type="submit"><strong><i class="fa fa-search"></i></strong></button>
+                    <button class="button" title="Search" type="submit"><i class="fa fa-search"></i></button>
                     <?php echo form_close(); ?>
                 </div>
                 <div style="text-align: right;cursor:pointer;background:#ccc;" id="advanced_search_hide_show_button" class="advanced_search_hide_show" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>

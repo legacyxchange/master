@@ -141,7 +141,10 @@ button.button {
     width: auto;
     color:#6b6b6b;
     font-size:20px;
-
+    float:right;
+    margin-top: -22px;
+    position:relative;
+    z-index: 20;
 }
 .top_seach .form-search {
     background: none repeat scroll 0 0 #fff;
