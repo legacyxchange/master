@@ -19,6 +19,16 @@ class Contact extends CI_Controller {
     }
     
     public function send(){
+    	if(empty($_POST['email']))
+    	{
+    		$this->session->set_flashdata('FAILURE', 'You must supply a valid email.');
+    		header('Location: /contact'); exit;
+    	}
+    	if(empty($_POST['message']))
+    	{
+    		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
+    		header('Location: /contact'); exit;
+    	}
     	$config['protocol'] = 'sendmail';
     	$config['mailpath'] = '/usr/sbin/sendmail';
     	$config['charset'] = 'iso-8859-1';
