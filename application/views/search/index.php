@@ -1,5 +1,5 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-    <!-- jsissor Start --> testing123 4567
+testestset<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+    <!-- jsissor Start --> 
     <div id="slider1_container" style="position: relative; margin: 0 auto;
         top: 0px; left: 0px; width: 1300px; height: 300px; overflow: hidden;">
         <!-- Loading Screen -->
