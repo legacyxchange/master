@@ -1,4 +1,4 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>Another test
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
     <!--war_outer start-->
     
     <!-- jsissor Start -->	
