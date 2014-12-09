@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 testestset<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
     <!-- jsissor Start --> 
+=======
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+    <!-- jsissor Start --> testing123 45
+>>>>>>> parent of 4e5a9f7... test
     <div id="slider1_container" style="position: relative; margin: 0 auto;
         top: 0px; left: 0px; width: 1300px; height: 300px; overflow: hidden;">
         <!-- Loading Screen -->
