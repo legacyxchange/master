@@ -1361,8 +1361,8 @@ display:inline;
 }
 .timer { color: red; font-weight:bold; text-align:center; }
 .product-image{ height: 200px;}
-.large-img{ color:blue;cursor:pointer; text-align:center; }
-.war_outer_1 { background: #fff; border-bottom: 0px solid #ccc;}
+.large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
+.war_outer_1 { background: #fff; border-bottom: 0px solid #ccc; font-family:Palatino;}
 
 #chat_hide_show_button {
 	background:#ccc;

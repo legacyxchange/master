@@ -1,12 +1,12 @@
 <?php
-
+//testswt
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Search extends CI_Controller {
 
     function Search() {
-        parent::__construct();
+        parent::__construct(); 
 
         $this->load->driver('cache');
         $this->load->model('search_model', 'search', true);      
