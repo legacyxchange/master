@@ -13,7 +13,7 @@ if ($places->status == 'ZERO_RESULTS') {
 <div id="listContent"> 
 EOS;
     
-    foreach ($places->results as $k => $r) {
+    foreach ($places->results as $k => $r) { 
     	
     	$active = true;
         $website = $phone = $deactivateButton = $img = null;
