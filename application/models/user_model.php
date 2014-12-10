@@ -73,11 +73,13 @@ class user_model extends abstract_model {
     
     public function create ()
     {
+    	require_once 'search_model.php';
+    	
     	if (empty($_POST['email'])) throw new Exception('E-mail Address is empty!');
     
     	$search = new search_model();
-    	     	
-    	$_POST['timezone'] = $search->grabGeoIP()->time_zone;
+    	
+    	$_POST['timezone'] = $search->grabGeoIP()->timezone;
     	$_POST['status'] = 1;
     	   	
     	if (!empty($_POST['facebookID'])) $data['facebookID'] = $_POST['facebookID'];

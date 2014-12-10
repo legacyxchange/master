@@ -589,7 +589,7 @@ global.checkRegisterForm = function ()
 {   
     if ($('#firstName').val() == '')
     {
-        global.renderAlert('Please enter your first name!', undefined, 'loginAlert');
+        global.renderAlert('Please enter your first name!', 'alert-danger', 'loginAlert');
         $('#firstName').focus();
         $('#firstName').effect('highlight');
         return false;
@@ -597,7 +597,7 @@ global.checkRegisterForm = function ()
 
     if ($('#lastName').val() == '')
     {
-        global.renderAlert('Please enter your last name!', undefined, 'loginAlert');
+        global.renderAlert('Please enter your last name!', 'alert-danger', 'loginAlert');
         $('#lastName').focus();
         $('#lastName').effect('highlight');
         return false;
@@ -605,7 +605,7 @@ global.checkRegisterForm = function ()
 
     if ($('#username').val() == '')
     {
-        global.renderAlert('Please enter a username!', undefined, 'loginAlert');
+        global.renderAlert('Please enter a username!', 'alert-danger', 'loginAlert');
         $('#username').focus();
         $('#username').effect('highlight');
         return false;
@@ -613,7 +613,7 @@ global.checkRegisterForm = function ()
     
     if ($('#email').val() == '')
     {
-        global.renderAlert('Please enter your email address!', undefined, 'loginAlert');
+        global.renderAlert('Please enter your email address!', 'alert-danger', 'loginAlert');
         $('#email').focus();
         $('#email').effect('highlight');
         return false;
@@ -621,7 +621,7 @@ global.checkRegisterForm = function ()
 
     if ($('#passwd').val() == '')
     {
-        global.renderAlert('Please enter your password!', undefined, 'loginAlert');
+        global.renderAlert('Please enter your password!', 'alert-danger', 'loginAlert');
         $('#passwd').focus();
         $('#passwd').effect('highlight');
         return false;
@@ -629,27 +629,26 @@ global.checkRegisterForm = function ()
     
     if ($('#passwd_confirm').val() == '')
     {
-        global.renderAlert('Please re-enter your password!', undefined, 'loginAlert');
+        global.renderAlert('Please re-enter your password!', 'alert-danger', 'loginAlert');
         $('#passwd_confirm').focus();
         $('#passwd_confirm').effect('highlight');
         return false;
-    }else
-    if ($('#passwd_confirm').val() != $('#passwd').val())
+    }else if ($('#passwd_confirm').val() != $('#passwd').val())
     {
-        global.renderAlert('Passwords donot match please re-enter your password!', undefined, 'loginAlert');
+        global.renderAlert('Passwords donot match please re-enter your password!', 'alert-danger', 'loginAlert');
         $('#passwd_confirm').focus();
         $('#passwd_confirm').effect('highlight');
         return false;
     }
     
-    $.post("/welcome/register", $('#signupform').serialize(), function (data) { //console.log(data)
+    $.post("/welcome/register", $('#signupform').serialize(), function (data) { console.log(data)
     	if (data.status == 'SUCCESS')
         {   
     		location.href = '/profile';
         }
         else if (data.status == 'ALERT')
         {
-            global.renderAlert(data.msg, undefined, 'loginAlert');
+            global.renderAlert(data.msg, 'alert-danger', 'loginAlert');
         }
         else
         {

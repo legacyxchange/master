@@ -39,11 +39,14 @@ class search_model extends CI_Model {
         return $data;
     }
 
+    private static $attempts = 0;
     public function grabGeoIP()
-    {
+    {	
+    	self::$attempts++;
+    	
         $user_ip = !empty($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] != '127.0.0.1' ? $_SERVER['REMOTE_ADDR'] : '172.56.15.13';
         
-        if(is_null($user_ip)){
+        /* if(is_null($user_ip)){
         	$obj = new stdClass();
         	$obj->ip = '199.241.138.201';
         	$obj->country_code = 'US';
@@ -56,7 +59,7 @@ class search_model extends CI_Model {
         	$obj->metro_code = '518';
         	$obj->area_code = '702';
         	return $obj;
-        }
+        } */
         	
         $url1 = 'http://freegeoip.net/json/' . $user_ip;
         $ch = curl_init();
@@ -64,11 +67,11 @@ class search_model extends CI_Model {
         curl_setopt($ch, CURLOPT_TIMEOUT, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $result = curl_exec($ch);
-       
-        if ($result)
-        {    	
-            return json_decode($result);
-            curl_close($ch);
+        
+        if (isset($result->longitude))
+        {    
+        	curl_close($ch);       	
+            return(json_decode($result)); exit;      
         }
         else
         {       
@@ -76,11 +79,18 @@ class search_model extends CI_Model {
             curl_setopt($ch, CURLOPT_URL, $url);
             $result = curl_exec($ch);
             curl_close($ch);
-            if(!$result){
-            	var_dump('NOT CONNECTING TO '.$url1.' or '.$url	); exit;
-            }
-            return json_decode($result);
+            
+            if (isset($result->longitude))
+            {
+            	curl_close($ch);
+            	return(json_decode($result)); exit;           	 
+            }           
         }
+        
+        if(self::$attempts <= 5 ){           		
+            $this->grabGeoIP();            	            	
+        }  
+        return(json_decode($result)); exit;
     }
     
     public function mapQuestGeoCode($address)

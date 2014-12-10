@@ -22,12 +22,12 @@ $(document).ready(function(){
 	        alert( "error" );
 	    })
 	});
-	$('.admin_edit_button').click(function(e){
+	$('.admin_edit_button').click(function(e){console.log(this)
 		e.preventDefault(); 
 		var product_id = $(this).attr('id');
 		
 	    $.ajax( "/admin/products/productsform/"+product_id)
-	    .done(function( data ) {
+	    .done(function( data ) { console.log(data)
 	      $('#myModa2 .modal-content').html(data);
 	    })
 	    .fail(function() {

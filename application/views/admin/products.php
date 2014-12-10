@@ -38,7 +38,7 @@
                         <td class="rec-text"><?php echo $product->name;?></td>
                         <td class="rec-text"><img src="/admin/products/productimg/50/<?php echo $product->product_id;?>/<?php echo $product->image;?>" /></td>
                         <td valign="middle" align="right" class="icon">                                            
-						<a href="#" id="<?=$product->product_id;?>" class="big-link admin_edit_button" data-reveal-id="myModa2"><img src="/public/images/edit-admin.png" /> </a> 
+						<a href="#" id="<?=$product->product_id;?>" class="admin_edit_button" data-reveal-id="myModa2"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-reveal-id="modalConfirm" href="/admin/products/delete/<?php echo $product->product_id;?>"><img src="/public/images/delete.png" /> </a> 
 						</td>
                     </tr>                                       

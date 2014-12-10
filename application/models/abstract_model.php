@@ -56,7 +56,7 @@ abstract class abstract_model extends CI_Model {
     		$this->db->insert($this->table, $params);
     	}
 
-    	file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
+    	//file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
     	return $this->db->insert_id();
     }
     

@@ -63,16 +63,11 @@ class Profile extends CI_Controller {
             if (!empty($id)) {
                 $body['info'] = $info = $this->dojos->getLocationInfo($id);
                 $body['location_hours'] = $location_hours = $this->location_hours->getLocationHoursByLocationId($id);
-                //var_dump($location_hours); exit;
-                //$body['meta'] = $this->dojos->getLocMetaData($id);
-                //$body['ll'] = $ll = $this->dojos->getLocationLatLng($id);
+                
                 $body['assignedStyles'] = $this->dojos->getLocationCodes($id, 26);
-
-                //$body['defaultImg'] = $this->dojos->getLocationMainImage($id);
 
                 $body['images'] = $this->dojos->getLocationImages($id, true);
 
-                //get videos
                 $body['videos'] = $this->dojos->getLocationVideos($id);
 
                 $header['onload'] = "profile.locationedit({$info->lat}, {$info->lng});";

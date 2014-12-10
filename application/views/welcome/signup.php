@@ -11,7 +11,7 @@ $(document).ready(function(){
 </script>
 <?php echo form_open('#', array('name' => 'signupform', 'id' => 'signupform'))?>
     <div id='loginAlert'></div>
-
+           
     <div class="form-group">
             <input type='text' class='form-control' name='firstName' id='firstName' value="" placeholder='FIRST NAME'>
     </div> <!-- .form-group -->

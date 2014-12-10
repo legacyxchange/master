@@ -49,8 +49,7 @@ class Welcome extends CI_Controller {
 
     public function register() {
     	if ($_POST) {         	
-            try {
-            	
+            try {           	
                 $emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
                 $usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
                 

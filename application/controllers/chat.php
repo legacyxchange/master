@@ -31,7 +31,7 @@ class Chat extends CI_Controller {
     }
 
     public function ajax_chat(){
-    	exit;
+    	return;
     	$nowMinus = date('Y-m-d H:i:s', strtotime('-1 second',time()));
     	 
     	if(!$this->session->userdata['user_id']){
