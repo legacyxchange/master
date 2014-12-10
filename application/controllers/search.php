@@ -23,7 +23,7 @@ class Search extends CI_Controller {
     	    
     	    $header['q'] = $q;
     	    
-    		$this->load->file('/var/www/html/application/vendor/sphinxapi.php', true);
+    		$this->load->file('application/vendor/sphinxapi.php', true);
     		
     		$cl = new SphinxClient(); 
     		

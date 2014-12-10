@@ -1,5 +1,4 @@
-<?php require_once 'application/views/partials/flash_messages.php';?>  
-        <div class="panel panel-info">
+<div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">Contact Us</h3>
         </div>

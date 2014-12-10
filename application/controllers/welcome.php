@@ -36,10 +36,15 @@ class Welcome extends CI_Controller {
         }
     }
 
-    public function logout() {
-        $this->session->sess_destroy();
-
-        header("Location: /?site-success=" . urlencode("You have logged out"));
+    public function logout() {       
+       
+    	$this->session->sess_destroy();
+    	
+        $this->session->sess_create();
+        
+        $this->session->set_flashdata('SUCCESS', 'You have successfully logged out.');
+        
+        header("Location: /");
         exit;
     }
 

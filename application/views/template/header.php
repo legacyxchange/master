@@ -104,3 +104,4 @@ include_once 'headinclude.php';
 	    </div>
     </div>
     <?php include_once 'alert.php'; ?>
+    <?php require_once 'application/views/partials/flash_messages.php';?>
