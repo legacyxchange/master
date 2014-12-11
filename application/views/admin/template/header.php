@@ -16,15 +16,20 @@ include_once 'headinclude.php';
 
 <body<?= (empty($onload)) ? null : " onload=\"{$onload}\"" ?> class="landing">
     <!--header start-->
-    <div id="header" class="headerbg">
-        <div class="container" style="margin-top-40px;height:80px;">
-        	<?php $logoLink = ($this->session->userdata('logged_in')) ? '/' : '/'; ?>
-            <div id="logo" class="col-lg-1 col-md-4 col-xs-12">
-                <a href="<?php echo $logoLink;?>">			
-                    <img style="margin-top:-10px;margin-bottom:-10px;margin-left:-20px;" src="/public/images/double_helix.png" width="260" height="82" />
-                </a>
-            </div>
-                <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
+    <!-- INGINES -->
+    <nav role="navigation" class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand">LegecyXchange</a>
+        </div>
+       <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+           <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
             <div class="user_right dropdown col-lg-2 col-md-4 col-xs-12">
                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa-stack fa-2x">
@@ -54,44 +59,42 @@ include_once 'headinclude.php';
                 </ul>
             </div>
             <?php else:?>
-            <button style="margin-top: 14px;height:42px;margin-left:2px;" class='btn btn-default pull-right' id='loginXSBtn'><i class='fa fa-sign-in'> Login </i></button>
-            <?php endif;?>              
-            <div class="landing_page_top_seach col-lg-2 col-md-4 col-xs-12">
-                <div class="form-search">
-                	<?php echo form_open('/search/index', false); ?>
-                    <input type="text" class="input-text" placeholder="Search products, listings, etc." name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+            <ul class="nav navbar-nav">
+                <li class=""><a href="#" id='loginXSBtn'>My Legacy</a></li>
+            </ul>
+            <?php endif;?>   
+          
+
+          <ul class="nav navbar-nav navbar-right inline">
+            <li style="margin-right:10px;">
+                
+                    <select class="form-control">
+			            <option>Explore</option>			
+			        </select>
+			</li>
+			<li>			
+			        <?php echo form_open('/search/index', false); ?>
+                    <input type="text" class="input-text" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
-                    <button class="button" title="Search" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="button" title="Search" type="submit"><strong><i class="fa fa-search"></i></strong></button>
                     <?php echo form_close(); ?>
-                </div>
-                <div style="text-align: right;cursor:pointer;background:#ccc;" id="advanced_search_hide_show_button" class="advanced_search_hide_show" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>
-            </div>
-            
-       </div>     
-       <div class="container-top">
+			    
+			    <div class="label pull-right advance-search" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
+			</li>
            
-           <div class=" top_menu dropdown col-lg-8 col-lg-offset-2 col-md-6 col-xs-12">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Sports
-                    <i class="fa fa-caret-down icon_color"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/user">Baseball</a></li>
-                    <li><a href="/profile">Football</a></li>
-                    <li><a href="/profile">Basketball</a></li>
-                    <li><a href="/profile">Soccer</a></li>
-                    <li><a href="/welcome/logout">Hockey</a></li>
-                </ul>
-                <a href="#">Hot Now</a>&nbsp;&nbsp;
-                <a href="/deals">Deals</a>&nbsp;&nbsp;
-                <a href="/deals">Celebrities</a>&nbsp;&nbsp;
-                <a href="/deals">Entertainment</a>&nbsp;&nbsp;
-                <a href="/info">Info</a>&nbsp;&nbsp;
-               	<a href="/contact">Contact</a>                   
-            </div>
-        </div>     
-    </div>
-    <!--header end-->
+            <li class=""><a href="/mark-item">Mark Item</a></li>
+			<li class=""><a href="/how-to-sell" style="float:left;padding-left:0;padding-right:0;">Sell /</a><a style="float:left;padding-left:3px;padding-right:0;" href="/how-to-buy">Buy</a></li>
+			<li class=""><a href="/help">Help</a></li>
+			<li class=""><a class="sign big-link" href="#" id="signupBigButton">Free Registration</a></li>
+			<?php if ($this->session->userdata('logged_in')) : ?> 
+			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<?php else:?>
+			<li><a href="#"><i id="headerLoginBtn" style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<?php endif;?>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
     <div id="advanced_search_container">		
 	    <div id="advanced_search">
 	        <?php echo form_open('/search/advanced');?>
