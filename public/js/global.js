@@ -584,71 +584,48 @@ global.checkForgotPasswordForm = function ()
 
 }
 
+global.setError = function(id, msg){	
+    	$(id).focus();
+        $(id).css('background', 'yellow');
+        $(id).next().html(msg);
+        $(id).next().show();
+        return false;
+}
+
+global.resetError = function(id){
+	
+	$(id).css('background', 'white');
+    $(id).next().html('');
+    $(id).next().hide();
+    global.checkRegisterForm();
+}
 
 global.checkRegisterForm = function ()
 {   
-    if ($('#firstName').val() == '')
-    {
-        global.renderAlert('Please enter your first name!', 'alert-danger', 'loginAlert');
-        $('#firstName').focus();
-        $('#firstName').effect('highlight');
-        return false;
-    }
-
-    if ($('#lastName').val() == '')
-    {
-        global.renderAlert('Please enter your last name!', 'alert-danger', 'loginAlert');
-        $('#lastName').focus();
-        $('#lastName').effect('highlight');
-        return false;
-    }
-
-    if ($('#username').val() == '')
-    {
-        global.renderAlert('Please enter a username!', 'alert-danger', 'loginAlert');
-        $('#username').focus();
-        $('#username').effect('highlight');
-        return false;
-    }
+	if($('#firstName').val() == '')
+        global.setError($('#firstName'), 'First Name is a required field.');
+	if($('#lastName').val() == '')
+        global.setError($('#lastName'), 'Last Name is a required field.');
+	if($('#username').val() == '')
+		global.setError($('#username'), 'Username is a required field.');
+	if($('#email').val() == '')
+		global.setError($('#email'), 'Email Address is a required field.');
+	if($('#passwd').val() == '')
+		global.setError($('#passwd'), 'Password is a required field.');
+	if($('#passwd_confirm').val() == '')
+		global.setError($('#passwd_confirm'), 'Password Confirmation is a required field.');
+	else if ($('#passwd_confirm').val() != $('#passwd').val())
+        global.setError($('#passwd_confirm'), 'Passwords donot match please re-enter your password!');
     
-    if ($('#email').val() == '')
-    {
-        global.renderAlert('Please enter your email address!', 'alert-danger', 'loginAlert');
-        $('#email').focus();
-        $('#email').effect('highlight');
-        return false;
-    }
-
-    if ($('#passwd').val() == '')
-    {
-        global.renderAlert('Please enter your password!', 'alert-danger', 'loginAlert');
-        $('#passwd').focus();
-        $('#passwd').effect('highlight');
-        return false;
-    }
-    
-    if ($('#passwd_confirm').val() == '')
-    {
-        global.renderAlert('Please re-enter your password!', 'alert-danger', 'loginAlert');
-        $('#passwd_confirm').focus();
-        $('#passwd_confirm').effect('highlight');
-        return false;
-    }else if ($('#passwd_confirm').val() != $('#passwd').val())
-    {
-        global.renderAlert('Passwords donot match please re-enter your password!', 'alert-danger', 'loginAlert');
-        $('#passwd_confirm').focus();
-        $('#passwd_confirm').effect('highlight');
-        return false;
-    }
     
     $.post("/welcome/register", $('#signupform').serialize(), function (data) { console.log(data)
     	if (data.status == 'SUCCESS')
         {   
     		location.href = '/profile';
         }
-        else if (data.status == 'ALERT')
+        else if (data.status == 'FAILURE')
         {
-            global.renderAlert(data.msg, 'alert-danger', 'loginAlert');
+            global.setError($('#'+data.id), data.msg);
         }
         else
         {

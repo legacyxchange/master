@@ -639,9 +639,9 @@ h2 .view a{
     letter-spacing:1px;
 }
 .sign_btn{
-    width:360px;
+    
     height:80px;
-    margin:0px auto 0px auto;
+    
 }
 .sign_btn a{
     -webkit-border-radius: 8;
@@ -2995,3 +2995,28 @@ h2{
             .jssorb21 div:hover, .jssorb21 .av:hover { background-position: -35px -5px; }
             .jssorb21 .av { background-position: -65px -5px; }
             .jssorb21 .dn, .jssorb21 .dn:hover { background-position: -95px -5px; }
+            
+
+h1,h2,h3,h4,h5,h6{font-family: Georgia,Times,Times New Roman,serif; color:#000;}
+.navbar-nav{margin-top:15px!important;}
+.navbar-default{background:none; border-bottom:1px solid #aaa;}
+.navbar{margin-bottom:0; min-height:60px;}
+.navbar-brand{ font-size:30px; font-weight:700; height:auto; color:#000!important; line-height:30px; margin-top:5px;}
+.navbar-nav span{ margin:15px 15px 0; max-width:90%; display:block;}
+.navbar-nav span select{margin-top:15px;}
+.label{background:#b0b0b0;}
+.advance-search{margin-right:22px;cursor:pointer;}
+.ptb25{padding:25px 0;}
+.ptb10{padding:10px 0;}
+.dark-bg{background:#e9f3f7;}
+.section-header{text-align:center;}
+.section-header h2{font-size:40px; margin-top:0;}
+.section-header .subtitle{font-size:30px;font-family: Georgia,Times,Times New Roman,serif; color:#000;}
+.item-img{background:#fff; padding:5px; text-align:center; min-height:220px; vertical-align:middle; margin-bottom:20px;}
+.item-img img{vertical-align:middle;}
+.border-item{border:solid 1px #ccc; }
+footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
+@media (min-width: 768px) {
+.navbar-nav span select{display:inline-block; margin:0 0 0 15px; max-width:200px; width:auto; height:auto; padding: 2px;
+    width: auto;}
+.navbar-nav span{padding:0px 0 0; margin:0; max-width:100%;  display:inline-block;}
