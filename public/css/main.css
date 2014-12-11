@@ -1364,7 +1364,7 @@ display:inline;
 .timer { color: gold; font-weight:bold; text-align:center; }
 .product-image{ margin:0px;background: #fff;text-align:center;vertical-align:middle;}
 .large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
-.hover-info{padding:5px;display:none;position: absolute;top: 0px; opacity:.9; background:teal;color:#eee;vertical-align:middle;width:100%;height:100%;font-size:13px;}
+.hover-info{padding:5px;display:none;position: absolute;top: 0px; opacity:.9; background:teal;color:#eee;vertical-align:middle;width:100%;height:100%;font-size:13px;cursor:pointer;}
 .product-price{color:lime;margin-right:10px;}
 .product-price a{color:lime;margin-right:10px;}
 .product-buynow-button{float:right;color:lime;}
@@ -1419,3 +1419,8 @@ display: none;
 height: 199px;
 background: rgb(255, 255, 255);
 }
+
+.product-heading{text-align:center;background:#fff;}
+.product-heading h2{text-align:center;}
+.product-image{max-width:48%;float:left;}
+.product-details{ border:1px solid #aaa; border-radius:0px;background:#eee;min-width:50%;min-height:300px;}

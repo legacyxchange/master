@@ -87,9 +87,13 @@ include_once 'headinclude.php';
 			<li class=""><a href="/help">Help</a></li>
 			<li class=""><a class="sign big-link" href="#" id="signupBigButton">Free Registration</a></li>
 			<?php if ($this->session->userdata('logged_in')) : ?> 
-			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i>
+			<div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
+			</a>
+			</li>
 			<?php else:?>
-			<li><a href="#"><i id="headerLoginBtn" style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<li><a href="#"><i id="headerLoginBtn" style="font-size:20px;" class="fa fa-shopping-cart"></i></a>
+			</li>
 			<?php endif;?>
           </ul>
         </div><!--/.nav-collapse -->

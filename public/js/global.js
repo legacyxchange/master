@@ -752,3 +752,14 @@ global.showLargeImage = function(obj){
 	$('#largeImageModal .modal-body').html('<img src="'+uri+'" />'); 
     $('#largeImageModal').modal('show');
 }
+
+$(document).ready(function(){
+	$.ajax( "/shoppingcart/checkForItems")
+    .done(function( data ) { //console.log()
+        if(data.indexOf('0 item') < 0)
+            $('#cart-items').html(data);
+    })
+    .fail(function() {
+        alert( "error" );
+    });
+});

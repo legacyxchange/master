@@ -22,10 +22,13 @@ class ShoppingCart extends CI_Controller {
         $this->load->model('listings_model', 'listing', true);
         
         $this->load->model('product_ownership_records_model', 'product_ownership_record', true);
+        
+        $this->load->library('cart');
     }
 
     public function index($listing_id = null) {
     	$body['title'] = 'Shopping Cart';
+    	
         try {
         	if($listing_id)
             	$body['listings'] = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));
@@ -40,20 +43,8 @@ class ShoppingCart extends CI_Controller {
         $this->load->view('template/footer');
     }
 
-    public function product($product_id) {
-    	
-    	$listings = $this->listing->fetchAll(array('where' => 'product_id = '.$product_id));
-    	
-    	foreach($listings as $listing){
-    		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$product_id))[0];
-    		$listing->product->product_images = $this->product_image->fetchAll(array('where' => 'product_id = '.$product_id, 'orderby' => 'order_index ASC'));  		    		
-    		$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));  
-    		$listing->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
-    	}
-    	//var_dump($listings); exit;
-        $body['listings'] = $listings;
-        $this->load->view('template/header', $header);
-        $this->load->view('listings/index', $body);
-        $this->load->view('template/footer');
+    public function checkForItems() {
+    	if($this->cart->total_items() > 1) { $c = $this->cart->total_items().' items'; }else{ $c = $this->cart->total_items().' item'; }
+    	echo ($c.'<br /><span style="position:relative;top:-8px;left:-3px;font-size:11px;">$'.number_format($this->cart->total(),2).'</span>'); exit;
     }
 }
