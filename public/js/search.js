@@ -591,4 +591,21 @@ $(document).ready(function(){
         });
         */
     }
+    $('.product-image').hover(function(e){ 
+    	if($(this).next().is(':visible')){
+    		$(this).next().hide();
+    	}else{
+    		$(this).next().show();
+    	}
+    });
+    $('.hover-info').hover(function(e){ 
+    	if($(this).is(':visible')){
+    		$(this).hide();
+    	}else{
+    		$(this).show();
+    	}
+    });
+    $('.hover-info').click(function(e){
+    	location.href='/listings/product/'+$(this).attr('hover-info-id');
+    });
 });

@@ -1359,11 +1359,16 @@ display:inline;
 	margin-left:5px;
 	margin-right:5px;
 }
-.timer { color: red; font-weight:bold; text-align:center; }
-.product-image{ height: 200px; background: #fff;}
+.timer { color: gold; font-weight:bold; text-align:center; }
+.product-image{ height: 200px; background: #fff;text-align:center;}
 .large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
 .war_outer_1 { background: #fff; border-bottom: 0px solid #ccc; font-family:Palatino;}
-
+.product-container{width:280px;height:230px;border: 0px solid #aaa;border-radius:0px;margin:2px;padding:5px;background:#fff;}
+.hover-info{padding:5px;display:none;position: relative;top: -200px; opacity:.9; background:teal;color:#eee;height:220px;vertical-align:middle;}
+.product-price{color:lime;margin-right:10px;}
+.product-price a{color:lime;margin-right:10px;}
+.product-buynow-button{float:right;color:lime;}
+.product-name{font-size:16px;font-weight:bold;color:#fff;text-align:center;}
 #chat_hide_show_button {
 	background:#ccc;
 	color:#000;
