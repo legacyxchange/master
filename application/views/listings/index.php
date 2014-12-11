@@ -11,7 +11,7 @@
     	    <div class="col-lg-2">
     	    </div>
     	    <div class="product-details col-lg-6">
-    	        <div class="product-description"><?php echo $listing->product->description;?></div>
+    	        <div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
     	        <div class="product-prices">
     	        Retail Price: $<?php echo number_format($listing->product->retail_price,2);?>
     	        <?php if(isset($listing->buynow_price)):?>

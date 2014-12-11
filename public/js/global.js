@@ -663,7 +663,10 @@ global.checkPasswordConfirm = function(){
 global.checkRegisterForm = function ()
 { 
 	//console.log($('#signupform').serialize());
-	
+	if($('#firstName').val() == '')
+        global.setError($('#firstName'), 'First Name is a required field.');
+	else
+		global.resetError($('#firstName'));
 	if($('#lastName').val() == '')
         global.setError($('#lastName'), 'Last Name is a required field.');
 	else
