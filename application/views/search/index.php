@@ -44,16 +44,18 @@
         	<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
         <?php else: ?>
         <?php foreach($listings as $listing):?>
-            <div class="product-container col-md-4 col-xs-4 col-sm-6 col-lg-3" style="width:280px;min-height:380px;border: 1px solid #aaa;border-radius:10px;margin:2px;padding:5px;">
-                <div class="product-image" style="text-align:center;"><img src="/products/productimg/160/<?=$listing->product_id;?>/<?=$listing->product->image;?>" /></div>
-                <div class="large-img" product_name="<?php echo $listing->product->name;?>">Click for larger image.</div>
-                <div class="timer" id="<?php echo $listing->listing_id;?>"></div>
+            <div class="product-container col-md-4 col-xs-4 col-sm-6 col-lg-3" style="width:280px;height:230px;border: 0px solid #aaa;border-radius:0px;margin:2px;padding:5px;background:#fff;">
+                <div class="product-image" onmouseover="$(this).next().show();" onmouseout="$(this).next().hide();" style="text-align:center;"><img src="/products/productimg/160/<?=$listing->product_id;?>/<?=$listing->product->image;?>" /></div>
+                <div onmouseover="$(this).show();" onmouseout="$(this).hide();" class="hover-info" style="padding:5px;display:none;position: relative;top: -200px; opacity:.9; background:teal;color:#eee;height:220px;vertical-align:middle;">
+                	<!-- <div class="large-img" product_name="<?php echo $listing->product->name;?>">Click for larger image.</div> -->
+                	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>
                                
-                <div class="row" style="width:240px;">
-                	<div class="product-price" style="margin-left:20px;">Price: $<?=number_format($listing->product->retail_price, 2);?><a style="float:right;" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a></div>                              	
+                	<div class="row" style="width:240px;">
+                		<div class="product-price" style="margin-left:20px;">Price: $<?=number_format($listing->product->retail_price, 2);?><a style="float:right;" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a></div>                              	
+                	</div>
+                	<div class="product-name" style="font-size:16px;font-weight:bold;text-align:center;"><?=$listing->product->name;?></div>
+                	<div class="product-description" style="width:240px;"><?php echo html_entity_decode($listing->product->description);?></div>
                 </div>
-                <div class="product-name" style="font-size:16px;font-weight:bold;text-align:center;"><?=$listing->product->name;?></div>
-                <div class="product-description" style="width:240px;"><?php echo html_entity_decode($listing->product->description);?></div>
             </div>
         <?php endforeach;?>
         <?php endif; ?>

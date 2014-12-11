@@ -1360,7 +1360,7 @@ display:inline;
 	margin-right:5px;
 }
 .timer { color: red; font-weight:bold; text-align:center; }
-.product-image{ height: 200px;}
+.product-image{ height: 200px; background: #fff;}
 .large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
 .war_outer_1 { background: #fff; border-bottom: 0px solid #ccc; font-family:Palatino;}
 
