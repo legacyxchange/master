@@ -32,21 +32,14 @@
         <span u="arrowright" class="jssora21r" style="width: 55px; height: 55px; top: 123px; right: 8px">
         </span>              
     </div>
-    <!-- Jssor Slider End -->    	   	
-    	<div class="war_outer_1">
-        		<div class="container">                   
-                    <div class="row">
-                    <div class="sign_btn"><a style="cursor:pointer;background: #ccc; color:#000055" class="big-link" id="signupBigButton">SIGN ME UP</a></div>
-                    </div>
-                    <div class="row">
-                    <!-- <div class="face_btn"><a id="bigFBbtn" class="blue-bg" href="#">sign up with facebook</a></div>  -->                        
-			        </div>
-			   </div>
-        </div>
-    <!--war_outer end-->    
+    <!-- Jssor Slider End -->    	   	  
     <!--container start-->
-        <div class="container">
-        <h1 class="banner_text">Todays Featured Listings.</h1>
+        <section id="original-item" class="dark-bg ptb25">
+	        <div class="container">
+	            <div class="section-header">
+		            <h2 style="text-align: center;">New Original Items</h2>
+		            <div class="subtitle">Never Before Sold - DNA Marked, Registered</div>
+		        </div>
         <?php if(!is_array($listings)):?>
         	<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
         <?php else: ?>
@@ -65,6 +58,7 @@
         <?php endforeach;?>
         <?php endif; ?>
         </div>
+        </section>
      <!--container end-->  
      <!--container start-->
      <!-- 

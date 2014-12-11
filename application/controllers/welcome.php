@@ -68,9 +68,9 @@ class Welcome extends CI_Controller {
                     
                     $this->functions->jsonReturn('SUCCESS', 'Account has been created!');
                 } elseif(!$usernameAvail && $emailAvail) {
-                    $this->functions->jsonReturn('ALERT', 'Username is already in use!');
-                } else {
-                	$this->functions->jsonReturn('ALERT', 'Email is already in use!');
+                    echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;
+                } elseif($usernameAvail && !$emailAvail) {
+                	echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'Email is already in use!')); exit;
                 }
             } catch (Exception $e) {
                 $this->functions->sendStackTrace($e);
