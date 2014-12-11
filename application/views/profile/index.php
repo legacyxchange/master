@@ -1,18 +1,5 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed'); ?>
 
-<?php if($this->session->flashdata('SUCCESS')): ?>
-        <div class='row'>
-        <h3 class="alert alert-success"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('FAILURE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-danger"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('NOTICE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-notice"><?php echo $this->session->flashdata('NOTICE'); ?></h3>
-    <?php endif;?>
-
     <div class='row main-content'>
         <div class='col-md-8 col-md-offset-2'>
         	<div class='col-bg'>

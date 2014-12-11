@@ -13,32 +13,32 @@ $(document).ready(function(){
     <div id='loginAlert'></div>
            
     <div class="form-group">
-            <input type='text' class='form-control' name='firstName' id='firstName' value="" placeholder='FIRST NAME' onchange="global.resetError($(this));" />
+            <input type='text' class='form-control' name='firstName' id='firstName' value="" placeholder='FIRST NAME' onchange="global.checkFirstName();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
 
     <div class="form-group">
-            <input type='text' class='form-control' name='lastName' id='lastName' value="" placeholder='LAST NAME' onchange="global.resetError($(this));" />
+            <input type='text' class='form-control' name='lastName' id='lastName' value="" placeholder='LAST NAME' onchange="global.checkLastName();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
     
     <div class="form-group">
-            <input type='text' class='form-control' name='username' id='username' value="" placeholder='USER NAME' onchange="global.resetError($(this));" />
+            <input type='text' class='form-control' name='username' id='username' value="" placeholder='USER NAME' onchange="global.checkUsername();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
 
     <div class="form-group">
-            <input type='text' class='form-control' name='email' id='email' value="" placeholder='EMAIL ADDRESS' onchange="global.resetError($(this));" />
+            <input type='text' class='form-control' name='email' id='email' value="" placeholder='EMAIL ADDRESS' onchange="global.checkEmail();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
 
     <div class="form-group">
-            <input type='password' class='form-control' name='passwd' id='passwd' value="" placeholder='PASSWORD' onchange="global.resetError($(this));" />
+            <input type='password' class='form-control' name='passwd' id='passwd' value="" placeholder='PASSWORD' onchange="global.checkPassword();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
     
     <div class="form-group">
-            <input type='password' class='form-control' name='passwd_confirm' id='passwd_confirm' value="" placeholder='CONFIRM PASSWORD' onchange="global.resetError($(this));" />
+            <input type='password' class='form-control' name='passwd_confirm' id='passwd_confirm' value="" placeholder='CONFIRM PASSWORD' onchange="global.checkPasswordConfirm();" />
             <div class="alert alert-danger" style="display:none;"></div>
     </div> <!-- .form-group -->
     

@@ -52,6 +52,22 @@ class Welcome extends CI_Controller {
         $this->load->view('welcome/signup', $body);
     }
 
+    public function checkUsername(){
+    	$usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
+    	if ($usernameAvail !== true) {
+    		echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;
+    	}else{
+    		echo json_encode(array('status' => 'SUCCESS')); exit;
+    	}
+    }
+    public function checkEmail(){
+    	$emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
+    	if ($emailAvail !== true) {
+    		echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'Email is already in use!')); exit;
+    	}else{
+    		echo json_encode(array('status' => 'SUCCESS')); exit;
+    	}
+    }
     public function register() {
     	if ($_POST) {         	
             try {           	

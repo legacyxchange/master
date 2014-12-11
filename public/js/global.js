@@ -597,28 +597,95 @@ global.resetError = function(id){
 	$(id).css('background', 'white');
     $(id).next().html('');
     $(id).next().hide();
-    global.checkRegisterForm();
+    //global.checkRegisterForm();
 }
-
+global.checkFirstName = function(){
+	if($('#firstName').val().length < 4)
+        global.setError($('#firstName'), 'First Name must be at least 4 characters.');
+	else
+		global.resetError($('#firstName'));
+}
+global.checkLastName = function(){
+	if($('#lastName').val().length < 4)
+        global.setError($('#lastName'), 'Last Name must be at least 4 characters.');
+	else
+		global.resetError($('#lastName'));
+}
+global.checkUsername = function(){	
+	if($('#username').val().length < 4)
+        global.setError($('#username'), 'Username must be at least 4 characters.');
+	else if($('#username').val().length >= 4){
+		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { //console.log(data)
+	    	if (data.status == 'FAILURE')
+	        { 
+	            global.setError($('#'+data.id), data.msg);
+	        }
+	    	else if (data.status == 'SUCCESS'){  
+	    		global.resetError($('#username'));
+	    	}
+	    }, 'json');
+	}
+	else
+		global.resetError($('#username'));
+}
+global.checkEmail = function(){	
+	if($('#email').val().length < 4)
+        global.setError($('#email'), 'Email must be at least 4 characters.');
+	else if($('#email').val().length >= 4){
+		$.post("/welcome/checkEmail", $('#signupform').serialize(), function (data) { //console.log(data)
+	    	if (data.status == 'FAILURE')
+	        { 
+	            global.setError($('#'+data.id), data.msg);
+	        }
+	    	else if (data.status == 'SUCCESS'){  
+	    		global.resetError($('#email'));
+	    	}
+	    }, 'json');
+	}
+	else
+		global.resetError($('#email'));
+}
+global.checkPassword = function(){
+	if($('#passwd').val().length < 4)
+        global.setError($('#passwd'), 'Password must be at least 4 characters.');
+	else
+		global.resetError($('#passwd'));
+}
+global.checkPasswordConfirm = function(){
+	if($('#passwd_confirm').val().length < 4)
+        global.setError($('#passwd_confirm'), 'Password Confirmation must be at least 4 characters.');
+	else if($('#passwd_confirm').val() != $('#passwd').val()){
+		global.setError($('#passwd_confirm'), 'Passwords donot match.');
+	}
+	else
+		global.resetError($('#passwd_confirm'));
+}
 global.checkRegisterForm = function ()
-{   
-	if($('#firstName').val() == '')
-        global.setError($('#firstName'), 'First Name is a required field.');
+{ 
+	//console.log($('#signupform').serialize());
+	
 	if($('#lastName').val() == '')
         global.setError($('#lastName'), 'Last Name is a required field.');
+	else
+		global.resetError($('#lastName'));
 	if($('#username').val() == '')
 		global.setError($('#username'), 'Username is a required field.');
+	else
+		global.resetError($('#username'));
 	if($('#email').val() == '')
 		global.setError($('#email'), 'Email Address is a required field.');
+	else
+		global.resetError($('#email'));
 	if($('#passwd').val() == '')
 		global.setError($('#passwd'), 'Password is a required field.');
+	else
+		global.resetError($('#passwd'));
 	if($('#passwd_confirm').val() == '')
 		global.setError($('#passwd_confirm'), 'Password Confirmation is a required field.');
-	else if ($('#passwd_confirm').val() != $('#passwd').val())
-        global.setError($('#passwd_confirm'), 'Passwords donot match please re-enter your password!');
+	else
+		global.resetError($('#passwd_confirm'));
     
-    
-    $.post("/welcome/register", $('#signupform').serialize(), function (data) { console.log(data)
+    $.post("/welcome/register", $('#signupform').serialize(), function (data) { //console.log(data)
     	if (data.status == 'SUCCESS')
         {   
     		location.href = '/profile';
