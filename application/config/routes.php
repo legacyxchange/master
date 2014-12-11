@@ -59,6 +59,7 @@ $route['dealers'] = 'static_pages/page/dealers';
 $route['athletes-celebrities-agents'] = 'static_pages/page/athletes_celebrities_agents';
 $route['manufacturers'] = 'static_pages/page/manufacturers';
 $route['news'] = 'static_pages/page/news';
+$route['shopping-cart'] = 'shoppingcart';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
