@@ -1426,3 +1426,7 @@ background: rgb(255, 255, 255);
 h1, h2, h3, h4, h5{
 	color: #000;
 }
+.section-header h2{
+	font-family: verdana;
+	font-size: 32px;
+}
