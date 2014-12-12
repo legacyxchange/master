@@ -15,7 +15,7 @@
 
 	#fixedTopNav .input-group > .form-control, .input-group .form-control
 	{
-		width:170px;
+		/*width:170px;*/
 		
 	}
 }
@@ -509,6 +509,19 @@
 	{
 		font-size: 1.1em;
 	}
+}
+@media only screen and (max-width : 640px){
+.navbar-nav{margin:0!important; background:#eee; }
+.nav>li>a{ color:#000!important; font-size:16px; font-weight:bold;}
+.nav >li{border-bottom:solid 1px #ccc; padding:5px 12px !important; display:block;}
+.nav >li:hover{background:#ccc!important;}
+.nav:nth-child(1){border-style:solid; border-width:1px 1px 0px 1px; border-color:#ccc; border-radius:5px 5px 0 0;}
+.nav:nth-last-child(1){border-style:solid; border-width:0px 1px 1px 1px; border-color:#ccc; border-radius:0 0 5px 5px;}
+.nav>li>a.combo-link{padding-bottom:0; display:inline-block!important;}
+.nav>li>a.combo-down-link{padding-bottom:0; padding-top:0; display:inline-block!important;}
+.no-link .input-group{float:none;}
+.no-link .input-group-addon{background:#fff;}
+.no-link .label{position:relative; z-index:9;}
 }
 
 /* Custom, iPhone Retina */ 
