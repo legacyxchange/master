@@ -17,7 +17,6 @@ include_once 'headinclude.php';
 <body<?= (empty($onload)) ? null : " onload=\"{$onload}\"" ?> class="landing">
     <!--header start-->
     <!-- INGINES -->
-	
     <nav role="navigation" class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -31,8 +30,8 @@ include_once 'headinclude.php';
         </div>
        <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
            <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
-		   <ul class="nav navbar-nav navbar-right">
-		   <li>	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <div class="user_right dropdown col-lg-2 col-md-4 col-xs-12">
+               	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa-stack fa-2x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa  fa-user fa-stack-1x fa-inverse"></i>
@@ -42,28 +41,23 @@ include_once 'headinclude.php';
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="/administrator/dashboard">Dashboard</a></li>                        
                     <li><a href="/welcome/logout">Logout</a></li>
-                </ul></li>
-		   </ul>
-		            
+                </ul>
+            </div>              
             <?php elseif ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] == 0) : ?> 
-			<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <div class="user_right dropdown col-lg-2 col-md-4 col-xs-12">
+              	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa-stack fa-2x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa  fa-user fa-stack-1x fa-inverse"></i>
                         </span> 
                         <i class="fa fa-caret-down icon_color"></i>
                 </a>
-				<ul class="dropdown-menu" role="menu">                   
+                <ul class="dropdown-menu" role="menu">                   
                     <li><a href="/profile">My Account</a></li>
                     <li><a href="/admin/dashboard">My Dashboard</a></li>
                     <li><a href="/welcome/logout">Logout</a></li>
                 </ul>
-				
-				</li>
-			
-			</ul>
-			
+            </div>
             <?php else:?>
             <ul class="nav navbar-nav">
                 <li class=""><a href="#" id='loginXSBtn'>My Legacy</a></li>
@@ -72,40 +66,33 @@ include_once 'headinclude.php';
           
 
           <ul class="nav navbar-nav navbar-right inline">
-            <li><span class="no-link">
-               
+            <li style="margin-right:10px;">
+                
                     <select class="form-control">
 			            <option>Explore</option>			
 			        </select>
-					</span>
-								
 			</li>
-			<li>  <span class="no-link">			
+			<li>			
 			        <?php echo form_open('/search/index', false); ?>
-					<div class="input-group stylish-input-group">
-                    <input type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <input type="text" class="input-text" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
-					  <span class="input-group-addon">
-                    <button class="button" title="Search" type="submit"><i class="fa fa-search"></i></button>
-					</span>
-					</div>
+                    <button class="button" title="Search" type="submit"><strong><i class="fa fa-search"></i></strong></button>
                     <?php echo form_close(); ?>
-						    
-			    <div class="label pull-right advance-search" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>	
-				</span>				
+			    
+			    <div class="label pull-right advance-search" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
 			</li>
            
             <li class=""><a href="/mark-item">Mark Item</a></li>
-			<li class=""><a href="/how-to-sell" class="combo-link">Sell /</a><a href="/how-to-buy" class="combo-down-link">Buy</a></li>
+			<li class=""><a href="/how-to-sell" style="float:left;padding-left:0;padding-right:0;">Sell /</a><a style="float:left;padding-left:3px;padding-right:0;" href="/how-to-buy">Buy</a></li>
 			<li class=""><a href="/help">Help</a></li>
 			<li class=""><a class="sign big-link" href="#" id="signupBigButton">Free Registration</a></li>
 			<?php if ($this->session->userdata('logged_in')) : ?> 
-			<li><a href="/shopping-cart"><i class="fa fa-shopping-cart"></i>
-			<div id="cart-items"></div>			
+			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i>
+			<div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
 			</a>
 			</li>
 			<?php else:?>
-			<li><a href="#"><i id="headerLoginBtn" class="fa fa-shopping-cart"></i></a>
+			<li><a href="#"><i id="headerLoginBtn" style="font-size:20px;" class="fa fa-shopping-cart"></i></a>
 			</li>
 			<?php endif;?>
           </ul>
