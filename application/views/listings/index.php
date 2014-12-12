@@ -15,7 +15,7 @@
     	        <div class="product-prices">
     	        Retail Price: $<?php echo number_format($listing->product->retail_price,2);?>
     	        <?php if(isset($listing->buynow_price)):?>
-    	         | Buy Now Price: <button id="listing-buynow-button" value="<?php echo $listing->listing_id;?>">$<?php echo number_format($listing->buynow_price,2);?></button>
+    	         | Buy Now Price: <button token_name="<?php echo $this->security->get_csrf_token_name();?>" token_value="<?php echo $this->security->get_csrf_hash();?>" id="listing-buynow-button" value="<?php echo $listing->listing_id;?>">$<?php echo number_format($listing->buynow_price,2);?></button>
     	        <?php endif;?>
     	        </div>
 	        </div>

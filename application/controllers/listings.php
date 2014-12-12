@@ -59,6 +59,12 @@ class Listings extends CI_Controller {
     }
     
     public function buynow($listing_id){
+    	//var_dump($_REQUEST); exit;
+    	$user_id = $this->session->userdata['user_id'];
+    	if(!$user_id){
+    		echo json_encode(array('status' => 'FAILURE', 'message' => 'Not Logged In')); exit;
+    	}
+    	
     	$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));
     	foreach($listings as $listing){
     		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
