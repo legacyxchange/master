@@ -91,15 +91,16 @@ class Products extends CI_Controller {
     	if(!$product_id)
     		header('Location: /admin/dashboard');
     
-    	$body['userid'] = $this->session->userdata['userid'];
+    	$body['user_id'] = $this->session->userdata['user_id'];
     	
     	if (!empty($_POST)) {
     		$params = $_POST;
-    		    		
+
+    		//var_dump($_POST, $_FILES['userfile']['name']); exit;
     		if(!empty($_FILES['userfile']['name'])){
     			
     			$ret = $this->doUpload($product_id);
-    			
+    			//var_dump($ret); exit;
     			if(!empty($ret['file_name'])){
     				$_POST['image'] = $ret['file_name'];
     				$_POST['product_id'] = $product_id;
@@ -150,7 +151,7 @@ class Products extends CI_Controller {
     			$out .= form_open_multipart('/admin/products/edit/'.$r->product_id); 
     			
         		$out .= form_hidden('product_id', $r->product_id);
-        		$out .= form_hidden('userid', $r->userid);
+        		$out .= form_hidden('user_id', $r->user_id);
         		
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_type_id">Product Type</label><br />';
@@ -275,7 +276,7 @@ class Products extends CI_Controller {
    
     public function productimg($size = 50, $product_id = 0, $file = null) {
         
-        $path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'products' . DS . $product_id . DS;
+        $path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'products' . DS . $product_id . DS; 
 
         if (!empty($file))
             $file = urlencode($file);

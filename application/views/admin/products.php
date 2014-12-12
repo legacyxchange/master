@@ -1,21 +1,9 @@
 <!--container start-->
         <div class="container main-content">
-        <?php if($this->session->flashdata('SUCCESS')): ?>
-        <div class='row'>
-        <h3 class="alert alert-success"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('FAILURE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-danger"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('NOTICE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-notice"><?php echo $this->session->flashdata('NOTICE'); ?></h3>
-        </div>
-        <?php endif; ?> 
+        
         <?php echo $admin_menu; ?>
         <div class="add_new_butt admin_add_new_butt">
-			<a href="#" class="big-link" data-reveal-id="myModa2"><span class="add_new_plus">+</span> add new</a>
+			<a href="#" class="products-big-link" data-reveal-id="productsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
             	<h2>My PRODUCTS</h2>
@@ -38,7 +26,7 @@
                         <td class="rec-text"><?php echo $product->name;?></td>
                         <td class="rec-text"><img src="/admin/products/productimg/50/<?php echo $product->product_id;?>/<?php echo $product->image;?>" /></td>
                         <td valign="middle" align="right" class="icon">                                            
-						<a href="#" id="<?=$product->product_id;?>" class="admin_edit_button" data-reveal-id="myModa2"><img src="/public/images/edit-admin.png" /> </a> 
+						<a href="#" id="<?=$product->product_id;?>" class="admin_edit_button" data-reveal-id="productsModal"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-reveal-id="modalConfirm" href="/admin/products/delete/<?php echo $product->product_id;?>"><img src="/public/images/delete.png" /> </a> 
 						</td>
                     </tr>                                       
@@ -50,7 +38,7 @@
             </div>
         </div>
      <!--container end-->   
-     <div id="myModa2" class="reveal-modal"> 
+     <div id="productsModal" class="reveal-modal"> 
          <div class="modal-header">
             <button type="button" class="close-reveal-modal" data-dismiss="modal" aria-hidden="true">&times;</button>           
         </div> <!-- modal-header -->         

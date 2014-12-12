@@ -94,9 +94,9 @@ class Products extends CI_Controller {
                 $nh = $size;
                 $leftBuffer = (($nw - $size) / 2); 
             } else {
-                $nw = $size;
-                $scale = $size / $width;
-                $nh = $height * $scale;
+                $nw = $size - 50;
+                $scale = $size / $width; 
+                $nh = $height * $scale - 50;
                 $topBuffer = (($nh - $size) / 2);
             }
 

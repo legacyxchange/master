@@ -1,21 +1,9 @@
 <!--container start-->
         <div class="container main-content">
-        <?php if($this->session->flashdata('SUCCESS')): ?>
-        <div class='row'>
-        <h3 class="alert alert-success"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('FAILURE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-danger"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('NOTICE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-notice"><?php echo $this->session->flashdata('NOTICE'); ?></h3>
-        </div>
-        <?php endif; ?> 
+        
         <?php echo $admin_menu;?>
         <div class="add_new_butt admin_add_new_butt">
-			<a href="#" class="big-link" data-reveal-id="myModa2"><span class="add_new_plus">+</span> add new</a>
+			<a href="#" class="listings-add-link" data-reveal-id="listingsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
             	<h2>My Listings</h2>
@@ -44,7 +32,7 @@
                         <td class="rec-text"><?php echo $listing->buynow_price;?></td>
                         <td class="rec-text"><?php echo $listing->reserve_price;?></td>
                         <td valign="middle" align="right" class="icon">                                            
-						<a href="#" listing_id="<?=$listing->listing_id;?>" class="big-link admin_edit_button" data-reveal-id="myModa2"><img src="/public/images/edit-admin.png" /> </a> 
+						<a href="#" listing_id="<?=$listing->listing_id;?>" class="listings-edit-link admin_edit_button" data-reveal-id="listingsModal"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-reveal-id="modalConfirm" href="/admin/listings/delete/<?php echo $listing->listing_id;?>"><img src="/public/images/delete.png" /> </a> 
 						</td>
                     </tr>                                       
@@ -57,7 +45,7 @@
         </div>
      <!--container end--> 
      
-     <div id="myModa2" class="reveal-modal"> 
+     <div id="listingsModal" class="reveal-modal"> 
          <div class="modal-header">
             <button type="button" class="close-reveal-modal" data-dismiss="modal" aria-hidden="true">&times;</button>           
         </div> <!-- modal-header -->         

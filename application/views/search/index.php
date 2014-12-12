@@ -23,7 +23,7 @@
                 <img u="image" src="/public/images/banner3.png" />               
             </div>             
         </div>                
-        <div u="navigator" class="jssorb21" style="position: absolute; bottom: 26px; left: 6px;">
+        <div u="navigator" class="jssorb21" style="position: absolute; bottom: 8px; left: 6px;">
             <!-- bullet navigator item prototype -->
             <div u="prototype" style="POSITION: absolute; WIDTH: 19px; HEIGHT: 19px; text-align:center; line-height:19px; color:White; font-size:12px;"></div>
         </div>        
@@ -40,11 +40,13 @@
 		            <h2 style="text-align: center;">New Original Items</h2>
 		            <div class="subtitle">Never Before Sold - DNA Marked, Registered</div>
 		        </div>
+		        <div class="container" style="height:168px;">
         <?php if(!is_array($listings)):?>
         	<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
         <?php else: ?>
+        
         <?php foreach($listings as $listing):?>
-            <div class="product-container col-md-4 col-xs-4 col-sm-6 col-lg-3">
+            <div class="product-container col-md-3 col-xs-4 col-sm-6 col-lg-3">
                 <div class="product-image"><img src="/products/productimg/160/<?=$listing->product_id;?>/<?=$listing->product->image;?>" /></div>
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
                 	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
@@ -59,6 +61,7 @@
             </div>
         <?php endforeach;?>
         <?php endif; ?>
+        </div>
         </div>
         </section>
      <!--container end-->  

@@ -5,7 +5,7 @@ $(document).ready(function(){
 		
 	    $.ajax( "/administrator/products/productsform/"+product_id)
 	    .done(function( data ) { //console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
@@ -16,7 +16,7 @@ $(document).ready(function(){
 		
 	    $.ajax( "/administrator/products/productsform")
 	    .done(function( data ) { //console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
@@ -28,7 +28,7 @@ $(document).ready(function(){
 		
 	    $.ajax( "/admin/products/productsform/"+product_id)
 	    .done(function( data ) { console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
@@ -39,7 +39,7 @@ $(document).ready(function(){
 		
 	    $.ajax( "/admin/products/productsform")
 	    .done(function( data ) { //console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );

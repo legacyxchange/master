@@ -5,7 +5,7 @@ $(document).ready(function(){
 		
 	    $.ajax( "/administrator/listings/listingsform/"+listing_id)
 	    .done(function( data ) { console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#listingsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
@@ -24,7 +24,7 @@ $(document).ready(function(){
 		 
 		request.done(function( msg ) {
 		  //console.log( msg );
-		  $('#myModa2 .modal-content').html(msg);
+		  $('#listingsModal .modal-content').html(msg);
 		});
 		 
 		request.fail(function( jqXHR, textStatus ) {
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		
 	    $.ajax("/admin/listings/listingsform")
 	    .done(function( data ) { 
-	      $('#myModa2 .modal-content').html(data);
+	      $('#listingsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
