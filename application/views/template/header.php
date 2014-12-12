@@ -10,7 +10,7 @@ include_once 'headinclude.php';
 <?= $headscript ?>
 
 <style>
-.followBtn{display:none;}
+.followBtn{display:none;} 
 </style>
 </head>
 
