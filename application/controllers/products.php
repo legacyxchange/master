@@ -74,7 +74,7 @@ class Products extends CI_Controller {
 
             if (empty($img)) {
                 $path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
-                $img = 'dude.gif';
+                $img = 'no_photo.png';
             }
 
             $is = getimagesize($path . $img);
