@@ -32,7 +32,7 @@ if (!defined('BASEPATH'))
         
         <!-- Custom CSS -->
     	<link href="/public/css/custom-styles.css" rel="stylesheet">
-    
+    	<link href="/public/css/bootstrap-social.css" rel="stylesheet">
     	<!-- Custom Fonts -->
     	      
         <!-- end new stuff -->

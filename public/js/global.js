@@ -69,29 +69,12 @@ $(function () {
         global.showLargeImage($(this).prev());
         $('.modal-title').html($(this).attr('product_name'))
     });
-    /*
-    if ($('#locatorLink').exists())
-    {
-        if ($('#lat').val() == 0 && $('#lng').val() == 0)
-        {
-            //global.getLocation();
-        }
-    }
-    */
-    /*
-    if ($('#loginModal').exists())
-    {
-        $('#loginModal').on('shown.bs.modal', function (e) {
-            global.setLoginEnter();
-        });
-
-        $('#loginModal').on('hide.bs.modal', function (e) {
-            $(window).unbind('keypress');
-        });
-    }
-
-    global.smSearch();
-    */
+    
+    $('#submitSignupBtn').click(function (e) {
+    	
+        global.checkRegisterForm();
+    });
+    
     $('#logoutXSBtn').click(function (e) {
         $(this).attr('disabled', 'disabled');
         $(this).find('i').removeClass('fa-sign-out');
@@ -445,7 +428,7 @@ global.userlogin = function ()
     }, 'json'); 
 }
 
-global.loadSignup = function (loadModal)
+/*global.loadSignup = function (loadModal)
 {
     if (loadModal == undefined)
     {
@@ -477,7 +460,7 @@ global.loadSignup = function (loadModal)
             $('#signupModal').modal('show');
         }
     });
-}
+}*/
 
 global.setLoginEnter = function ()
 {
@@ -564,8 +547,8 @@ global.checkForgotPasswordForm = function ()
     if ($('#user_email').val() == '')
     {
         global.renderAlert('Please enter your e-mail address!', undefined, 'loginAlert');
-        $('#email').focus();
-        $('#email').effect('highlight');
+        $('#user_email').focus();
+        $('#user_email').css('background','yellow');
         return false;
     }
 
@@ -586,7 +569,8 @@ global.checkForgotPasswordForm = function ()
 
 global.setError = function(id, msg){	
     	$(id).focus();
-        $(id).css('background', 'yellow');
+        $(id).css('background', 'rgb(252, 252, 170)');
+        $(id).css('color', '#000');
         $(id).next().html(msg);
         $(id).next().show();
         return false;
@@ -595,6 +579,7 @@ global.setError = function(id, msg){
 global.resetError = function(id){
 	
 	$(id).css('background', 'white');
+	$(id).css('color', '#555');
     $(id).next().html('');
     $(id).next().hide();
     //global.checkRegisterForm();
@@ -614,8 +599,8 @@ global.checkLastName = function(){
 global.checkUsername = function(){	
 	if($('#username').val().length < 4)
         global.setError($('#username'), 'Username must be at least 4 characters.');
-	else if($('#username').val().length >= 4){
-		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { //console.log(data)
+	else if($('#username').val().length >= 4){ 
+		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { console.log(data)
 	    	if (data.status == 'FAILURE')
 	        { 
 	            global.setError($('#'+data.id), data.msg);

@@ -27,7 +27,7 @@ include_once 'headinclude.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/" class="navbar-brand">LegecyXchange</a>
+          <a href="/" class="navbar-brand">LegacyXchange</a>
         </div>
        <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
            <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
@@ -66,7 +66,7 @@ include_once 'headinclude.php';
 			
             <?php else:?>
             <ul class="nav navbar-nav">
-                <li class=""><a href="#" id='loginXSBtn'>My Legacy</a></li>
+                <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Legacy</a></li>
             </ul>
             <?php endif;?>   
           

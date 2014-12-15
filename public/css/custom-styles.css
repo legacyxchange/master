@@ -291,28 +291,28 @@ button.button {
     padding-left:20px;
 }
 h2{
-    font-family: 'LatoRegular';
+    font-family: Georgia,Times,Times New Roman,serif;
     font-size:21px;
     text-align:left;
     color:#7C9F03;
     font-weight:normal;
     padding:0px 0px 20px 0px;
     margin:0px;
-    text-transform:uppercase;
+   
 }
 h2 .view{
-    font-family: 'LatoBold';
+    font-family: Georgia,Times,Times New Roman,serif;
     font-size:11px;
-    text-transform:uppercase;
+    
     color:#666666;
     text-decoration:none;
     padding:0px 0px 0px 10px;
     margin:0px;
 }
 h2 .view a{
-    font-family: 'LatoBold';
+    font-family:Georgia,Times,Times New Roman,serif;
     font-size:11px;
-    text-transform:uppercase;
+   
     color:#666666;
     text-decoration:none;
 }
@@ -1131,12 +1131,12 @@ close-reveal-modal-normal{
 .message-check p:not(#foo) > input[type=radio]:focus:checked + label 					{ background:url(../images/radio_check.png) no-repeat 0px 0px;  }
 
 h2{
-    font-family: 'LatoRegular';
+    font-family: Georgia,Times,Times New Roman,serif;
     color:#7C9F03;
     font-size:26px;
     text-align:left;
     font-weight:normal;
-    text-transform:uppercase;
+    
     padding:0px 0px 20px 0px;
     margin:0px;
 }
@@ -3011,3 +3011,48 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 
 .nav>li>a.combo-link{padding-bottom:0;}
 .nav>li>a.combo-down-link{padding-bottom:0; padding-top:0;}
+
+.ptb25{padding:25px 0;}
+.ptb10{padding:10px 0;}
+.dark-bg{background:#e9f3f7;}
+.section-header{text-align:center;}
+.section-header h2{font-size:40px; margin:0!important; padding:0!important;text-align:center; font-family: Georgia,Times,Times New Roman,serif!important;  font-weight:normal;}
+.section-header .subtitle{font-size:30px;font-family: Georgia,Times,Times New Roman,serif; color:#000;}
+.item-img{background:#fff; padding:5px; text-align:center; min-height:220px; vertical-align:middle; margin-bottom:20px;}
+.item-img img{vertical-align:middle; max-width:100%;}
+.border-item{border:solid 1px #ccc; }
+
+.hover-info{max-width:90%; max-height:220px;}
+
+
+
+
+
+.modal-title{text-align:center; background:#e9f3f7; font-size:30px; border-radius:5px 5px 0 0!important;}
+.modal-header{background:#e9f3f7; padding:5px; border-radius:5px 5px 0 0!important;}
+.modal-header .close{margin:0;}
+.form-action{padding:15px 0; text-align:right;}
+.reg-title{margin-bottom:28px; text-align:center;}
+ul.terms{padding:0; margin:0 0 0 25px;}
+ul.terms li{font-size:12px;}
+.reg-title h4{margin-top:0;}
+.reg-title h5{font-style:italic;}
+#myLegacy form, #loginModal   form{padding:10px 20px; }
+#myLegacy .login-form, #loginModal  .login-form{margin-bottom:20px!important; border-bottom:solid 2px #ccc; padding-bottom:20px;}
+#myLegacy  .modal-footer, #loginModal   .modal-footer{text-align:center; border:0; position:relative;}
+#resetPassword .modal-dialog, #registerConfirmation .modal-dialog{max-width:300px;}
+#resetPassword .form-action{padding-bottom:0;}
+
+.form-title{font-weight:bold; font-size:16px; text-transform:uppercase; }
+
+
+@media (min-width: 768px) {
+
+#myLegacy .login-form, #loginModal  .login-form{padding:0; margin:0; border:0;}
+#home{background-attachment:scroll; background-size:100%;}
+.tbg{padding:10px 250px;}
+#myLegacy .modal-dialog, #loginModal .modal-dialog {width:800px!important;}
+#myLegacy  .modal-footer, #loginModal  .modal-footer{text-align:left; padding:0; border:0; position:relative;}
+#myLegacy .modal-footer .btn-facebook, #loginModal .modal-footer .btn-facebook{position:absolute; left:20px; top:-70px;}
+
+}
