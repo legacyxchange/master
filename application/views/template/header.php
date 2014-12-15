@@ -66,26 +66,26 @@ include_once 'headinclude.php';
           
 
           <ul class="nav navbar-nav navbar-right inline">
-            <li style="margin-right:10px;">
+            <li style="margin-right:10px;min-width:200px;">
                 
-                    <select class="form-control">
+                    <select style="height:34px;" class="form-control">
 			            <option>Explore</option>			
 			        </select>
 			</li>
-			<li>			
+			<li style="height:54px;max-width:320px;">			
 			        <?php echo form_open('/search/index', false); ?>
-                    <div class="input-group stylish-input-group" style="width:200px;">
-                    <input type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <div class="input-group stylish-input-group">
+                    <input style="min-width:260px;height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
-                    <button class="button" title="Search" type="submit" style="height:20px;"><i class="fa fa-search"></i></button>
+                    <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
 					</span>
 					</div>
                     <?php echo form_close(); ?>
-			    
+			  
 			    <div class="label pull-right advance-search" style="background:#333;color:#fff;" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
 			</li>
-           
+            
             <li><a href="/mark-item">Mark Item</a></li>
 			<li><a href="/help">Help</a></li>
 			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
