@@ -675,7 +675,7 @@ global.checkRegisterForm = function ()
 	
 	$formData = $('#signupform').serialize();
 	$('.modal-body').css('height', '400px');
-	$('.modal-body').html('<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
+	$('.modal-body').html('<img height="100" style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
     $.post("/welcome/register", $formData, function (data) { //console.log(data)
     	
     	if (data.status == 'SUCCESS')
