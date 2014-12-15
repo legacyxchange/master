@@ -74,26 +74,30 @@ include_once 'headinclude.php';
 			</li>
 			<li>			
 			        <?php echo form_open('/search/index', false); ?>
-                    <input type="text" class="input-text" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <div class="input-group stylish-input-group" style="width:200px;">
+                    <input type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
-                    <button class="button" title="Search" type="submit"><strong><i class="fa fa-search"></i></strong></button>
+					  <span class="input-group-addon">
+                    <button class="button" title="Search" type="submit" style="height:20px;"><i class="fa fa-search"></i></button>
+					</span>
+					</div>
                     <?php echo form_close(); ?>
 			    
-			    <div class="label pull-right advance-search" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
+			    <div class="label pull-right advance-search" style="background:#333;color:#fff;" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
 			</li>
            
-            <li class=""><a href="/mark-item">Mark Item</a></li>
-			<li class=""><a href="/how-to-sell" style="float:left;padding-left:0;padding-right:0;">Sell /</a><a style="float:left;padding-left:3px;padding-right:0;" href="/how-to-buy">Buy</a></li>
-			<li class=""><a href="/help">Help</a></li>
-			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
+            <li><a href="/mark-item">Mark Item</a></li>
+			<li><a href="/help">Help</a></li>
+			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
 			<?php if ($this->session->userdata('logged_in')) : ?> 
-			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i>
-			<div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
-			</a>
+			<li>
+			    <a href="/shopping-cart">
+			        <i style="font-size:20px;" class="fa fa-shopping-cart"></i>
+			        <div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
+			    </a>
 			</li>
 			<?php else:?>
-			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a>
-			</li>
+			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>
         </div><!--/.nav-collapse -->
