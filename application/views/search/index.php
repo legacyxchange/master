@@ -45,12 +45,14 @@
         <?php if(!is_array($listings)):?>
 		<div class="row">
         	<div class="col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
-			</div>
+		</div>
         <?php else: ?>
         
-        <?php foreach($listings as $listing): ?>
+        <?php foreach($listings as $listing):?>
             <div class="product-container col-lg-3">
-                <div class="product-image item-img"><img src="/products/productimg/160/<?=$listing->product_id;?>/<?=$listing->product->image;?>" /></div>
+                <div class="product-image item-img"> 
+                	<img src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+                </div>
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
                 	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
                 	<div class="row">

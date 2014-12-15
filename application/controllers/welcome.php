@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
         $check = $this->welcome->checkLogin($_POST['user_email'], $_POST['user_pass']);
         
         if (empty($check)){
-                $this->functions->jsonReturn('ERROR', 'Invalid Password'); exit;
+                $this->functions->jsonReturn('ERROR', 'Invalid Username and/or Password'); exit;
         }elseif($check->permissions > 0){
         	$this->functions->setLoginSession($check->user_id);
         	
@@ -52,7 +52,7 @@ class Welcome extends CI_Controller {
         $this->load->view('welcome/signup', $body);
     }
 
-    public function checkUsername(){
+    public function checkUsername(){ 
     	$usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
     	if ($usernameAvail !== true) {
     		echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;

@@ -74,7 +74,7 @@ class Products extends CI_Controller {
 
             if (empty($img)) {
                 $path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
-                $img = 'dude.gif';
+                $img = 'no_photo.png';
             }
 
             $is = getimagesize($path . $img);
@@ -89,15 +89,13 @@ class Products extends CI_Controller {
             if ($width == $height) {
                 $nw = $nh = $size;
             } elseif ($width > $height) {
-                $scale = $size / $height;
-                $nw = $width * $scale;
-                $nh = $size;
-                $leftBuffer = (($nw - $size) / 2); 
+                $ratio = $size / $width;
+                $nh = $height * $ratio;
+                $nw = $size;               
             } else {
-                $nw = $size - 50;
-                $scale = $size / $width; 
-                $nh = $height * $scale - 50;
-                $topBuffer = (($nh - $size) / 2);
+            	$ratio = $size / $height;                              
+                $nw = $width * $ratio;
+                $nh = $size;
             }
 
             $leftBuffer = 0;
@@ -111,16 +109,13 @@ class Products extends CI_Controller {
                 $srcImg = imagecreatefrompng($path . $img);
 
             $destImg = imagecreatetruecolor($nw, $nh); // new image
-            //var_dump($destImg, $srcImg, $leftBuffer, $topBuffer, 0, 0, $nw, $nh, $width, $height); exit;
-            imagecopyresized($destImg, $srcImg, $leftBuffer, $topBuffer, 0, 0, $nw, $nh, $width, $height);
+            
+            imagecopyresampled($destImg, $srcImg, $leftBuffer, $topBuffer, 0, 0, $nw, $nh, $width, $height);
         } catch (Exception $e) {
             PHPFunctions::sendStackTrace($e);
         }
 
-        header('Content-Type: image/jpg');
-        imagejpeg($destImg);
-
-        imagedestroy($destImg);
-        imagedestroy($srcImg);
+        header('Content-Type: image/jpeg');
+        imagejpeg($destImg,NULL,80);
     }
 }

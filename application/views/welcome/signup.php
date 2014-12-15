@@ -9,7 +9,7 @@ $(document).ready(function(){
 });
 
 </script>
-<?php echo form_open('#', array('name' => 'signupform', 'id' => 'signupform'))?>
+<?php echo form_open('#', array('name' => 'signupformOLD', 'id' => 'signupformOLD'))?>
     <div id='loginAlert'></div>
            
     <div class="form-group">
