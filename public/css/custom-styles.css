@@ -3013,3 +3013,32 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 .nav>li>a.combo-down-link{padding-bottom:0; padding-top:0;}
 .subtitle{ text-align:center; font-size:26px; }
 .advance-search{color:#000;cursor:pointer;}
+
+.modal-title{text-align:center; background:#e9f3f7; font-size:30px; border-radius:5px 5px 0 0!important;}
+.modal-header{background:#e9f3f7; padding:5px; border-radius:5px 5px 0 0!important;}
+.modal-header .close{margin:0;}
+.form-action{padding:15px 0; text-align:right;}
+.reg-title{margin-bottom:28px; text-align:center;}
+ul.terms{padding:0; margin:0 0 0 25px;}
+ul.terms li{font-size:12px;}
+.reg-title h4{margin-top:0;}
+.reg-title h5{font-style:italic;}
+#myLegacy form{padding:10px 20px; }
+#myLegacy .login-form{margin-bottom:20px!important; border-bottom:solid 2px #ccc; padding-bottom:20px;}
+#myLegacy  .modal-footer{text-align:center; border:0; position:relative;}
+#resetPassword .modal-dialog, #registerConfirmation .modal-dialog{max-width:300px;}
+#resetPassword .form-action{padding-bottom:0;}
+
+.form-title{font-weight:bold; font-size:16px; text-transform:uppercase; }
+
+
+@media (min-width: 768px) {
+
+#myLegacy .login-form{padding:0; margin:0; border:0;}
+#home{background-attachment:scroll; background-size:100%;}
+.tbg{padding:10px 250px;}
+#myLegacy .modal-dialog{width:800px;}
+#myLegacy  .modal-footer{text-align:left; padding:0; border:0; position:relative;}
+#myLegacy .modal-footer .btn-facebook{position:absolute; left:20px; top:-70px;}
+
+}

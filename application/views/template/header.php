@@ -60,7 +60,7 @@ include_once 'headinclude.php';
             </div>
             <?php else:?>
             <ul class="nav navbar-nav">
-                <li class=""><a href="#" id='loginXSBtn'>My Legacy</a></li>
+                 <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Legacy</a></li>
             </ul>
             <?php endif;?>   
           
@@ -85,14 +85,14 @@ include_once 'headinclude.php';
             <li class=""><a href="/mark-item">Mark Item</a></li>
 			<li class=""><a href="/how-to-sell" style="float:left;padding-left:0;padding-right:0;">Sell /</a><a style="float:left;padding-left:3px;padding-right:0;" href="/how-to-buy">Buy</a></li>
 			<li class=""><a href="/help">Help</a></li>
-			<li class=""><a class="sign big-link" href="#" id="signupBigButton">Free Registration</a></li>
+			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
 			<?php if ($this->session->userdata('logged_in')) : ?> 
 			<li><a href="/shopping-cart"><i style="font-size:20px;" class="fa fa-shopping-cart"></i>
 			<div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
 			</a>
 			</li>
 			<?php else:?>
-			<li><a href="#"><i id="headerLoginBtn" style="font-size:20px;" class="fa fa-shopping-cart"></i></a>
+			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a>
 			</li>
 			<?php endif;?>
           </ul>

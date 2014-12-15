@@ -34,20 +34,25 @@
     </div>
     <!-- Jssor Slider End -->    	   	  
     <!--container start-->
+	
         <section id="original-item" class="dark-bg ptb25">
 	        <div class="container">
 	            <div class="section-header">
-		            <h2 style="text-align: center;">New Original Items</h2>
+		            <h2>New Original Items</h2>
 		            <div class="subtitle">Never Before Sold - DNA Marked, Registered</div>
 		        </div>
-		        <div class="container" style="height:168px;">
+		       <div class="section-content">
         <?php if(!is_array($listings)):?>
-        	<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
+		<div class="row">
+        	<div class="col-lg-12"><h1 style="text-align:center;"><?php echo $listings; ?></h1></div>
+			</div>
         <?php else: ?>
         
         <?php foreach($listings as $listing):?>
-            <div class="product-container col-md-3 col-xs-4 col-sm-6 col-lg-3">
-                <div class="product-image"><img src="/products/productimg/160/<?=$listing->product_id;?>/<?=$listing->product->image;?>" /></div>
+            <div class="product-container col-lg-3">
+                
+                	<img src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+                
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
                 	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
                 	<div class="row">

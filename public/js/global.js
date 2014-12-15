@@ -69,29 +69,12 @@ $(function () {
         global.showLargeImage($(this).prev());
         $('.modal-title').html($(this).attr('product_name'))
     });
-    /*
-    if ($('#locatorLink').exists())
-    {
-        if ($('#lat').val() == 0 && $('#lng').val() == 0)
-        {
-            //global.getLocation();
-        }
-    }
-    */
-    /*
-    if ($('#loginModal').exists())
-    {
-        $('#loginModal').on('shown.bs.modal', function (e) {
-            global.setLoginEnter();
-        });
-
-        $('#loginModal').on('hide.bs.modal', function (e) {
-            $(window).unbind('keypress');
-        });
-    }
-
-    global.smSearch();
-    */
+    
+    $('#submitSignupBtn').click(function (e) {
+    	
+        global.checkRegisterForm();
+    });
+    
     $('#logoutXSBtn').click(function (e) {
         $(this).attr('disabled', 'disabled');
         $(this).find('i').removeClass('fa-sign-out');
