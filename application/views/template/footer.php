@@ -54,10 +54,11 @@
             <div class="modal-body">
             	<div class="row">
 	            	<div class="col-lg-6">
-			        	<?php echo form_open('#', array('name' => 'signupform', 'id' => 'signupform'));?>
+			        	<?php echo form_open('#', array('name' => 'loginform', 'id' => 'loginform'));?>
+			        	<div id='loginAlert'></div> 
 				    	<p id='forgotPWText' style='display:none'>Please enter your E-Mail address associated with your account.</p>
                     	<div class="form-group  login-form">
-				        	<label for="inputEmail">Email or User Name</label>
+				        	<label for="inputEmail">Email</label>
                         	<input type='text' class='form-control' name='user_email' id='user_email' value="" placeholder='E-MAIL ADDRESS'>
                     	</div> <!-- .form-group -->
                     	<div class="form-group" id='passwordFormGroup'>
@@ -79,7 +80,7 @@
 							<h5>It's free and quick!</h5>
 						</div>
 						<?php echo form_open('#', array('name' => 'signupform', 'id' => 'signupform'))?>
-        				<div id='loginAlert'></div>     
+        				    
         				<div class="form-group">
 							<label for="fname">First Name</label>
             				<input type='text' class='form-control' name='firstName' id='firstName' value="" placeholder='FIRST NAME' onchange="global.checkFirstName();" />
@@ -187,7 +188,7 @@
                         <a href="javascript:global.loadSignup();">SIGN UP NOW</a>
                     </div>
                     <div class='col-xs-3 col-sm-6'>
-                        <button type="button" class="btn btn-red" id='submitSignupBtnOLD'>SAVE</button>
+                        <button type="button" class="btn btn-red" id='submitSignupBtnOK'>SAVE</button>
                     </div>
                 </div>
             </div> <!-- modal-footer -->
