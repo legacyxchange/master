@@ -672,8 +672,12 @@ global.checkRegisterForm = function ()
 		global.setError($('#passwd_confirm'), 'Password Confirmation is a required field.');
 	else
 		global.resetError($('#passwd_confirm'));
-    
-    $.post("/welcome/register", $('#signupform').serialize(), function (data) { //console.log(data)
+	
+	$formData = $('#signupform').serialize();
+	$('.modal-body').css('height', '400px');
+	$('.modal-body').html('<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
+    $.post("/welcome/register", $formData, function (data) { //console.log(data)
+    	
     	if (data.status == 'SUCCESS')
         {   
     		location.href = '/profile';

@@ -51,7 +51,7 @@
         <?php foreach($listings as $listing):?>
             <div class="product-container col-lg-3">
                 <div class="product-image item-img"> 
-                	<img src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+                	<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
                 </div>
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
                 	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
