@@ -75,7 +75,7 @@ include_once 'headinclude.php';
 			<li style="height:54px;max-width:320px;">			
 			        <?php echo form_open('/search/index', false); ?>
                     <div class="input-group stylish-input-group">
-                    <input style="min-width:260px;height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <input style="height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
                     <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>

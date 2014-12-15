@@ -127,7 +127,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">  
-    			<button type='button' id='modalFBbtn2' class='input-block-level btn  btn-social btn-facebook'><i class="fa fa-facebook"></i>LOG IN WITH FACEBOOK</button>   
+    			<button type='button' id='modalFBbtn' class='input-block-level btn  btn-social btn-facebook'><i class="fa fa-facebook"></i>LOG IN WITH FACEBOOK</button>   
 			</div>
     	</div>
   	</div>
