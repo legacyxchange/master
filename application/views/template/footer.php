@@ -32,11 +32,11 @@
 		<div class="col-lg-3">
 		<div class="social-icon">
 		<b>Follow Us</b>
-		<ul class="s-icon">
-		<li><a href=""><img src="images/fb-icon.png"></a></li>
-		<li><a href=""><img src="images/tw-icon.png"></a></li>
-		<li><a href=""><img src="images/yt-icon.png"></a></li>
-		<li><a href=""><img src="images/ista-icon.png"></a></li>
+		<ul class="s-icon list-inline">
+		<li><a href=""><img src="/public/images/fb-icon.png"></a></li>
+		<li><a href=""><img src="/public/images/tw-icon.png"></a></li>
+		<li><a href=""><img src="/public/images/yt-icon.png"></a></li>
+		<li><a href=""><img src="/public/images/ista-icon.png"></a></li>
 		</ul>
 		</div>
 		

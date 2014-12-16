@@ -1445,3 +1445,8 @@ h1, h2, h3, h4, h5{
 	font-size: 32px;
 	text-align:center;
 }
+footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
+.footer-menu{padding:0; margin:0;}
+.footer-menu li{list-style:none; padding:0;}
+.footer-menu li a{font-family:arial,helvetica,san-serif; font-size:12px; font-weight:bold; color:#006a8a; text-decoration:none;}
+.social-icon b{color:#006a8a; display:block; padding:0 0 10px;}
