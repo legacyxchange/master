@@ -3,33 +3,68 @@
 </div> <!-- /.contentbg -->
     
 <!--footer start-->
+<<<<<<< HEAD
+
+<!-- FOOTER -->
+      <footer class="ptb25">
+=======
 <footer class="ptb25">
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 	   <div class="container">
         <div class="row">
 		<div class="col-lg-3">
 			<ul class="footer-menu">
+<<<<<<< HEAD
+			<li><a href="/help">Help / Customer Service</a></li>
+			<li><a href="/contact">Contact Us</a></li>
+			<li><a href="/about">About Us</a></li>
+			<li><a href="/terms-of-service">Terms of Service</a></li>
+			<li><a href="/disclaimers">Disclaimers</a></li>
+			<li> <a href="/privacy">Privacy Policy</a></li>
+=======
 			<li><a href="">About</a></li>
 			<li><a href="">Terms &amp; Privacy</a></li>
 			<li><a href="">Contact</a></li>
 			
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 			</ul>
 		</div>
 		<div class="col-lg-3">
 			<ul class="footer-menu">
+<<<<<<< HEAD
+			<li><a href="/rates">Rates</a></li>
+			<li><a href="/how-to-sell">How to Sell</a></li>
+			<li><a href="/how-to-buy">Now to Buy</a></li>
+			<li><a href="/how-site-works">How Site Works</a></li>
+			<li><a href="/mark-item">Mark Items</a></li>
+			<li><a href="/faqs">FAQ's</a></li>
+=======
 			<li><a href="">Selling on LegacyXChange</a></li>
 			<li><a href="">Buying on LegacyXChange</a></li>
 			<li><a href="">Dealers</a></li>
 			
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 			</ul>
 		</div>
 		<div class="col-lg-3">
 			<ul class="footer-menu">
+<<<<<<< HEAD
+			<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
+			<li> <a href="/dealers">Dealers</a></li>
+			<li><a href="/manufacturers">Manufacturers</a></li>
+			<li><a href="/news">News</a></li>
+=======
 			<li><a href="">Athletes, Celebrities &amp; Agents</a></li>
 			<li><a href="">Manufacturers</a></li>
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 		
 			</ul>
 		</div>
 		<div class="col-lg-3">
+<<<<<<< HEAD
+		<div class="copyright">
+		 <p><span>&copy;</span> <?php echo $this->functions->getSiteName();?> 2014</p>
+=======
 		<div class="social-icon">
 		<b>Follow Us</b>
 		<ul class="s-icon list-inline">
@@ -38,12 +73,22 @@
 		<li><a href=""><img src="/public/images/yt-icon.png"></a></li>
 		<li><a href=""><img src="/public/images/ista-icon.png"></a></li>
 		</ul>
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 		</div>
 		
 		</div>
 		</div>
+<<<<<<< HEAD
+      </footer>
+
+
+
+
+
+=======
       </div>
 </footer>
+>>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
 <!--footer end-->  
 
 <div class="modal fade" id="myLegacy" tabindex="-1" role="dialog" aria-labelledby="myLegacyLabel" aria-hidden="true">
