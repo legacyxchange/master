@@ -39,7 +39,14 @@ $(function () {
         $('#loginModal').modal('show');
         setTimeout(function () { $('#user_email').focus(); }, 1000);
     });
-
+	
+	$('.menu_custom_item').click(function(){
+		var val=$(this).text();
+		var html='';
+			html=val;
+			html +=' <span class="caret"></span>';
+		$('#dropdownMenu1').html(html);
+	});
     $('#forgotPasswordButton').click(function (e) {
     	e.preventDefault();
     	$('#loginModal').modal('hide');

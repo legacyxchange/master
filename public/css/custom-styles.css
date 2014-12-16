@@ -3036,6 +3036,12 @@ ul.terms li{font-size:12px;}
 .footer-menu li{list-style:none; padding:0;}
 .footer-menu li a{font-family:arial,helvetica,san-serif; font-size:13px; font-weight:bold; color:#006a8a; text-decoration:none;}
 footer{background:url(/public/images/footer-bg.png) repeat-x 0 0;}
+.my-btn, .my-btn:hover, .my-btn:active{background:#fff;}
+.my-btn:hover, .my-btn:focus, .my-btn:active, .my-btn.active, .open .dropdown-toggle.my-btn{background:#fff!important;}
+.open > .dropdown-menu{background:rgba(255,255,255,0.9); border-radius:5px;}
+.my-btn{width:150px; text-align:left; height:34px; position:relative;}
+.my-btn span.caret{float:right; display:block; position:absolute; right:10px; top:15px; z-index:2;}
+.sel-item{ margin-right:10px; display:block;}
 @media (min-width: 768px) {
 
 #myLegacy .login-form{padding:0; margin:0; border:0;}
