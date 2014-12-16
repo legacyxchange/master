@@ -567,17 +567,20 @@ global.checkForgotPasswordForm = function ()
 
 }
 
+global.errorCount = 0;
+
 global.setError = function(id, msg){	
-    	$(id).focus();
-        $(id).css('background', 'rgb(252, 252, 170)');
-        $(id).css('color', '#000');
-        $(id).next().html(msg);
-        $(id).next().show();
-        return false;
+    global.errorCount = global.errorCount + 1;	
+	$(id).focus();
+    $(id).css('background', 'rgb(252, 252, 170)');
+    $(id).css('color', '#000');
+    $(id).next().html(msg);
+    $(id).next().show();
+    return false;
 }
 
 global.resetError = function(id){
-	
+	global.errorCount = global.errorCount - 1;	
 	$(id).css('background', 'white');
 	$(id).css('color', '#555');
     $(id).next().html('');
@@ -647,7 +650,6 @@ global.checkPasswordConfirm = function(){
 }
 global.checkRegisterForm = function ()
 { 
-	//console.log($('#signupform').serialize());
 	if($('#firstName').val() == '')
         global.setError($('#firstName'), 'First Name is a required field.');
 	else
@@ -674,14 +676,18 @@ global.checkRegisterForm = function ()
 		global.resetError($('#passwd_confirm'));
 	
 	$formData = $('#signupform').serialize();
-	$('.modal-body').css('height', '400px');
-	$('.modal-body').html('<img height="100" style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
-    $.post("/welcome/register", $formData, function (data) { //console.log(data)
+	console.log(global.errorCount);
+	if(global.errorCount <= 0){
+		$('.modal-body').css('height', '400px');
+		$('.modal-body').html('<img height="100" style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
+	}
+	
+	$.post("/welcome/register", $formData, function (data) { //console.log(data)
     	
-    	if (data.status == 'SUCCESS')
-        {   
-    		location.href = '/profile';
-        }
+		if (data.status == 'SUCCESS')
+		{   
+			location.href = '/profile';
+		}
         else if (data.status == 'FAILURE')
         {
             global.setError($('#'+data.id), data.msg);

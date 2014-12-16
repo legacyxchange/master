@@ -3,44 +3,47 @@
 </div> <!-- /.contentbg -->
     
 <!--footer start-->
-<div class="footer">
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/help">Help / Customer Service</a>
-        <br />
-        <a href="/contact">Contact Us</a>
-        <br />
-        <a href="/about">About Us</a>
-        <br />
-        <a href="/terms-of-service">Terms of Service</a>
-        <br />
-        <a href="/disclaimers">Disclaimers</a>
-        <br />
-        <a href="/privacy">Privacy Policy</a>
-    </div>
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/rates">Rates</a>
-        <br />
-        <a href="/how-to-sell">How to Sell</a>
-        <br />
-        <a href="/how-to-buy">Now to Buy</a>
-        <br />
-        <a href="/how-site-works">How Site Works</a>
-        <br />
-        <a href="/mark-item">Mark Items</a>
-        <br />
-        <a href="/faqs">FAQ's</a>
-    </div>
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a>
-        <br />
-        <a href="/dealers">Dealers</a>
-        <br />
-        <a href="/manufacturers">Manufacturers</a>
-        <br />
-        <a href="/news">News</a>
-    </div>
-    <span>&copy;</span> <?php echo $this->functions->getSiteName();?> 2014
-</div>
+<footer class="ptb25">
+	   <div class="container">
+        <div class="row">
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="">About</a></li>
+			<li><a href="">Terms &amp; Privacy</a></li>
+			<li><a href="">Contact</a></li>
+			
+			</ul>
+		</div>
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="">Selling on LegacyXChange</a></li>
+			<li><a href="">Buying on LegacyXChange</a></li>
+			<li><a href="">Dealers</a></li>
+			
+			</ul>
+		</div>
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="">Athletes, Celebrities &amp; Agents</a></li>
+			<li><a href="">Manufacturers</a></li>
+		
+			</ul>
+		</div>
+		<div class="col-lg-3">
+		<div class="social-icon">
+		<b>Follow Us</b>
+		<ul class="s-icon">
+		<li><a href=""><img src="images/fb-icon.png"></a></li>
+		<li><a href=""><img src="images/tw-icon.png"></a></li>
+		<li><a href=""><img src="images/yt-icon.png"></a></li>
+		<li><a href=""><img src="images/ista-icon.png"></a></li>
+		</ul>
+		</div>
+		
+		</div>
+		</div>
+      </div>
+</footer>
 <!--footer end-->  
 
 <div class="modal fade" id="myLegacy" tabindex="-1" role="dialog" aria-labelledby="myLegacyLabel" aria-hidden="true">

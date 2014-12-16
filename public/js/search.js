@@ -499,6 +499,18 @@ search.loadGettingStartedModal = function ()
 }
 
 $(document).ready(function(){
+	
+	$('.item-img').hover(
+        function(){ 
+        	$(this).find('.hover-info').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+        	$(this).find('.hover-info').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+    $('.hover-info').click(function(e){
+        location.href='/listings/product/'+$(this).attr('hover-info-id');
+    });
 	$('#dealsBtn').on('click', function(e){
 		e.preventDefault();
 		var url = $(this).attr('rel');
@@ -574,38 +586,5 @@ $(document).ready(function(){
                 });
             });
         });
-        /*
-		$.ajax({
-            'url' : url,
-            'type' : 'GET', 
-            'dataType' : 'html',
-            'success' : function(data){ //console.log('success')
-                var container = $('#ajaxSwap'); 
-                if(data){
-                    container.html(data);
-                }
-            },
-            'failure' : function(e){
-            	console.log(e.getMessage());
-            }
-        });
-        */
-    }
-    $('.product-image').hover(function(e){ 
-    	if($(this).next().is(':visible')){
-    		$(this).next().hide();
-    	}else{
-    		$(this).next().show();
-    	}
-    });
-    $('.hover-info').hover(function(e){ 
-    	if($(this).is(':visible')){
-    		$(this).hide();
-    	}else{
-    		$(this).show();
-    	}
-    });
-    $('.hover-info').click(function(e){
-    	location.href='/listings/product/'+$(this).attr('hover-info-id');
-    });
+    }  
 });

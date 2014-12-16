@@ -52,7 +52,7 @@
             <div class="product-container col-lg-3">
                 <div class="product-image item-img"> 
                 	<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
-                </div>
+                
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
                 	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
                 	<div class="row">
@@ -62,6 +62,7 @@
                 	</div>
                 	<div class="product-name"><?=$listing->product->name;?></div>
                 	<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
+                </div>
                 </div>
             </div>
         <?php endforeach;?>
