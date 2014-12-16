@@ -3,44 +3,53 @@
 </div> <!-- /.contentbg -->
     
 <!--footer start-->
-<div class="footer">
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/help">Help / Customer Service</a>
-        <br />
-        <a href="/contact">Contact Us</a>
-        <br />
-        <a href="/about">About Us</a>
-        <br />
-        <a href="/terms-of-service">Terms of Service</a>
-        <br />
-        <a href="/disclaimers">Disclaimers</a>
-        <br />
-        <a href="/privacy">Privacy Policy</a>
-    </div>
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/rates">Rates</a>
-        <br />
-        <a href="/how-to-sell">How to Sell</a>
-        <br />
-        <a href="/how-to-buy">Now to Buy</a>
-        <br />
-        <a href="/how-site-works">How Site Works</a>
-        <br />
-        <a href="/mark-item">Mark Items</a>
-        <br />
-        <a href="/faqs">FAQ's</a>
-    </div>
-    <div class="col-md-4 col-xs-12 col-lg-3">
-        <a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a>
-        <br />
-        <a href="/dealers">Dealers</a>
-        <br />
-        <a href="/manufacturers">Manufacturers</a>
-        <br />
-        <a href="/news">News</a>
-    </div>
-    <span>&copy;</span> <?php echo $this->functions->getSiteName();?> 2014
-</div>
+
+<!-- FOOTER -->
+      <footer class="ptb25">
+	   <div class="container">
+        <div class="row">
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="/help">Help / Customer Service</a></li>
+			<li><a href="/contact">Contact Us</a></li>
+			<li><a href="/about">About Us</a></li>
+			<li><a href="/terms-of-service">Terms of Service</a></li>
+			<li><a href="/disclaimers">Disclaimers</a></li>
+			<li> <a href="/privacy">Privacy Policy</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="/rates">Rates</a></li>
+			<li><a href="/how-to-sell">How to Sell</a></li>
+			<li><a href="/how-to-buy">Now to Buy</a></li>
+			<li><a href="/how-site-works">How Site Works</a></li>
+			<li><a href="/mark-item">Mark Items</a></li>
+			<li><a href="/faqs">FAQ's</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-3">
+			<ul class="footer-menu">
+			<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
+			<li> <a href="/dealers">Dealers</a></li>
+			<li><a href="/manufacturers">Manufacturers</a></li>
+			<li><a href="/news">News</a></li>
+		
+			</ul>
+		</div>
+		<div class="col-lg-3">
+		<div class="copyright">
+		 <p><span>&copy;</span> <?php echo $this->functions->getSiteName();?> 2014</p>
+		</div>
+		
+		</div>
+		</div>
+      </footer>
+
+
+
+
+
 <!--footer end-->  
 
 <div class="modal fade" id="myLegacy" tabindex="-1" role="dialog" aria-labelledby="myLegacyLabel" aria-hidden="true">

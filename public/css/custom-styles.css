@@ -3011,7 +3011,7 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 
 .nav>li>a.combo-link{padding-bottom:0;}
 .nav>li>a.combo-down-link{padding-bottom:0; padding-top:0;}
-.subtitle{ text-align:center; font-size:26px; }
+.section-header .subtitle{font-size:30px;font-family: Georgia,Times,Times New Roman,serif; color:#000; text-align:center;} 
 .advance-search{color:#000;cursor:pointer;}
 
 .modal-title{text-align:center; background:#e9f3f7; font-size:30px; border-radius:5px 5px 0 0!important;}
@@ -3030,8 +3030,12 @@ ul.terms li{font-size:12px;}
 #resetPassword .form-action{padding-bottom:0;}
 
 .form-title{font-weight:bold; font-size:16px; text-transform:uppercase; }
-
-
+.ptb25{padding:25px 0;}
+.ptb10{padding:10px 0;}
+.footer-menu{padding:0; margin:0;}
+.footer-menu li{list-style:none; padding:0;}
+.footer-menu li a{font-family:arial,helvetica,san-serif; font-size:13px; font-weight:bold; color:#006a8a; text-decoration:none;}
+footer{background:url(/public/images/footer-bg.png) repeat-x 0 0;}
 @media (min-width: 768px) {
 
 #myLegacy .login-form{padding:0; margin:0; border:0;}

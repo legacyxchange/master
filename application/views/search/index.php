@@ -50,7 +50,8 @@
         
         <?php foreach($listings as $listing):?>
             <div class="product-container col-lg-3">
-                <div class="product-image item-img"> 
+			<div class="item-img">
+                <div class="product-image"> 
                 	<img src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
                 </div>
                 <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
@@ -63,6 +64,7 @@
                 	<div class="product-name"><?=$listing->product->name;?></div>
                 	<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
                 </div>
+				</div>
             </div>
         <?php endforeach;?>
         <?php endif; ?>
