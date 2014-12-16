@@ -17,71 +17,48 @@ class User extends CI_Controller {
         $this->load->driver('cache');
 
         $this->load->model('user_model', 'user', true);
-        $this->load->model('blog_model', 'blog', true);
-        $this->load->model('profile_model', 'profile', true);
-        $this->load->model('dojos_model', 'dojos', true);
-        $this->load->model('events_model', 'events', true);
-        $this->load->model('wall_model', 'wall', true);
-        $this->load->library('library');
-        $this->load->library('users');
-        //$this->load->library('chat');
+       
+        //$this->load->model('profile_model', 'profile', true);
+        $this->load->model('products_model', 'product', true);
+        $this->load->model('listings_model', 'listing', true);
+        //$this->load->model('association_model', 'association', true);
+        //$this->load->model('wall_model', 'wall', true);
+        //$this->load->library('library');
     }
 
-    public function index($user_id = 0, $page = 1, $tab = 0, $month = null, $year = null) {
-        if (empty($user_id) && $this->session->userdata('logged_in') == true){
-            $user_id = $this->session->userdata('user_id'); 
-        }else {
-        	header('Location: /'); exit;
-        }
-  
-        $header['headscript'] = $this->functions->jsScript('user.js');
-        $header['headscript'] .= $this->functions->jsScript('wall.js');
-
-        //$header['chat'] = true;	
-        $header['ckeditor'] = true;
-        $header['slimscroll'] = true;
-        $header['autosize'] = true;
-        $header['nailthumb'] = true;
-        $header['spin'] = true;
-
-        //$header['masonry'] = true;
-        $header['justgal'] = true;
-
-        $header['onload'] = "user.indexInit();";
-
-        $body['page'] = $page;
-        $body['month'] = $month = (empty($month)) ? date("n") : $month;
-        $body['year'] = $year = (empty($year)) ? date("Y") : $year;
-
-        $body['tab'] = $tab;
-        $body['user_id'] = $user_id;
-
-        try {
-            $body['info'] = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];
-            
-            $body['blogs'] = $this->user->getBlogs($user_id, $page);
-            $body['userStyles'] = $this->dojos->getUserCodes($user_id, 26);
-
-            $body['followersCnt'] = $this->user->getFollowersCnt($user_id);
-            $body['followingCnt'] = $this->user->getFollowingCnt($user_id);
-
-            $body['albums'] = $this->user->getAlbums($user_id); 
-
-            if ((int) $this->session->userdata('user_id') !== $user_id) {
-                $body['following'] = $this->user->checkFollowingUser($user_id);
-            }
-        } catch (Exception $e) {
-            $this->functions->sendStackTrace($e);
-        }
-
-        $body['followers']['followers'] = $this->user->getFollowers($user_id);
-        $body['followings']['followings'] = $this->user->getFollowing($user_id);
+    /* public function index($user_id = 0) {
         
-        $this->load->view('admin/template/header', $header);
+        $user = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];
+        
+        $user->products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id));
+        foreach($user->products as $product){
+        	$product->listing = $this->listing->fetchAll(array('where' => 'product_id = '.$product->product_id))[0]; 	 		
+        }
+        
+        $body['user'] = $user;
+        $body['title'] = 'User '.$user_id;
+        $this->load->view('template/header');
         $this->load->view('user/index', $body);
         $this->load->view('template/footer');
-    }
+    } */
 
+    public function index($user_id = 0) {
+    	require_once 'application/models/association_model.php';
+        $association = new association_model('users', 'user_id ='. $user_id);
+        $association->associate('products', 'user_id  = '.$user_id);
+        $association->associate('product_types', 'product_type_id', 'products');
+        $association->associate('listings', 'product_id', 'products');
+        $association->show();
+        //$association->associate('listings', 'product_id = '.$p_id);
+        exit;
+    	
+    	$body['user'] = $user;
+    	$body['title'] = 'User '.$user_id;
+    	$this->load->view('template/header');
+    	$this->load->view('user/index', $body);
+    	$this->load->view('template/footer');
+    }
+    
     public function followers($id){
     	$header['headscript'] = $this->functions->jsScript('user.js');
         $body['info'] = $this->functions->getUserInfo($id);

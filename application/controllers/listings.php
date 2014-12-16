@@ -26,11 +26,15 @@ class Listings extends CI_Controller {
         $this->load->library('cart');
     }
 
-    public function index($listing_id = null) {   	
+    public function index($product_type = null) {   	
         try {
-        	if($listing_id)
-            	$body['listings'] = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));
-        	else 
+        	if($product_type){
+        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
+        				                           where NOW() BETWEEN start_time and end_time and product_types.type = "'.$product_type.'"');
+        		$listings = $query->result();
+        		
+        		$body['listings'] = $listings;
+        	}else 
         		$body['listings'] = $this->listing->fetchAll();
         } catch (Exception $e) {
             $this->functions->sendStackTrace($e);
@@ -54,7 +58,7 @@ class Listings extends CI_Controller {
     	//$this->session->unset_userdata('cart_contents');
         $body['listing'] = $listings[0];
         $this->load->view('template/header', $header);
-        $this->load->view('listings/index', $body);
+        $this->load->view('listing_product/index', $body);
         $this->load->view('template/footer');
     }
     

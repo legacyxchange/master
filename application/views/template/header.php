@@ -66,27 +66,13 @@ include_once 'headinclude.php';
           
 
           <ul class="nav navbar-nav navbar-right inline">
-            <li>
-			<span class="sel-item">
-                <div class="dropdown">
-				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					Explore
-					<span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Original Items</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Secondary Items</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Stores</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Sell</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Buy</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Rates</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Profit</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Promotions</a></li>
-				  </ul>
-				</div>
-                    <!--<select style="height:34px;" class="form-control">
-			            <option>Original Items</option>	
-						<option>Secondary Items</option>
+            <li style="margin-right:10px;min-width:200px;">
+                
+                    <select style="height:34px;" id="header-explore" class="form-control">
+			            <option>Choose</option>	
+			            
+			            <option value="original">Original Items</option>	
+						<option value="secondary">Secondary Items</option>
 						<option>Stores</option>
 						<option>How to Sell</option>
 						<option>How to Buy</option>
@@ -94,9 +80,8 @@ include_once 'headinclude.php';
 						<option>How to Profit</option>
 						<option>Promotions</option>
 						
+			        
 			        </select>
-					-->
-					</span>
 			</li>
 			<li style="height:54px;max-width:320px;">			
 			        <?php echo form_open('/search/index', false); ?>
