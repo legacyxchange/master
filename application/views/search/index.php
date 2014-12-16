@@ -49,33 +49,20 @@
         <?php else: ?>
         
         <?php foreach($listings as $listing):?>
-<<<<<<< HEAD
-            <div class="product-container col-lg-3">
-			<div class="item-img">
-                <div class="product-image"> 
-                	<img src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
-                </div>
-=======
             <div class="product-container col-lg-3 col-md-6 col-sm- 6 col-xs-12">
                 <div class="product-image item-img"> 
-                	<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
-                
->>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
-                <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
-                	<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
-                	<div class="row">
-                		<div class="product-price">Price: $<?=number_format($listing->product->retail_price, 2);?>
-                		    <a class="product-buynow-button" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a>
-                		</div>                              	
-                	</div>
-                	<div class="product-name"><?=$listing->product->name;?></div>
+                	<img style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />               
+                	<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">               	
+                		<div class="timer" id="<?php echo $listing->listing_id;?>"></div>                              
+                		<div class="row">
+                			<div class="product-price">Price: $<?=number_format($listing->product->retail_price, 2);?>
+                		    	<a class="product-buynow-button" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a>
+                			</div>                              	
+                		</div>
+                		<div class="product-name"><?=$listing->product->name;?></div>
                 	<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
+                    </div>
                 </div>
-<<<<<<< HEAD
-				</div>
-=======
-                </div>
->>>>>>> 9031e268c73353b1509f094d5fa975748c0430d3
             </div>
         <?php endforeach;?>
         <?php endif; ?>
