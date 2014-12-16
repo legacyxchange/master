@@ -68,8 +68,19 @@ include_once 'headinclude.php';
           <ul class="nav navbar-nav navbar-right inline">
             <li style="margin-right:10px;min-width:200px;">
                 
-                    <select style="height:34px;" class="form-control">
-			            <option>Explore</option>			
+                    <select style="height:34px;" id="header-explore" class="form-control">
+			            <option>Choose</option>	
+			            
+			            <option value="original">Original Items</option>	
+						<option value="secondary">Secondary Items</option>
+						<option>Stores</option>
+						<option>How to Sell</option>
+						<option>How to Buy</option>
+						<option>Rates</option>
+						<option>How to Profit</option>
+						<option>Promotions</option>
+						
+			        
 			        </select>
 			</li>
 			<li style="height:54px;max-width:320px;">			

@@ -160,7 +160,7 @@ if (!defined('BASEPATH'))
         if ($nailthumb) {
             echo $this->functions->jsScript('nailthumb/src/jquery.nailthumb.js');
             try {
-                $less->checkedCompile("./public/js/nailthumb/src/nailthumb.less", './public/less/nailthumb.css');
+                //$less->checkedCompile("./public/js/nailthumb/src/nailthumb.less", './public/less/nailthumb.css');
 
                 echo $this->functions->cssScript('nailthumb.css', '/public/less/');
             } catch (Exception $e) {

@@ -749,4 +749,8 @@ $(document).ready(function(){
     .fail(function() {
         alert( "error" );
     });
+	
+	$('#header-explore').change(function(e){
+		location.href='/listings/index/'+$(this).val();
+	});
 });
