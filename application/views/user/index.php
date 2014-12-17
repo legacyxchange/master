@@ -2,9 +2,12 @@
     
     <div class="container">         
         <div class="content-container">
-            <h2><?php echo $title; ?></h2> 
+            <h2><?php echo $user->firstName.' '.$user->lastName; ?>(<?php echo $user->username;?>)</h2> 
             <p>
-            <?php var_dump($user);?>           
+            <img src="/user/profileimg/300/<?php echo $user->user_id;?>/<?php echo $user->profileimg; ?>" class="img-thumbnail avatar">
+            <pre>
+            <?php var_dump($user);?> 
+            </pre>          
             </p>                               
         </div>             
      </div>

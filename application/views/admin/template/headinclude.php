@@ -19,8 +19,8 @@ if (!defined('BASEPATH'))
         <link type="text/css" href="/public/bootstrap3.1.1/css/bootstrap.min.css" rel="Stylesheet" />
         <link type="text/css" href="/public/jquery-ui-1.10.4/css/blitzer/jquery-ui-1.10.4.custom.min.css" rel="Stylesheet" />
         <script type="text/javascript" src="/public/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
-        <link rel="shortcut icon" href="/public/images/gst_favcon.png" type="image/png">
-        <link rel="icon" href="/public/images/favicon.ico" type="image/png">
+        <link rel="shortcut icon" href="/public/images/double_helix.png" type="image/png">
+        <link rel="icon" href="/public/images/double_helix.ico" type="image/png">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -32,7 +32,7 @@ if (!defined('BASEPATH'))
         
         <!-- Custom CSS -->
     	<link href="/public/css/custom-styles.css" rel="stylesheet">
-    
+    	<link href="/public/css/bootstrap-social.css" rel="stylesheet">
     	<!-- Custom Fonts -->
     	      
         <!-- end new stuff -->
@@ -58,7 +58,8 @@ if (!defined('BASEPATH'))
 
         <?= $this->functions->jsScript('global.js'); ?>
 
-        <?php if ($this->config->item('live') == true) : ?>
+        <?php 
+        if ($this->config->item('live') == true) : ?>
             <script>
                 (function(i, s, o, g, r, a, m) {
                     i['GoogleAnalyticsObject'] = r;
@@ -94,9 +95,7 @@ if (!defined('BASEPATH'))
 
         if ($chat) {
             echo $this->functions->jsScript('jquery.chat.js jquery.websocket.js', 'application/third_party/bms/js/', 'text/javascript', true, 'gen');
-            echo $this->functions->cssScript('jquery.chat.css', 'application/third_party/bms/css/', true, 'gen');
-            //echo $this->functions->jsScript('jquery.chat/jquery.chat.js');
-            //echo $this->functions->cssScript('jquery.chat.css', 'public/js/jquery.chat/');
+            echo $this->functions->cssScript('jquery.chat.css', 'application/third_party/bms/css/', true, 'gen');           
         }
         ?>
 
@@ -162,7 +161,7 @@ if (!defined('BASEPATH'))
             try {
                 //$less->checkedCompile("./public/js/nailthumb/src/nailthumb.less", './public/less/nailthumb.css');
 
-                echo $this->functions->cssScript('nailthumb.css', '/public/less/');
+               // echo $this->functions->cssScript('nailthumb.css', '/public/less/');
             } catch (Exception $e) {
                 $this->functions->sendStackTrace($e);
             }
@@ -182,4 +181,5 @@ EOS;
         }
         ?>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
 <script type="text/javascript" src="/public/js/advanced_search.js"></script>

@@ -17,6 +17,7 @@ class products_model extends abstract_model {
     public $short_description;
     public $cost;
     public $retail_price;
+    public $quantity;
     public $active;
     public $brand;
     public $model;

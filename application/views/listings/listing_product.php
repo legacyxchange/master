@@ -150,9 +150,10 @@
 	 </div>
 	 </div>
 	 
-	 	  <div class="product-details col-lg-6">
-	   <div class="border-item mg pdr mh-400">
-	    <div class="product-heading">
+	 <div class="product-details col-lg-6">
+	    <div class="border-item mg pdr mh-400">
+	    	<div class="product-heading">
+
     	        <h2><?php echo ucfirst($listing->product->name);?> - Listing #<?php echo $listing->listing_id;?></h2>
     	    </div>
 			<div class="product-description"><p><?php echo html_entity_decode($listing->product->description);?></p>
@@ -177,15 +178,6 @@
 	   </div>
 	   </div>
  </div>
-
-
-
-    
-           
-        
-           
-    	  
-    	   
 	        
 <?php endif;?>
 </div>
