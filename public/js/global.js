@@ -47,6 +47,24 @@ $(function () {
 			html +=' <span class="caret"></span>';
 		$('#dropdownMenu1').html(html);
 	});
+	$('#origional_item').hover(function(){
+		$('.origional_item_container').show();
+		//$('.page-item .dropdown-menu').show();
+	});
+	
+	$('.origional_item_close').click(function(){
+		$('.origional_item_container').hide();
+	});
+	
+	$('.child_thumb').click(function(){
+		var link=$(this).attr('src');
+		$('.thumbnail_image img').attr('src',link);
+	});
+	
+	
+	
+	
+	
     $('#forgotPasswordButton').click(function (e) {
     	e.preventDefault();
     	$('#loginModal').modal('hide');

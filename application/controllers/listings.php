@@ -46,7 +46,7 @@ class Listings extends CI_Controller {
     }
 
     public function product($product_id) {
-    	$header['headscript'] = $this->functions->jsScript('listing-product.js');
+    	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js ');
     	$listings = $this->listing->fetchAll(array('where' => 'product_id = '.$product_id));
     	
     	foreach($listings as $listing){
