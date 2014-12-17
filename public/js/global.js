@@ -584,20 +584,20 @@ global.resetError = function(id){
     //global.checkRegisterForm();
 }
 global.checkFirstName = function(){
-	if($('#firstName').val().length < 4)
-        global.setError($('#firstName'), 'First Name must be at least 4 characters.');
+	if($('#firstName').val().length < 3)
+        global.setError($('#firstName'), 'First Name must be at least 3 characters.');
 	else
 		global.resetError($('#firstName'));
 }
 global.checkLastName = function(){
-	if($('#lastName').val().length < 4)
-        global.setError($('#lastName'), 'Last Name must be at least 4 characters.');
+	if($('#lastName').val().length < 3)
+        global.setError($('#lastName'), 'Last Name must be at least 3 characters.');
 	else
 		global.resetError($('#lastName'));
 }
 global.checkUsername = function(){	
-	if($('#username').val().length < 4)
-        global.setError($('#username'), 'Username must be at least 4 characters.');
+	if($('#username').val().length < 6)
+        global.setError($('#username'), 'Username must be at least 6 characters.');
 	else if($('#username').val().length >= 4){ 
 		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { console.log(data)
 	    	if (data.status == 'FAILURE')
