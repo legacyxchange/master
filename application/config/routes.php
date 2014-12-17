@@ -41,6 +41,7 @@
 $route['default_controller'] = "search";
 $route['404_override'] = 'search';
 
+$route['seller/(:any)'] = 'user/index/$1';
 $route['test/(:num)'] = 'test/index/$1';
 $route['deals/(:num)'] = 'deals/index/$1';
 $route['admin/deals/(:num)'] = 'admin/deals/index/$1';

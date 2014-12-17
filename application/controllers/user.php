@@ -19,6 +19,7 @@ class User extends CI_Controller {
         $this->load->model('user_model', 'user', true);
        
         //$this->load->model('profile_model', 'profile', true);
+        $this->load->model('users_model', 'user', true);
         $this->load->model('products_model', 'product', true);
         $this->load->model('listings_model', 'listing', true);
         //$this->load->model('association_model', 'association', true);
@@ -26,9 +27,16 @@ class User extends CI_Controller {
         //$this->load->library('library');
     }
 
-    /* public function index($user_id = 0) {
-        
-        $user = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];
+    // could accept user_id or username
+    public function index($uid = 0) {
+    	if(is_string($uid)) { 
+            $user = $this->user->fetchAll(array('where' => 'username = "'.$uid.'"'))[0];
+            $user_id = $user->user_id;
+            
+        }else if(is_numeric($uid)){ 
+        	$user = $this->user->fetchAll(array('where' => 'user_id = '.$uid))[0];
+        	$user_id = $uid;
+        }
         
         $user->products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id));
         foreach($user->products as $product){
@@ -36,12 +44,13 @@ class User extends CI_Controller {
         }
         
         $body['user'] = $user;
-        $body['title'] = 'User '.$user_id;
+        //$body['title'] = 'User '.$user_id;
         $this->load->view('template/header');
         $this->load->view('user/index', $body);
         $this->load->view('template/footer');
-    } */
+    } 
 
+    /*
     public function index($user_id = 0) {
     	require_once 'application/models/association_model.php';
         $association = new association_model('users', 'user_id ='. $user_id);
@@ -58,7 +67,7 @@ class User extends CI_Controller {
     	$this->load->view('user/index', $body);
     	$this->load->view('template/footer');
     }
-    
+    */
     public function followers($id){
     	$header['headscript'] = $this->functions->jsScript('user.js');
         $body['info'] = $this->functions->getUserInfo($id);
@@ -94,7 +103,8 @@ class User extends CI_Controller {
         $this->image_lib->resize();
     }
 
-    public function profileimg($size = 50, $user_id = 0, $file = null) {
+    public function profileimg($size = 50, $user_id = 0, $file = null) { 
+    	
     	if (empty($user_id))
             $user_id = $this->session->userdata('user_id');
 

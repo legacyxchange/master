@@ -148,24 +148,23 @@
 	 </div>
 	 </div>
 	 
-	 	  <div class="product-details col-lg-6">
-	   <div class="border-item mg pdr mh-400">
-	    <div class="product-heading">
-    	        <h2><?php echo $listing->product->name; ?></h2>
+	 <div class="product-details col-lg-6">
+	    <div class="border-item mg pdr mh-400">
+	    	<div class="product-heading">
+    	        <h2><?php echo ucfirst($listing->product->name);?> - Listing #<?php echo $listing->listing_id;?></h2>
     	    </div>
 			<div class="product-description"><p><?php echo html_entity_decode($listing->product->description);?></p>
-			<p><b>Item Type:</b> <span>REGISTERED ORIGINAL</span></p>
+			<p><b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span></p>
 			<p><b>Date Signed:</b> <span>7/14/14</span></p>
-			<p><b>QTY: </b><span> 2</span></p>
+			<p><b>QTY: </b><span> <?php echo $listing->product->quantity;?></span></p>
 			<p><b>TYPE of SALE:</b><span>AUCTION W/ BUY NOW</span></p>
-			<p><b>CURRENT BID: </b><span>$<?php echo number_format($listing->product->retail_price,2);?></span></p>
+			<p><b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span></p>
 			<p><b># OF TIMES PREVIOUSLY SOLD: </b><span> 0</span></p>
-			<div class="seller-detail row"><p><b>Seller:</b><span>Joe James</span>
-			<span class="pull-right"><i>Go to Joe James’ Store</i></span></p>
+			<div class="seller-detail row"><p><a href="/seller/<?php echo $listing->product->user->username;?>"><b>Seller:</b><span><?php echo $listing->product->user->firstName.' '.$listing->product->user->lastName;?></span></a>
+			<span class="pull-right"><i><a href="/stores">Go to <?php echo $listing->product->user->firstName.' '.$listing->product->user->lastName;?> Store</a></i></span></p>
 			<p>(Shipping / Payment information)</p>
 			</div>
-			
-			
+						
 			</div>
     	       <!-- <div class="product-prices">
     	        <p><b>Retail Price:<b><span> $<?php //echo number_format($listing->product->retail_price,2);?></span></p>

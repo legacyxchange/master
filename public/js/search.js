@@ -508,7 +508,7 @@ $(document).ready(function(){
         	$(this).find('.hover-info').slideUp(250); //.fadeOut(205)
         }
     ); 
-    $('.hover-info').click(function(e){
+    $('.hover-info').click(function(e){ 
         location.href='/listings/product/'+$(this).attr('hover-info-id');
     });
 	$('#dealsBtn').on('click', function(e){

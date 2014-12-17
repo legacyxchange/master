@@ -1,9 +1,6 @@
-	<section id="original-item" class="dark-bg ptb25 top-border ">
-<div class="container product-page-container">
-
-
-<?php if($listings):?>
-    
+<section id="original-item" class="dark-bg ptb25 top-border ">
+	<div class="container product-page-container">
+   
             <!--<pre><?php //var_dump($listings);?></pre>-->
 			
 			<!-- original items -->
@@ -20,13 +17,15 @@
       </a>
 	  
       <ul class="dropdown-menu">
-         <li><a href="#" id="origional_item">Original Items?</a>	
+         <li><a href="#" id="origional_item">Original Items?</a>
+		<div class="origional_item_container_main">	 		 
 		<div class="origional_item_container" style="display:none;">
-		<div class="origional_item_close"><i class="fa fa-times-circle"></i></span>
+		<div class="origional_item_close"><i class="fa fa-times-circle"></i></div>
 			<p>Origingal Items are items which have been DNA marked and Registered with LegacyXchange. Marking for original Items is done either at the point when the item is created (manufactured) or when it is signed or otherwise endorsed.</p>
 			<p>LegacyXchange documents and follows strict chain-of-custody procedures for all Original items.the documentation, as well as the DNA mark, is 100% verifiable.</p>
 		<p><b><i>All original items are Guaranteed 100% to be Authentic.</i></b></p>
-	  </div>		 
+	  </div>
+	</div>	  
 		 </li>
 		   <li class="divider"></li>
          <li><b>Show Me</b></li>
@@ -107,209 +106,97 @@
 	 <strong>CURRENTLY:</strong><a href="#"> 15 Original Items Available</a>
 	 </div>
 	 </div>
-		<div class="row">
-        <div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="/public/uploads/products/30/6c98ccf7941d727202cdb703e044ea56.png">
+	 
+	<div class="row">
+        
+<?php if($listings):?>
+    <?php foreach($listings as $listing):?>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 product-container">
+			<div class="item-img">
+				<div class="product-image">
+					<img src="/products/productimg/200/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
+				</div>
+		        <div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">                       
+                    <div class="hover-content">
+                        <b><?php echo $listing->product->name?><b>  
+                    </div>
+                    <div class="product-description"><p><?php echo html_entity_decode($listing->product->description);?></p>					 
+						<p><b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span></p>
+						<p><b>Date Signed:</b> <span>7/14/14</span></p>
+						<p><b>QTY: </b><span> <?php echo $listing->product->quantity;?></span></p>
+						<p><b>TYPE of SALE:</b><span>AUCTION W/ BUY NOW</span></p>
+						<p><b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span></p>
+						<p><b># OF TIMES PREVIOUSLY SOLD: </b><span> 0</span></p>
+						<div class="seller-detail row"><p><a href="/seller/<?php echo $listing->product->user->username;?>"><b>Seller:</b><span><?php echo $listing->product->user->firstName.' '.$listing->product->user->lastName;?></span></a>
+							<span class="pull-right"><i><a href="/stores">Go to <?php echo $listing->product->user->firstName.' '.$listing->product->user->lastName;?> Store</a></i></span></p>		
+                    	</div>								
+					</div>		
+				</div>
+			</div>
 		</div>
-		         <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-				
+    <?php endforeach;?>		
+<?php endif;?>
+
+	</div><!-- end row -->
 		
-		
-		</div>
-		
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="/public/uploads/products/31/78dc1b1ed63c812943dc916b030f9ab7.png">
-		</div>
-		        <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="/public/uploads/products/31/c1fa6193688a869f2a612182da5b77a8.png">
-		</div>
-		         <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="images/product-image/pro-img4.png">
-		</div>
-		        <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		
-		</div>
-		</div>
-		
-		<div class="row">
-        <div class="col-lg-3 product-container">
-	<div class="item-img">
-		<div class="product-image">
-		<img src="images/product-image/pro-img-5.png">
-		</div>
-		       <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="images/product-image/pro-img6.png">
-		</div>
-		        <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="images/product-image/pro-img7.png">
-		</div>
-		         <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-		
-		
-		</div>
-		</div>
-		<div class="col-lg-3 product-container">
-		<div class="item-img">
-		<div class="product-image">
-		<img src="images/product-image/pro-img8.png">
-		</div>
-		         <div class="hover-info">
-                       
-                    <div class="hover-content"><b>Kobe Bryant Signed Basketball<b>
-					Signed with DNA marked ink by Kobe
-					Bryant at documented signing. </div>
-					 
-					<div class="hover-content"><b>Item Type:</b><span> REGISTERED ORIGINAL</span></div>
-					<div class="hover-content"><b>Date Signed:</b><span>7/14/14</span></div>
-					<div class="hover-content"><b>QTY:</b><span>2</span></div>
-					<div class="hover-content"><b>SALE: </b><span>AUCTION W/ BUY NOW</span></div>
-					<div class="hover-content"><b>CURRENT BID:</b><span> $385.00</span></div>
-					<div class="hover-content"><b># OF TIMES PREVIOUSLY SOLD:</b><span></span></div>
-                </div>
-				
-		
-		
-		</div>
-		
-		</div>
-		</div>
-	
 		<div class="ptb25 pager">
 		<a href="">&laquo; next &raquo;</a>
 		</div>
 		</div>
 	  </div>
-	
-
-			
-	        
-<?php endif;?>
 </div>
 	</section>
-			
+		
+<!-- valued items -->
+  <section id="intrested-item" class="ptb25">
+	  <div class="container">
+	 
+		<div class="section-content">
+		<div class="row">
+		<div class="col-lg-12">
+		<h3 class="subtitle">May also be of interest to you.</h3>
+		</div>
+		</div>
+		<div class="row">
+		 <div class="col-lg-12 available-item">
+		 <strong>SECONDARY ITEMS:</strong><a href="#"> FIRST TIME BEING SOLD</a> 
+		 </div>
+		 </div>
+		<div class="row">
+        <div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item1.png">
+		</div>
+		
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item2.png">
+		</div>
+		
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item3.png">
+		</div>
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item4.png">
+		</div>
+		
+		</div>
+		</div>
+		
+		</div>
+	  </div>
+	
+	</section>
+
+
+
+
+		
 
 <!-- <pre>
 <?php 
