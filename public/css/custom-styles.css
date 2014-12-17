@@ -3065,8 +3065,9 @@ h3.subtitle{font-size:24px; font-weight:normal; margin-bottom:15px; font-style:i
 .page-item  .dropdown-menu  .submenu{margin-bottom:15px;}
 .page-item  .dropdown-menu  .submenu  a{font-size:12px; padding:3px 10px; color:#006a8a; text-decoration:none;}
 .page-item  .dropdown-menu li{position:relative;}
-.page-item  .dropdown-menu li .origional_item_container{position:absolute; left:0; top:0; width:300px; z-index:3; background:#fff; border:solid 1px #ccc; border-radius:4px; padding:10px;}
-.origional_item_close .fa{position:absolute; right:10px; top:2px; cursor:pointer;}
+.page-item  .dropdown-menu li .origional_item_container{position:absolute; left:0; top:0; width:300px; z-index:1005; background:#fff; border:solid 1px #ccc; border-radius:4px; padding:10px;}
+.origional_item_close{text-align:right;}
+.origional_item_close .fa{cursor:pointer;}
 .page-item  .dropdown-menu li .origional_item_container p{font-size:12px;font-family:arial,helvetica,san-serif; }
 .mg{margin:10px;}
 .pdr{padding:10px;}

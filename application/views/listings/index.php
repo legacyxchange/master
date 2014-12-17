@@ -20,13 +20,15 @@
       </a>
 	  
       <ul class="dropdown-menu">
-         <li><a href="#" id="origional_item">Original Items?</a>	
+         <li><a href="#" id="origional_item">Original Items?</a>
+		<div class="origional_item_container_main">	 		 
 		<div class="origional_item_container" style="display:none;">
-		<div class="origional_item_close"><i class="fa fa-times-circle"></i></span>
+		<div class="origional_item_close"><i class="fa fa-times-circle"></i></div>
 			<p>Origingal Items are items which have been DNA marked and Registered with LegacyXchange. Marking for original Items is done either at the point when the item is created (manufactured) or when it is signed or otherwise endorsed.</p>
 			<p>LegacyXchange documents and follows strict chain-of-custody procedures for all Original items.the documentation, as well as the DNA mark, is 100% verifiable.</p>
 		<p><b><i>All original items are Guaranteed 100% to be Authentic.</i></b></p>
-	  </div>		 
+	  </div>
+	</div>	  
 		 </li>
 		   <li class="divider"></li>
          <li><b>Show Me</b></li>
@@ -309,7 +311,57 @@
 <?php endif;?>
 </div>
 	</section>
-			
+		
+<!-- valued items -->
+  <section id="intrested-item" class="ptb25">
+	  <div class="container">
+	 
+		<div class="section-content">
+		<div class="row">
+		<div class="col-lg-12">
+		<h3 class="subtitle">May also be of interest to you.</h3>
+		</div>
+		</div>
+		<div class="row">
+		 <div class="col-lg-12 available-item">
+		 <strong>SECONDARY ITEMS:</strong><a href="#"> FIRST TIME BEING SOLD</a> 
+		 </div>
+		 </div>
+		<div class="row">
+        <div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item1.png">
+		</div>
+		
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item2.png">
+		</div>
+		
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item3.png">
+		</div>
+		</div>
+		<div class="col-lg-3">
+		<div class="item-img border-item">
+		<img src="images/sec-items/pro-sec-item4.png">
+		</div>
+		
+		</div>
+		</div>
+		
+		</div>
+	  </div>
+	
+	</section>
+
+
+
+
+		
 
 <!-- <pre>
 <?php 
