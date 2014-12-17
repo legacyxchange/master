@@ -60,14 +60,25 @@ class Welcome extends CI_Controller {
     		echo json_encode(array('status' => 'SUCCESS')); exit;
     	}
     }
-    public function checkEmail(){
-    	$emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
+    
+    public function checkEmail($email = null){
+    	if(is_null($email))
+    	    $email = htmlentities($_POST['email'], ENT_QUOTES);
+    	
+    	$emailAvail = $this->functions->checkEmailAvailable($email);
     	if ($emailAvail !== true) {
     		echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'Email is already in use!')); exit;
-    	}else{
+    	}else if (!preg_match('/\..{2,4}$/', $email)) {            
+            echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'You must supply a valid email!')); exit;
+        }
+    	else if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {            
+            echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'You must supply a valid email!')); exit;
+        }
+        else{
     		echo json_encode(array('status' => 'SUCCESS')); exit;
     	}
     }
+    
     public function register() {
     	if ($_POST) {         	
             try {           	

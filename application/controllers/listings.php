@@ -58,7 +58,7 @@ class Listings extends CI_Controller {
     	//$this->session->unset_userdata('cart_contents');
         $body['listing'] = $listings[0];
         $this->load->view('template/header', $header);
-        $this->load->view('listing_product/index', $body);
+        $this->load->view('listings/listing_product', $body);
         $this->load->view('template/footer');
     }
     

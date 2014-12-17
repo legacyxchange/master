@@ -4,45 +4,46 @@
     
 <!--footer start-->
 <footer class="ptb25">
-	   <div class="container">
+    <div class="container">
         <div class="row">
-		<div class="col-lg-3">
-			<ul class="footer-menu">
-			<li><a href="">About</a></li>
-			<li><a href="">Terms &amp; Privacy</a></li>
-			<li><a href="">Contact</a></li>
-			
-			</ul>
+		    <div class="col-lg-3">
+				<ul class="footer-menu">
+					<li><a href="">About</a></li>
+					<li><a href="">Terms &amp; Privacy</a></li>
+					<li><a href="">Contact</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-3">
+				<ul class="footer-menu">
+					<li><a href="/rates">Rates</a></li>
+					<li><a href="/how-to-sell">How to Sell</a></li>
+					<li><a href="/how-to-buy">Now to Buy</a></li>
+					<li><a href="/how-site-works">How Site Works</a></li>
+					<li><a href="/mark-item">Mark Items</a></li>
+					<li><a href="/faqs">FAQ's</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-3">
+				<ul class="footer-menu">
+					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
+					<li> <a href="/dealers">Dealers</a></li>
+					<li><a href="/manufacturers">Manufacturers</a></li>
+					<li><a href="/news">News</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-3">
+				<div class="social-icon">
+					<b>Follow Us</b>
+					<ul class="s-icon list-inline">
+						<li><a href=""><img src="/public/images/fb-icon.png"></a></li>
+						<li><a href=""><img src="/public/images/tw-icon.png"></a></li>
+						<li><a href=""><img src="/public/images/yt-icon.png"></a></li>
+						<li><a href=""><img src="/public/images/ista-icon.png"></a></li>
+					</ul>
+				</div>	
+			</div>
 		</div>
-		<div class="col-lg-3">
-			<ul class="footer-menu">
-			<li><a href="">Selling on LegacyXChange</a></li>
-			<li><a href="">Buying on LegacyXChange</a></li>
-			<li><a href="">Dealers</a></li>
-			
-			</ul>
-		</div>
-		<div class="col-lg-3">
-			<ul class="footer-menu">
-			<li><a href="">Athletes, Celebrities &amp; Agents</a></li>
-			<li><a href="">Manufacturers</a></li>
-		
-			</ul>
-		</div>
-		<div class="col-lg-3">
-		<div class="social-icon">
-		<b>Follow Us</b>
-		<ul class="s-icon list-inline">
-		<li><a href=""><img src="/public/images/fb-icon.png"></a></li>
-		<li><a href=""><img src="/public/images/tw-icon.png"></a></li>
-		<li><a href=""><img src="/public/images/yt-icon.png"></a></li>
-		<li><a href=""><img src="/public/images/ista-icon.png"></a></li>
-		</ul>
-		</div>
-		
-		</div>
-		</div>
-      </div>
+    </div>
 </footer>
 <!--footer end-->  
 
