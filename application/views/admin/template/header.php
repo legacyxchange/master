@@ -103,7 +103,7 @@ include_once 'headinclude.php';
             
             <li><a href="/mark-item">Mark Item</a></li>
 			<li><a href="/help">Help</a></li>
-			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
+			
 			<?php if ($this->session->userdata('logged_in')) : ?> 
 			<li>
 			    <a href="/shopping-cart">
@@ -112,6 +112,7 @@ include_once 'headinclude.php';
 			    </a>
 			</li>
 			<?php else:?>
+			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
 			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>

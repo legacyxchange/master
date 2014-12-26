@@ -167,17 +167,17 @@ padding-left: 0;
 /*----------- default anchor tag styles ----*/
 a:link
 {
-    color:#303020;
+    color:#000;
 }
 
 a:visited
 {
-    color:#303020;
+    color:#000;
 }
 
 a:hover
 {
-    color:#804040;
+    color:#000;
 }
 
 a:active
@@ -571,7 +571,7 @@ img.resize
 
 h1, h2, h3, h4, h5, label, button
 {
-    text-transform:uppercase;
+    text-align:center;
 }
 
 h1
@@ -1355,13 +1355,20 @@ display:inline;
 	margin-right:5px;
 }
 
-.product-container{/*width:240px;height:240px;border:0px;margin:14px;background:#fff;*/}
+.product-container{margin: 10px;width: 240px;border:1px solid #ccc;}
 .timer { color: gold; font-weight:bold; text-align:center; }
 .product-image img{ background: #fff;text-align:center;vertical-align:middle;}
 .large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
-.hover-info{text-shadow:none;letter-spacing:0px;padding:5px;display:none;position: absolute;top: 0px; left: 0;opacity:.9; background:teal;color:#fff; vertical-align:middle;width:100%;height:100%;font-size:13px;cursor:pointer;font-family:arial,helvetica,san-serif; }
+.hover-info{text-shadow:none;letter-spacing:0px;padding:5px;display:none;position: absolute;top: 0px; left: -15px;opacity:.9; background:teal;color:#fff; vertical-align:middle;width:240px;height:240px;font-size:13px;cursor:pointer;font-family:arial,helvetica,san-serif; }
 .hover-info b{font-weight:bold; color:#fff;}
 .hover-info p{font-weight:normal; color:#eee;line-height:14px; font-size:12px;}
+.secondary-items{
+position: absolute;
+top: 0px;
+left: -15px;
+width: 220px;
+height: 220px;
+}
 .hover-content{text-align:left;}
 .hover-info  span{color:#83d367;}
 .product-price{color:lime;margin-right:10px;}
@@ -1432,6 +1439,9 @@ background: rgb(255, 255, 255);
 
 .navbar-default .navbar-nav>li>a{ 
 	color:#000;
+	margin-top:10px;
+	font-weight:bold;
+	font-family: arial;
 }
 h1, h2, h3, h4, h5{
 	color: #000;
@@ -1446,3 +1456,12 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 .footer-menu li{list-style:none; padding:0;}
 .footer-menu li a{font-family:arial,helvetica,san-serif; font-size:12px; font-weight:bold; color:#006a8a; text-decoration:none;}
 .social-icon b{color:#006a8a; display:block; padding:0 0 10px;}
+.listing_product_heading{
+	text-align: center;font-family:"Georgia Bold"; font-size:30px;font-weight:bold;
+}
+.listing_product_heading p {
+	
+}
+.footer-links-heading a {
+	font-weight:bold
+}

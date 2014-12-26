@@ -24,7 +24,7 @@ class Products extends CI_Controller {
         $this->load->library('pagination');
     }
 
-    public function index($id = null, $page = 0) {
+    public function index($id = null, $page = 0) { 
     	if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
         	header('Location: /'); exit;
         }
@@ -57,9 +57,9 @@ class Products extends CI_Controller {
         
         $body['products'] = $prods;
         $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
-        $this->load->view('administrator/template/header', $header);
+        $this->load->view('admin/template/header', $header);
         $this->load->view('administrator/products', $body);
-        $this->load->view('template/footer');
+        $this->load->view('admin/template/footer');
     }
     
     public function add() {    	 

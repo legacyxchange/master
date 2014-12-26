@@ -28,10 +28,12 @@ class Listings extends CI_Controller {
         $this->load->model('bidding_model', 'bidding', true);
         
         $this->load->library('cart');
+        
+        $this->load->helper('form');
     }
 
     public function index($product_type = null) {   
-    	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js ');
+    	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
         try {
         	if($product_type){
         		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
@@ -60,7 +62,7 @@ class Listings extends CI_Controller {
     }
 
     public function product($product_id) {
-    	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js ');
+    	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js timer.js');
     	$listings = $this->listing->fetchAll(array('where' => 'product_id = '.$product_id));
     	
     	foreach($listings as $listing){
@@ -74,8 +76,19 @@ class Listings extends CI_Controller {
     	
         $body['listing'] = $listings[0];
         $this->load->view('template/header', $header);
-        $this->load->view('listings/listing_product', $body);
+        $this->load->view('listings/product', $body);
         $this->load->view('template/footer');
+    }
+    
+    public function bid(){
+    	if(!empty($_POST)){
+    		var_dump($_POST);
+    		$query = $this->db->query('select sum(bid_amount) as current_bid from bidding');
+    		
+    		var_dump($query->result()[0]->current_bid); exit;
+    	}else{
+    		
+    	}
     }
     
     public function buynow($listing_id){

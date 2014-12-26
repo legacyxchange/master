@@ -94,8 +94,8 @@ if (!defined('BASEPATH'))
         }
 
         if ($chat) {
-            echo $this->functions->jsScript('jquery.chat.js jquery.websocket.js', 'application/third_party/bms/js/', 'text/javascript', true, 'gen');
-            echo $this->functions->cssScript('jquery.chat.css', 'application/third_party/bms/css/', true, 'gen');           
+            echo $this->functions->jsScript('jquery.websocket.js', 'text/javascript', true, 'gen');
+            echo $this->functions->cssScript('application/third_party/bms/css/', true, 'gen');           
         }
         ?>
 

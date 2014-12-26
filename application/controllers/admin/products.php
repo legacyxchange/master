@@ -23,13 +23,17 @@ class Products extends CI_Controller {
     }
 
     public function index(product_$id = null) {
+    	if($this->input->is_ajax_request()){
+    		return $this->ajaxIndex();
+    		exit;
+    	}
     	if ($this->session->userdata('logged_in') == false){
         	header('Location: /'); exit;
         }
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js products.js');
+        $header['headscript'] = $this->functions->jsScript('products.js');
         
         if(is_null($product_id)){
         	try {
@@ -53,7 +57,44 @@ class Products extends CI_Controller {
         $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
         $this->load->view('admin/template/header', $header);
         $this->load->view('admin/products', $body);
-        $this->load->view('template/footer');
+        $this->load->view('admin/template/footer');
+    }
+    
+    public function ajaxIndex($product_id = null){
+    	if ($this->session->userdata('logged_in') == false){
+        	header('Location: /'); exit;
+        }
+        
+        $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
+        
+        $header['headscript'] = $this->functions->jsScript('products.js');
+        
+        if(is_null($product_id)){
+        	try {
+        		$products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id, 'orderby' => 'product_id DESC'));        		               		
+        	} catch (Exception $e) {
+        		$this->functions->sendStackTrace($e);
+        	}
+        }else{
+        	$products = $this->product->fetchAll('product_id = '.$product_id);        	
+        }
+        
+        foreach($products as $product){        	
+        	$types = $this->product_type->fetchAll(array('where' => 'product_type_id = '.$product->product_type_id));
+        	foreach($types as $type){
+        		$product->product_type = $type->type;
+        	}
+        	$prods []= $product; 
+        }
+        
+        $body['title'] = 'Ajax My Products';
+        
+        $body['products'] = $prods;
+        //$body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
+        //$this->load->view('admin/template/header', $header);
+        echo $this->load->view('admin/products', $body, true);
+        //$this->load->view('admin/template/footer');
+    	exit;
     }
     
     public function add() {    	 
@@ -113,6 +154,10 @@ class Products extends CI_Controller {
     			 
     			$this->product->save($where);
     
+    			if($this->input->is_ajax_request()){
+    				$this->ajaxIndex();
+    				exit;
+    			}
     			$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
     
     			header('Location: /admin/products'); exit;
@@ -130,7 +175,7 @@ class Products extends CI_Controller {
     		header('Location: /'); exit;
     	}
     	 
-    	$this->product->delete('product_id', $product_id);
+    	//$this->product->delete('product_id', $product_id);
     	 
     	$this->session->set_flashdata('SUCCESS', 'Your data has been updated.');
     	echo $this->index(); exit;
@@ -148,7 +193,7 @@ class Products extends CI_Controller {
                 <div class="modal-body">
     			';
     			$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/products/edit/'.$r->product_id); 
+    			$out .= form_open_multipart('/admin/products/edit/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();')); 
     			
         		$out .= form_hidden('product_id', $r->product_id);
         		$out .= form_hidden('user_id', $r->user_id);
@@ -197,7 +242,7 @@ class Products extends CI_Controller {
     			
     			$out .= '<input type="file" name="userfile" size="20" />'; 
     			
-    		    $out .= 'Current Image: <img src="/admin/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
+    		    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     			
     			$out .= '</div>';   							
     			//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
@@ -213,7 +258,8 @@ class Products extends CI_Controller {
                 <div class="modal-body">
     	    ';
     		$out .= '<div role="form">';
-    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id);
+    		//$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();'));
+    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form')); 
     		 
     		$out .= form_hidden('product_id', $r->product_id);
     		$out .= form_hidden('user_id', $this->session->userdata['user_id']);
@@ -253,11 +299,12 @@ class Products extends CI_Controller {
     		$out .= '<div class="form-group">';
     		$out .= '<input type="file" name="userfile" size="20" />';
     		
-    	    $out .= 'Current Image: <img src="/admin/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
+    	    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     		
     		$out .= '</div>';
     		//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
     		$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
+    		//$out .= '<input type="button" class="sign_save">Save</button>';
     		$out .= '</form>';
     		$out .= '</div>';
     	} 
@@ -295,7 +342,7 @@ class Products extends CI_Controller {
 
             if (empty($img)) {
                 $path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
-                $img = 'dude.gif';
+                $img = 'no_photo.png';
             }
 
             $is = getimagesize($path . $img);

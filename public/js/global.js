@@ -40,7 +40,7 @@ $(function () {
         setTimeout(function () { $('#user_email').focus(); }, 1000);
     });
 	
-	$('.menu_custom_item').click(function(){
+    $('.menu_custom_item').click(function(){
 		var val=$(this).text();
 		var html='';
 			html=val;
@@ -52,18 +52,19 @@ $(function () {
 		//$('.page-item .dropdown-menu').show();
 	});
 	
-	$('.origional_item_close').click(function(){
+	$('.origional_item_close .fa').click(function(event){
+	event.stopPropagation();
 		$('.origional_item_container').hide();
 	});
 	
+	$("div.origional_item_container_main").mouseleave(function() {
+		$('.origional_item_container').hide();
+	});
+		
 	$('.child_thumb').click(function(){
 		var link=$(this).attr('src');
 		$('.thumbnail_image img').attr('src',link);
 	});
-	
-	
-	
-	
 	
     $('#forgotPasswordButton').click(function (e) {
     	e.preventDefault();

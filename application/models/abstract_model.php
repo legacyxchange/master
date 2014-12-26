@@ -23,6 +23,7 @@ abstract class abstract_model extends CI_Model {
     	
     	$query = $this->db->get();
 
+    	//var_dump($this->db->last_query()); exit;
     	//file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
     	
     	return $query->result();

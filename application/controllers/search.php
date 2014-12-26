@@ -52,7 +52,7 @@ class Search extends CI_Controller {
     		$iStr = '';
     	}
     	
-        $header['headscript'] = $this->functions->jsScript('search.js welcome.js timer.js jssor.slider.mini.js jssor.init.js');
+        $header['headscript'] = $this->functions->jsScript('search.js welcome.js timer.js');
         
         if($iStr !== 'no matches'){ 
         	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'orderby' => 'end_time ASC'));

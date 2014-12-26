@@ -1,4 +1,5 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
+   
     </div> <!-- main-content --> 
 </div> <!-- /.contentbg -->
     
@@ -6,41 +7,56 @@
 <footer class="ptb25">
     <div class="container">
         <div class="row">
-		    <div class="col-lg-3">
+		    <div class="col-lg-2 col-sm-4">
+		        <div class="footer-links-heading"><a href="/about">About</a></div>
 				<ul class="footer-menu">
-					<li><a href="">About</a></li>
-					<li><a href="">Terms &amp; Privacy</a></li>
-					<li><a href="">Contact</a></li>
-				</ul>
-			</div>
-			<div class="col-lg-3">
-				<ul class="footer-menu">
+					<li><a href="/about">Why legacyXchange</a></li>
+					<li><a href="/how-to-sell">Selling</a></li>
+					<li><a href="/how-to-buy">Buying</a></li>
 					<li><a href="/rates">Rates</a></li>
-					<li><a href="/how-to-sell">How to Sell</a></li>
-					<li><a href="/how-to-buy">Now to Buy</a></li>
-					<li><a href="/how-site-works">How Site Works</a></li>
-					<li><a href="/mark-item">Mark Items</a></li>
-					<li><a href="/faqs">FAQ's</a></li>
+					<li><a href="/stores">Store Front</a></li>
+					<li><a href="/news">News</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-2 col-sm-4">
+		        <div class="footer-links-heading"><a href="/about">Partners</a></div>
 				<ul class="footer-menu">
 					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
 					<li> <a href="/dealers">Dealers</a></li>
 					<li><a href="/manufacturers">Manufacturers</a></li>
-					<li><a href="/news">News</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3">
-				<div class="social-icon">
-					<b>Follow Us</b>
-					<ul class="s-icon list-inline">
+			<div class="col-lg-2 col-sm-4">
+		        <div class="footer-links-heading"><a href="/legal">Legal</a></div>
+				<ul class="footer-menu">
+					<li><a href="/terms">Terms</a></li>
+					<li> <a href="/disclaimers">Disclaimers</a></li>
+					<li><a href="/privacy">Privacy</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-2 col-sm-4">
+		        <div class="footer-links-heading"><a href="/help">Help</a></div>
+				<ul class="footer-menu">
+					<li><a href="/contact">Contact Us</a></li>
+					<li> <a href="/faqs">FAQ's</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-2 col-sm-4">
+		        <div class="footer-links-heading"><a href="/corporate">Corporate</a></div>
+				<ul class="footer-menu">
+					<li><a href="/careers">Careers</a></li>
+					<li> <a href="/press">Press Release</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-2 col-sm-4">
+				<div class="footer-links-heading"><a href="/follow-us">Follow Us</a></div>
+					<ul class="s-icon" style="list-style:none;padding:0px;">
 						<li><a href=""><img src="/public/images/fb-icon.png"></a></li>
 						<li><a href=""><img src="/public/images/tw-icon.png"></a></li>
 						<li><a href=""><img src="/public/images/yt-icon.png"></a></li>
 						<li><a href=""><img src="/public/images/ista-icon.png"></a></li>
 					</ul>
-				</div>	
+				</div>
 			</div>
 		</div>
     </div>
@@ -206,6 +222,26 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 class="modal-title">Forgot Password</h3>
+            </div> <!-- modal-header -->
+            <div class="modal-body">
+            <p id='forgotPWText'>Please enter your E-Mail address associated with your account.</p>
+                <div class="form-group">
+                    <input type='text' class='form-control' name='user_email' id='user_email' value="" placeholder='E-MAIL ADDRESS'>
+                </div> <!-- .form-group -->
+            </div>
+            <div class="modal-footer">
+                
+            </div> <!-- modal-footer -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->   
+
+<div class="modal fade" id='advancedSearchModal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">Advanced Search</h3>
             </div> <!-- modal-header -->
             <div class="modal-body">
             <p id='forgotPWText'>Please enter your E-Mail address associated with your account.</p>

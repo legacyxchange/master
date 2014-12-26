@@ -63,7 +63,6 @@ $(document).ready(function(){
 		});
 		$('#confirm_no').click(function(e){
 			$('modalConfirm').hide();
-		});
-		
+		});		
 	});
 });

@@ -18,13 +18,13 @@ class Dashboard extends CI_Controller {
         $this->load->helper('url');
     }
     
-	public function index() {
+	public function index() { 
 		
         $this->functions->checkLoggedIn();
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js');
         
-        $this->load->view('administrator/template/header', $header);
+        $this->load->view('template/header', $header);
         $this->load->view('administrator/dashboard', $body);
-        $this->load->view('administrator/template/footer');
+        $this->load->view('template/footer');
     }
 }
