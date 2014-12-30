@@ -128,18 +128,21 @@ class Products extends CI_Controller {
     	return $this->index();
     }
     
-    public function edit($product_id) {
+    public function edit($product_id) { 
     	if(!$product_id)
     		header('Location: /admin/dashboard');
     
     	$body['user_id'] = $this->session->userdata['user_id'];
-    	
+    	//var_dump($body); exit;
     	if (!empty($_POST)) {
     		$params = $_POST;
-
-    		//var_dump($_POST, $_FILES['userfile']['name']); exit;
+    		
+            if(!empty($_POST['userfile'])){
+            	//var_dump($_POST['userfile']); exit;
+            }
     		if(!empty($_FILES['userfile']['name'])){
-    			
+    			//var_dump($params); exit;
+    			//var_dump($_FILES); exit;
     			$ret = $this->doUpload($product_id);
     			//var_dump($ret); exit;
     			if(!empty($ret['file_name'])){
@@ -240,7 +243,8 @@ class Products extends CI_Controller {
     			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			
-    			$out .= '<input type="file" name="userfile" size="20" />'; 
+    			//$out .= form_upload(array('type' => 'file', 'id' => 'file-select', 'style' => 'width:80%;', 'name' => 'name', 'placeholder' => 'Image', 'value' => ''));
+    			$out .= '<input type="file" id="userfile" name="userfile" size="20" onSubmit="return products.submitForm();"/>'; 
     			
     		    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     			
@@ -258,8 +262,8 @@ class Products extends CI_Controller {
                 <div class="modal-body">
     	    ';
     		$out .= '<div role="form">';
-    		//$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();'));
-    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form')); 
+    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();'));
+    		//$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form')); 
     		 
     		$out .= form_hidden('product_id', $r->product_id);
     		$out .= form_hidden('user_id', $this->session->userdata['user_id']);

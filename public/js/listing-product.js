@@ -35,7 +35,7 @@ listing_product.buynow = function(listing_id, csrfTokenName, csrfTokenValue){
 	    url: "/listings/buynow/"+listing_id,
 	    type: "POST",
 		data: { listing_id:listing_id, karateToken:csrfTokenValue },
-		dataType: "html"
+		dataType: "json"
 	});
 			 
 	request.done(function( msg ) { console.log(msg)

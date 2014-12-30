@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('.edit_button').click(function(e){
 		e.preventDefault();
-		var listing_id = $(this).attr('listing_id');
+		var listing_id = $(this).attr('id');
 		
 	    $.ajax( "/administrator/listings/listingsform/"+listing_id)
 	    .done(function( data ) { console.log(data)
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	
 	$('.admin_edit_button').click(function(e){
 		e.preventDefault();
-		var listing_id = $(this).attr('listing_id');
+		var listing_id = $(this).attr('id');
 		
 	    var request = $.ajax({
 		  url: "/admin/listings/listingsform/"+listing_id,

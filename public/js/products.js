@@ -2,14 +2,22 @@ var products = {}
 
 products.submitForm = function(){
 	var product_id = $('.admin_edit_button').attr('id');
-	$.ajax( "/admin/products/edit/"+product_id)
+	//var formData = $('#product_edit_form').serialize();
+	//formData.append('&userfile='+$('#userfile').val());
+	console.log(product_id)
+	/*$.ajax({
+		  type: "POST",
+		  url: "/admin/products/edit/"+product_id,
+		  data:  formData 
+	})
     .done(function( data ) { console.log(data)
+    	
       //$('#productsModal .modal-content').html(data);
     })
-    .fail(function() {
+    .fail(function() { 
         alert( "error" );
-    })
-	return false;
+    })*/
+	//return false;
 }
 
 $(document).ready(function(){

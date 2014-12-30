@@ -14,7 +14,9 @@ include_once './application/third_party/phpfunctions/libraries/PHPFunctions.php'
 class Functions extends PHPFunctions {
 
     private $ci;
-    private $site_name = 'legacyXchange.com';
+    private $site_name = 'legacyXchange';
+    public $useImage = TRUE;
+    private $site_logo = '<img src="/public/images/logo.png" />';
 
     public function __construct() {
         $this->ci = & get_instance();
@@ -987,6 +989,9 @@ $data = false;
       }
      */
     public function getSiteName(){
-    	return $this->site_name;
+    	if($this->useImage && isset($this->site_logo)){
+    		return $this->site_logo;
+    	}
+    	return trim($this->site_name);
     }
 }

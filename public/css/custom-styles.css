@@ -3014,7 +3014,7 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 .section-header .subtitle{font-size:30px;font-family: Georgia,Times,Times New Roman,serif; color:#000; text-align:center;} 
 .advance-search{color:#000;cursor:pointer;}
 .nav>li> span{padding-left:10px; display:block;}
-.modal-title{text-align:center; background:#fff; font-size:30px; border-radius:5px 5px 0 0!important;}
+.modal-title{text-align:center;  font-size:30px; border-radius:5px 5px 0 0!important;}
 .modal-header{background:#f4f4f4; padding:5px; border-radius:5px 5px 0 0!important;}
 .modal-header .close{margin:0;}
 .form-action{padding:15px 0; text-align:right;}

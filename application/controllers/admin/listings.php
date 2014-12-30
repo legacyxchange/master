@@ -31,7 +31,7 @@ class Listings extends CI_Controller {
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js listings.js');
+        $header['headscript'] = $this->functions->jsScript('listings.js');
         
         if(is_null($listing_id)){        	
         	try {
@@ -120,12 +120,13 @@ class Listings extends CI_Controller {
     	$out = null;
     	
     	if(!is_null($listing_id)){
+    		
     		$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id, 'orderby' => 'listing_id DESC'));
     	    
     		foreach($listings as $r){ 
     			$out .= '
     			<div class="modal-header">
-                <h3 class="modal-title">'.$r->listing_name.'</h3>
+                <h3 class="modal-title">'.html_entity_decode($r->listing_name).'</h3>
                 </div> <!-- modal-header -->
                 <div class="modal-body">
     			';
@@ -139,7 +140,7 @@ class Listings extends CI_Controller {
         		$products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));
     		    foreach($products as $product){      			
         			if($product->product_id == $r->product_id) {  
-        				$out .= '<option selected value="'.$product->product_id.'">'.$product->name.'</option>';
+        				$out .= '<option selected value="'.$product->product_id.'">'.html_entity_decode($product->name).'</option>';
         			}else{
         				$out .= '<option value="'.$product->product_id.'">'.$product->name.'</option>';
         			}        			
@@ -148,7 +149,9 @@ class Listings extends CI_Controller {
         		$out .= '</div>';       		
     			$out .= '<div class="form-group">';
     			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('style' => 'width:80%;', 'name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
+    			$ln = html_entity_decode($r->listing_name); 
+    			
+    			$out .= form_input(array('style' => 'width:80%;', 'name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => 'etset\'s'));
     			$out .= '</div>';   	 	
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
@@ -201,7 +204,7 @@ class Listings extends CI_Controller {
         		$out .= '</div>';       		
     			$out .= '<div class="form-group">';
     			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
+    			$out .= form_input(array('name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => html_entity_decode($r->listing_name)));
     			$out .= '</div>';   	
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
