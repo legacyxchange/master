@@ -1,24 +1,12 @@
 <!--container start-->
         <div class="container main-content">
-        <?php if($this->session->flashdata('SUCCESS')): ?>
-        <div class='row'>
-        <h3 class="alert alert-success"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('FAILURE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-danger"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
-        </div>
-        <?php elseif($this->session->flashdata('NOTICE')): ?>
-        <div class='row'>
-        <h3 class="alert alert-notice"><?php echo $this->session->flashdata('NOTICE'); ?></h3>
-        </div>
-        <?php endif; ?> 
-        <?php echo $admin_menu;?>
+        
+        <?php echo $administrator_menu; ?>
         <div class="add_new_butt admin_add_new_butt">
 			<a href="#" class="big-link" data-reveal-id="myModa2"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
-            	<h2>My Listings</h2>
+            	<h2>Listings</h2>
                                 
                 <table class="table table-condensed">
                     <tr>

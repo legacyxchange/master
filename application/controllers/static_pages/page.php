@@ -5,29 +5,67 @@ if (!defined('BASEPATH'))
 
 class Page extends CI_Controller {
 
-    function Page() {
-        parent::__construct();
+    function Page() { 
+        parent::__construct(); 
+
+        $this->load->model('user_model', 'user', true);
+        $this->output->enable_profiler(TRUE);
+    }
+    
+    public function about(){
+    	$body['title'] = 'About Us';
+    	$this->load->view('template/header', $header);
+    	 
+    	$this->load->view('static_pages/about', $body);
+    	$this->why_legacyxchange();
+    	$this->how_to_sell();
+    	$this->how_to_buy();
+    	$this->rates();
+    	$this->stores();
+    	$this->news();
+    	$this->load->view('template/footer');
+    }
+    
+    public function why_legacyxchange(){
+    	$body['title'] = 'Why LegacyXchange';
+    	
+    	$this->load->view('static_pages/why_legacyxchange', $body);
+    	
     }
     
     public function how_to_sell(){ 
     	$body['title'] = 'How to Sell'; 
-    	$this->load->view('template/header', $header);
+    	
         $this->load->view('static_pages/how_to_sell', $body);         
-        $this->load->view('template/footer');
-    }
-    
-    public function news(){
-    	$body['title'] = 'In the News';
-    	$this->load->view('template/header', $header);
-    	$this->load->view('static_pages/news', $body);
-    	$this->load->view('template/footer');
+       
     }
     
     public function how_to_buy(){   
     	$body['title'] = 'How to Buy';
-    	$this->load->view('template/header', $header);
+    	
     	$this->load->view('static_pages/how_to_buy', $body);
-    	$this->load->view('template/footer');
+    	
+    }
+    
+    public function rates(){
+    	$body['title'] = 'Rates';
+    	
+    	$this->load->view('static_pages/rates', $body);
+    	
+    }
+    
+    public function stores(){
+    	$body['title'] = 'Stores';
+    	
+    	$this->load->view('static_pages/stores', $body);
+    	
+    }
+    
+    public function news(){
+    	$body['title'] = 'In the News';
+    	
+    	$this->load->view('static_pages/news', $body);
+    	
     }
     
     public function privacy(){
@@ -43,21 +81,7 @@ class Page extends CI_Controller {
     	$this->load->view('static_pages/terms', $body);
     	$this->load->view('template/footer');
     }
-    
-    public function about(){
-    	$body['title'] = 'About Us';
-    	$this->load->view('template/header', $header);
-    	$this->load->view('static_pages/about', $body);
-    	$this->load->view('template/footer');
-    } 
-    
-    public function rates(){ 
-    	$body['title'] = 'Rates';
-    	$this->load->view('template/header', $header);
-    	$this->load->view('static_pages/rates', $body);
-    	$this->load->view('template/footer');
-    }
-    
+     
     public function help(){
     	$body['title'] = 'Help / Customer Service';
     	$this->load->view('template/header', $header);

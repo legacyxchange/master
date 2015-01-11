@@ -6,7 +6,7 @@
 			<a href="#" class="products-big-link" data-reveal-id="productsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
-            	<h2>My PRODUCTS</h2>
+            	<h2>PRODUCTS</h2>
                                 
                 <table class="table table-condensed">
                     <tr>

@@ -22,9 +22,11 @@ class Listings extends CI_Controller {
         $this->load->model('listings_model', 'listing', true);
         
         $this->load->library('library');
+        
+        $this->load->library('pagination');
     }
 
-    public function index(listing_$id = null) {
+    public function index($listing_id = null) {
         if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
         	header('Location: /'); exit;
         }
@@ -33,8 +35,14 @@ class Listings extends CI_Controller {
         
         $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js listings.js');
         
-        if(is_null($listing_id)){        	
+        if(!is_null($listing_id)){        	
         	try {
+        		$pagination_config['base_url'] = '/administrator/listings/index//'.$page;
+        		$pagination_config['total_rows'] = $this->listing->countAll();
+        		$pagination_config['per_page'] = 5;
+        		$pagination_config['cur_page'] = $page;
+        		$pagination_config['use_page_numbers'] = TRUE;
+        		$this->pagination->initialize($pagination_config);
         		$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page)); 
         		
         		foreach($listings as $listing){ 
@@ -45,7 +53,7 @@ class Listings extends CI_Controller {
         		$this->functions->sendStackTrace($e);
         	}
         }else{
-        	$listings = $this->listing->fetchAll('listing_id = '.$listing_id);        	
+        	$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));        	
         }
         
         $body['listings'] = $listings;

@@ -1,5 +1,30 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
-   
+
+<!-- advertisements -->
+<section id="intrested-item" class="ptb25">
+	<div class="container">
+		<div class="section-content">
+			<div class="row">
+				<div class="col-lg-12 advertisements_area">
+				    <?php if($advertisements): ?>
+					<?php foreach($advertisements as $ad):?>
+					    <div class="advertistement col-lg-3 col-md-3" style="width:270px;height:200px;margin-right:7px;border:1px solid #aaa;" id="<?php echo $ad->advertisement_id; ?>" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
+					    	<?php //var_dump($ad, $_SERVER); exit;?> 
+					    	<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
+					    		<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" />
+					    		<input type="hidden" name="click" value="1" />
+					    		<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" />
+					    		<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />
+					    	<?php echo form_close();?>
+					    </div>
+					<?php endforeach; ?>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
     </div> <!-- main-content --> 
 </div> <!-- /.contentbg -->
     
@@ -10,12 +35,12 @@
 		    <div class="col-lg-2 col-sm-4">
 		        <div class="footer-links-heading"><a href="/about">About</a></div>
 				<ul class="footer-menu">
-					<li><a href="/about">Why legacyXchange</a></li>
-					<li><a href="/how-to-sell">Selling</a></li>
-					<li><a href="/how-to-buy">Buying</a></li>
-					<li><a href="/rates">Rates</a></li>
-					<li><a href="/stores">Store Front</a></li>
-					<li><a href="/news">News</a></li>
+					<li><a href="/about#why-legacyxchange">Why legacyXchange</a></li>
+					<li><a href="/about#how-to-sell">Selling</a></li>
+					<li><a href="/about#how-to-buy">Buying</a></li>
+					<li><a href="/about#rates">Rates</a></li>
+					<li><a href="/about#stores">Store Front</a></li>
+					<li><a href="/about#news">News</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">

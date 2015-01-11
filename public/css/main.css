@@ -1404,7 +1404,7 @@ font-size: inherit;
 line-height: inherit;
 height: 28px;
 }
-label { width: 40%; }
+label { }
 textarea { height: auto;}
 #advanced_search{
 	position: absolute;z-index:1000;
@@ -1449,8 +1449,8 @@ h1, h2, h3, h4, h5{
 }
 footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 .footer-menu{padding:0; margin:0;}
-.footer-menu li{list-style:none; padding:0;}
-.footer-menu li a{font-family:arial,helvetica,san-serif; font-size:12px; font-weight:bold; color:#006a8a; text-decoration:none;}
+.footer-menu li{list-style:none; padding:0;line-height: 28px;}
+.footer-menu li a{font-family:arial,helvetica,san-serif; font-size:14pt; font-weight:bold; color:#006a8a; text-decoration:none;}
 .social-icon b{color:#006a8a; display:block; padding:0 0 10px;}
 .listing_product_heading{
 	text-align: center;font-family:"Georgia Bold"; font-size:30px;font-weight:bold;
@@ -1459,5 +1459,7 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 	
 }
 .footer-links-heading a {
-	font-weight:bold
+	font-weight:bold;
+	font-size:14pt;
 }
+.s-icon li{ margin-bottom:5px;}

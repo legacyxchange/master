@@ -37,7 +37,7 @@ class Products extends CI_Controller {
         		$pagination_config['total_rows'] = $this->product->countAll();
         		$pagination_config['per_page'] = 5;
         		$pagination_config['cur_page'] = $page;
-        		$config['use_page_numbers'] = TRUE;
+        		$pagination_config['use_page_numbers'] = TRUE;
         		$this->pagination->initialize($pagination_config);
         		$products = $this->product->fetchAll(array('orderby' => 'product_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));        		               		
         	} catch (Exception $e) {

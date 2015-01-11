@@ -31,7 +31,7 @@ class Users extends CI_Controller {
         $pagination_config['total_rows'] = $this->user->countAll();
         $pagination_config['per_page'] = 5;
         $pagination_config['cur_page'] = $page;
-        $config['use_page_numbers'] = TRUE;
+        $pagination_config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($pagination_config);
         
         $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js user.js');

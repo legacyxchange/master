@@ -45,12 +45,13 @@ $route['seller/(:any)'] = 'user/index/$1';
 $route['test/(:num)'] = 'test/index/$1';
 $route['deals/(:num)'] = 'deals/index/$1';
 $route['admin/deals/(:num)'] = 'admin/deals/index/$1';
-$route['how-to-sell'] = 'static_pages/page/how_to_sell';
-$route['how-to-buy'] = 'static_pages/page/how_to_buy';
+$route['how-to-sell'] = 'static_pages/page/about#how-to-sell';
+$route['how-to-buy'] = 'static_pages/page/about#how-to-buy';
+$route['why-legacy-exchange'] = 'static_pages/page/about#why-legacyxchange';
 $route['privacy'] = 'static_pages/page/privacy';
 $route['terms-of-service'] = 'static_pages/page/terms';
 $route['about'] = 'static_pages/page/about';
-$route['rates'] = 'static_pages/page/rates';
+$route['rates'] = 'static_pages/page/about#rates';
 $route['help'] = 'static_pages/page/help';
 $route['how-site-works'] = 'static_pages/page/how_site_works'; 
 $route['mark-item'] = 'static_pages/page/mark_item';
@@ -59,8 +60,12 @@ $route['disclaimers'] = 'static_pages/page/disclaimers';
 $route['dealers'] = 'static_pages/page/dealers';
 $route['athletes-celebrities-agents'] = 'static_pages/page/athletes_celebrities_agents';
 $route['manufacturers'] = 'static_pages/page/manufacturers';
-$route['news'] = 'static_pages/page/news';
+$route['news'] = 'static_pages/page/about#news';
 $route['shopping-cart'] = 'shoppingcart';
+$route['listings/([a-z]+)'] = 'listings/index/$1';
 
+/* foreach(array_keys($route) as $r){
+	echo '"/'.$r,'", ';
+} */
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

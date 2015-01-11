@@ -101,6 +101,18 @@ class Products extends CI_Controller {
     	if (!empty($_POST)) {
     		$params = $_POST;
     		
+    		if($_POST['list-item-now'] != 'on'){
+    			unset($_POST['listing_id']);
+    			unset($_POST['start_date']);
+    			unset($_POST['start_time']);
+    			unset($_POST['end_date']);
+    			unset($_POST['end_time']);
+    			unset($_POST['buynow_price']);
+    			unset($_POST['reserve_price']);
+    			unset($_POST['list-item-now']);
+    			unset($_POST['submit']);
+    		}
+    		var_dump($_POST); exit;
     		try {
     		
     		$product_id = $this->product->save(); 
@@ -306,7 +318,34 @@ class Products extends CI_Controller {
     	    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     		
     		$out .= '</div>';
-    		//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
+    		
+    		$out .= '<div class="listing-addon" style="display:none;">';
+    		$out .= form_hidden('listing_id', null);
+    		
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="start_date">Start Date</label>  <label style="margin-left:100px;" for="start_time">Start Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Date', 'value' => date('Y-m-d', strtotime(date('Y-m-d')))));
+    		$out .= form_input(array('type' => 'time', 'name' => 'start_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime(date('H:i:s')))));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="end_date">End Date</label>  <label style="margin-left:108px;" for="end_time">End Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'end_date', 'placeholder' => 'End Date', 'value' => date('Y-m-d', strtotime(date('Y-m-d').' + 1 day'))));
+    		$out .= form_input(array('type' => 'time', 'name' => 'end_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime(date('H:i:s')))));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="buynow_price">Buy Now Price</label><br />';
+    		$out .= '$'.form_input(array('name' => 'buynow_price', 'placeholder' => 'Buy Now Price', 'value' => number_format($r->buynow_price, 2)));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="reserve_price">Reserve Price</label><br />';
+    		$out .= '$'.form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => number_format($r->reserve_price, 2)));
+    		$out .= '</div>';
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="list-item-now">List this Product</label><br />';
+    		$out .= '<input onclick="toggleAddon(this)" type="checkbox" name="list-item-now" />';
+    		$out .= '</div>';
+    		//$out .= '<input type="button" class="sign_list_product" value="List Product" onclick="toggleAddon()" />';
     		$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
     		//$out .= '<input type="button" class="sign_save">Save</button>';
     		$out .= '</form>';

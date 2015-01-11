@@ -19,7 +19,7 @@
 			</div>
         <?php else: ?>      
         <?php foreach($listings as $listing): ?>
-            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border:0;">
 				<div class="product-image item-img">
 					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">

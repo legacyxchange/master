@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
     
     <div class="container">         
-        <div class="content-container">
+        <div class="content-container" id="news">
             <h2><?php echo $title; ?></h2> 
             <p>
             

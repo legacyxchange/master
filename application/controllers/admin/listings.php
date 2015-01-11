@@ -8,7 +8,7 @@ class Listings extends CI_Controller {
     function Listings() {
     	
         parent::__construct();
-
+        
         $this->load->driver('cache');
 
         $this->load->model('user_model', 'user', true);
@@ -24,7 +24,7 @@ class Listings extends CI_Controller {
         $this->load->library('library');
     }
 
-    public function index(listing_$id = null) {
+    public function index(listing_$id = null) { 
     	if ($this->session->userdata('logged_in') == false){
         	header('Location: /'); exit;
         }

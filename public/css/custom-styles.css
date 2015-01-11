@@ -592,15 +592,18 @@ h2 .view a{
     padding:0px 0px 10px 0px;
 }
 .content-container{
-    display:block;
-    clear:both;
-    overflow:hidden;
-    background:#eee;
-    border:1px solid #aaa;
-    border-radius: 10px;
-    margin-bottom:0px;
-    padding:10px 10px 10px 10px;
-    min-height:540px;
+    display: block;
+clear: both;
+overflow: hidden;
+ background: #eee; 
+border: 0px solid #aaa;
+border-radius: 10px;
+border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom: 0;
+margin-bottom: 0px;
+padding: 10px 10px 10px 10px;
+min-height: 540px; 
 }
 .banner_img{
     width:330px;

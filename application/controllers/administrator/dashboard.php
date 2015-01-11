@@ -23,8 +23,9 @@ class Dashboard extends CI_Controller {
         $this->functions->checkLoggedIn();
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js');
         
-        $this->load->view('template/header', $header);
+        $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
+        $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/dashboard', $body);
-        $this->load->view('template/footer');
+        $this->load->view('administrator/template/footer');
     }
 }

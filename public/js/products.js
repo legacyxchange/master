@@ -103,3 +103,11 @@ $(document).ready(function(){
 		});		
 	});
 });
+
+function toggleAddon(target){
+	if($(target).val() == 'on'){
+		$( ".listing-addon" ).show( "slow");
+	}else{
+		$( ".listing-addon" ).hide( "slow");
+	}
+}
