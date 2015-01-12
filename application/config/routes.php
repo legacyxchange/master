@@ -63,6 +63,7 @@ $route['manufacturers'] = 'static_pages/page/manufacturers';
 $route['news'] = 'static_pages/page/about#news';
 $route['shopping-cart'] = 'shoppingcart';
 $route['listings/([a-z]+)'] = 'listings/index/$1';
+$route['admin/products/(:num)'] = 'admin/products/index/$1';
 
 /* foreach(array_keys($route) as $r){
 	echo '"/'.$r,'", ';

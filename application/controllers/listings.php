@@ -109,7 +109,6 @@ class Listings extends CI_Controller {
     }
     
     public function buynow($listing_id){
-    	//var_dump($_REQUEST); exit;
     	$user_id = $this->session->userdata['user_id'];
     	if(!$user_id){
     		echo json_encode(array('status' => 'FAILURE', 'message' => 'Not Logged In')); exit;

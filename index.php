@@ -22,7 +22,8 @@ ini_set('log_errors', true);
 ini_set('html_errors', false);
 ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '..' . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'error_log.txt');
 
-
+if(empty($_SESSION))
+	session_start();
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

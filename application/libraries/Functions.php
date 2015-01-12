@@ -236,65 +236,33 @@ class Functions extends PHPFunctions {
     }
 
     public function checkLoggedIn($loginRedirect = true) {
-        // starts session if not already started
-
         $ci = & get_instance();
-
-        $ci->load->helper('url');
-
-
-        $pattern = '/^intranet\/login/';
-        $login = preg_match($pattern, uri_string());
-
-
-        /*
-          $allowedUrlPatterns = array
-          (
-          '/^user\/profileimg/',
-          '/^intranet\/forgotpassword/',
-          '/^intranet\/resetpassword/',
-          '/^intranet\/processpasswordrequest/',
-          '/^blog\/savecomment/',
-          '/^user\/checksubscription/',
-          '/^intranet\/iframelogin/',
-          '/^intranet\/fblogin/',
-          '/^user\/fbcallback/',
-          '/^folder\/tree/'
-          );
-
-
-          $allowed = false;
-          foreach ($allowedUrlPatterns as $k => $pat)
-          {
-          $m = preg_match($pat, uri_string());
-
-
-          if ($m > 0)
-          {
-          $allowed = true;
-          break;
-          }
-          }
-
-          if ($allowed == true) return false;
-         */
-
-        if ($login == 0) {
-            //if(!isset($_COOKIE['userid']))
-            if ($ci->session->userdata('logged_in') === true) {
-                // do nothing
-                return true;
-            } else {
-                if ($loginRedirect) {
-                    header("Location: /?site-error=" . urlencode("You are not logged in") . "&ref=" . uri_string() . '&email=' . urlencode($this->email));
-                    exit;
-                } else {
-                    return false;
-                }
-            }
+        
+        if ($ci->session->userdata('logged_in') === true) {
+        	return true;
+        } else {
+        	$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+        	$ci->session->set_flashdata('NOTICE', 'You must login first');
+        	$_SESSION['showLogin'] = true;
+        	header("Location: /");
+        	exit;
         }
     }
 
+    public function checkSudoLoggedIn() {
+    	$ci = & get_instance();
+        
+        if ($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) {
+        	return true;
+        } else {
+        	$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+        	$ci->session->set_flashdata('NOTICE', 'You must login first');
+        	$_SESSION['showLogin'] = true;
+        	header("Location: /");
+        	exit;
+        }
+    }
+    
     public function getFacebookID($user_id) {
         if (empty($user_id))
             throw new Exception("User ID is empty!");

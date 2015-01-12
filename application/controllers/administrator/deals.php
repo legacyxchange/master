@@ -22,7 +22,7 @@ class Deals extends CI_Controller {
     // $id = locations primary key
     public function index($id = null) {
     	
-    	$header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js deals.js');
+    	$header['headscript'] = $this->functions->jsScript('deals.js');
     	
     	$body['deals'] = $this->deals->fetchAll();
     	

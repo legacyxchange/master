@@ -10,13 +10,19 @@
 |
 */
 
-$hook['post_controller_constructor'] = array(
+$hook['post_controller_constructor'][] = array(
 		'class'    => 'AdMeister',
 		'function' => 'run',
 		'filename' => 'AdMeister.php',
 		'filepath' => 'hooks',
 		//'params'   => array('beer', 'wine', 'snacks')
 );
-
+/* $hook['post_controller_constructor'][] = array(
+		'class'    => 'Redirector',
+		'function' => '__construct',
+		'filename' => 'Redirector.php',
+		'filepath' => 'hooks',
+		//'params'   => array('beer', 'wine', 'snacks')
+); */
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

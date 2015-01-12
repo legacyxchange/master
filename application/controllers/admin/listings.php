@@ -25,9 +25,7 @@ class Listings extends CI_Controller {
     }
 
     public function index(listing_$id = null) { 
-    	if ($this->session->userdata('logged_in') == false){
-        	header('Location: /'); exit;
-        }
+    	$this->functions->checkLoggedIn();
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         

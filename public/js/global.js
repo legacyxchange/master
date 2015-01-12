@@ -153,7 +153,6 @@ $.fn.preload = function () {
     });
 }
 
-
 /**
  * functions dynamically adjust elements on page
  */
@@ -442,11 +441,14 @@ global.userlogin = function ()
     }
     
     $.post("/welcome/login", $('#loginform').serialize(), function (data) { 
-    	console.log(data);
     	if (data.status == 'SUCCESS' && data.permissions > 0){
         	window.location.href = '/administrator/dashboard';
-        }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){       	 
-            window.location.href = '/admin/dashboard';
+        }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
+        	if(data.redirect != null){
+        		window.location.href = data.redirect;
+        	}else{
+        		window.location.href = '/admin/dashboard';
+        	}       
         }
         else{
             global.renderAlert(data.msg, undefined, 'loginAlert');
@@ -454,6 +456,14 @@ global.userlogin = function ()
     }, 'json'); 
 }
 
+global.setRedirectUri = function(_uri){
+	
+	$.post("/welcome/setRedirectUri", {uri:_uri,karateToken:'549dd4d3b74fff6275a92d0cebea6990'}, function (data) { 
+		$('#myLegacy').modal('show');
+		$('#myLegacy .alerts').html('<div class="row"><h3 class="alert alert-notice" style="text-align:center;">You must login first.</h3></div>');
+		
+    }, 'json');
+}
 /*global.loadSignup = function (loadModal)
 {
     if (loadModal == undefined)

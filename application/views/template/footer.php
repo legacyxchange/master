@@ -96,6 +96,9 @@
                 <span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">LegacyXchange</h4>
             </div>
+            <div class="alerts">
+            <?php require 'application/views/partials/flash_messages.php';?>
+            </div>
             <div class="modal-body">
             	<div class="row">
 	            	<div class="col-lg-6">

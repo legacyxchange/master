@@ -1,8 +1,6 @@
 <?php 
 require_once APPPATH.'models/ad_pages_model.php';
 
-
-
 class AdMeister {
 	private $db;
 	private $CI;

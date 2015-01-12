@@ -34,7 +34,7 @@ class Users extends CI_Controller {
         $pagination_config['use_page_numbers'] = TRUE;
         $this->pagination->initialize($pagination_config);
         
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js user.js');
+        $header['headscript'] = $this->functions->jsScript('user.js');
         
         $body['users'] = $this->user->fetchAll(array('orderby' => 'user_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));
         

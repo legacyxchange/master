@@ -8,7 +8,15 @@ include_once 'headinclude.php';
 ?>
 
 <?= $headscript ?>
-
+<?php //var_dump($_SESSION); ?>
+<?php if(!empty($_SESSION['showLogin']) && $_SESSION['showLogin'] == true): ?>
+<script>
+$(document).ready(function(e){
+	$('#myLegacy').modal('show');
+});
+</script>
+<?php $_SESSION['showLogin'] = null; ?>	
+<?php endif; ?>
 <style>
 .followBtn{display:none;} 
 </style>
@@ -110,10 +118,10 @@ include_once 'headinclude.php';
 			        <i style="font-size:20px;" class="fa fa-shopping-cart"></i>
 			        <div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
 			    </a>
-			</li>
+			</li>	
 			<?php else:?>
 			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
-			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<li class=""><a href="/shopping-cart" ><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>
         </div><!--/.nav-collapse -->
@@ -130,5 +138,5 @@ include_once 'headinclude.php';
 	        <?php echo form_close();?>
 	    </div>
     </div>
-    <?php include_once 'alert.php'; ?>
+    <?php //include_once 'alert.php'; ?>
     <?php require_once 'application/views/partials/flash_messages.php';?>

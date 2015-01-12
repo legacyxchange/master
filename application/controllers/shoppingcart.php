@@ -27,6 +27,8 @@ class ShoppingCart extends CI_Controller {
     }
 
     public function index($listing_id = null) {
+
+    	$this->functions->checkLoggedIn();
     	$body['title'] = 'Shopping Cart';
     	
         try {

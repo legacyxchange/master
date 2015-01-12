@@ -13,25 +13,17 @@ class Products extends CI_Controller {
 
         $this->load->model('user_model', 'user', true);
         
-        $this->load->model('profile_model', 'profile', true);
-        
         $this->load->model('products_model', 'product', true);
         
         $this->load->model('product_types_model', 'product_type', true);
         
         $this->load->library('library');
+        
+        $this->functions->checkLoggedIn();
     }
 
-    public function index(product_$id = null) {
-    	if($this->input->is_ajax_request()){
-    		return $this->ajaxIndex();
-    		exit;
-    	}
-    	if ($this->session->userdata('logged_in') == false){
-        	header('Location: /'); exit;
-        }
-        
-        $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
+    public function index($product_id = null) {
+    	$body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
         $header['headscript'] = $this->functions->jsScript('products.js');
         
@@ -41,8 +33,8 @@ class Products extends CI_Controller {
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
-        }else{
-        	$products = $this->product->fetchAll('product_id = '.$product_id);        	
+        }else{ 
+        	$products = $this->product->fetchAll(array('where' => 'product_id = '.$product_id));        	
         }
         
         foreach($products as $product){        	
@@ -58,43 +50,6 @@ class Products extends CI_Controller {
         $this->load->view('admin/template/header', $header);
         $this->load->view('admin/products', $body);
         $this->load->view('admin/template/footer');
-    }
-    
-    public function ajaxIndex($product_id = null){
-    	if ($this->session->userdata('logged_in') == false){
-        	header('Location: /'); exit;
-        }
-        
-        $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
-        
-        $header['headscript'] = $this->functions->jsScript('products.js');
-        
-        if(is_null($product_id)){
-        	try {
-        		$products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id, 'orderby' => 'product_id DESC'));        		               		
-        	} catch (Exception $e) {
-        		$this->functions->sendStackTrace($e);
-        	}
-        }else{
-        	$products = $this->product->fetchAll('product_id = '.$product_id);        	
-        }
-        
-        foreach($products as $product){        	
-        	$types = $this->product_type->fetchAll(array('where' => 'product_type_id = '.$product->product_type_id));
-        	foreach($types as $type){
-        		$product->product_type = $type->type;
-        	}
-        	$prods []= $product; 
-        }
-        
-        $body['title'] = 'Ajax My Products';
-        
-        $body['products'] = $prods;
-        //$body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
-        //$this->load->view('admin/template/header', $header);
-        echo $this->load->view('admin/products', $body, true);
-        //$this->load->view('admin/template/footer');
-    	exit;
     }
     
     public function add() {    	 
@@ -169,10 +124,6 @@ class Products extends CI_Controller {
     			 
     			$this->product->save($where);
     
-    			if($this->input->is_ajax_request()){
-    				$this->ajaxIndex();
-    				exit;
-    			}
     			$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
     
     			header('Location: /admin/products'); exit;

@@ -29,7 +29,7 @@ class Products extends CI_Controller {
         	header('Location: /'); exit;
         }
 
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js products.js');
+        $header['headscript'] = $this->functions->jsScript('products.js');
         
         if(is_null($product_id)){
         	try {

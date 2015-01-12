@@ -38,10 +38,10 @@ listing_product.buynow = function(listing_id, csrfTokenName, csrfTokenValue){
 		dataType: "json"
 	});
 			 
-	request.done(function( msg ) { console.log(msg)
+	request.done(function( msg ) { //console.log(msg)
 		if(msg.status == 'FAILURE'){
-			console.log(msg);
-			$('#loginModal').modal('show')
+			//console.log(msg);
+			$('#myLegacy').modal('show')
 		}else{
 			$('#cart-items').html(msg);
 		}		

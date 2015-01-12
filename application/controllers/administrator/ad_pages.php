@@ -3,9 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Listings extends CI_Controller {
+class Ad_pages extends CI_Controller {
 
-    function Listings() {
+    function Ad_pages() {
     	
         parent::__construct();
 
@@ -13,53 +13,46 @@ class Listings extends CI_Controller {
 
         $this->load->model('user_model', 'user', true);
         
-        $this->load->model('profile_model', 'profile', true);
-        
-        $this->load->model('products_model', 'product', true);
-        
-        $this->load->model('product_types_model', 'product_type', true);
-        
-        $this->load->model('listings_model', 'listing', true);
+        $this->load->model('ad_pages_model', 'ad_pages', true);
         
         $this->load->library('library');
         
         $this->load->library('pagination');
+        
+        $this->functions->checkSudoLoggedin();
     }
 
-    public function index($listing_id = null) {
-        if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
-        	header('Location: /'); exit;
-        }
-        
+    public function index($ad_pages_id = null) {
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('listings.js');
+        $header['headscript'] = $this->functions->jsScript('ad_pages.js');
         
-        if(!is_null($listing_id)){        	
+        if(is_null($ad_pages_id)){        	
         	try {
-        		$pagination_config['base_url'] = '/administrator/listings/index//'.$page;
-        		$pagination_config['total_rows'] = $this->listing->countAll();
+        		$pagination_config['base_url'] = '/administrator/ad_pages/index//'.$page;
+        		$pagination_config['total_rows'] = $this->ad_pages->countAll();
         		$pagination_config['per_page'] = 5;
         		$pagination_config['cur_page'] = $page;
         		$pagination_config['use_page_numbers'] = TRUE;
         		$this->pagination->initialize($pagination_config);
-        		$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page)); 
+        		$ad_pages = $this->ad_pages->fetchAll(array('orderby' => 'ad_pages_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page)); 
         		
-        		foreach($listings as $listing){ 
-        			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];        			
-        		}
+        		//foreach($listings as $listing){ 
+        		//	$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];        			
+        		//}
         		
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
         }else{
-        	$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));        	
+        	$ad_pages = $this->ad_pages->fetchAll(array('where' => 'ad_pages_id = '.$ad_pages_id));        	
         }
         
-        $body['listings'] = $listings;
+        var_dump($ad_pages); exit;
+        $body['ad_pages'] = $ad_pages;
         $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
         $this->load->view('administrator/template/header', $header);
-        $this->load->view('administrator/listings', $body);
+        $this->load->view('administrator/ad_pages', $body);
         $this->load->view('template/footer');
     }
     
@@ -94,11 +87,12 @@ class Listings extends CI_Controller {
     	
     	if (!empty($_POST)) {   		
     		try {
-    			$this->listing->setPostStartAndEndTimes();
+    			
+    			$this->listings->setPostStartAndEndTimes();
     			
     			$where = 'listing_id = "'.$listing_id.'"';
     			 
-    			$this->listing->save($where);
+    			$this->listings->save($where);
     
     			$this->session->set_flashdata('SUCCESS', 'Your listing has been updated!');
     

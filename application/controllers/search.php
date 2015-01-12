@@ -16,8 +16,8 @@ class Search extends CI_Controller {
         $this->load->model('listings_model', 'listing', true);
     }
 
-    public function index($word = null, $location = null) { 
-    	
+    public function index($word = null, $location = null) {    	
+    	//var_dump($_SESSION['redirectUri']);
     	if(!empty($_POST['q'])){
     	    $q = $_POST['q'];
     	    
