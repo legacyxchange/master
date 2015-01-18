@@ -42,7 +42,7 @@ class Listings extends CI_Controller {
         		$pagination_config['use_page_numbers'] = TRUE;
         		$this->pagination->initialize($pagination_config);
         		$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page)); 
-        		
+        			
         		foreach($listings as $listing){ 
         			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];        			
         		}
@@ -50,8 +50,8 @@ class Listings extends CI_Controller {
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
-        }else{
-        	$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));        	
+        }else{ 
+        	$listings = $this->listing->fetchAll();        	
         }
         
         $body['listings'] = $listings;
