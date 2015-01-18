@@ -8,7 +8,15 @@ include_once 'headinclude.php';
 ?>
 
 <?= $headscript ?>
-
+<?php //var_dump($_SESSION); ?>
+<?php if(!empty($_SESSION['showLogin']) && $_SESSION['showLogin'] == true): ?>
+<script>
+$(document).ready(function(e){
+	$('#myLegacy').modal('show');
+});
+</script>
+<?php $_SESSION['showLogin'] = null; ?>	
+<?php endif; ?>
 <style>
 .followBtn{display:none;} 
 </style>
@@ -18,7 +26,7 @@ include_once 'headinclude.php';
     <!--header start-->
     <!-- INGINES -->
     <nav role="navigation" class="navbar navbar-default navbar-static-top">
-      <div class="container">
+      <div class="container" style="max-width:1266px;">
         <div class="navbar-header">
           <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
             <span class="sr-only">Toggle navigation</span>
@@ -69,7 +77,7 @@ include_once 'headinclude.php';
             <li>
 			<span class="sel-item">
                 <div class="dropdown">
-				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="max-width:80px;">
 					Explore
 					<span class="caret"></span>
 				  </button>
@@ -89,16 +97,15 @@ include_once 'headinclude.php';
 			</li>
 			<li style="height:54px;max-width:320px;">			
 			        <?php echo form_open('/search/index', false); ?>
-                    <div class="input-group stylish-input-group">
+                    <div class="input-group stylish-input-group" style="max-width:172px;">
                     <input style="height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
                     <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
 					</span>
 					</div>
-                    <?php echo form_close(); ?>
-			  
-			    <div class="label pull-right advance-search" style="background:#333;color:#fff;" onclick="advanced_search.hideShow();">ADVANCED SEARCH <i class="fa fa-caret-down icon_color"></i></div>			
+                    <?php echo form_close(); ?>	
+                    <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>		
 			</li>
             
             <li><a href="/mark-item">Mark Item</a></li>
@@ -110,25 +117,14 @@ include_once 'headinclude.php';
 			        <i style="font-size:20px;" class="fa fa-shopping-cart"></i>
 			        <div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
 			    </a>
-			</li>
+			</li>	
 			<?php else:?>
-			<li><a href="#" data-toggle="modal" data-target="#myLegacy">Free Registration</a></li>
-			<li class=""><a href="#" data-toggle="modal" data-target="#myLegacy"><i style="font-size:20px;" class="fa fa-shopping-cart"></i></a></li>
+			<li style="text-align:center;margin-top:-10px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register<br/>Free</a></li>
+			<li class=""><a href="/shopping-cart" ><i class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div id="advanced_search_container">		
-	    <div id="advanced_search">
-	        <?php echo form_open('/search/advanced');?>
-	            <select name="category">
-	                <?php foreach($categories as $category):?>
-	                    <option value="<?php echo $category->category_id;?>"><?php echo $category;?></option>
-	                <?php endforeach; ?>
-	            </select>
-	        <?php echo form_close();?>
-	    </div>
-    </div>
-    <?php include_once 'alert.php'; ?>
+    <?php //include_once 'alert.php'; ?>
     <?php require_once 'application/views/partials/flash_messages.php';?>
