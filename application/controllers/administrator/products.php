@@ -22,14 +22,12 @@ class Products extends CI_Controller {
         $this->load->library('library');
         
         $this->load->library('pagination');
+        
+        $this->functions->checkSudoLoggedIn();
     }
 
     public function index($id = null, $page = 0) { 
-    	if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
-        	header('Location: /'); exit;
-        }
-
-        $header['headscript'] = $this->functions->jsScript('products.js');
+    	$header['headscript'] = $this->functions->jsScript('products.js');
         
         if(is_null($product_id)){
         	try {

@@ -3010,7 +3010,7 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 .stylish-input-group  .form-control{border-right:0; border-radius:4px 0 0 4px!important;}
 .navbar-brand{ font-size:30px; font-weight:700; height:auto; color:#000!important; line-height:30px; padding-top:12px;}
 .navbar-nav{margin-top:15px!important;}
-.navbar{margin-bottom:0; max-height:80px;}
+.navbar{margin-bottom:0; height:80px;}
 
 .nav>li>a.combo-link{padding-bottom:0;}
 .nav>li>a.combo-down-link{padding-bottom:0; padding-top:0;}
@@ -3111,5 +3111,7 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 #myLegacy .modal-dialog{width:800px;}
 #myLegacy  .modal-footer{text-align:left; padding:0; border:0; position:relative;}
 #myLegacy .modal-footer .btn-facebook{position:absolute; left:20px; top:-70px;}
-
-}
+.form-control, .btn{font-size:12px; font-family:arial;padding:-10px;padding-left:5px;}
+.advance-search{text-align:center;font-size:11px;background:#fff;color:#999;margin-right:33%;font-weight:bold;}
+.fa-shopping-cart{font-size:30px;}
+.section-content{margin-top: 15px;float:left;margin:0 auto;max-width:966px;}

@@ -1,16 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<img style="width: 100%; margin-top: 0px;" u="img-responsive"
-	src="/public/images/b1.jpg" />
+<img style="width: 100%; margin-top: 0px;" u="img-responsive" src="/public/images/b1.jpg" />
 <!--container start-->
 <section id="original-item" class="dark-bg ptb25">
 	<div class="container">
-		<div class="section-header">
-			<h1>
-				New Original Items
-			</h1>
-			<div class="subtitle">Never Before Sold - DNA Marked, Registered</div>
+		<div class="section-header" style="margin-top:-20px;">
+			<div style="text-align:center;color:#000;font-family:georgia regular;font-size:44px;font-weight:normal;">
+				Original Items
+			</div>
+			<div class="subtitle" style="margin-top:-18px;text-align:center;color:#000;font-family:georgia regular;font-size:34px;font-weight:normal;">Documented Authenticity - Scientifically Marked & Registered</div>
 		</div>
-	    <div class="section-content" style="margin-top: 30px;">
+	    <div class="container">
         <?php if(!is_array($listings)):?>
 		    <div class="row">
 				<div class="col-lg-12">
@@ -21,17 +20,11 @@
         <?php foreach($listings as $listing): ?>
             <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border:0;">
 				<div class="product-image item-img">
-					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="timer" id="<?php echo $listing->listing_id;?>"></div>
-						<div class="row">
-							<div class="product-price">Price: $<?=number_format($listing->product->retail_price, 2);?>
-                		    	<a class="product-buynow-button" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a>
-							</div>
-						</div>
-						<div class="product-name"><?=$listing->product->name;?></div>
-						<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
-					</div>
+						<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->						
+						<div class="product-name"><?=$listing->product->name;?></div>						
+					</div>					
 				</div>
 			</div>
         <?php endforeach;?>
@@ -83,7 +76,7 @@
 				Secondary Items
 			</h1>
 		</div>
-	    <div class="section-content">
+	    <div class="container">
         <?php if(!is_array($listings)):?>
 		    <div class="row">
 				<div class="col-lg-12">
@@ -92,19 +85,13 @@
 			</div>
         <?php else: ?>      
         <?php foreach($listings as $listing): ?>
-            <div class="product-container product-container-listing col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border:0;">
 				<div class="product-image item-img">
-					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="timer" id="<?php echo $listing->listing_id;?>"></div>
-						<div class="row">
-							<div class="product-price">Price: $<?=number_format($listing->product->retail_price, 2);?>
-                		    	<a class="product-buynow-button" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a>
-							</div>
-						</div>
-						<div class="product-name"><?=$listing->product->name;?></div>
-						<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
-					</div>
+						<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->						
+						<div class="product-name"><?=$listing->product->name;?></div>						
+					</div>					
 				</div>
 			</div>
         <?php endforeach;?>
@@ -117,7 +104,7 @@
 </section>
 <section class="container">
     <h1>Available Only at Best Sports Dealers Storefront</h1>
-    <div class="section-content">
+    <div class="container">
     <?php if(!is_array($listings)):?>
 		<div class="row">
 	        <div class="col-lg-12">
@@ -126,19 +113,13 @@
 		</div>
     <?php else: ?>      
     <?php foreach($listings as $listing): ?>
-        <div class="product-container product-container-listing col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border:0;">
 			<div class="product-image item-img">
-				<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/200/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
+				<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->product->image;?>" />
 				<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-					<div class="timer" id="<?php echo $listing->listing_id;?>"></div>
-					<div class="row">
-						<div class="product-price">Price: $<?=number_format($listing->product->retail_price, 2);?>
-                		    <a class="product-buynow-button" href="/listings/product/<?php echo $listing->product_id;?>">Buy Now</a>
-						</div>
-					</div>
-					<div class="product-name"><?=$listing->product->name;?></div>
-					<div class="product-description"><?php echo html_entity_decode($listing->product->description);?></div>
-				</div>
+					<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->						
+					<div class="product-name"><?=$listing->product->name;?></div>					
+				</div>					
 			</div>
 		</div>
         <?php endforeach;?>

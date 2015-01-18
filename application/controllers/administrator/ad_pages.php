@@ -23,7 +23,7 @@ class Ad_pages extends CI_Controller {
     }
 
     public function index($ad_pages_id = null) {
-        $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
+    	$body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
         $header['headscript'] = $this->functions->jsScript('ad_pages.js');
         

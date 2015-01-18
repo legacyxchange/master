@@ -1,11 +1,11 @@
 <?php 
 
-class Redirector {
+class Profiler {
 	private $db;
 	private $CI;
 	
 	public function __construct(){ 
 		$this->CI = & get_instance();
-		//var_dump($this->CI->session->redirectUri); 
+		$this->CI->output->enable_profiler(TRUE);
 	}
 }

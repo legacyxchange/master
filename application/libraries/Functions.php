@@ -236,7 +236,7 @@ class Functions extends PHPFunctions {
     }
 
     public function checkLoggedIn($loginRedirect = true) {
-        $ci = & get_instance();
+        $ci = $this->CI;
         
         if ($ci->session->userdata('logged_in') === true) {
         	return true;
@@ -248,21 +248,31 @@ class Functions extends PHPFunctions {
         	exit;
         }
     }
-
-    public function checkSudoLoggedIn() {
-    	$ci = & get_instance();
-        
-        if ($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) {
-        	return true;
-        } else {
-        	$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
-        	$ci->session->set_flashdata('NOTICE', 'You must login first');
-        	$_SESSION['showLogin'] = true;
-        	header("Location: /");
-        	exit;
-        }
-    }
     
+    public function checkSudoLoggedIn() {
+    	$ci = $this->CI;
+    
+    	if($ci->session->userdata('logged_in') != true){
+    		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+    		$ci->session->set_flashdata('NOTICE', 'You must be logged in to enter that area.');
+    		$_SESSION['showLogin'] = true;
+    		header("Location: /");
+    		exit;
+    	}
+    	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) {
+    		return true;
+    	} 
+    	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') < 1) {
+    		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+    		$ci->session->set_flashdata('FAILURE', 'You do not have the correct permissions to enter that area.');
+    		$_SESSION['showLogin'] = true;
+    		header("Location: /");
+    		exit;
+    	}else{
+    		var_dump('who knows'); exit;
+    	}
+    }
+
     public function getFacebookID($user_id) {
         if (empty($user_id))
             throw new Exception("User ID is empty!");

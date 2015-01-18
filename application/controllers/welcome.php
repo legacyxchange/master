@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
     	}
     	$this->session->set_flashdata('NOTICE', 'You must login first.');
     	$_SESSION['redirectUri'] = $_POST['uri'];
-    	//setcookie('redirectUri', $_POST['uri']); 
+    	
     	echo json_encode(array('status' => 'SUCCESS', 'uri' => $_SESSION['redirectUri']));
     	exit;
     }
@@ -32,7 +32,7 @@ class Welcome extends CI_Controller {
     	if(empty($_SESSION)){
     		session_start();
     	} 
-    	//var_dump($this->session->redirectUri); exit;	
+    	
         $check = $this->welcome->checkLogin($_POST['user_email'], $_POST['user_pass']);
         
         if (empty($check)){        	
@@ -44,7 +44,7 @@ class Welcome extends CI_Controller {
         		$redirect = $_SESSION['redirectUri'];
         		$_SESSION['redirectUri'] = null;
         	}
-        	
+        	$this->session->set_flashdata('SUCCESS', 'You are now logged in');
         	$this->functions->jsonReturn('SUCCESS', '', true, 0, array('permissions' => $check->permissions, 'redirect' => $redirect));
         	
         	exit;
@@ -55,7 +55,7 @@ class Welcome extends CI_Controller {
         		$redirect = $_SESSION['redirectUri'];
         		$_SESSION['redirectUri'] = null;
         	}
-        	
+        	$this->session->set_flashdata('SUCCESS', 'You are now logged in as an Administrator');
             echo json_encode(array('status' => 'SUCCESS', 'redirect' => $redirect));
             exit;
         }

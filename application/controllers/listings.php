@@ -30,8 +30,6 @@ class Listings extends CI_Controller {
         $this->load->library('cart');
         
         $this->load->helper('form');
-        
-        $this->output->enable_profiler(TRUE);
     }
 
     public function index($product_type = null, $limit = null, $offset = null) { 

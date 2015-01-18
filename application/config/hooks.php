@@ -9,7 +9,13 @@
 |	http://codeigniter.com/user_guide/general/hooks.html
 |
 */
-
+$hook['post_controller_constructor'][] = array(
+		'class'    => 'Profiler',
+		'function' => '__construct',
+		'filename' => 'Profiler.php',
+		'filepath' => 'hooks',
+		//'params'   => array('beer', 'wine', 'snacks')
+);
 $hook['post_controller_constructor'][] = array(
 		'class'    => 'AdMeister',
 		'function' => 'run',
@@ -17,12 +23,6 @@ $hook['post_controller_constructor'][] = array(
 		'filepath' => 'hooks',
 		//'params'   => array('beer', 'wine', 'snacks')
 );
-/* $hook['post_controller_constructor'][] = array(
-		'class'    => 'Redirector',
-		'function' => '__construct',
-		'filename' => 'Redirector.php',
-		'filepath' => 'hooks',
-		//'params'   => array('beer', 'wine', 'snacks')
-); */
+
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

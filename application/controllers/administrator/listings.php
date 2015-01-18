@@ -24,12 +24,10 @@ class Listings extends CI_Controller {
         $this->load->library('library');
         
         $this->load->library('pagination');
+        $this->functions->checkSudoLoggedIn();
     }
 
     public function index($listing_id = null) {
-        if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
-        	header('Location: /'); exit;
-        }
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
