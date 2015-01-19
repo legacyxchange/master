@@ -141,7 +141,6 @@
 					<div class="item-img border-item">
 						<img src="">
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -180,19 +179,3 @@
 		</div>
 	</div>
 </section>
-
-<?php if($listing):?> 
-	<pre>Objects: <?php echo $obj = get_class($listing); ?>
-	
-	<?php foreach($listing as $key=>$val): ?>
-	<?php if(is_object($listing->$key)):?>
-	<?php foreach($listing->$key as $k=>$v): ?>
-	<?php if(is_object($listing->$key->$k)):?>
-	
-	<?php var_dump($obj.'->'.$k);?>
-	<?php endif;?>
-	<?php endforeach;?>
-	<?php endif;?>
-	<?php endforeach;?>
-	</pre>
-<?php endif;?>

@@ -103,7 +103,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+		<div style="text-align: center;color:#006a8a;">&copy; 2014 LegacyXChange</div>
 	</div>
 </footer>
 <!--footer end-->

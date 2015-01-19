@@ -26,7 +26,7 @@ $(document).ready(function(e){
     <!--header start-->
     <!-- INGINES -->
     <nav role="navigation" class="navbar navbar-default navbar-static-top">
-      <div class="container" style="max-width:1266px;">
+      <div class="container" style="max-width:1018px;">
         <div class="navbar-header">
           <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
             <span class="sr-only">Toggle navigation</span>
