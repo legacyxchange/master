@@ -48,6 +48,7 @@ class Search extends CI_Controller {
             else{
             	$iStr = 'no matches';
             }
+            
     	}else{
     		$iStr = '';
     	}
@@ -67,10 +68,70 @@ class Search extends CI_Controller {
         	$listings = 'Sorry No Matches for that Criteria...';
         }
         
+        $query = $this->db->query('
+        		select * from flash_sale_listings as fsl
+				join listings as l using(listing_id)
+				join products as p using(product_id)
+				where NOW() BETWEEN l.start_time AND l.end_time;
+        		                         ');
+        if(count($query->result()) > 0){
+        	$flash_listings = array();
+        	foreach($query->result() as $key=>$flash_listing){
+        		$flash_listings []= $flash_listing;
+        	}
+        }else{
+        	$flash_listings = 'Sorry...There are no Flash Sales Today.';
+        }
+        
+        $query = $this->db->query('
+        		select * from locations as l join locationimages as li on l.id = li.locationid group by l.id order by l.id DESC limit 6;
+				;
+        		                         ');
+        if(count($query->result()) > 0){
+        	$stores = array();
+        	foreach($query->result() as $key=>$store){
+        		$stores []= $store;
+        	}
+        }else{
+        	$stores = 'Sorry...There are no Flash Sales Today.';
+        }
+        
+        $body['stores'] = $stores;
+        
+        $body['flash_listings'] = $flash_listings;       
         $body['listings'] = $listings;
         $this->load->view('template/header', $header);
         $this->load->view('search/index', $body);
         $this->load->view('template/footer');
+    }
+    
+    public function search_keywords(){
+    	$partialWord = 'foo';
+    	
+    	$query = $this->db->query('select l.keywords, p.description from listings as l join products as p using(product_id)');
+    	
+    	foreach($query->result() as $r){ var_dump(explode(' ', $r->description)); exit;var_dump($this->getWords($partialWord, $r->description)); exit;
+    		if(!is_null($r->keywords))
+    			$words []= $this->getWords($partialWord, $r->keywords, ',');  		
+    	}
+    	
+    	
+    	var_dump(array_unique($words));	
+    	exit;
+    }
+    
+    private function getWords($pWord, $words, $delimiter = ' '){
+    	
+    	
+    		$array = explode($delimiter,$words);
+    		$a = array_unique($array);
+    		
+    		foreach($a as $keyword){
+    			if(stristr($keyword, $pWord))
+    				return $keyword;
+    		}
+    	
+    
     }
     
     public function ajax_timer($listing_id){

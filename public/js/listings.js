@@ -42,6 +42,17 @@ $(document).ready(function(){
 	        alert( "error" );
 	    })
 	});
+	$('.add_new_butt').click(function(e){
+		e.preventDefault();
+		
+	    $.ajax("/administrator/listings/listingsform")
+	    .done(function( data ) { 
+	      $('#listingsModal .modal-content').html(data);
+	    })
+	    .fail(function() {
+	        alert( "error" );
+	    })
+	});
 	$('.delete_button').click(function(e){
 		e.preventDefault();
 		var uri = $(this).attr('href');

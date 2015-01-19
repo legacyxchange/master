@@ -1374,7 +1374,7 @@ height: 220px;
 .product-price a{color:lime;margin-right:10px;}
 .product-buynow-button{float:right;color:lime;}
 .product-name{font-size:16px;font-weight:bold;color:#000;text-align:center;}
-.item-img{background:#fff; padding:5px; text-align:center; min-width:218px;min-height:218px; vertical-align:middle; margin-bottom:20px; position:relative;}
+.item-img{background:#fff; padding:5px; text-align:center; width:218px;height:218px;margin:0px auto; vertical-align:middle; margin-bottom:20px; position:relative;}
 .item-img img{vertical-align:middle; position:absolute; top:0; bottom:0; left:0; right:0; margin:auto; display:block;}
 
 .dark-bg {

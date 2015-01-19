@@ -1,7 +1,7 @@
 <!--container start-->
         <div class="container main-content">       
-        <?php echo $admin_menu;?>
-        <div class="add_new_butt admin_add_new_butt">
+        <?php echo $administrator_menu;?>
+        <div class="add_new_butt">
 			<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
@@ -30,8 +30,8 @@
                         <td class="rec-text"><?php echo $listing->buynow_price;?></td>
                         <td class="rec-text"><?php echo $listing->reserve_price;?></td>
                         <td valign="middle" align="right" class="icon">                                            
-						<a href="#" id="<?=$listing->listing_id;?>" class="admin_edit_button" data-toggle="modal" data-target="#listingsModal"><img src="/public/images/edit-admin.png" /> </a> 
-						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/admin/listings/delete/<?php echo $listing->listing_id;?>"><img src="/public/images/delete.png" /> </a> 
+						<a href="#" id="<?=$listing->listing_id;?>" class="edit_button" data-toggle="modal" data-target="#listingsModal"><img src="/public/images/edit-admin.png" /> </a> 
+						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/administrator/listings/delete/<?php echo $listing->listing_id;?>"><img src="/public/images/delete.png" /> </a> 
 						</td>
                     </tr>                                       
                 <?php endforeach;?> 

@@ -11,7 +11,6 @@ class listings_model extends abstract_model {
     protected $primary_key = 'listing_id';
     public $listing_id;
     public $product_id;
-    public $listing_name;
     public $start_time;
     public $end_time;
     public $recurring;

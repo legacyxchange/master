@@ -24,6 +24,7 @@ class Listings extends CI_Controller {
         $this->load->library('library');
         
         $this->load->library('pagination');
+        
         $this->functions->checkSudoLoggedIn();
     }
 
@@ -50,12 +51,18 @@ class Listings extends CI_Controller {
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
-        }else{ 
-        	$listings = $this->listing->fetchAll();        	
+        }else{
+        	$pagination_config['base_url'] = '/administrator/listings/index//'.$page;
+        	$pagination_config['total_rows'] = $this->listing->countAll();
+        	$pagination_config['per_page'] = 5;
+        	$pagination_config['cur_page'] = $page;
+        	$pagination_config['use_page_numbers'] = TRUE;
+        	$this->pagination->initialize($pagination_config);
+        	$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));     	
         }
-        
+       
         $body['listings'] = $listings;
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
+        $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
         $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/listings', $body);
         $this->load->view('template/footer');
@@ -63,7 +70,7 @@ class Listings extends CI_Controller {
     
     public function add() {   
     	if(!$listing_id)
-    		header('Location: /admin/dashboard');
+    		header('Location: /administrator/dashboard');
     	
     	if (!empty($_POST)) {   		
     		try { 
@@ -73,7 +80,7 @@ class Listings extends CI_Controller {
 
     			$this->session->set_flashdata('SUCCESS', 'Your new listing has been added!');
     
-    			header('Location: /admin/listings'); exit; 
+    			header('Location: /administrator/listings'); exit; 
     		   
     	    } catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
@@ -86,7 +93,7 @@ class Listings extends CI_Controller {
     
     public function edit($listing_id) {
     	if(!$listing_id)
-    		header('Location: /admin/dashboard');
+    		header('Location: /administrator/dashboard');
     
     	$body['user_id'] = $this->session->userdata['user_id'];
     	
@@ -95,12 +102,12 @@ class Listings extends CI_Controller {
     			$this->listing->setPostStartAndEndTimes();
     			
     			$where = 'listing_id = "'.$listing_id.'"';
-    			 
+    			
     			$this->listing->save($where);
     
     			$this->session->set_flashdata('SUCCESS', 'Your listing has been updated!');
-    
-    			header('Location: /admin/listings'); exit;
+               
+    			header('Location: /administrator/listings'); exit;
     
     		} catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
@@ -119,7 +126,7 @@ class Listings extends CI_Controller {
     	 
     	$this->session->set_flashdata('SUCCESS', 'Your listing has been deleted.');
     	
-    	header('Location: /admin/listings'); exit;
+    	header('Location: /administrator/listings'); exit;
     }
     
     public function listingsform($listing_id = null){    	
@@ -136,7 +143,7 @@ class Listings extends CI_Controller {
                 <div class="modal-body">
     			';
     			$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/listings/edit/'.$r->listing_id);    			
+    			$out .= form_open_multipart('/administrator/listings/edit/'.$r->listing_id);    			
         		$out .= form_hidden('listing_id', $r->listing_id);
         		$out .= form_hidden('user_id', $r->user_id);        		
         		$out .= '<div class="form-group">';
@@ -152,10 +159,7 @@ class Listings extends CI_Controller {
         		}
         		$out .= '</select>';      		
         		$out .= '</div>';       		
-    			$out .= '<div class="form-group">';
-    			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('style' => 'width:80%;', 'name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
-    			$out .= '</div>';   	 	
+    			 	 	
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
     			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time', 'value' => date('Y-m-d', strtotime($r->start_time))));
@@ -189,7 +193,7 @@ class Listings extends CI_Controller {
                 <div class="modal-body">
     	    ';
     		$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/listings/add');    			
+    			$out .= form_open_multipart('/administrator/listings/add');    			
         		$out .= form_hidden('listing_id', $r->listing_id);
         		$out .= form_hidden('user_id', $this->session->userdata['user_id']);        		
         		$out .= '<div class="form-group">';
@@ -205,10 +209,7 @@ class Listings extends CI_Controller {
         		}
         		$out .= '</select>';      		
         		$out .= '</div>';       		
-    			$out .= '<div class="form-group">';
-    			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
-    			$out .= '</div>';   	
+    			
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
     			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time'));

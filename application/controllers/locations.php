@@ -69,4 +69,73 @@ class Locations extends CI_Controller {
     public function followers($lid){
     	$this->locations->getFollowers($lid);
     }
+    
+    public function locationimg($size = 50, $location_id = 0, $file = null) {
+    	 
+    	$path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'locationImages' . DS . $location_id . DS;
+    
+    	if (!empty($file))
+    		$file = urlencode($file);
+    
+    	try {
+    
+    		if (!empty($user_id)){
+    			$location = $this->locations->fetchAll(array('where' => 'id = '.$location_id));
+    		}
+    
+    		if (!empty($file))
+    			$img = $file;
+    
+    		if (!file_exists($path . $img))
+    			$img = null;
+    
+    		if (empty($img)) {
+    			$path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
+    			$img = 'no_photo.png';
+    		}
+    
+    		$is = getimagesize($path . $img);
+    
+    		if ($is === false)
+    			throw new exception("Unable to get image size for ({$path}{$img})!");
+    
+    		$ext = PHPFunctions::getFileExt($img);
+    
+    		list ($width, $height, $type, $attr) = $is;
+    
+    		if ($width == $height) {
+    			$nw = $nh = $size;
+    		} elseif ($width > $height) {
+    			$scale = $size / $height;
+    			$nw = $width * $scale;
+    			$nh = $size;
+    			$leftBuffer = (($nw - $size) / 2);
+    		} else {
+    			$nw = $size;
+    			$scale = $size / $width;
+    			$nh = $height * $scale;
+    			$topBuffer = (($nh - $size) / 2);
+    		}
+    
+    		$leftBuffer = $leftBuffer * -1;
+    		$topBuffer = $topBuffer * -0;
+    
+    		if ($ext == "JPG")
+    			$srcImg = imagecreatefromjpeg($path . $img);
+    		if ($ext == "GIF")
+    			$srcImg = imagecreatefromgif($path . $img);
+    		if ($ext == "PNG")
+    			$srcImg = imagecreatefrompng($path . $img);
+    
+    		$destImg = imagecreatetruecolor($nw, $nh); // new image
+    		imagecopyresized($destImg, $srcImg, $leftBuffer, $topBuffer, 0, 0, $nw, $nh, $width, $height);
+    	} catch (Exception $e) {
+    		PHPFunctions::sendStackTrace($e);
+    	}
+    	header('Content-Type: image/jpg');
+    	imagejpeg($destImg);
+    
+    	imagedestroy($destImg);
+    	imagedestroy($srcImg);
+    }
 }

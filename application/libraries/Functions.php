@@ -251,7 +251,7 @@ class Functions extends PHPFunctions {
     
     public function checkSudoLoggedIn() {
     	$ci = $this->ci;
-    
+        //var_dump($ci->session->userdata()); exit;
     	if($ci->session->userdata('logged_in') != true){
     		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
     		$ci->session->set_flashdata('NOTICE', 'You must be logged in to enter that area.');
@@ -259,7 +259,7 @@ class Functions extends PHPFunctions {
     		header("Location: /");
     		exit;
     	}
-    	elseif(!is_null($ci->session) && $ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) {
+    	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) { 
     		return true;
     	} 
     	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') < 1) {
