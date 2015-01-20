@@ -52,7 +52,7 @@
 			<div class="listing_product_heading">
 				Selling<br />Your Legacy
 			</div>
-			<p style="font-family: Georgia; text-align: justify;">We mark every
+			<p style="font-family: Georgia;">We mark every
 				item the first time it is sold on our site, you list it for sale,
 				sell it, ship it to us, we mark it and send it directly to the
 				buyer.</p>
@@ -61,7 +61,7 @@
 			<div class="listing_product_heading">
 				Buying<br />Your Legacy
 			</div>
-			<p style="font-family: Georgia; text-align: justify;">Every item
+			<p style="font-family: Georgia;">Every item
 				purchased has been scientifically marked. This mark provides the
 				ability to track ownership and product authen- ticity for the life
 				of the item.</p>
@@ -70,7 +70,7 @@
 			<div class="listing_product_heading">
 				Profiting From<br />Your Legacy
 			</div>
-			<p style="font-family: Georgia; text-align: justify;">The seller of
+			<p style="font-family: Georgia;">The seller of
 				any item that is sold for the first time on the site, and the buyer
 				that purchases an item the first time it is sold on the site, will
 				continue to receive a percentage of all future sales of that same
