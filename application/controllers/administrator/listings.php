@@ -148,7 +148,8 @@ class Listings extends CI_Controller {
     			$out .= '<div role="form">';    	        
     			$out .= form_open_multipart('/administrator/listings/edit/'.$r->listing_id);    			
         		$out .= form_hidden('listing_id', $r->listing_id);
-        		$out .= form_hidden('user_id', $r->user_id);        		
+        		$out .= form_hidden('user_id', $r->user_id);    
+        		
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_id">Product</label><br />';
         		$out .= '<select name="product_id">';    		
@@ -198,7 +199,17 @@ class Listings extends CI_Controller {
     		$out .= '<div role="form">';    	        
     			$out .= form_open_multipart('/administrator/listings/add');    			
         		$out .= form_hidden('listing_id', $r->listing_id);
-        		$out .= form_hidden('user_id', $this->session->userdata['user_id']);        		
+        		$out .= '<div class="form-group">';
+        		$out .= '<label for="user_id">User</label><br />';
+        		$out .= '<select name="user_id">';
+        		$users = $this->user->fetchAll();
+        		foreach($users as $user){
+        			
+        				$out .= '<option value="'.$user->user_id.'">'.$user->username.'</option>';
+        			
+        		}
+        		$out .= '</select>';
+        		$out .= '</div>';       		
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_id">Product</label><br />';
         		$out .= '<select name="product_id">';    		

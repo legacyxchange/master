@@ -896,11 +896,11 @@ user.savePhotoComment = function ()
 $(document).ready(function(){
 	$('.edit_button').click(function(e){
 		e.preventDefault();
-		var userid = $(this).attr('id');
+		var user_id = $(this).attr('id');
 		
-	    $.ajax( "/administrator/users/userform/"+userid)
+	    $.ajax("/administrator/users/userform/"+user_id)
 	    .done(function( data ) { console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#usersModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
@@ -909,9 +909,9 @@ $(document).ready(function(){
 	$('.add_new_butt').click(function(e){
 		e.preventDefault();
 		
-	    $.ajax( "/administrator/users/userform")
+	    $.ajax("/administrator/users/userform")
 	    .done(function( data ) { //console.log(data)
-	      $('#myModa2 .modal-content').html(data);
+	      $('#usersModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );

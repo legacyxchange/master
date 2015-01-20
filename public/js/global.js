@@ -441,8 +441,8 @@ global.userlogin = function ()
     }
     
     $.post("/welcome/login", $('#loginform').serialize(), function (data) { 
-    	if (data.status == 'SUCCESS' && data.permissions > 0){
-        	window.location.href = '/administrator/dashboard';
+    	if (data.status == 'SUCCESS' && data.permissions > 0){ 
+        	window.location.href = data.redirect;
         }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
         	if(data.redirect != null){
         		window.location.href = data.redirect;

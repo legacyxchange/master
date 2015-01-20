@@ -20,6 +20,8 @@ class Users extends CI_Controller {
         $this->load->library('library');
         
         $this->load->library('pagination');
+        
+        $this->functions->checkSudoLoggedIn();
     }
 
     public function index($user_id = null, $page = 0) {
@@ -38,20 +40,6 @@ class Users extends CI_Controller {
         
         $body['users'] = $this->user->fetchAll(array('orderby' => 'user_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));
         
-        if(is_null($id)){
-        	try {        		        		
-        		$body['followersCnt'] = $this->user->getFollowersCnt($user_id);
-        		$body['followingCnt'] = $this->user->getFollowingCnt($user_id);
-        	
-        		$body['albums'] = $this->user->getAlbums($id);
-        	
-        		if ((int) $this->session->userdata('userid') !== $user_id) {
-        			$body['following'] = $this->user->checkFollowingUser($user_id);
-        		}
-        	} catch (Exception $e) {
-        		$this->functions->sendStackTrace($e);
-        	}
-        }
         $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
         $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/users', $body);
@@ -84,7 +72,7 @@ class Users extends CI_Controller {
     		
     		$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
     
-    		header('Location: /administrator/users/index'); exit;
+    		header('Location: /administrator/users'); exit;
     
     	    } catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
@@ -103,10 +91,11 @@ class Users extends CI_Controller {
     	
     	if (!empty($_POST)) {
     		$params = $_POST;
-    		    		
+    		   		
     		if(!empty($_FILES['userfile']['name'])){
     			
     			$ret = $this->doUpload($user_id);
+    			
     			if(!empty($ret['file_name'])){
     				$_POST['profileimg'] = $ret['file_name'];
     				$_POST['user_id'] = $user_id;
@@ -144,24 +133,28 @@ class Users extends CI_Controller {
                 <div class="modal-body">
     			';
     			$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/administrator/users/edit/'.$r->user_id);     			
+    			$out .= form_open_multipart('/administrator/users/edit/'.$r->user_id, array('onsubmit' => 'return global.checkRegisterForm();'));     			
         		$out .= form_hidden('user_id', $r->user_id);	                        
         		$out .= form_hidden('status', 1);
     			$out .= '<div class="form-group">';
     			$out .= '<label for="firstName">First Name</label><br />';
-    			$out .= form_input(array('name' => 'firstName', 'placeholder' => 'First Name', 'value' => $r->firstName));
+    			$out .= form_input(array('name' => 'firstName', 'id' => 'firstName', 'placeholder' => 'First Name', 'value' => $r->firstName, 'onchange' => 'global.checkFirstName();'));
+    			$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     			$out .= '</div>';   	
     			$out .= '<div class="form-group">';
     			$out .= '<label for="lastName">Last Name</label><br />';
-    			$out .= form_input(array('name' => 'lastName', 'placeholder' => 'Last Name', 'value' => $r->lastName));
+    			$out .= form_input(array('name' => 'lastName', 'id' => 'lastName', 'placeholder' => 'Last Name', 'value' => $r->lastName));
+    			$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			$out .= '<label for="email">Email</label><br />';
-    			$out .= form_input(array('name' => 'email', 'placeholder' => 'Email', 'value' => $r->email));
+    			$out .= form_input(array('name' => 'email', 'id' => 'email', 'placeholder' => 'Email', 'value' => $r->email));
+    			$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			$out .= '<label for="password">Password</label><br />';
-    			$out .= form_input(array('type' => 'password', 'name' => 'passwd', 'placeholder' => 'Password', 'value' => $r->passwd));
+    			$out .= form_input(array('type' => 'password', 'id' => 'passwd', 'name' => 'passwd', 'placeholder' => 'Password', 'value' => $r->passwd));
+    			$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     			$out .= '</div>'; 
     			$out .= '<div class="form-group">';
     			$out .= '<label for="permissions">Permissions</label><br />';
@@ -173,30 +166,39 @@ class Users extends CI_Controller {
     				$out .= 'Current Image: <img src="/user/profileimg/100/'.$user_id.'/'.$r->profileimg.'" />';
     			}
     			$out .= '</div>';   							
-    			//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
     			$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
     			$out .= '</form>';
     			$out .= '</div>';
     		}   
     	} else { 
+    		$out .= '
+    			<div class="modal-header">
+                <h3 class="modal-title">Add User</h3>
+                </div> <!-- modal-header -->
+                <div class="modal-body">
+    			';
     		$out .= '<div role="form">';
-    		$out .= form_open_multipart('/administrator/users/add');    			                        
+    		$out .= form_open_multipart('/administrator/users/add', array('onsubmit' => 'return global.checkRegisterForm();'));    			                        
         	$out .= form_hidden('status', 1);
     		$out .= '<div class="form-group">';
-    		$out .= form_input(array('name' => 'firstName', 'placeholder' => 'First Name', 'value' => $r->firstName));
+    		$out .= form_input(array('name' => 'firstName', 'id' => 'firstName', 'placeholder' => 'First Name', 'value' => $r->firstName));
+    		$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     		$out .= '</div>';
     		$out .= '<div class="form-group">';
-    		$out .= form_input(array('name' => 'lastName', 'placeholder' => 'Last Name', 'value' => $r->lastName));
+    		$out .= form_input(array('name' => 'lastName', 'id' => 'lastName', 'placeholder' => 'Last Name', 'value' => $r->lastName));
+    		$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     		$out .= '</div>';
     		$out .= '<div class="form-group">';
-    		$out .= form_input(array('name' => 'email', 'placeholder' => 'Email', 'value' => $r->email));
+    		$out .= form_input(array('name' => 'email', 'id' => 'email', 'placeholder' => 'Email', 'value' => $r->email));
+    		$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     		$out .= '</div>';
     		$out .= '<div class="form-group">';
-    		$out .= form_input(array('type' => 'password', 'name' => 'passwd', 'placeholder' => 'Password', 'value' => $r->passwd));
+    		$out .= form_input(array('type' => 'password', 'id' => 'passwd', 'name' => 'passwd', 'placeholder' => 'Password', 'value' => $r->passwd));
+    		$out .= '<div class="alert alert-danger" style="display: none;"></div>';
     		$out .= '</div>';
     		$out .= '<div class="form-group">';
     		$date = date('Y-m-d', strtotime("+1 day", strtotime(date('Y-m-d'))));
-    		$out .= '<div class="mylabel">End Date: </div>&nbsp;'.form_input(array('name' => 'end_date', 'value' => $r->end_date, 'type' => 'date', 'min' => "$date"));
+    		$out .= '<div class="mylabel">End Date: </div>&nbsp;'.form_input(array('name' => 'end_date', 'value' => $r->end_date, 'type' => 'date', 'min' => "$date"));    		
     		$out .= '</div>';
     		$out .= '<div class="form-group">';
     		$out .= '<input type="file" name="userfile" size="20" />';
@@ -204,7 +206,6 @@ class Users extends CI_Controller {
     			$out .= 'Current Image: <img src="/user/profileimg/100/'.$userid.'/'.$r->profileimg.'" />';
     		}
     		$out .= '</div>';
-    		$out .= '<input type="button" class="sign_cancel" onclick="$(\'#myModa2\').hide(\'slow\');location.href=\'/administrator/users\';" value="Cancel" />';
     		$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
     		$out .= '</form>';
     		$out .= '</div>';

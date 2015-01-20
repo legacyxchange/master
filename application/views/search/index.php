@@ -131,47 +131,35 @@
 				Legacy Flash Items</div>
 		</div>
 		<div class="container">
-        <?php if(!is_array($flash_listings)):?>
+        	<?php if(!is_array($flash_listings)):?>
 		    <div class="row">
 				<div class="col-lg-12"
 					style="border: 2px solid #000; min-height: 265px; background: #fff;">
 					<h1 style="text-align: center;"><?php echo $flash_listings; ?></h1>
 				</div>
 			</div>
-        <?php else: ?> 
-        <div class="col-lg-12"
-				style="border: 2px solid #056c8c; min-height: 265px; background: #fff; padding: 20px; padding-bottom: 0px;">     
-        <?php foreach($flash_listings as $listing): ?>
-            <div
-					class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12"
-					style="border: 0;">
+       		<?php else: ?> 
+        	<div class="col-lg-12" style="border: 2px solid #056c8c;margin:0 auto; min-height: 265px; background: #fff; padding: 20px; padding-bottom: 0px;">     
+        		<?php foreach($flash_listings as $listing): ?>
+            	<div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin:0 auto;border: 0;">
 					<div class="product-image item-img">
-						<img
-							style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 1px solid #aaa;"
-							src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-
-						<div hover-info-id="<?php echo $listing->product_id;?>"
-							class="hover-info">
-							<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->
+						<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 1px solid #aaa;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+						<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
 							<div class="product-name"><?=$listing->product->name;?></div>
 						</div>
-
 					</div>
-					<div
-						style="margin-top: -19px; padding: 5px; width: 218px; background: #fff;"
-						class="item-sale-info">
+					<div style="margin-top: -19px; padding: 5px; width: 218px; background: #fff;" class="item-sale-info">
 						<div style="font-weight: bold;">
-							Was: <span
-								style="background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center;">$<?php echo number_format($listing->retail_price,2); ?></span>
+							Was: <span style="background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center;">$<?php echo number_format($listing->retail_price,2); ?></span>
 						</div>
 						<div style="font-weight: bold; text-align: right;">
 							Now: <span style="color: #ff0000;">$<?php echo number_format($listing->sale_price,2); ?></span>
 						</div>
 					</div>
 				</div>
-        <?php endforeach;?>
-        <?php endif; ?>
-        </div>
+        		<?php endforeach;?>
+        	<?php endif; ?>
+        	</div>
 		</div>
 	</div>
 </section>
@@ -192,7 +180,14 @@
 				</i>
 			</div>
 		</div>
-		<div class="container" style="max-width: 1008px;">
+<style>
+@media screen and (max-width: 320px) {
+    .stores-area {
+        margin-left:18%;
+    }
+}
+</style>
+		<div class="container stores-area" style="max-width: 1008px;">
         <?php if(!is_array($stores)):?>
 		    <div class="row">
 				<div class="col-lg-12"
@@ -203,7 +198,7 @@
         <?php else: ?> 
         <?php foreach($stores as $store): ?>
         <div style="float: left;">
-				<div class="item-container col-lg-3 col-md-3 col-sm-4 col-xs-12"
+				<div class="item-container col-lg-4 col-md-2 col-sm-2 col-xs-12"
 					style="width: 153px; height: 153px; margin-bottom: 10px; border: 3px solid #056c8c; border-radius: 5px; margin-right: 10px; overflow: hidden;">
 					<div class=""
 						style="width: 153px; height: 153px; margin-right: 10px;">

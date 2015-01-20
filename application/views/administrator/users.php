@@ -1,21 +1,7 @@
 <!--container start-->
 <div class="container">
-	<?php if($this->session->flashdata('SUCCESS')): ?>
-	<div class='row'>
-    	<h3 class="alert alert-success"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
-	</div>
-	<?php elseif($this->session->flashdata('FAILURE')): ?>
-	<div class='row'>
-    	<h3 class="alert alert-danger"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
-	</div>
-	<?php elseif($this->session->flashdata('NOTICE')): ?>
-	<div class='row'>
-    	<h3 class="alert alert-notice"><?php echo $this->session->flashdata('NOTICE'); ?></h3>
-	</div>
-	<?php endif; ?>
-	<?php echo $administrator_menu; ?> 
 	<div class="add_new_butt">
-    	<a href="#" class="big-link" data-reveal-id="myModa2"><span class="add_new_plus">+</span> add new</a>
+    	<a href="#" class="users-big-link"  data-toggle="modal" data-target="#usersModal"><span class="add_new_plus">+</span> add new</a>
 	</div>
 	<div class="war">
         <h2>USERS</h2>                   
@@ -37,8 +23,8 @@
                 <td class="rec-text"><?php echo $user->email;?></td>
                 <td class="rec-text"><img src="/user/profileimg/100/<?php echo $user->user_id;?>/<?php echo $user->profileimg;?>" /></td>
                 <td valign="middle" align="right" class="icon">                                            
-			        <a href="#" id="<?=$user->user_id;?>" class="big-link edit_button" data-reveal-id="myModa2"><img src="/public/images/edit-admin.png" /> </a> 
-					<a class="delete_button" data-reveal-id="modalConfirm" href="/administrator/users/delete/<?php echo $user->user_id;?>"><img src="/public/images/delete.png" /> </a> 
+			        <a href="#" id="<?=$user->user_id;?>" class="edit_button" data-toggle="modal" data-target="#usersModal"><img src="/public/images/edit-admin.png" /></a> 
+					<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/administrator/users/delete/<?php echo $user->user_id;?>"><img src="/public/images/delete.png" /> </a> 
 				</td>
             </tr>                                       
             <?php endforeach;?> 
@@ -52,11 +38,32 @@
     </div>
 </div>
 <!--container end--> 
-<div id="myModa2" class="reveal-modal"> 
-         <div class="modal-header">
-            <button type="button" class="close-reveal-modal" data-dismiss="modal" aria-hidden="true">&times;</button>           
-        </div> <!-- modal-header -->         
-        <div class="modal-content">
+<div id="usersModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="usersModal" aria-hidden="true"> 
+         <div class="modal-dialog">
+            <div class="modal-header" style="text-align: right;">
+                <button type="button" data-dismiss="modal">&times;</button>           
+        	</div> <!-- modal-header -->         
+        	<div class="modal-content">
             
-        </div><!-- /.modal-content -->
-     </div>   
+        	</div><!-- /.modal-content -->
+     	</div>    
+     </div>    
+     
+     <div id="modalConfirm" class="modal fade" tabindex="-2" role="dialog" aria-labelledby="modalConfirm" aria-hidden="true">
+        <div class="modal-dialog" style="background: #fff;">
+     		<div class="modal-header" style="text-align: right;">
+                <button type="button" data-dismiss="modal">&times;</button>           
+        	</div> <!-- modal-header -->       
+         	<div class="content" style="background: #fff;">                      
+            	<h4>Are you sure you want to delete this listing?</h4>
+            	<a id="confirm_yes" class="btn btn-default" style="font-size: 14px; font-weight: normal; position:relative; top:0; left:0;color:#fff;padding:13px;" data-dismiss="modal" aria-hidden="true">Yes</a>  <a class="btn btn-default close-reveal-modal" style="font-size: 14px; font-weight: normal; position:relative; top:0; left:0;color:#fff;padding:13px;" data-dismiss="modal" aria-hidden="true" id="confirm_no">No</a>           
+            	<div class="modal-footer">
+                	<div class='row'>             	    
+                    	<div class='col-xs-3 col-sm-6'>
+                        	<!-- <button type="button" class="btn btn-red" id='submitSignupBtn'>SAVE</button> -->
+                    	</div>
+                	</div>
+            	</div> <!-- modal-footer -->
+        	</div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>    

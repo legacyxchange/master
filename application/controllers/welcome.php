@@ -39,14 +39,14 @@ class Welcome extends CI_Controller {
             $this->functions->jsonReturn('ERROR', 'Invalid Username and/or Password'); exit;
         }elseif($check->permissions > 0){
         	$this->functions->setLoginSession($check->user_id);
-        	
+        	 
         	if(!empty($_SESSION['redirectUri'])){
         		$redirect = $_SESSION['redirectUri'];
         		$_SESSION['redirectUri'] = null;
         	}
         	$this->session->set_flashdata('SUCCESS', 'You are now logged in');
-        	$this->functions->jsonReturn('SUCCESS', '', true, 0, array('permissions' => $check->permissions, 'redirect' => $redirect));
         	
+        	echo json_encode(array('status' => 'SUCCESS','permissions' => $check->permissions, 'redirect' => $redirect));         	
         	exit;
         }else{ 
             $this->functions->setLoginSession($check->user_id);
