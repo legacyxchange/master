@@ -119,7 +119,7 @@ $(document).ready(function(e){
 			    </a>
 			</li>	
 			<?php else:?>
-			<li style="text-align:center;margin-top:-10px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register<br/>Free</a></li>
+			<li style="text-align:center;margin-top:0px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register</a></li>
 			<li class=""><a href="/shopping-cart" ><i class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>

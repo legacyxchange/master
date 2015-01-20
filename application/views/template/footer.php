@@ -52,13 +52,12 @@
 					<li><a href="/about#news">News</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-3 col-sm-4" style="margin:0;">
 				<div class="footer-links-heading">
 					<a href="/about">Partners</a>
 				</div>
-				<ul class="footer-menu">
-					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities |
-							Agents</a></li>
+				<ul class="footer-menu" style="width:400px;">
+					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
 					<li><a href="/dealers">Dealers</a></li>
 					<li><a href="/manufacturers">Manufacturers</a></li>
 				</ul>
@@ -81,8 +80,7 @@
 					<li><a href="/contact">Contact Us</a></li>
 					<li><a href="/faqs">FAQ's</a></li>
 				</ul>
-			</div>
-			<div class="col-lg-2 col-sm-4">
+			
 				<div class="footer-links-heading">
 					<a href="/corporate">Corporate</a>
 				</div>
