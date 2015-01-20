@@ -31,7 +31,10 @@ abstract class abstract_model extends CI_Model {
     	return $query->result();
     }
     
-    public function countAll(){
+    public function countAll($where = null){
+    	if(!is_null($where)){
+    		$this->db->where($where);
+    	}
     	return $this->db->get($this->table)->num_rows;
     }
     

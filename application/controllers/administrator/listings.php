@@ -58,7 +58,10 @@ class Listings extends CI_Controller {
         	$pagination_config['cur_page'] = $page;
         	$pagination_config['use_page_numbers'] = TRUE;
         	$this->pagination->initialize($pagination_config);
-        	$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));     	
+        	$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));  
+        	foreach($listings as $listing){
+        		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
+        	}   	
         }
        
         $body['listings'] = $listings;
@@ -199,7 +202,7 @@ class Listings extends CI_Controller {
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_id">Product</label><br />';
         		$out .= '<select name="product_id">';    		
-        		$products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));
+        		$products = $this->product->fetchAll();
     		    foreach($products as $product){      			
         			if($product->product_id == $r->product_id) {  
         				$out .= '<option selected value="'.$product->product_id.'">'.$product->name.'</option>';

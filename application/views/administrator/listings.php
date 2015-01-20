@@ -5,12 +5,12 @@
 			<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">
-            	<h2>My Listings</h2>                               
+            	<h2>Listings</h2>                               
                 <table class="table table-condensed">
                     <tr>
                     	<th>Listing Id</th>
-                    	<th>Listing Name</th>
-                        <th>Product Id</th>
+                    	<th>Product Id</th>
+                    	<th>Product Image</th>
                         <th>Start</th>
                         <th>End</th>
                         <th>Recurring</th>
@@ -19,16 +19,16 @@
                         <th>&nbsp;</th>
                     </tr>                        
                     <?php if($listings):?>
-                    <?php foreach($listings as $listing): ?>                                            
+                    <?php foreach($listings as $listing):?>                                            
                     <tr>
-                        <td class="rec-text"><?php echo $listing->listing_id;?></td>
-                        <td class="rec-text"><?php echo html_entity_decode($listing->listing_name);?></td>
+                        <td class="rec-text"><?php echo $listing->listing_id;?></td>                        
                         <td class="rec-text"><?php echo $listing->product_id;?></td>
+                        <td class="rec-text"><img src="/products/productimg/50/<?php echo $listing->product->product_id;?>/<?php echo $listing->product->image;?>" /></td>
                         <td class="rec-text"><?php echo $listing->start_time;?></td>
                         <td class="rec-text"><?php echo $listing->end_time;?></td>
                         <td class="rec-text"><?php echo $listing->recurring;?></td>
-                        <td class="rec-text"><?php echo $listing->buynow_price;?></td>
-                        <td class="rec-text"><?php echo $listing->reserve_price;?></td>
+                        <td class="rec-text">$<?php echo number_format($listing->buynow_price,2);?></td>
+                        <td class="rec-text">$<?php echo number_format($listing->reserve_price,2);?></td>
                         <td valign="middle" align="right" class="icon">                                            
 						<a href="#" id="<?=$listing->listing_id;?>" class="edit_button" data-toggle="modal" data-target="#listingsModal"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/administrator/listings/delete/<?php echo $listing->listing_id;?>"><img src="/public/images/delete.png" /> </a> 

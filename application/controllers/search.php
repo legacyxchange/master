@@ -17,7 +17,6 @@ class Search extends CI_Controller {
     }
 
     public function index($word = null, $location = null) {    	
-    	//var_dump($_SESSION['redirectUri']);
     	if(!empty($_POST['q'])){
     	    $q = $_POST['q'];
     	    
@@ -57,17 +56,20 @@ class Search extends CI_Controller {
         
         if($iStr !== 'no matches'){ 
         	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'orderby' => 'end_time ASC'));
-        	
-        	foreach($listings as $key=>$listing){
-        		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
-        		if(is_null($listing->product)){
-        			unset($listings[$key]);
+        	//var_dump($listings); exit;
+        	foreach($listings as $key=>$listing){ 
+        		$listing->original = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 1'))[0];
+        		
+        		$listing->secondary = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 2'))[0];
+        		
+        		if(!is_null($listing->original)){
+        			$listings['original'][] = $listing->original;
         		}
-        	}
-        } else {
-        	$listings = 'Sorry No Matches for that Criteria...';
-        }
-        
+        		if(!is_null($listing->secondary)){
+        			$listings['secondary'][] = $listing->secondary;
+        		}
+        	}        
+        } 
         $query = $this->db->query('
         		select * from flash_sale_listings as fsl
 				join listings as l using(listing_id)
@@ -93,11 +95,10 @@ class Search extends CI_Controller {
         		$stores []= $store;
         	}
         }else{
-        	$stores = 'Sorry...There are no Flash Sales Today.';
+        	$stores = 'Sorry...There are no Stores Available.';
         }
         
-        $body['stores'] = $stores;
-        
+        $body['stores'] = $stores;        
         $body['flash_listings'] = $flash_listings;       
         $body['listings'] = $listings;
         $this->load->view('template/header', $header);

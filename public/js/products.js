@@ -1,43 +1,23 @@
 var products = {}
 
-products.submitForm = function(){
-	var product_id = $('.admin_edit_button').attr('id');
-	//var formData = $('#product_edit_form').serialize();
-	//formData.append('&userfile='+$('#userfile').val());
-	console.log(product_id)
-	/*$.ajax({
-		  type: "POST",
-		  url: "/admin/products/edit/"+product_id,
-		  data:  formData 
-	})
-    .done(function( data ) { console.log(data)
-    	
-      //$('#productsModal .modal-content').html(data);
-    })
-    .fail(function() { 
-        alert( "error" );
-    })*/
-	//return false;
-}
-
 $(document).ready(function(){
-	$('.administrator_edit_button').click(function(e){
+	$('.edit_button').click(function(e){ 
 		e.preventDefault();
 		var product_id = $(this).attr('id');
 		
-	    $.ajax( "/administrator/products/productsform/"+product_id)
-	    .done(function( data ) { //console.log(data)
+	    $.ajax("/administrator/products/productsform/"+product_id)
+	    .done(function( data ) { console.log(data)
 	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
 	        alert( "error" );
 	    })
 	});		
-	$('.administrator_add_new_butt').click(function(e){
+	$('.add_new_butt').click(function(e){
 		e.preventDefault();
 		
-	    $.ajax( "/administrator/products/productsform")
-	    .done(function( data ) { //console.log(data)
+	    $.ajax("/administrator/products/productsform")
+	    .done(function( data ) { console.log(data)
 	      $('#productsModal .modal-content').html(data);
 	    })
 	    .fail(function() {
