@@ -8,12 +8,13 @@ class Contact extends CI_Controller {
     function Contact() {
         parent::__construct();
         $this->load->driver('cache');
+        $this->load->model('user_model', 'user', true);
         $this->load->library('email');
     }
     
     // user that is not logged in will be redirected to this function
-    public function index(){
-    	$this->load->view('admin/template/header', $header);
+    public function index(){ 
+    	$this->load->view('template/header', $header);
         $this->load->view('contact/index', $body);         
         $this->load->view('template/footer');
     }
@@ -29,8 +30,8 @@ class Contact extends CI_Controller {
     		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
     		header('Location: /contact'); exit;
     	}
-    	$config['protocol'] = 'sendmail';
-    	$config['mailpath'] = '/usr/sbin/sendmail';
+    	$config['protocol'] = 'mail';
+    	$config['mailpath'] = '/bin/mail';
     	$config['charset'] = 'iso-8859-1';
     	$config['wordwrap'] = TRUE;
     	$config['smtp_host'] = 'imap.secureserver.net'; 
@@ -40,7 +41,7 @@ class Contact extends CI_Controller {
     	$this->email->initialize($config);
     	//var_dump($this->email); exit;
     	$this->email->from($_POST['email'], $_POST['fullname']);
-    	$this->email->to('support@legacyxchange.com');
+    	$this->email->to('nickr@legacyxchange.com');
     	//$this->email->cc('another@another-example.com');
     	//$this->email->bcc('them@their-example.com');
     	
