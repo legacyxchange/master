@@ -1,32 +1,28 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
 
 <!-- advertisements -->
-<section id="intrested-item" class="ptb25">
-	<div class="container">
-		<div class="section-content">
-			<div class="row">
-				<div class="col-lg-12 advertisements_area">
+<section>
+	<div class="container" style="margin:0 auto;">
+		
+			
+			
 				    <?php if($advertisements): ?>
 					<?php foreach($advertisements as $ad):?>
-					    <div class="advertistement col-lg-3 col-md-3"
-						style="width: 270px; height: 200px; margin-right: 7px; border: 1px solid #aaa;"
-						id="<?php echo $ad->advertisement_id; ?>"
-						onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
-					    	<?php //var_dump($ad, $_SERVER); exit;?> 
+					    <div class="advertistement col-lg-3 col-md-3" style="width: 204px; height: 204px; margin-right: 7px; border: 1px solid #aaa;" id="<?php echo $ad->advertisement_id; ?>" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
+					    	<img src="/products/productimg/180/23/<?php echo $ad->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
 					    	<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
-					    		<input type="hidden" name="advertisement_id"
-							value="<?php echo $ad->advertisement_id;?>" /> <input
-							type="hidden" name="click" value="1" /> <input type="hidden"
-							name="user_id" value="<?php echo $ad->user_id;?>" /> <input
-							type="hidden" name="ad_page_location"
-							value="<?php echo $_SERVER['REQUEST_URI'];?>" />
+					    	<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
+					    	<input type="hidden" name="click" value="1" /> 
+					    	<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
+					    	<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />
+					    	
 					    	<?php echo form_close();?>
 					    </div>
 					<?php endforeach; ?>
 					<?php endif; ?>
-				</div>
-			</div>
-		</div>
+				
+		
+		
 	</div>
 </section>
 

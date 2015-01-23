@@ -21,14 +21,10 @@
 			</div>
         <?php else: ?>      
         <?php foreach($listings['original'] as $listing):?>
-            <div
-				class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12"
-				style="border: 0;">
+            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border: 0;">
 				<div class="product-image item-img">
-					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
-						src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->
 						<div class="product-name"><?=$listing->name;?></div>
 					</div>
 				</div>

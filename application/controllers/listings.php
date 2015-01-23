@@ -36,9 +36,8 @@ class Listings extends CI_Controller {
     	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
         try {
         	if($product_type){ 
-        		//var_dump($product_type); exit;
         		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
-        				                           where NOW() BETWEEN start_time and end_time and product_types.type = "'.$product_type.'"');
+        				                           where NOW() BETWEEN start_time and end_time and product_types.type = "'.$product_type.'" LIMIT 16');
         		$listings = $query->result();
         		
         		foreach($listings as $listing){
@@ -54,7 +53,7 @@ class Listings extends CI_Controller {
         	}else { 
         		
         		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
-        				                           where NOW() BETWEEN start_time and end_time');
+        				                           where NOW() BETWEEN start_time and end_time LIMIT 16');
         		$listings = $query->result();
         	
         		foreach($listings as $listing){
@@ -66,7 +65,17 @@ class Listings extends CI_Controller {
         			$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));
         		}
         		$body['listings'] = $listings;
-        	}       		        	
+        	} 
+
+        	if($product_type == 'secondary'){
+        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time AND product_type_id = 1 LIMIT 4');
+        		$body['listings2'] = $query->result();
+        	}else{
+        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time AND product_type_id = 2 LIMIT 4');
+        		$body['listings2'] = $query->result();
+        	}
         } catch (Exception $e) { 
             $this->functions->sendStackTrace($e);
         }

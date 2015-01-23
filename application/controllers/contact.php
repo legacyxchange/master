@@ -41,7 +41,7 @@ class Contact extends CI_Controller {
     	$this->email->initialize($config);
     	//var_dump($this->email); exit;
     	$this->email->from($_POST['email'], $_POST['fullname']);
-    	$this->email->to('nickr@legacyxchange.com');
+    	$this->email->to('nicolino101@gmail.com');
     	//$this->email->cc('another@another-example.com');
     	//$this->email->bcc('them@their-example.com');
     	

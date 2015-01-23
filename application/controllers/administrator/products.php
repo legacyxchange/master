@@ -227,6 +227,18 @@ class Products extends CI_Controller {
     		$out .= form_hidden('user_id', $r->user_id);
     		
     		$out .= '<div class="form-group">';
+    		$out .= '<label for="user_id">User</label><br />';
+    		$out .= '<select name="user_id">';
+    		$users = $this->user->fetchAll();
+    		foreach($users as $user){
+    			 
+    			$out .= '<option value="'.$user->user_id.'">'.$user->username.'</option>';
+    			 
+    		}
+    		$out .= '</select>';
+    		$out .= '</div>';
+    		
+    		$out .= '<div class="form-group">';
         	$out .= '<select name="product_type_id">';
         		
         	$alltypes = $this->product_type->fetchAll();       		      			

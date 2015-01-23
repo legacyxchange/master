@@ -53,7 +53,7 @@ $(document).ready(function(){
 	        alert( "error" );
 	    })
 	});
-	$('.delete_button').click(function(e){
+	$('.admin_delete_button').click(function(e){
 		e.preventDefault();
 		var uri = $(this).attr('href');
 		
@@ -67,6 +67,29 @@ $(document).ready(function(){
 				})		
 			.done(function(data) { //console.log(data)
 				location.href="/admin/listings";
+			})
+			.fail(function() {
+				console.log( "error" );
+			});
+		});
+		$('#confirm_no').click(function(e){
+			$('modalConfirm').hide();
+		});		
+	});
+	$('.delete_button').click(function(e){
+		e.preventDefault();
+		var uri = $(this).attr('href');
+		
+		$('#confirm_yes').click(function(e){
+			//console.log(uri)
+			$.ajax({
+				  type: "get",
+				  url: uri,
+				  dataType: 'html',
+				  //data: { product_id: $('#product_id').val(), username: $('#username').val(), message: $('#chat_send').val(), karateToken: $('input[name=karateToken]').val() }
+				})		
+			.done(function(data) { //console.log(data)
+				location.href="/administrator/listings";
 			})
 			.fail(function() {
 				console.log( "error" );
