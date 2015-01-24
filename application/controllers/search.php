@@ -70,43 +70,52 @@ class Search extends CI_Controller {
         		}
         	}        
         } 
-        $query = $this->db->query('
-        		select * from flash_sale_listings as fsl
-				join listings as l using(listing_id)
-				join products as p using(product_id)
-				where NOW() BETWEEN l.start_time AND l.end_time;
-        		                         ');
-        if(count($query->result()) > 0){
-        	$flash_listings = array();
-        	foreach($query->result() as $key=>$flash_listing){
-        		$flash_listings []= $flash_listing;
-        	}
-        }else{
-        	$flash_listings = 'Sorry...There are no Flash Sales Today.';
-        }
         
-        $query = $this->db->query('
-        		select * from locations as l join locationimages as li on l.id = li.locationid group by l.id order by l.id DESC limit 6;
-				;
-        		                         ');
-        if(count($query->result()) > 0){
-        	$stores = array();
-        	foreach($query->result() as $key=>$store){
-        		$stores []= $store;
-        	}
-        }else{
-        	$stores = 'Sorry...There are no Stores Available.';
-        }
-        
-        $body['stores'] = $stores;        
-        $body['flash_listings'] = $flash_listings;       
+        $body['stores'] = $this->getStores();                      
+        $body['flash_listings'] = $this->getFlashListings();
         $body['listings'] = $listings;
         $this->load->view('template/header', $header);
         $this->load->view('search/index', $body);
         $this->load->view('template/footer');
     }
     
-    public function search_keywords(){
+    protected function getStores($limit = 6){
+    	$query = $this->db->query('
+        		select * from locations as l join locationimages as li on l.id = li.locationid group by l.id order by l.id DESC limit '.$limit.';
+        ');
+    	if(count($query->result()) > 0){
+    		$stores = array();
+    		foreach($query->result() as $key=>$store){
+    			$stores []= $store;
+    		}
+    	}else{
+    		$stores = 'Sorry...There are no Stores Available.';
+    	}
+    	
+    	return $stores;
+    }
+    
+    protected function getFlashListings($limit = 4){
+    	$query = $this->db->query('
+        		select * from flash_sale_listings as fsl
+				join listings as l using(listing_id)
+				join products as p using(product_id)
+				where NOW() BETWEEN l.start_time AND l.end_time limit '.$limit.';
+        ');
+    	
+    	if(count($query->result()) > 0){
+    		$flash_listings = array();
+    		foreach($query->result() as $key=>$flash_listing){
+    			$flash_listings []= $flash_listing;
+    		}
+    	}else{
+    		$flash_listings = 'Sorry...There are no Flash Sales Today.';
+    	}
+    	
+    	return $flash_listings;
+    }
+    
+    /* public function search_keywords(){
     	$partialWord = 'foo';
     	
     	$query = $this->db->query('select l.keywords, p.description from listings as l join products as p using(product_id)');
@@ -166,5 +175,5 @@ class Search extends CI_Controller {
     	$days = $listing->days > 0 ? $listing->days.' '.$_days.' ' : null;
     	echo 'Time Left: '.$days.' '.str_pad($listing->hours, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->minutes, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->seconds, 2, 0, STR_PAD_LEFT);
     	exit;
-    }
+    } */
 }

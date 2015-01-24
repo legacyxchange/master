@@ -116,7 +116,7 @@
 				Legacy Flash Items</div>
 		</div>
 		<div class="container" style="margin:0">
-        	<?php if(!is_array($flash_listings)):?>
+        	<?php if(!isset($flash_listings)):?>
 		    <div class="row">
 				<div class="col-lg-12"
 					style="border: 2px solid #000; min-height: 265px; background: #fff;">
@@ -126,7 +126,7 @@
        		<?php else: ?> 
         	<div class="col-lg-12" style="width:100%;border: 2px solid #056c8c;margin:0 auto; min-height: 265px; background: #fff; padding: 20px; padding-bottom: 0px;">     
         		<?php foreach($flash_listings as $listing): ?>
-        	<div style="width:218px;float:left;margin-right:5px;">
+        	<div style="width:218px;float:left;">
         	<div class="hover-img">
             	<div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12">					
 					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 0px solid #aaa;" src="/products/productimg/180/<?=$listing->product_id;?>/<?=$listing->image;?>" />

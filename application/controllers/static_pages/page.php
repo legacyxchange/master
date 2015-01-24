@@ -68,6 +68,13 @@ class Page extends CI_Controller {
     	
     }
     
+    public function careers(){
+    	$body['title'] = 'Careers';
+    	$this->load->view('template/header', $header);
+    	$this->load->view('static_pages/careers', $body);
+    	$this->load->view('template/footer');
+    }
+    
     public function privacy(){
     	$body['title'] = 'Privacy Policy';
     	$this->load->view('template/header', $header);

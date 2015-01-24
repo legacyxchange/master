@@ -499,8 +499,8 @@ search.loadGettingStartedModal = function ()
 }
 
 $(document).ready(function(){
-	$('.hover-img').hover(
-	        function(){ 
+	$('.hover-img').hover( 
+	        function(){ console.log($(this).find('.hover-info'))
 	        	$(this).find('.hover-info').slideDown(250); //.fadeIn(250)
 	        },
 	        function(){

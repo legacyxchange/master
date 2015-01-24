@@ -111,70 +111,26 @@
 		<div class="section-content">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="subtitle">May also be of interest to you.</h3>
+					<h3 class="subtitle">You may also like to see.</h3>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 available-item">
-					<strong>OTHER ITEMS FOR:</strong><a href="#"> KOBE BRYANT</a>
+					<strong>OTHER ITEMS FOR:</strong><a href="#"> <?php echo $listing->product->user->username;?></a>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
+			<div class="container" style="padding:0;width:966px;">
+			<?php foreach($listings_other as $listing): ?>
+				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12" style="border: 0;margin:3px;width:153px;height:153px;background:#fff;"> 
+					<div class="hover-img">
+						<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/140/<?php echo $listing->product_id;?>/<?php echo $listing->image;?>" />
+					
+					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">test
+						<div class="product-name"><?=$listing->name;?></div>
 					</div>
-
-				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-
-				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
 					</div>
 				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section id="intrested-item" class="dark-bg">
-	<div class="container">
-		<div class="section-content">
-			<div class="row">
-				<div class="col-lg-12 available-item">
-					<strong>OTHER ITEMS FROM THIS SELLER: </strong><a href="#"> JOE JAMES </a> <span class="pull-right"><a href=""><i>Go to Joe James' Store</i></a></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="item-img border-item">
-						<img src="">
-					</div>
-				</div>
+			<?php endforeach; ?>				
 			</div>
 		</div>
 	</div>

@@ -2,34 +2,22 @@
 
 <!-- advertisements -->
 <section>
-	<div class="container" style="margin:0 auto;">
-		
-			
-			
-				    <?php if($advertisements): ?>
-					<?php foreach($advertisements as $ad):?>
-					    <div class="advertistement col-lg-3 col-md-3" style="width: 204px; height: 204px; margin-right: 7px; border: 1px solid #aaa;" id="<?php echo $ad->advertisement_id; ?>" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
-					    	<img src="/products/productimg/180/23/<?php echo $ad->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
-					    	<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
-					    	<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
-					    	<input type="hidden" name="click" value="1" /> 
-					    	<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
-					    	<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />
-					    	
-					    	<?php echo form_close();?>
-					    </div>
-					<?php endforeach; ?>
-					<?php endif; ?>
-				
-		
-		
+	<div class="container" style="padding:0px;padding-left:3%;max-width:966px;">						
+	<?php if($advertisements): ?>
+		<?php foreach($advertisements as $ad):?>
+		<div class="advertistement col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 204px; height: 204px; margin: 10px; border: 1px solid #aaa;" id="<?php echo $ad->advertisement_id; ?>" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
+			<img src="/products/productimg/200/23/<?php echo $ad->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
+			<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
+			<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
+			<input type="hidden" name="click" value="1" /> 
+			<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
+			<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />					    	
+			<?php echo form_close();?>
+		</div>
+		<?php endforeach; ?>
+	<?php endif; ?>				
 	</div>
 </section>
-
-</div>
-<!-- main-content -->
-</div>
-<!-- /.contentbg -->
 
 <!--footer start-->
 <footer class="ptb25">
@@ -63,7 +51,7 @@
 					<a href="/legal">Legal</a>
 				</div>
 				<ul class="footer-menu">
-					<li><a href="/terms">Terms</a></li>
+					<li><a href="/terms-of-service">Terms</a></li>
 					<li><a href="/disclaimers">Disclaimers</a></li>
 					<li><a href="/privacy">Privacy</a></li>
 				</ul>
@@ -470,15 +458,6 @@
 <!-- /.modal -->
 
 <script type="text/javascript" src="/public/js/retina-1.3.min.js"></script>
-<!-- 
-<script type="text/javascript" src="/public/js/chat.js"></script>
 
-<div id="chat_container">
-<div id="chat_hide_show_button" class="chat_hide_show" onclick="chat.hideShow();">SHOW CHAT</div>
-<div id="chat" style="display:none;">
-    
-</div>
-</div> -->
 </body>
-
 </html>

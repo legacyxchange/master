@@ -61,6 +61,7 @@ $route['dealers'] = 'static_pages/page/dealers';
 $route['athletes-celebrities-agents'] = 'static_pages/page/athletes_celebrities_agents';
 $route['manufacturers'] = 'static_pages/page/manufacturers';
 $route['news'] = 'static_pages/page/about#news';
+$route['careers'] = 'static_pages/page/careers';
 $route['shopping-cart'] = 'shoppingcart';
 $route['listings/([a-z]+)'] = 'listings/index/$1';
 $route['admin/products/(:num)'] = 'admin/products/index/$1';

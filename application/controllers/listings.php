@@ -86,7 +86,7 @@ class Listings extends CI_Controller {
     }
 
     public function product($product_id) {
-    	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js timer.js');
+    	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js');
     	$listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id));
     	
     	foreach($listings as $listing){
@@ -97,6 +97,9 @@ class Listings extends CI_Controller {
     		$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
     	}
     	$listings[0]->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listings[0]->listing_id));
+    	
+    	$query = $this->db->query('Select * from listings as l join products as p using(product_id) where p.product_id <> '.$listings[0]->product->product_id.' AND p.user_id = '.$listings[0]->product->user->user_id);
+    	$body['listings_other'] = $query->result();
     	
         $body['listing'] = $listings[0];
         $this->load->view('template/header', $header);
