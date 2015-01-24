@@ -157,7 +157,7 @@
 <section style="height: 0px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>
-<section id="stores" style="margin-bottom: -60px;">
+<section id="stores">
 	<div class="container" style="max-width: 1018px;">
 		<div class="section-header" style="margin-top: -20px;">
 			<div
@@ -206,5 +206,6 @@
         </div>
 	</div>
 </section>
+<div class="clear"></div>
 <div class="clear"></div>
 <!--container end-->
