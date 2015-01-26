@@ -2,17 +2,22 @@
 
 <!-- advertisements -->
 <section>
-	<div class="container" style="padding:0px;padding-left:3%;max-width:966px;">						
+	<div class="container" style="padding:0px;max-width:960px;">						
 	<?php if($advertisements): ?>
-		<?php foreach($advertisements as $ad):?>
-		<div class="advertistement col-lg-3 col-md-3 col-sm-6 col-xs-12" style="width: 204px; height: 204px; margin: 10px; border: 1px solid #aaa;" id="<?php echo $ad->advertisement_id; ?>" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
-			<img src="/products/productimg/200/23/<?php echo $ad->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
-			<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
-			<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
-			<input type="hidden" name="click" value="1" /> 
-			<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
-			<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />					    	
-			<?php echo form_close();?>
+		<?php foreach($advertisements as $ad): //var_dump($ad); exit;?>
+		<div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
+			<div class="hover-img" style="width:153px;height:153px;">
+			    <img src="/products/productimg/140/<?php echo $ad->product->product_id?>/<?php echo $ad->product->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
+				<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
+				<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
+				<input type="hidden" name="click" value="1" /> 
+				<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
+				<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />					    	
+				<?php echo form_close();?>
+				<div hover-info-id="<?php echo $ad->product_id;?>" class="hover-info">
+						<div style="font-size:12px;" class="product-name"><?=$ad->product->name;?></div>
+				</div>
+			</div>
 		</div>
 		<?php endforeach; ?>
 	<?php endif; ?>				

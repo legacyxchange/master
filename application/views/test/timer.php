@@ -1,9 +1,5 @@
 <?php if($listing):?> 	
-<section id="original-item" class="ptb25 top-border ">
-	<div class="container product-page-container">
-	<?php require_once "listings_menu.php";?>
-		<!-- content section -->
-		<div class="section-content">
+<div class="section-content">
 			<div class="col-lg-6">
 				<div class="border-item mg ">
 					<div class="product-image product-big-img parent_div" style="height:422px;">
@@ -103,32 +99,5 @@
 			</div>
 		</div>	        
 	<?php endif;?>
-	</div>
-</section>
-
-
-<!-- Also Intrest  -->
-<section id="intrested-item"> 
-<div class="row" style="margin-top:55px;">
-				<div class="col-lg-12" style="background: url('/public/images/lightblue_gradient_bar.gif');background-repeat:no-repeat;">
-					<h3 class="subtitle" style="color:#ff0000;font-weight:bold;text-decoration:italisize;">ALSO CHECK OUT THESE GREAT ITEMS!</h3>
-				</div>
-			</div>
-	<div class="container">	
-			<section class="products-container-no-border">
-	   <div class="container">    
-        <?php foreach($listings_other as $listing):?>
-            <div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12">
-				<div class="hover-img" style="width:153px;height:153px;">
-					<img class="centered-img" src="/products/productimg/140/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="product-name" style="font-size:12px;"><?=$listing->name;?></div>
-					</div>
-				</div>
-			</div>
-        <?php endforeach;?>
-       </div> 
-</section>
-		</div>
 	</div>
 </section>

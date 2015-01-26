@@ -43,9 +43,11 @@ class AdMeister {
 	 */
 	private function placeAds($ad_page, $level){
 		require_once APPPATH."models/advertisements_model.php";
+		require_once APPPATH."models/products_model.php";
 		$ads = new advertisements_model();
+	    $product = new products_model();
 	    
-		$limit = 4;
+		$limit = 6;
 	    
 		if($level > 1){ 
 			$arr = array('where' => 'advertisement_id IS NOT NULL', 'orderby' => 'per_view_amount DESC, created ASC', 'limit' => $limit, 'offset' => ($limit * ($level-1)));
@@ -55,7 +57,11 @@ class AdMeister {
 		}else{    
 			$obj = $ads->fetchAll(array('orderby' => 'per_view_amount DESC, created ASC', 'limit' => $limit));			
 		}
-			
+
+		foreach($obj as $ad){
+			$ad->product = $product->fetchAll(array('where' => 'product_id = '.$ad->product_id))[0];
+		}
+		//var_dump($obj); exit;
 		$body['advertisements'] = $obj;
 		foreach($obj as $res){ 
 			$this->chargeUserForView($res, $level);

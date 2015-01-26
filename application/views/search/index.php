@@ -5,12 +5,12 @@
 <section class="dark-bg ptb25">
 	<div class="container">
 		<div class="section-header" style="margin-top: -20px;">
-			<div
-				style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
-				Original Items</div>
-			<div class="subtitle"
-				style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">Documented
-				Authenticity - Scientifically Marked &amp; Registered</div>
+			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
+				Original Items
+			</div>
+			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
+			    Documented Authenticity - Scientifically Marked &amp; Registered
+			</div>
 		</div>
 		<div class="container">
         <?php if(!is_array($listings['original'])):?>
@@ -21,9 +21,9 @@
 			</div>
         <?php else: ?>      
         <?php foreach($listings['original'] as $listing):?>
-            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border: 0;">
-				<div class="product-image item-img">
-					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+            <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="hover-img" style="width:218px;height:218px;">
+					<img class="centered-img" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
 						<div class="product-name"><?=$listing->name;?></div>
 					</div>
@@ -88,12 +88,10 @@
 			</div>
         <?php else: ?>      
         <?php foreach($listings['secondary'] as $listing):?>
-            <div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12" style="border: 1px solid #ccc;margin-right:10px;">
-				<div class="hover-img">
-					<img style="border:0px solid #ccc; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-					<div hover-info-id="<?php echo $listing->product_id;?>"
-						class="hover-info">
-						<!-- <div class="timer" id="<?php echo $listing->listing_id;?>"></div> -->
+            <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="hover-img" style="width:218px;height:218px;">
+					<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
 						<div class="product-name"><?=$listing->name;?></div>
 					</div>
 				</div>
@@ -108,6 +106,14 @@
 	<div class="container">&nbsp;</div>
 </section>
 
+<style>
+@media screen and (max-width: 1240px) {
+    .flash-sale-items {
+        border:0;
+        background-color:gold;
+    }
+}
+</style>
 <section id="flash-sale-items" class="dark-bg ptb25" style="padding-top: 20px; padding-bottom: 20px;">
 	<div class="container">
 		<div class="section-header" style="margin-top: -20px;">
@@ -119,29 +125,29 @@
         	<?php if(!isset($flash_listings)):?>
 		    <div class="row">
 				<div class="col-lg-12"
-					style="border: 2px solid #000; min-height: 265px; background: #fff;">
+					style="border: 2px solid #000; min-height: 297px; background: #fff;">
 					<h1 style="text-align: center;"><?php echo $flash_listings; ?></h1>
 				</div>
 			</div>
        		<?php else: ?> 
-        	<div class="col-lg-12" style="width:100%;border: 2px solid #056c8c;margin:0 auto; min-height: 265px; background: #fff; padding: 20px; padding-bottom: 0px;">     
+        	<div class="col-lg-12 flash-sale-items flash-cont" style="width:966px;border: 2px solid #056c8c;margin:0 auto; height: 100%; background: #fff; padding: 20px; padding-bottom: 0px;">     
         		<?php foreach($flash_listings as $listing): ?>
         	<div style="width:218px;float:left;">
-        	<div class="hover-img">
-            	<div class="product-container col-lg-3 col-md-3 col-sm-6 col-xs-12">					
-					<img style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 0px solid #aaa;" src="/products/productimg/180/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+        	<div class="cont-4 product-container-border-flash col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="hover-img" style="width:218px;height:218px;">
+					<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
 					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="product-name"><?=$listing->product->name;?></div>
-					</div>										
+						<div class="product-name"><?=$listing->name;?></div>
+					</div>
 				</div>
 			</div>
-				<div style="margin-top: -19px; padding: 5px; width: 100%; background: #fff;" class="item-sale-info">
-						<div style="font-weight: bold;">
-							Was: <span style="background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center;">$<?php echo number_format($listing->retail_price,2); ?></span>
-						</div>
-						<div style="font-weight: bold; text-align: right;">
-							Now: <span style="color: #ff0000;">$<?php echo number_format($listing->sale_price,2); ?></span>
-						</div>
+			<div style="margin-top: -19px; padding: 16px; width: 228px; background: #fff;" class="item-sale-info">
+				<div style="font-weight: bold;">
+					Was: <span style="background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center;">$<?php echo number_format($listing->retail_price,2); ?></span>
+				</div>
+				<div style="font-weight: bold; text-align: right;">
+					Now: <span style="color: #ff0000;">$<?php echo number_format($listing->sale_price,2); ?></span>
+				</div>
 				</div>
 			</div>
         		<?php endforeach;?>
@@ -150,23 +156,13 @@
 		</div>
 	</div>
 </section>
-<section
-	style="background-color: #f4f4f4; height: auto; width: 100%; font-family: Georgia; margin-top: 100px; margin-bottom: 40px;">
+<section style="background-color: #f4f4f4; height: auto; width: 100%; font-family: Georgia; margin-top: 100px; margin-bottom: 40px;">
 	<img src="/public/images/sports_image_bg.gif" width="100%" />
 </section>
 <section style="height: 0px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>
-<section id="stores">
-	<div class="container" style="max-width: 1018px;">
-		<div class="section-header" style="margin-top: -20px;">
-			<div
-				style="text-align: center; color: #000; font-family: Georgia Bold Italic; font-size: 28px; color: #056c8c; font-weight: bold;">
-				<i>Find More of What You're Looking For<br />at These LegacyXChange
-					Stores
-				</i>
-			</div>
-		</div>
+
 <style>
 @media screen and (max-width: 320px) {
     .stores-area {
@@ -174,35 +170,32 @@
     }
 }
 </style>
+<section id="stores">
+	<div class="container" style="max-width: 1018px;">
+		<div class="section-header" style="margin-top: -20px;">
+			<div style="text-align: center; color: #000; font-family: Georgia Bold Italic; font-size: 28px; color: #056c8c; font-weight: bold;">
+				<i>Find More of What You're Looking For<br />at These LegacyXChange Stores</i>
+			</div>
+		</div>
 		<div class="container stores-area" style="max-width: 1008px;">
-        <?php if(!is_array($stores)):?>
+        	<?php if(!is_array($stores)):?>
 		    <div class="row">
-				<div class="col-lg-12"
-					style="margin: 0 auto; border: 4px solid #056c8c; min-height: 153px; background: #fff;">
+				<div class="col-lg-12" style="margin: 0 auto; border: 4px solid #056c8c; min-height: 153px; background: #fff;">
 					<h1 style="text-align: center;"><?php echo $stores; ?></h1>
 				</div>
 			</div>
-        <?php else: ?> 
-        <?php foreach($stores as $store): ?>
-        <div style="float: left;">
-				<div class="item-container col-lg-4 col-md-2 col-sm-2 col-xs-12"
-					style="width: 153px; height: 153px; margin-bottom: 10px; border: 3px solid #056c8c; border-radius: 5px; margin-right: 10px; overflow: hidden;">
-					<div class=""
-						style="width: 153px; height: 153px; margin-right: 10px;">
-						<img
-							style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; border: 1px solid #aaa;"
-							src="/locations/locationimg/140/<?=$store->id;?>/<?=$store->fileName;?>" />
+        	<?php else: ?> 
+        	<?php foreach($stores as $listing): ?>
+        	<div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" style="border: 3px solid #056c8c; border-radius: 5px;"">
+				<div class="hover-img" style="width:153px;height:153px;">
+					<img class="centered-img" src="/products/productimg/140/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
+						<div class="product-name" style="font-size:12px;"><?=$listing->name;?></div>
 					</div>
-
 				</div>
-				<div
-					style="font-family: arial; font-size: 15px; font-weight: bold; margin-top: 0px; padding: 5px; width: 153px; background: #fff; text-align: center;"
-					class="item-sale-info">
-					<?php echo $store->name; ?>
 			</div>
-			</div>
-        <?php endforeach;?>
-        <?php endif; ?>
+        	<?php endforeach;?>
+        	<?php endif; ?>
         </div>
 	</div>
 </section>
