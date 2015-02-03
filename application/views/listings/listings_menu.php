@@ -1,7 +1,7 @@
 <!-- page top menu -->
 		<div class="page-menu">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12" style="border:1px solid #ccc; background:#d4eee6;">
 					<span class="page-item">
 						<ul class="nav nav-tabs">
 							<li class="dropdown">
@@ -255,12 +255,11 @@
 				
 					<div class="filter-item" style="width:400px;float:right;margin-top:-30px;margin-right:-33px;">
 						<form>
-							<span> <input type="text" class="form-control"
-								placeholder="SELLER">
+							<span> <input type="text" class="form-control" style="margin-right: -40px;position:relative;z-index:100;height:28px;margin-top:1px;" placeholder="SELLER">
 							</span> 
 							<span class="sort-list">
 								<ul class="nav nav-tabs">
-									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort<span class="caret"></span></a>
+									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="#">For Auction</a></li>
 											<li><a href="#">For Sale</a></li>
