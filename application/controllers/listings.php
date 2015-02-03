@@ -32,10 +32,11 @@ class Listings extends CI_Controller {
         $this->load->helper('form');
     }
 
-    public function index($product_type = null, $limit = null, $offset = null) { 
+    public function index($product_type = null, $limit = null, $offset = null) {  
     	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
         try {
         	if($product_type){ 
+        		$body['product_type'] = $product_type;
         		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
         				                           where NOW() BETWEEN start_time and end_time and product_types.type = "'.$product_type.'" LIMIT 16');
         		$listings = $query->result();
@@ -107,12 +108,101 @@ class Listings extends CI_Controller {
         $this->load->view('template/footer');
     }
     
-    public function bid(){
+    public function search($product_type=null) { 
+    	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js timer.js');
+    	//$listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id));
+    	 
+    	if (! empty ( $_POST )) { 
+			$iStr = $this->_sphinx ();
+			if($iStr){
+				$cid = ! empty ( $_POST ['category_id'] ) ? $_POST ['category_id'] : null;
+				//$ptid = ! empty ( $_POST ['product_type_id'] ) ? $_POST ['product_type_id'] : null;
+				$ptype = $this->product_types->fetchAll(array('where' => 'type = "'.$product_type.'"'));
+				//var_dump ( $cid, $ptid, $_POST, $iStr );
+				//exit ();
+				$sql = '
+    	    		select * from listings as l 
+					join products as p using(product_id) 
+					join product_types as pt using(product_type_id)
+					join product_categories as pc using(product_id)
+					join categories as c using(category_id)
+					where l.listing_id IN(' . $iStr . ')
+    			';
+			
+				if (! is_null ( $cid )) {
+					$sql .= ' and category_id = ' . $cid ;
+				}
+			
+				if (! is_null ( $product_type )) {
+					$sql .= ' and product_type_id = ' . $ptype[0]->product_type_id ;
+				}
+				
+				$query = $this->db->query($sql);
+			
+				$listings = $query->result();
+    		}
+		}else{
+			$listings = null;
+		}
+    	//var_dump($listings); exit;
+    	$body['listings'] = $listings;
+    	$this->load->view('template/header', $header);
+    	$this->load->view('listings/index', $body);
+    	$this->load->view('template/footer');  
+    }
+    
+    public function _sphinx(){
+    	if(!empty($_POST['q'])){
+    		$body['q'] = $q = $_POST['q'];
+    		$this->load->file('application/vendor/sphinxapi.php', true);
+    		$cl = new SphinxClient();
+    		$cl->SetServer( "localhost", 9312 );
+    
+    		$cl->SetMatchMode(SPH_MATCH_ANY);
+    
+    		$cl->SetFieldWeights(array('description' => 50, 'name' => 100));
+    
+    		$res = $cl->Query($q , 'ads');
+    	}
+    	 
+    	if(!empty($res['matches'])){
+    		$c = 1;
+    		foreach ($res['matches'] AS $key => $val) {
+    			if((int)$val['weight'] > 150){
+    				if ($c == 1) {
+    					$iStr = $val['attrs']['listing_id'];
+    				}
+    				else {
+    					$iStr .= ',' . $val['attrs']['listing_id'];
+    				}
+    				 
+    				$c++;
+    			}
+    		}
+    		return $iStr;
+    	}
+    	return false;
+    }
+    
+    public function bid(){ 
+    	$this->functions->checkLoggedIn();
     	if(!empty($_POST)){
-    		var_dump($_POST);
-    		$query = $this->db->query('select sum(bid_amount) as current_bid from bidding');
+    		var_dump($this->session->userdata); exit;
+    		echo $user_id = $this->session->userdata['user_id']; exit;
+    		$query = $this->db->query('select sum(bid_amount) as top_bid from bidding where listing_id = '.$_POST['listing_id']);
+    		$top_bid = $query->result()[0]->top_bid;
+    		$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$_POST['listing_id']))[0];
+    		$bid = $_POST['bid'];
+    		$reserve_price = $listing->reserve_price;
     		
-    		var_dump($query->result()[0]->current_bid); exit;
+    		var_dump($_POST['bid'], $top_bid, $listing); exit;
+    		
+    		if($bid > $listing->minimum_bid && $bid > $top_bid){
+    			// add bid to db
+    			$lid = $this->bidding->save();
+    		} else {
+    			
+    		}
     	}else{
     		
     	}

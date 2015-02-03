@@ -6,7 +6,7 @@
 		<div class="section-content">
 			<div class="col-lg-6">
 				<div class="border-item mg ">
-					<div class="product-image product-big-img parent_div" style="height:422px;">
+					<div class="product-image product-big-img parent_div" style="height:380px;">
 						<img class="parent_thumb" src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
 					</div>
 					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:100px;">
@@ -26,7 +26,7 @@
 								<p>
 									Time Left: <span class="timer" id="<?php echo $listing->listing_id;?>"></span>
 								</p>
-								<p>Auction Ends: <?php echo $listing->end_time;?></p>
+								<p>Auction Ends: <?php echo date('M. d, Y \\a\\t g:i:a', strtotime($listing->end_time));?></p>
 							</div>
 						</div>
 						<div class="row">
@@ -48,9 +48,9 @@
 	                            </div>
 							</div>
 							<div class="new-bid row">
-								<?php echo form_open('/listings/bid', array('method' => 'post', 'class' => 'form-horizontal'));?>
+								<?php echo form_open('/listings/bid/'.$listing->listing_id, array('method' => 'post', 'class' => 'form-horizontal'));?>
 									<div class="form-group">
-										<label for="newbid" class="control-label col-sm-6">Enter New Bid <span class="desc">(Must be $390 or more)</span></label>
+										<label for="newbid" class="control-label col-sm-6">Enter New Bid <span class="desc">(Must be $<?php echo number_format($listing->minimum_bid, 2); ?> or more)</span></label>
 										<div class="col-sm-6">
 											<input type="text" name="bid" class="form-control" />
 										</div>

@@ -16,6 +16,7 @@ class listings_model extends abstract_model {
     public $recurring;
     public $buynow_price;
     public $reserve_price;
+    public $minimum_bid;
     public $created;
     public $modified;
     

@@ -168,7 +168,11 @@ class Listings extends CI_Controller {
     			$out .= '<div class="form-group">';
     			$out .= '<label for="reserve_price">Reserve Price</label><br />';
     			$out .= '$'.form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => number_format($r->reserve_price, 2)));
-    			$out .= '</div>'; 							
+    			$out .= '</div>'; 
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="advertise">Advertise this listing?</label><br />';
+    			$out .= '$'.form_input(array('type' => 'checkbox', 'name' => 'advertise', 'placeholder' => 'Advertise this listing', 'value' => ''));
+    			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
     			$out .= '</div>';
@@ -221,7 +225,11 @@ class Listings extends CI_Controller {
     			$out .= '<div class="form-group">';
     			$out .= '<label for="reserve_price">Reserve Price</label><br />';
     			$out .= form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => $r->reserve_price));
-    			$out .= '</div>'; 							
+    			$out .= '</div>'; 
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="advertise">Advertise this listing?</label><br />';
+    			$out .= '$'.form_input(array('type' => 'checkbox', 'name' => 'advertise', 'placeholder' => 'Advertise this listing', 'value' => ''));
+    			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
     			$out .= '</div>';

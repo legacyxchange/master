@@ -15,7 +15,7 @@ class Test extends CI_Controller {
         
         $this->load->model('listings_model', 'listings', true);
         
-        $this->load->model('products_model', 'product', true);
+        $this->load->model('products_model', 'products', true);
         
         $this->load->model('product_images_model', 'product_image', true);
         
@@ -67,34 +67,75 @@ class Test extends CI_Controller {
     	phpinfo();
     }
     
-    public function sphinx(){
-    	$this->load->file('/var/www/html/application/vendor/sphinxapi.php', true);
-    	$cl = new SphinxClient();
-    	$cl->SetServer( "localhost", 9312 );
-    	//var_dump($cl);
-    	$cl->SetMatchMode( SPH_MATCH_EXTENDED  );
-        $cl->SetRankingMode ( SPH_RANK_SPH04 );
-
-        $q = $_REQUEST['q']; 
-        
-        $searchresults = $cl->Query($q , 'my_new_search_index' );
-        
-        if(!empty($searchresults['matches'])){
+    public function sphinx(){ 
+    	if (! empty ( $_POST )) {
+			$iStr = $this->_sphinx ();
+			if($iStr){
+				$cid = ! empty ( $_POST ['category_id'] ) ? $_POST ['category_id'] : null;
+				$ptid = ! empty ( $_POST ['product_type_id'] ) ? $_POST ['product_type_id'] : null;
+				//var_dump ( $cid, $ptid, $_POST, $iStr );
+				//exit ();
+				$sql = '
+    	    		select * from listings as l 
+					join products as p using(product_id) 
+					join product_types as pt using(product_type_id)
+					join product_categories as pc using(product_id)
+					join categories as c using(category_id)
+					where l.listing_id IN(' . $iStr . ')
+    			';
+			
+				if (! is_null ( $cid )) {
+					$sql .= ' and category_id = ' . $cid ;
+				}
+			
+				if (! is_null ( $ptid )) {
+					$sql .= ' and product_type_id = ' . $ptid ;
+				}
+				//echo $sql; exit;
+				$query = $this->db->query($sql);
+			
+				$body['results'] = $query->result();
+    		}
+		}else{
+			//
+		}
+    	
+    	$this->load->view('template/header', $header);
+    	$this->load->view('test/sphinx', $body);
+    	$this->load->view('template/footer');
+    }
+    
+    public function _sphinx(){
+    	if(!empty($_POST['q'])){   		
+    		$body['q'] = $q = $_POST['q'];
+    		$this->load->file('application/vendor/sphinxapi.php', true);
+    		$cl = new SphinxClient();
+    		$cl->SetServer( "localhost", 9312 );
+    		
+    		$cl->SetMatchMode(SPH_MATCH_ANY);
+    		
+    		$cl->SetFieldWeights(array('description' => 50, 'name' => 100));
+    		
+    		$res = $cl->Query($q , 'ads');
+    	}
+    	
+        if(!empty($res['matches'])){        	        	        	
+        	$c = 1;
+        	foreach ($res['matches'] AS $key => $val) {  
+        		if((int)$val['weight'] > 150){
+        		if ($c == 1) {
+        			$iStr = $val['attrs']['listing_id'];
+        		}
+        		else {
+        			$iStr .= ',' . $val['attrs']['listing_id'];
+        		}
         	
-        	foreach($searchresults['matches'] as $key=>$val){
-        		$iStr .= $key.', ';
+        		$c++;
+        		}
         	}
-            $iStr = trim($iStr,', ');
-        
-            $res = $this->listings->fetchAll(array('where' => 'product_id IN('.$iStr.')')); 
-            foreach($res as $r){
-            	$r->product = $this->products->fetchAll(array('where' => 'product_id = '.$r->product_id));
-            }
-            
-            var_dump($res);
+            return $iStr;
         }
-        echo $cl->GetLastError();
-        exit;
+        return false;
     }
     
     public function timer($product_id = 23){

@@ -2277,7 +2277,7 @@ h2{
     clear:both;
     padding:0px 90px 0px 0px;
 }
-.add_new_butt{
+.add_new_butt, .admin_add_new_butt{
     width:175px;
     height:57px;    
     float:right;
@@ -2289,7 +2289,7 @@ h2{
 }
 
 .add_new_plus{padding-left:7px;padding-right:8px;padding-bottom:3px;border:3px solid #000033;border-radius:30px;height:30px;width:20px;font-weight:bold;margin-right:20px;}
-.add_new_butt a{
+.add_new_butt a, .admin_add_new_butt a{
     color: #000033;  
     padding:10px 20px 10px 20px;
     /* background:url(../images/add_new.png) no-repeat left center; */
@@ -2301,7 +2301,7 @@ h2{
     text-transform:uppercase;
     border:0px;	
 }
-.add_new_butt a:hover {
+.add_new_butt a:hover, .admin_add_new_butt a:hover {
     text-decoration: none;
 }
 .table_1{

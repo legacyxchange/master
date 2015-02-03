@@ -53,7 +53,7 @@ class Timer extends CI_Controller {
     	}
     	if($listing->days < 2) { $_days = 'day'; } else { $_days = 'days'; }
     	$days = $listing->days > 0 ? $listing->days.' '.$_days.' ' : null;
-    	echo 'Time Left: '.$days.' '.str_pad($listing->hours, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->minutes, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->seconds, 2, 0, STR_PAD_LEFT);
+    	echo ''.$days.' '.str_pad($listing->hours, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->minutes, 2, 0, STR_PAD_LEFT).':'.str_pad($listing->seconds, 2, 0, STR_PAD_LEFT);
     	exit;
     }
 }

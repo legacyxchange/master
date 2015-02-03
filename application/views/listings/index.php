@@ -2,13 +2,21 @@
 	<div class="container product-page-container">
 		<!-- original items -->
 		<div class="container">
-			<?php require_once "listings_menu.php";?>
+			<?php require "listings_menu.php";?>
+			<div class="container">    
+        				<?php echo form_open('/listings/search/'.$product_type, array('name' => 'search_form', 'method' => 'post')); ?>
+  						<input type="text" placeholder="Search" name="q" id="q" />
+  						
+  						<!-- <input type="hidden" name="category_id" value="2" /> -->
+  						<input type="submit" value="GO" class="form-submit" />
+						<?php echo form_close(); ?>
+    		</div>
 			<div class="section-content">
-			<?php if($listings):?>
+			<?php if($listings): ?>
 				<div class="row">
-					<div class="col-lg-12 available-item">
-						<strong>CURRENTLY:</strong><a href="#"> <?php echo count($listings);?> Original Items Available</a>
-					</div>
+					<div class="col-lg-12 available-item" style="margin-top:20px;">
+						<strong>CURRENTLY:</strong><a href="#"> <?php echo count($listings);?> <?php echo ucfirst($product_type);?> Items Available</a>
+					</div>					
 				</div>
 				<div class="row">                     
     				<?php foreach($listings as $listing):?>
@@ -36,13 +44,15 @@ All Original Items are 100% Guaranteed Authentic.</div>
 	</div>
 </section>
 <!-- valued items -->
+<?php if($listings2):?>       
 <div class="row" style="margin-top:55px;">
 	<div class="col-lg-12" style="background: url('/public/images/lightblue_gradient_bar.gif');background-repeat:no-repeat;">
 		<h3 class="subtitle" style="color:#ff0000;font-weight:bold;text-decoration:italisize;">ALSO CHECK OUT THESE GREAT ITEMS!</h3>
 	</div>
 </div>
 <section class="products-container">
-	<div class="container">         
+	<div class="container">
+	      
         <?php foreach($listings2 as $listing):?>
             <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="hover-img">
@@ -52,6 +62,8 @@ All Original Items are 100% Guaranteed Authentic.</div>
 					</div>
 				</div>
 			</div>
-        <?php endforeach;?>        
+        <?php endforeach;?> 
+         
 	</div>
 </section>
+<?php endif;?>      

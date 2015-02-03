@@ -28,21 +28,22 @@ class Search extends CI_Controller {
     		
     		$cl->SetServer( "localhost", 9312 );
     		
-    		$cl->SetMatchMode( SPH_MATCH_EXTENDED  );
+    		$cl->SetMatchMode( SPH_MATCH_ANY  );
     		
         	$cl->SetRankingMode ( SPH_SORT_RELEVANCE );
 
-        	$searchresults = $cl->Query($q, 'se_index' );
-        	//var_dump($cl->getLastError(), $searchresults['matches']); exit;
+        	$searchresults = $cl->Query($q, 'ads');
+        	//var_dump($q, $cl->getLastError(), $searchresults['matches']); exit;
             $iStr = null;
             
         	if(!empty($searchresults['matches'])){ 
-        	
+        	    
         		foreach($searchresults['matches'] as $key=>$val){
-        			$iStr .= $key.', ';
+        			$lid = $val['attrs']['listing_id'];
+        			$iStr .= $lid.', ';
         		}
         		
-            	$iStr = ' and product_id in('.trim($iStr,', ').')';
+            	$iStr = ' and listing_id in('.trim($iStr,', ').')';
             }
             else{
             	$iStr = 'no matches';
@@ -56,7 +57,7 @@ class Search extends CI_Controller {
         
         if($iStr !== 'no matches'){ 
         	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'orderby' => 'end_time ASC'));
-        	//var_dump($listings); exit;
+        	//var_dump($this->db->last_query()); exit;
         	foreach($listings as $key=>$listing){ 
         		$listing->original = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 1'))[0];
         		

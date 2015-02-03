@@ -955,9 +955,10 @@ class SphinxClient
 	function Query ( $query, $index="*", $comment="" )
 	{
 		assert ( empty($this->_reqs) );
-
+ 
 		$this->AddQuery ( $query, $index, $comment );
 		$results = $this->RunQueries ();
+		//var_dump($results); 
 		$this->_reqs = array (); // just in case it failed too early
 
 		if ( !is_array($results) )
@@ -1130,6 +1131,7 @@ class SphinxClient
 		// query sent ok; we can reset reqs now
 		$this->_reqs = array ();
 
+		//var_dump( $response, $nreqs ); exit;
 		// parse and return response
 		return $this->_ParseSearchResponse ( $response, $nreqs );
 	}

@@ -60,14 +60,12 @@ class AdMeister {
 
 		foreach($obj as $ad){
 			$ad->product = $product->fetchAll(array('where' => 'product_id = '.$ad->product_id))[0];
+			$this->chargeUserForView($ad, $level);
 		}
 		//var_dump($obj); exit;
 		$body['advertisements'] = $obj;
-		foreach($obj as $res){ 
-			$this->chargeUserForView($res, $level);
-		}
-		//var_dump('testing'); exit;
-		//var_dump($body); exi	t;
+		
+		//var_dump($body); exit;
 		$this->CI->load->view('/listings/index', $body, true); 
 		//$this->CI->load->view('/listings/index', $body, true); // insignificant, can be any valid view
 	}
