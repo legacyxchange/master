@@ -184,27 +184,28 @@ class Listings extends CI_Controller {
     	return false;
     }
     
-    public function bid(){ 
+    public function bid($listing_id = null){ 
     	$this->functions->checkLoggedIn();
     	if(!empty($_POST)){
-    		var_dump($this->session->userdata); exit;
-    		echo $user_id = $this->session->userdata['user_id']; exit;
-    		$query = $this->db->query('select sum(bid_amount) as top_bid from bidding where listing_id = '.$_POST['listing_id']);
+    		$_POST['user_id'] = $user_id = $this->session->userdata['user_id'];
+    		$_POST['listing_id'] = $listing_id;
+    		$query = $this->db->query('select sum(bid_amount) as top_bid, user_id from bidding where listing_id = '.$listing_id);
     		$top_bid = $query->result()[0]->top_bid;
-    		$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$_POST['listing_id']))[0];
-    		$bid = $_POST['bid'];
+    		$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$listing_id))[0];
+    		$_POST['bid_amount'] = $bid = $_POST['bid'];
     		$reserve_price = $listing->reserve_price;
     		
-    		var_dump($_POST['bid'], $top_bid, $listing); exit;
+    		//var_dump($_POST['bid'], $top_bid, $listing); exit;
     		
     		if($bid > $listing->minimum_bid && $bid > $top_bid){
     			// add bid to db
     			$lid = $this->bidding->save();
+    			return $this->product($listing->product_id);
     		} else {
     			
     		}
     	}else{
-    		
+    		var_dump($_SESSION); exit; 
     	}
     }
     

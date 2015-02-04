@@ -239,11 +239,16 @@ class Functions extends PHPFunctions {
         $ci = $this->ci;
         
         if (!is_null($ci->session) && $ci->session->userdata('logged_in') === true) {
+        	if(!empty($_SESSION['post'])){
+        		$_POST = $_SESSION['post'];
+        		unset($_SESSION['post']);
+        	}
         	return true;
         } else {
         	$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
         	$ci->session->set_flashdata('NOTICE', 'You must login first');
         	$_SESSION['showLogin'] = true;
+        	$_SESSION['post'] = !empty($_POST) ? $_POST : null;
         	header("Location: /");
         	exit;
         }
@@ -256,16 +261,22 @@ class Functions extends PHPFunctions {
     		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
     		$ci->session->set_flashdata('NOTICE', 'You must be logged in to enter that area.');
     		$_SESSION['showLogin'] = true;
+    		$_SESSION['post'] = !empty($_POST) ? $_POST : null;
     		header("Location: /");
     		exit;
     	}
     	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) { 
+    		if(!empty($_SESSION['post'])){
+    			$_POST = $_SESSION['post'];
+    			unset($_SESSION['post']);
+    		}
     		return true;
     	} 
     	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') < 1) {
     		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
     		$ci->session->set_flashdata('FAILURE', 'You do not have the correct permissions to enter that area.');
     		$_SESSION['showLogin'] = true;
+    		$_SESSION['post'] = !empty($_POST) ? $_POST : null;
     		header("Location: /");
     		exit;
     	}else{
