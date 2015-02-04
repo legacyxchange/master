@@ -209,6 +209,27 @@ class Listings extends CI_Controller {
     	}
     }
     
+    public function track_bidding($listing_id = null){
+    	$this->functions->checkLoggedIn();
+    	
+    	$_POST['user_id'] = $user_id = $this->session->userdata['user_id'];
+    	$_POST['listing_id'] = $listing_id;
+    	$query = $this->db->query('select * from bid_tracking where user_id = '.$user_id.' AND listing_id = '.$listing_id);
+    	$tBid = $query->result()[0]->tracking;
+    	$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$listing_id))[0];
+    	$reserve_price = $listing->reserve_price;
+    
+        var_dump($_POST, $tBid, $listing); exit;
+    
+    	if($bid > $listing->minimum_bid && $bid > $top_bid){
+    		// add bid to db
+    		$lid = $this->bid_tracking->save();
+    		return $this->product($listing->product_id);
+    	} else {
+    			 
+    	}
+    }
+    
     public function buynow($listing_id){
     	$user_id = $this->session->userdata['user_id'];
     	if(!$user_id){

@@ -1,22 +1,8 @@
-<style>
-.listings_form{
-float: right;
-margin-right: 20px;
-}
-</style>
 <section id="original-item" class="dark-bg ptb25 top-border" style="padding-bottom:0px;">
 	<div class="container product-page-container">
 		<!-- original items -->
 		<div class="container">
-			<?php require "listings_menu.php";?>
-			<div class="container">    
-        				<?php echo form_open('/listings/search/'.$product_type, array('name' => 'search_form', 'method' => 'post', 'class' => 'listings_form')); ?>
-  						<input type="text" placeholder="Search" name="q" id="q" />
-  						
-  						<!-- <input type="hidden" name="category_id" value="2" /> -->
-  						<input type="submit" value="GO" class="form-submit" />
-						<?php echo form_close(); ?>
-    		</div>
+			<?php require "listings_menu.php";?> 
 			<div class="section-content">
 			<?php if($listings): ?>
 				<div class="row">

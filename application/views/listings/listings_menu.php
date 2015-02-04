@@ -272,7 +272,15 @@
 							</span>
 						</form>
 					</div>
-			 
-			
+				</div>
+			</div>			
 		</div>
 <!-- End page top menu -->
+        <div class="container">    
+        				<?php echo form_open('/listings/search/'.$product_type, array('name' => 'search_form', 'method' => 'post', 'class' => 'listings_form')); ?>
+  						<input type="text" placeholder="Search" name="q" id="q" />
+  						
+  						<!-- <input type="hidden" name="category_id" value="2" /> -->
+  						<input type="submit" value="GO" class="form-submit" />
+						<?php echo form_close(); ?>
+    		</div>

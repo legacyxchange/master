@@ -21,50 +21,47 @@
 					<?php endif;?>
 					</div>
 					<div class="bid-desc">
-						<div class="row">
-						    <div class="type_of_sale" style="font-weight:bold;">
+						<div class="row" style="margin-bottom: 20px;">
+						    <div class="type_of_sale" style="font-weight:bold;float:left;">
 						        Type of Sale: <span style="color:#227593;">Auction w/Reserve</span>
 						    </div>
 							<div class="time-left">
 								<p>
 									Time Left: <span class="timer" id="<?php echo $listing->listing_id;?>"></span>
+									<br />
+								    Sale Ends: <?php echo date('M. d, Y \\a\\t g:i:a', strtotime($listing->end_time));?>
 								</p>
-								<p>Sale Ends: <?php echo date('M. d, Y \\a\\t g:i:a', strtotime($listing->end_time));?></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="current-bid">
 								<div class="product-prices">
-									<p>
+									
 										Current Bid Price: <span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
-									</p>
+										<?php echo form_open('/listings/bid/'.$listing->listing_id, array('method' => 'post', 'class' => 'form-horizontal'));?>
+										<input type="hidden" name="listing_id" value="<?php echo $listing->listing_id;?>" />
+										<div class="form-group">
+											<label for="newbid" class="control-label col-sm-5">Enter New Bid <span class="desc">(Must be $<?php echo number_format($listing->minimum_bid, 2); ?> or more)</span></label>
+											<div class="col-sm-7">
+												<input type="text" style="width:140px;float:left;margin-right:10px;" name="bid" class="form-control" />
+												<button class="btn btn-primary btn-sm" id="bidBtn">Bid</button>
+											</div>
+										    
+										</div>
+										<?php echo form_close();?>
+									
 	                                <?php if(isset($listing->buynow_price)):?>
-	                                <p>
-										Buy Now Price: <span>$<?php echo number_format($listing->buynow_price,2);?></span>
-										<span class="pull-right">
-											<button class="btn btn-primary btn-sm" token_name="<?php echo $this->security->get_csrf_token_name();?>" token_value="<?php echo $this->security->get_csrf_hash();?>" id="listing-buynow-button" value="<?php echo $listing->listing_id;?>">
-												Buy
-											</button>
-										</span>
-									</p>
+	                                <div style="text-align:center;margin-top:20px;">
+										Buy Now Price: <span style="margin-right:10px;">$<?php echo number_format($listing->buynow_price,2);?></span>										
+										<button class="btn btn-primary btn-sm" token_name="<?php echo $this->security->get_csrf_token_name();?>" token_value="<?php echo $this->security->get_csrf_hash();?>" id="listing-buynow-button" value="<?php echo $listing->listing_id;?>">Buy</button>										
+									</div>
 	                                <?php endif;?>
 	                            </div>
 							</div>
 							<div class="new-bid row">
-								<?php echo form_open('/listings/bid/'.$listing->listing_id, array('method' => 'post', 'class' => 'form-horizontal'));?>
-									<div class="form-group">
-										<label for="newbid" class="control-label col-sm-6">Enter New Bid <span class="desc">(Must be $<?php echo number_format($listing->minimum_bid, 2); ?> or more)</span></label>
-										<div class="col-sm-6">
-											<input type="text" name="bid" class="form-control" />
-										</div>
-									</div>
-									<input type="hidden" name="listing_id" value="<?php echo $listing->listing_id;?>" />
-									<div class="form-action">
-										<span class="pull-right"><button class="btn btn-primary btn-sm" id="bidBtn">Bid</button></span>
-									</div>
-								</form>
+								
 							</div>
-							<div class="track-bid">Track bidding on this item</div>
+							<div class="track-bid"><a href="/listings/track_bidding/<?php echo $listing->listing_id;?>">Track bidding on this item</a></div>
 						</div>
 					</div>
 				</div>
@@ -81,16 +78,16 @@
 						</p>
 						
 						<p>
-							<b>QTY: </b><span> <?php echo $listing->product->quantity;?></span>
+							<b>Qty: </b><span> <?php echo $listing->product->quantity;?></span>
 						</p>
 						<p>
-							<b>TYPE of SALE:</b><span>AUCTION W/ BUY NOW</span>
+							<b>Type of Sale:</b><span>AUCTION W/ BUY NOW</span>
 						</p>
 						<p>
-							<b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
+							<b>Current Bid: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
 						</p>
 						<p>
-							<b># OF TIMES PREVIOUSLY SOLD on LXC: </b><span> 0</span>
+							<b>Number of Times Previously Sold on LXC: </b><span> 0</span>
 						</p>
 						<div class="seller-detail row">
 							<p>
@@ -100,11 +97,11 @@
 							<hr />
 						    <div class="shipping_estimate_container" style="text-align: center;">	
 								<div>
-									Payments Accepted Through:<br />
+									<strong>Payments Accepted Through:</strong><br />
 									<img src="/public/images/credit_cards.gif" />
 								</div>
 							
-								Shipping and Estimated Delivery:<br />
+								<strong>Shipping and Estimated Delivery:</strong><br />
 								<div class="shipping_estimate" style="margin:0 auto;width:340px;height:140px;border:1px solid #ccc;">
 							
 								</div>							
