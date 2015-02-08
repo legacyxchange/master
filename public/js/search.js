@@ -499,7 +499,14 @@ search.loadGettingStartedModal = function ()
 }
 
 $(document).ready(function(){
-	
+	$('.hover-img').hover( 
+	        function(){ console.log($(this).find('.hover-info'))
+	        	$(this).find('.hover-info').slideDown(250); //.fadeIn(250)
+	        },
+	        function(){
+	        	$(this).find('.hover-info').slideUp(250); //.fadeOut(205)
+	        }
+	    ); 
 	$('.item-img').hover(
         function(){ 
         	$(this).find('.hover-info').slideDown(250); //.fadeIn(250)

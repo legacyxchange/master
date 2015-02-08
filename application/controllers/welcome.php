@@ -17,21 +17,46 @@ class Welcome extends CI_Controller {
     	header('Location: /');
     }
 
-    public function login() {   	
+    public function setRedirectUri(){ 
+    	if(empty($_SESSION)){
+    		session_start();
+    	}
+    	$this->session->set_flashdata('NOTICE', 'You must login first.');
+    	$_SESSION['redirectUri'] = $_POST['uri'];
+    	
+    	echo json_encode(array('status' => 'SUCCESS', 'uri' => $_SESSION['redirectUri']));
+    	exit;
+    }
+    
+    public function login() {
+    	if(empty($_SESSION)){
+    		session_start();
+    	} 
+    	
         $check = $this->welcome->checkLogin($_POST['user_email'], $_POST['user_pass']);
         
-        if (empty($check)){
-                $this->functions->jsonReturn('ERROR', 'Invalid Username and/or Password'); exit;
+        if (empty($check)){        	
+            $this->functions->jsonReturn('ERROR', 'Invalid Username and/or Password'); exit;
         }elseif($check->permissions > 0){
         	$this->functions->setLoginSession($check->user_id);
+        	 
+        	if(!empty($_SESSION['redirectUri'])){
+        		$redirect = $_SESSION['redirectUri'];
+        		$_SESSION['redirectUri'] = null;
+        	}
+        	$this->session->set_flashdata('SUCCESS', 'You are now logged in');
         	
-        	$this->functions->jsonReturn('SUCCESS', '', true, 0, array('permissions' => $check->permissions));
-        	
+        	echo json_encode(array('status' => 'SUCCESS','permissions' => $check->permissions, 'redirect' => $redirect));         	
         	exit;
-        }else{
+        }else{ 
             $this->functions->setLoginSession($check->user_id);
 
-            $this->functions->jsonReturn('SUCCESS', '');
+        	if(!empty($_SESSION['redirectUri'])){
+        		$redirect = $_SESSION['redirectUri'];
+        		$_SESSION['redirectUri'] = null;
+        	}
+        	$this->session->set_flashdata('SUCCESS', 'You are now logged in as an Administrator');
+            echo json_encode(array('status' => 'SUCCESS', 'redirect' => $redirect));
             exit;
         }
     }
@@ -80,7 +105,7 @@ class Welcome extends CI_Controller {
     }
     
     public function register() {
-    	if ($_POST) {         	
+    	if (!empty($_POST)) {         	
             try {           	
                 $emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
                 $usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);

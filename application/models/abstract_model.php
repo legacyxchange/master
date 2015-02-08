@@ -22,13 +22,19 @@ abstract class abstract_model extends CI_Model {
     	$this->db->from($this->table);
     	
     	$query = $this->db->get();
-
+    	
+    	/* if($preds['orderby'] == 'per_view_amount DESC, created ASC'){
+    		var_dump($this->db->last_query()); exit;
+   	 	} */
     	//file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
     	
     	return $query->result();
     }
     
-    public function countAll(){
+    public function countAll($where = null){
+    	if(!is_null($where)){
+    		$this->db->where($where);
+    	}
     	return $this->db->get($this->table)->num_rows;
     }
     
@@ -55,7 +61,8 @@ abstract class abstract_model extends CI_Model {
 
     		$this->db->insert($this->table, $params);
     	}
-
+        
+    	//echo $this->db->last_query(); 
     	//file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
     	return $this->db->insert_id();
     }

@@ -14,7 +14,9 @@ include_once './application/third_party/phpfunctions/libraries/PHPFunctions.php'
 class Functions extends PHPFunctions {
 
     private $ci;
-    private $site_name = 'legacyXchange.com';
+    private $site_name = 'legacyXchange';
+    public $useImage = TRUE;
+    private $site_logo = '<img src="/public/images/logo.png" />';
 
     public function __construct() {
         $this->ci = & get_instance();
@@ -234,63 +236,52 @@ class Functions extends PHPFunctions {
     }
 
     public function checkLoggedIn($loginRedirect = true) {
-        // starts session if not already started
-
-        $ci = & get_instance();
-
-        $ci->load->helper('url');
-
-
-        $pattern = '/^intranet\/login/';
-        $login = preg_match($pattern, uri_string());
-
-
-        /*
-          $allowedUrlPatterns = array
-          (
-          '/^user\/profileimg/',
-          '/^intranet\/forgotpassword/',
-          '/^intranet\/resetpassword/',
-          '/^intranet\/processpasswordrequest/',
-          '/^blog\/savecomment/',
-          '/^user\/checksubscription/',
-          '/^intranet\/iframelogin/',
-          '/^intranet\/fblogin/',
-          '/^user\/fbcallback/',
-          '/^folder\/tree/'
-          );
-
-
-          $allowed = false;
-          foreach ($allowedUrlPatterns as $k => $pat)
-          {
-          $m = preg_match($pat, uri_string());
-
-
-          if ($m > 0)
-          {
-          $allowed = true;
-          break;
-          }
-          }
-
-          if ($allowed == true) return false;
-         */
-
-        if ($login == 0) {
-            //if(!isset($_COOKIE['userid']))
-            if ($ci->session->userdata('logged_in') === true) {
-                // do nothing
-                return true;
-            } else {
-                if ($loginRedirect) {
-                    header("Location: /?site-error=" . urlencode("You are not logged in") . "&ref=" . uri_string() . '&email=' . urlencode($this->email));
-                    exit;
-                } else {
-                    return false;
-                }
-            }
+        $ci = $this->ci;
+        
+        if (!is_null($ci->session) && $ci->session->userdata('logged_in') === true) {
+        	if(!empty($_SESSION['post'])){
+        		$_POST = $_SESSION['post'];
+        		unset($_SESSION['post']);
+        	}
+        	return true;
+        } else {
+        	$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+        	$ci->session->set_flashdata('NOTICE', 'You must login first');
+        	$_SESSION['showLogin'] = true;
+        	$_SESSION['post'] = !empty($_POST) ? $_POST : null;
+        	header("Location: /");
+        	exit;
         }
+    }
+    
+    public function checkSudoLoggedIn() {
+    	$ci = $this->ci;
+        
+    	if($ci->session->userdata('logged_in') != true){
+    		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+    		$ci->session->set_flashdata('NOTICE', 'You must be logged in to enter that area.');
+    		$_SESSION['showLogin'] = true;
+    		$_SESSION['post'] = !empty($_POST) ? $_POST : null;
+    		header("Location: /");
+    		exit;
+    	}
+    	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') > 0) { 
+    		if(!empty($_SESSION['post'])){
+    			$_POST = $_SESSION['post'];
+    			unset($_SESSION['post']);
+    		}
+    		return true;
+    	} 
+    	elseif($ci->session->userdata('logged_in') === true && $ci->session->userdata('permissions') < 1) {
+    		$_SESSION['redirectUri'] = $_SERVER['REQUEST_URI'];
+    		$ci->session->set_flashdata('FAILURE', 'You do not have the correct permissions to enter that area.');
+    		$_SESSION['showLogin'] = true;
+    		$_SESSION['post'] = !empty($_POST) ? $_POST : null;
+    		header("Location: /");
+    		exit;
+    	}else{
+    		var_dump('who knows'); exit;
+    	}
     }
 
     public function getFacebookID($user_id) {
@@ -987,6 +978,9 @@ $data = false;
       }
      */
     public function getSiteName(){
-    	return $this->site_name;
+    	if($this->useImage && isset($this->site_logo)){
+    		return $this->site_logo;
+    	}
+    	return trim($this->site_name);
     }
 }

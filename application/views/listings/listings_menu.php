@@ -1,7 +1,11 @@
 <!-- page top menu -->
 		<div class="page-menu">
 			<div class="row">
+<<<<<<< HEAD
 				<div class="col-lg-6">
+=======
+				<div class="col-lg-12" style="border:1px solid #ccc; background:#d4eee6;">
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 					<span class="page-item">
 						<ul class="nav nav-tabs">
 							<li class="dropdown">
@@ -66,6 +70,7 @@
 									</li>
 								</ul>
 							</li>
+<<<<<<< HEAD
 							<li><a href="#">SECONDARY ITEMS</a></li>
 						</ul>
 					</span>
@@ -79,6 +84,202 @@
 							<span class="sort-list">
 								<ul class="nav nav-tabs">
 									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort<span class="caret"></span></a>
+=======
+							<li>
+							    <li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									Secondary Items<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" id="secondary_item">Secondary Items?</a>
+										<div class="secondary_item_container_main">
+											<div class="secondary_item_container" style="display: none;">
+												<div class="secondary_item_close">
+													<i class="fa fa-times-circle"></i>
+												</div>
+												<p>Secondary Items are items which have been DNA marked and
+													Registered with LegacyXchange. Marking for original Items
+													is done either at the point when the item is created
+													(manufactured) or when it is signed or otherwise endorsed.
+												</p>
+												<p>LegacyXchange documents and follows strict
+													chain-of-custody procedures for all Original items.the
+													documentation, as well as the DNA mark, is 100% verifiable.
+												</p>
+												<p>
+													<b><i>All secondary items are Guaranteed 100% to be Authentic.</i></b>
+												</p>
+											</div>
+										</div></li>
+									<li class="divider"></li>
+									<li><b>Show Me</b></li>
+									<li class="divider"></li>
+									<li><a href="#">All Secondary</a></li>
+									<li><a href="#">Sports Only</a>
+										<ul class="submenu">
+											<li><a href="#">Baseball</a></li>
+											<li><a href="#">Football</a></li>
+											<li><a href="#">Basketball</a></li>
+											<li><a href="#">Hockey</a></li>
+											<li><a href="#">Soccer</a></li>
+											<li><a href="#">Golf</a></li>
+											<li><a href="#">Auto Sports</a></li>
+											<li><a href="#">Fighting Sports</a></li>
+											<li><a href="#">Outdoor Sports</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Jewelry</a>
+										<ul class="submenu">
+											<li><a href="#">Watches</a></li>
+											<li><a href="#">Rings</a></li>
+											<li><a href="#">Necklaces</a></li>
+											<li><a href="#">Earrings</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Clothing</a>
+										<ul class="submenu">
+											<li><a href="#">Hats</a></li>
+											<li><a href="#">Coats</a></li>
+											<li><a href="#">Ties</a></li>
+											<li><a href="#">Handbags</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+							    <li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									Stores<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" id="store_item">Store Items?</a>
+										<div class="store_item_container_main">
+											<div class="store_item_container" style="display: none;">
+												<div class="store_item_close">
+													<i class="fa fa-times-circle"></i>
+												</div>
+												<p>Stores Items are items which have been....
+												</p>
+												<p>LegacyXchange documents and follows strict
+													chain-of-custody procedures for all store items.the
+													documentation, as well as the DNA mark, is 100% verifiable.
+												</p>
+												<p>
+													<b><i>All Stores items are .....</i></b>
+												</p>
+											</div>
+										</div></li>
+									<li class="divider"></li>
+									<li><b>Show Me</b></li>
+									<li class="divider"></li>
+									<li><a href="#">All Stores</a></li>
+									<li><a href="#">Sports Only</a>
+										<ul class="submenu">
+											<li><a href="#">Baseball</a></li>
+											<li><a href="#">Football</a></li>
+											<li><a href="#">Basketball</a></li>
+											<li><a href="#">Hockey</a></li>
+											<li><a href="#">Soccer</a></li>
+											<li><a href="#">Golf</a></li>
+											<li><a href="#">Auto Sports</a></li>
+											<li><a href="#">Fighting Sports</a></li>
+											<li><a href="#">Outdoor Sports</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Jewelry</a>
+										<ul class="submenu">
+											<li><a href="#">Watches</a></li>
+											<li><a href="#">Rings</a></li>
+											<li><a href="#">Necklaces</a></li>
+											<li><a href="#">Earrings</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Clothing</a>
+										<ul class="submenu">
+											<li><a href="#">Hats</a></li>
+											<li><a href="#">Coats</a></li>
+											<li><a href="#">Ties</a></li>
+											<li><a href="#">Handbags</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+							    <li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+									Flash Sales<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" id="flash_item">Flash Sale Items?</a>
+										<div class="flash_item_container_main">
+											<div class="flash_item_container" style="display: none;">
+												<div class="flash_item_close">
+													<i class="fa fa-times-circle"></i>
+												</div>
+												<p>Flash Sale Items are items which have been...
+												</p>
+												<p>LegacyXchange documents and follows strict
+													chain-of-custody procedures for all flash items.the
+													documentation, as well as the DNA mark, is 100% verifiable.
+												</p>
+												<p>
+													<b><i>All Flash Sales items....</i></b>
+												</p>
+											</div>
+										</div></li>
+									<li class="divider"></li>
+									<li><b>Show Me</b></li>
+									<li class="divider"></li>
+									<li><a href="#">All Flash Sales</a></li>
+									<li><a href="#">Sports Only</a>
+										<ul class="submenu">
+											<li><a href="#">Baseball</a></li>
+											<li><a href="#">Football</a></li>
+											<li><a href="#">Basketball</a></li>
+											<li><a href="#">Hockey</a></li>
+											<li><a href="#">Soccer</a></li>
+											<li><a href="#">Golf</a></li>
+											<li><a href="#">Auto Sports</a></li>
+											<li><a href="#">Fighting Sports</a></li>
+											<li><a href="#">Outdoor Sports</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Jewelry</a>
+										<ul class="submenu">
+											<li><a href="#">Watches</a></li>
+											<li><a href="#">Rings</a></li>
+											<li><a href="#">Necklaces</a></li>
+											<li><a href="#">Earrings</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Clothing</a>
+										<ul class="submenu">
+											<li><a href="#">Hats</a></li>
+											<li><a href="#">Coats</a></li>
+											<li><a href="#">Ties</a></li>
+											<li><a href="#">Handbags</a></li>
+											<li><a href="#">Other</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</span>
+				
+				
+					<div class="filter-item" style="width:400px;float:right;margin-top:-30px;margin-right:-33px;">
+						<form>
+							<span> <input type="text" class="form-control" style="margin-right: -40px;position:relative;z-index:100;height:28px;margin-top:1px;" placeholder="SELLER">
+							</span> 
+							<span class="sort-list">
+								<ul class="nav nav-tabs">
+									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 										<ul class="dropdown-menu">
 											<li><a href="#">For Auction</a></li>
 											<li><a href="#">For Sale</a></li>
@@ -92,6 +293,20 @@
 						</form>
 					</div>
 				</div>
+<<<<<<< HEAD
 			</div>
 		</div>
 <!-- End page top menu -->
+=======
+			</div>			
+		</div>
+<!-- End page top menu -->
+        <div class="container">    
+        				<?php echo form_open('/listings/search/'.$product_type, array('name' => 'search_form', 'method' => 'post', 'class' => 'listings_form')); ?>
+  						<input type="text" placeholder="Search" name="q" id="q" />
+  						
+  						<!-- <input type="hidden" name="category_id" value="2" /> -->
+  						<input type="submit" value="GO" class="form-submit" />
+						<?php echo form_close(); ?>
+    		</div>
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9

@@ -1,5 +1,6 @@
-<section id="original-item" class="dark-bg ptb25 top-border ">
+<section id="original-item" class="dark-bg ptb25 top-border" style="padding-bottom:0px;">
 	<div class="container product-page-container">
+<<<<<<< HEAD
       <!--<pre><?php //var_dump($listings);?></pre>-->
 		<!-- original items -->
 			<div class="container">	
@@ -165,12 +166,45 @@
 					<div class="item-img border-item">
 						<img src="images/sec-items/pro-sec-item4.png">
 					</div>
+=======
+		<!-- original items -->
+		<div class="container">
+			<?php require "listings_menu.php";?> 
+			<div class="section-content">
+			<?php if($listings): ?>
+				<div class="row">
+					<div class="col-lg-12 available-item">
+						<strong>CURRENTLY:</strong> <?php echo count($listings);?> <?php echo ucfirst($product_type);?> Items Available
+					</div>					
+				</div>
+				<div class="row">                     
+    				<?php foreach($listings as $listing):?>
+                	<div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="hover-img">
+							<img class="centered-img" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+							<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
+								<div class="product-name"><?=$listing->name;?></div>
+							</div>
+						</div>
+				    </div>
+    				<?php endforeach;?>						
+				</div>
+				<!-- end row -->
+				<div class="container" style="text-align: center;color:#006a8a;">
+					<a href="" style="text-align: center;color:#006a8a;">&laquo; next &raquo;</a>
+				</div>
+				<div class="container">
+				    <div style="font-size:12px;text-align:center;color:#006a8a;">Original Items are items that have been Scientifially Marked and Registered with LegacyXChange.  LegacyXChange Documents the Marking, and the Marking and Documentation are100% verifiable.
+All Original Items are 100% Guaranteed Authentic.</div>
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 				</div>
 			</div>
+			<?php endif;?>
 		</div>
 	</div>
 </section>
 <!-- valued items -->
+<<<<<<< HEAD
 <section id="intrested-item" class="ptb25">
 	<div class="container">
 		<div class="section-content">
@@ -215,3 +249,28 @@
 //var_dump($listing);
 ?>
 </pre> -->
+=======
+<?php if($listings2):?>       
+<div class="row" style="margin-top:55px;">
+	<div class="col-lg-12" style="background: url('/public/images/lightblue_gradient_bar.gif');background-repeat:no-repeat;">
+		<h3 class="subtitle" style="color:#ff0000;font-weight:bold;text-decoration:italisize;">ALSO CHECK OUT THESE GREAT ITEMS!</h3>
+	</div>
+</div>
+<section class="products-container">
+	<div class="container">
+	      
+        <?php foreach($listings2 as $listing):?>
+            <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+				<div class="hover-img">
+					<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
+						<div class="product-name"><?=$listing->name;?></div>
+					</div>
+				</div>
+			</div>
+        <?php endforeach;?> 
+         
+	</div>
+</section>
+<?php endif;?>      
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9

@@ -22,24 +22,25 @@ class Products extends CI_Controller {
         $this->load->library('library');
         
         $this->load->library('pagination');
+        
+        $this->functions->checkSudoLoggedIn();
     }
 
-    public function index($id = null, $page = 0) {
-    	if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
-        	header('Location: /'); exit;
-        }
-
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js products.js');
+    public function index($id = null, $page = 0) { 
+    	$header['headscript'] = $this->functions->jsScript('products.js');
         
         if(is_null($product_id)){
         	try {
-        		$pagination_config['base_url'] = '/administrator/products/index//'.$page;
-        		$pagination_config['total_rows'] = $this->product->countAll();
+        		/* $pagination_config['base_url'] = '/administrator/products/index//'.$page;
+        		$pagination_config['total_rows'] = $this->product->countAll('product_type_id = 1');
         		$pagination_config['per_page'] = 5;
         		$pagination_config['cur_page'] = $page;
-        		$config['use_page_numbers'] = TRUE;
-        		$this->pagination->initialize($pagination_config);
-        		$products = $this->product->fetchAll(array('orderby' => 'product_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));        		               		
+        		$pagination_config['use_page_numbers'] = TRUE;
+        		$this->pagination->initialize($pagination_config); */
+        		
+        		//$products = $this->product->fetchAll(array('where' => 'product_type_id = 1', 'orderby' => 'product_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));
+        		$products = $this->product->fetchAll(array('orderby' => 'product_id DESC'));
+        		
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
@@ -59,7 +60,7 @@ class Products extends CI_Controller {
         $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
         $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/products', $body);
-        $this->load->view('template/footer');
+        $this->load->view('administrator/template/footer');
     }
     
     public function add() {    	 
@@ -141,7 +142,8 @@ class Products extends CI_Controller {
     	$this->product->delete('product_id', $product_id);
     	 
     	$this->session->set_flashdata('SUCCESS', 'Your data has been updated.');
-    	return $this->index();
+    	
+    	header('Location: /administrator/products'); exit;
     }
     
     public function productsform($product_id = null){    	
@@ -150,6 +152,12 @@ class Products extends CI_Controller {
     		$products = $this->product->fetchAll(array('where' => 'product_id = '.$product_id, 'orderby' => 'product_id DESC'));
     		
     		foreach($products as $r){ 
+    			$out .= '
+    			<div class="modal-header">
+                <h3 class="modal-title">'.$r->listing_name.'</h3>
+                </div> <!-- modal-header -->
+                <div class="modal-body">
+    			';
     			$out .= '<div role="form">';    	        
     			$out .= form_open_multipart('/administrator/products/edit/'.$r->product_id); 
     			
@@ -206,11 +214,29 @@ class Products extends CI_Controller {
     			$out .= '</div>';
     		}   
     	} else {
+    		$out .= '
+    			<div class="modal-header">
+                <h3 class="modal-title">'.$r->listing_name.'</h3>
+                </div> <!-- modal-header -->
+                <div class="modal-body">
+    			';
     		$out .= '<div role="form">';
     		$out .= form_open_multipart('/administrator/products/add');
     		 
     		//$out .= form_hidden('product_id', $r->product_id);
     		$out .= form_hidden('user_id', $r->user_id);
+    		
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="user_id">User</label><br />';
+    		$out .= '<select name="user_id">';
+    		$users = $this->user->fetchAll();
+    		foreach($users as $user){
+    			 
+    			$out .= '<option value="'.$user->user_id.'">'.$user->username.'</option>';
+    			 
+    		}
+    		$out .= '</select>';
+    		$out .= '</div>';
     		
     		$out .= '<div class="form-group">';
         	$out .= '<select name="product_type_id">';

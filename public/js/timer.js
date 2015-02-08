@@ -3,7 +3,7 @@ $(document).ready(function(){
 		$('.timer').each(function() {
 			var timer_id = $(this).attr('id');
 			var t = $(this);
-			$.ajax('/search/ajax_timer/'+timer_id)
+			$.ajax('/timer/ajax_timer/'+timer_id)
 			.done(function(data) {
 				$(t).html(data);
         		if(data.indexOf('Expired') > 0){

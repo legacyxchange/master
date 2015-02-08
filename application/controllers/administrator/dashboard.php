@@ -16,13 +16,14 @@ class Dashboard extends CI_Controller {
         $this->load->model('reviews_model', 'reviews', true);
         $this->load->helper('form');
         $this->load->helper('url');
+        $this->functions->checkSudoLoggedIn();
     }
     
-	public function index() {
+	public function index() { 
 		
-        $this->functions->checkLoggedIn();
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js');
         
+        $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
         $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/dashboard', $body);
         $this->load->view('administrator/template/footer');

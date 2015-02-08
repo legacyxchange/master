@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$('.edit_button').click(function(e){
 		e.preventDefault();
-		var listing_id = $(this).attr('listing_id');
+		var listing_id = $(this).attr('id');
 		
 	    $.ajax( "/administrator/listings/listingsform/"+listing_id)
 	    .done(function( data ) { console.log(data)
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	
 	$('.admin_edit_button').click(function(e){
 		e.preventDefault();
-		var listing_id = $(this).attr('listing_id');
+		var listing_id = $(this).attr('id');
 		
 	    var request = $.ajax({
 		  url: "/admin/listings/listingsform/"+listing_id,
@@ -42,7 +42,18 @@ $(document).ready(function(){
 	        alert( "error" );
 	    })
 	});
-	$('.delete_button').click(function(e){
+	$('.add_new_butt').click(function(e){
+		e.preventDefault();
+		
+	    $.ajax("/administrator/listings/listingsform")
+	    .done(function( data ) { 
+	      $('#listingsModal .modal-content').html(data);
+	    })
+	    .fail(function() {
+	        alert( "error" );
+	    })
+	});
+	$('.admin_delete_button').click(function(e){
 		e.preventDefault();
 		var uri = $(this).attr('href');
 		
@@ -63,7 +74,29 @@ $(document).ready(function(){
 		});
 		$('#confirm_no').click(function(e){
 			$('modalConfirm').hide();
-		});
+		});		
+	});
+	$('.delete_button').click(function(e){
+		e.preventDefault();
+		var uri = $(this).attr('href');
 		
+		$('#confirm_yes').click(function(e){
+			//console.log(uri)
+			$.ajax({
+				  type: "get",
+				  url: uri,
+				  dataType: 'html',
+				  //data: { product_id: $('#product_id').val(), username: $('#username').val(), message: $('#chat_send').val(), karateToken: $('input[name=karateToken]').val() }
+				})		
+			.done(function(data) { //console.log(data)
+				location.href="/administrator/listings";
+			})
+			.fail(function() {
+				console.log( "error" );
+			});
+		});
+		$('#confirm_no').click(function(e){
+			$('modalConfirm').hide();
+		});		
 	});
 });

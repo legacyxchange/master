@@ -40,7 +40,7 @@ $(function () {
         setTimeout(function () { $('#user_email').focus(); }, 1000);
     });
 	
-	$('.menu_custom_item').click(function(){
+    $('.menu_custom_item').click(function(){
 		var val=$(this).text();
 		var html='';
 			html=val;
@@ -60,15 +60,57 @@ $(function () {
 	$("div.origional_item_container_main").mouseleave(function() {
 		$('.origional_item_container').hide();
 	});
+<<<<<<< HEAD
 		
 	$('.child_thumb').click(function(){
 		var link=$(this).attr('src');
 		$('.thumbnail_image img').attr('src',link);
+=======
+	$('#secondary_item').hover(function(){
+		$('.secondary_item_container').show();
+		//$('.page-item .dropdown-menu').show();
+>>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 	});
 	
+	$('.secondary_item_close .fa').click(function(event){
+	event.stopPropagation();
+		$('.secondary_item_container').hide();
+	});
 	
+	$("div.secondary_item_container_main").mouseleave(function() {
+		$('.secondary_item_container').hide();
+	});
+	$('#store_item').hover(function(){
+		$('.store_item_container').show();
+		//$('.page-item .dropdown-menu').show();
+	});
 	
+	$('.store_item_close .fa').click(function(event){
+	event.stopPropagation();
+		$('.store_item_container').hide();
+	});
 	
+	$("div.store_item_container_main").mouseleave(function() {
+		$('.store_item_container').hide(); 
+	});
+	$('#flash_item').hover(function(){
+		$('.flash_item_container').show();
+		//$('.page-item .dropdown-menu').show();
+	});
+	
+	$('.flash_item_close .fa').click(function(event){
+	event.stopPropagation();
+		$('.flash_item_container').hide();
+	});
+	
+	$("div.flash_item_container_main").mouseleave(function() {
+		$('.flash_item_container').hide(); 
+	});
+	
+	$('.child_thumb').click(function(){
+		var link=$(this).attr('src');
+		$('.thumbnail_image img').attr('src',link);
+	});
 	
     $('#forgotPasswordButton').click(function (e) {
     	e.preventDefault();
@@ -156,7 +198,6 @@ $.fn.preload = function () {
         $('<img/>')[0].src = this;
     });
 }
-
 
 /**
  * functions dynamically adjust elements on page
@@ -446,11 +487,14 @@ global.userlogin = function ()
     }
     
     $.post("/welcome/login", $('#loginform').serialize(), function (data) { 
-    	console.log(data);
-    	if (data.status == 'SUCCESS' && data.permissions > 0){
-        	window.location.href = '/administrator/dashboard';
-        }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){       	 
-            window.location.href = '/admin/dashboard';
+    	if (data.status == 'SUCCESS' && data.permissions > 0){ 
+        	window.location.href = data.redirect;
+        }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
+        	if(data.redirect != null){
+        		window.location.href = data.redirect;
+        	}else{
+        		window.location.href = '/admin/dashboard';
+        	}       
         }
         else{
             global.renderAlert(data.msg, undefined, 'loginAlert');
@@ -458,6 +502,14 @@ global.userlogin = function ()
     }, 'json'); 
 }
 
+global.setRedirectUri = function(_uri){
+	
+	$.post("/welcome/setRedirectUri", {uri:_uri,karateToken:'549dd4d3b74fff6275a92d0cebea6990'}, function (data) { 
+		$('#myLegacy').modal('show');
+		$('#myLegacy .alerts').html('<div class="row"><h3 class="alert alert-notice" style="text-align:center;">You must login first.</h3></div>');
+		
+    }, 'json');
+}
 /*global.loadSignup = function (loadModal)
 {
     if (loadModal == undefined)

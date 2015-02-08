@@ -15,6 +15,10 @@ class ShoppingCart extends CI_Controller {
 
         $this->load->model('user_model', 'user', true);
         
+        $this->load->model('user_model', 'user', true);
+        
+        $this->load->model('user_addresses_model', 'user_addresses', true);
+        
         $this->load->model('products_model', 'product', true);
         
         $this->load->model('product_images_model', 'product_image', true);
@@ -27,13 +31,24 @@ class ShoppingCart extends CI_Controller {
     }
 
     public function index($listing_id = null) {
+
+    	$this->functions->checkLoggedIn();
     	$body['title'] = 'Shopping Cart';
     	
         try {
-        	if($listing_id)
+        	if($listing_id){
+        		$user_id = $this->session->userdata['user_id'];
             	$body['listings'] = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id));
-        	else 
+            	$user = $this->user_addresses->fetchAll(array('where' => 'user_id = '.$user_id));
+            	if(!empty($user)){
+            		$body['user'] = $user;
+            	}else{
+            		$body['user'] = $this->user->fetchAll(array('where' => 'user_id = '.$user_id));
+            	}           	
+            	
+        	}else{ 
         		$body['listings'] = $this->listing->fetchAll();
+        	}
         } catch (Exception $e) {
             $this->functions->sendStackTrace($e);
         }

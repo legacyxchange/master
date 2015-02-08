@@ -8,23 +8,36 @@ include_once 'headinclude.php';
 ?>
 
 <?= $headscript ?>
-
+<?php //var_dump($_SESSION); ?>
+<?php if(!empty($_SESSION['showLogin']) && $_SESSION['showLogin'] == true): ?>
+<script>
+$(document).ready(function(e){
+	$('#myLegacy').modal('show');
+});
+</script>
+<?php $_SESSION['showLogin'] = null; ?>	
+<?php endif; ?>
 <style>
-.followBtn{display:none;}
+.followBtn{display:none;} 
 </style>
 </head>
 
 <body<?= (empty($onload)) ? null : " onload=\"{$onload}\"" ?> class="landing">
     <!--header start-->
-    <div id="header" class="headerbg">
-        <div class="container" style="margin-top-40px;height:80px;">
-        	<?php $logoLink = ($this->session->userdata('logged_in')) ? '/profile' : '/'; ?>
-            <div id="logo" class="col-lg-1 col-md-4 col-xs-12">
-                <a href="<?php echo $logoLink;?>">
-                    <img style="margin-top:-10px;margin-bottom:-10px;margin-left:-20px;" src="/public/images/double_helix.png" width="260" height="82" />
-                </a>
-            </div>
-                <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
+    <!-- INGINES -->
+    <nav role="navigation" class="navbar navbar-default navbar-static-top">
+      <div class="container" style="max-width:1266px;">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand"><?php echo $this->functions->getSiteName();?></a>
+        </div>
+       <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+           <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
             <div class="user_right dropdown col-lg-2 col-md-4 col-xs-12">
                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa-stack fa-2x">
@@ -47,46 +60,71 @@ include_once 'headinclude.php';
                         </span> 
                         <i class="fa fa-caret-down icon_color"></i>
                 </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/user">My Profile</a></li>
+                <ul class="dropdown-menu" role="menu">                   
                     <li><a href="/profile">My Account</a></li>
+                    <li><a href="/admin/dashboard">My Dashboard</a></li>
                     <li><a href="/welcome/logout">Logout</a></li>
                 </ul>
             </div>
             <?php else:?>
-            <button style="margin-top: 14px;height:42px;margin-left:2px;" class='btn btn-default pull-right' id='loginXSBtn'><i class='fa fa-sign-in'> Login </i></button>
-            <?php endif;?>
-               
-            <div class="landing_page_top_seach col-lg-2 col-md-4 col-xs-12">
-                <div class="form-search">
-                	<?php echo form_open('/search/index', false); ?>
-                    <input type="text" class="input-text" placeholder="Search products, companies, etc." name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
-                    <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
-                    <button class="button" title="Search" type="submit"><strong><i class="fa fa-search"></i></strong></button>
-                    <?php echo form_close(); ?>
-                </div>
-            </div>
-            <div class="user_left top_menu dropdown col-lg-6 col-md-4 col-xs-12">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                     Sports
-                     <i class="fa fa-caret-down icon_color"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="/user">Baseball</a></li>
-                    <li><a href="/profile">Football</a></li>
-                    <li><a href="/profile">Basketball</a></li>
-                    <li><a href="/profile">Soccer</a></li>
-                    <li><a href="/welcome/logout">Hockey</a></li>
-                </ul>
-                <a href="#">Hot Now</a>&nbsp;&nbsp;
-                <a href="/deals">Deals</a>&nbsp;&nbsp;
-                <a href="/deals">Celebrities</a>&nbsp;&nbsp;
-                <a href="/deals">Entertainment</a>&nbsp;&nbsp;
-                <a href="/info">Info</a>&nbsp;&nbsp;
-               	<a href="/contact">Contact</a>                   
-            </div>
-       </div>
-   </div>
-   <!--header end-->
+            <ul class="nav navbar-nav">
+                 <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Legacy</a></li>
+            </ul>
+            <?php endif;?>   
+          
 
-<?php include_once 'alert.php'; ?>
+          <ul class="nav navbar-nav navbar-right inline">
+            <li>
+			<span class="sel-item">
+                <div class="dropdown">
+				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="max-width:80px;">
+					Explore
+					<span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/listings/original " class="menu_custom_item">Original Items</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="/listings/secondary" class="menu_custom_item">Secondary Items</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Stores</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Sell</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Buy</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Rates</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Profit</a></li>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Promotions</a></li>
+				  </ul>
+				</div>
+                    
+			</span>
+			</li>
+			<li style="height:54px;max-width:320px;">			
+			        <?php echo form_open('/search/index', false); ?>
+                    <div class="input-group stylish-input-group" style="max-width:172px;">
+                    <input style="height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
+					  <span class="input-group-addon">
+                    <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
+					</span>
+					</div>
+                    <?php echo form_close(); ?>	
+                    <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>		
+			</li>
+            
+            <li><a href="/mark-item">Mark Item</a></li>
+			<li><a href="/help">Help</a></li>
+			
+			<?php if ($this->session->userdata('logged_in')) : ?> 
+			<li>
+			    <a href="/shopping-cart">
+			        <i style="font-size:20px;" class="fa fa-shopping-cart"></i>
+			        <div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
+			    </a>
+			</li>	
+			<?php else:?>
+			<li style="text-align:center;margin-top:-10px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register<br/>Free</a></li>
+			<li class=""><a href="/shopping-cart" ><i class="fa fa-shopping-cart"></i></a></li>
+			<?php endif;?>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <?php //include_once 'alert.php'; ?>
+    <?php require_once 'application/views/partials/flash_messages.php';?>

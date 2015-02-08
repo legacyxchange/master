@@ -102,10 +102,10 @@ class Clideals extends CI_Controller {
     
 	protected function setDb(){
 		
-		$hostname = '192.241.229.130';
-    	$username = 'intranet';
-    	$password = '$livemas7am';
-        $database = 'gstDEV';
+		$hostname = 'localhost';
+    	$username = 'root';
+    	$password = '';
+        $database = 'gstdev';
 		try {
 			if(!isset($this->db))
     		    $this->db = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);

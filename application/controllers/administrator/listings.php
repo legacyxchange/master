@@ -22,21 +22,28 @@ class Listings extends CI_Controller {
         $this->load->model('listings_model', 'listing', true);
         
         $this->load->library('library');
+        
+        $this->load->library('pagination');
+        
+        $this->functions->checkSudoLoggedIn();
     }
 
-    public function index(listing_$id = null) {
-        if ($this->session->userdata('logged_in') == false || $this->session->userdata['permissions'] < 1){
-        	header('Location: /'); exit;
-        }
+    public function index($listing_id = null) {
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js listings.js');
+        $header['headscript'] = $this->functions->jsScript('listings.js');
         
-        if(is_null($listing_id)){        	
+        if(!is_null($listing_id)){        	
         	try {
+        		$pagination_config['base_url'] = '/administrator/listings/index//'.$page;
+        		$pagination_config['total_rows'] = $this->listing->countAll();
+        		$pagination_config['per_page'] = 5;
+        		$pagination_config['cur_page'] = $page;
+        		$pagination_config['use_page_numbers'] = TRUE;
+        		$this->pagination->initialize($pagination_config);
         		$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page)); 
-        		
+        			
         		foreach($listings as $listing){ 
         			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];        			
         		}
@@ -45,11 +52,20 @@ class Listings extends CI_Controller {
         		$this->functions->sendStackTrace($e);
         	}
         }else{
-        	$listings = $this->listing->fetchAll('listing_id = '.$listing_id);        	
+        	$pagination_config['base_url'] = '/administrator/listings/index//'.$page;
+        	$pagination_config['total_rows'] = $this->listing->countAll();
+        	$pagination_config['per_page'] = 5;
+        	$pagination_config['cur_page'] = $page;
+        	$pagination_config['use_page_numbers'] = TRUE;
+        	$this->pagination->initialize($pagination_config);
+        	$listings = $this->listing->fetchAll(array('orderby' => 'listing_id DESC', 'limit' => $pagination_config['per_page'], 'offset' => $page));  
+        	foreach($listings as $listing){
+        		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
+        	}   	
         }
-        
+       
         $body['listings'] = $listings;
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
+        $body['administrator_menu'] = $this->load->view('administrator/administrator_menu', null, true);
         $this->load->view('administrator/template/header', $header);
         $this->load->view('administrator/listings', $body);
         $this->load->view('template/footer');
@@ -57,7 +73,7 @@ class Listings extends CI_Controller {
     
     public function add() {   
     	if(!$listing_id)
-    		header('Location: /admin/dashboard');
+    		header('Location: /administrator/dashboard');
     	
     	if (!empty($_POST)) {   		
     		try { 
@@ -67,7 +83,7 @@ class Listings extends CI_Controller {
 
     			$this->session->set_flashdata('SUCCESS', 'Your new listing has been added!');
     
-    			header('Location: /admin/listings'); exit; 
+    			header('Location: /administrator/listings'); exit; 
     		   
     	    } catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
@@ -80,7 +96,7 @@ class Listings extends CI_Controller {
     
     public function edit($listing_id) {
     	if(!$listing_id)
-    		header('Location: /admin/dashboard');
+    		header('Location: /administrator/dashboard');
     
     	$body['user_id'] = $this->session->userdata['user_id'];
     	
@@ -89,12 +105,12 @@ class Listings extends CI_Controller {
     			$this->listing->setPostStartAndEndTimes();
     			
     			$where = 'listing_id = "'.$listing_id.'"';
-    			 
+    			
     			$this->listing->save($where);
     
     			$this->session->set_flashdata('SUCCESS', 'Your listing has been updated!');
-    
-    			header('Location: /admin/listings'); exit;
+               
+    			header('Location: /administrator/listings'); exit;
     
     		} catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
@@ -113,7 +129,7 @@ class Listings extends CI_Controller {
     	 
     	$this->session->set_flashdata('SUCCESS', 'Your listing has been deleted.');
     	
-    	header('Location: /admin/listings'); exit;
+    	header('Location: /administrator/listings'); exit;
     }
     
     public function listingsform($listing_id = null){    	
@@ -130,9 +146,10 @@ class Listings extends CI_Controller {
                 <div class="modal-body">
     			';
     			$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/listings/edit/'.$r->listing_id);    			
+    			$out .= form_open_multipart('/administrator/listings/edit/'.$r->listing_id);    			
         		$out .= form_hidden('listing_id', $r->listing_id);
-        		$out .= form_hidden('user_id', $r->user_id);        		
+        		$out .= form_hidden('user_id', $r->user_id);    
+        		
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_id">Product</label><br />';
         		$out .= '<select name="product_id">';    		
@@ -146,10 +163,7 @@ class Listings extends CI_Controller {
         		}
         		$out .= '</select>';      		
         		$out .= '</div>';       		
-    			$out .= '<div class="form-group">';
-    			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('style' => 'width:80%;', 'name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
-    			$out .= '</div>';   	 	
+    			 	 	
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
     			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time', 'value' => date('Y-m-d', strtotime($r->start_time))));
@@ -183,13 +197,23 @@ class Listings extends CI_Controller {
                 <div class="modal-body">
     	    ';
     		$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/listings/add');    			
+    			$out .= form_open_multipart('/administrator/listings/add');    			
         		$out .= form_hidden('listing_id', $r->listing_id);
-        		$out .= form_hidden('user_id', $this->session->userdata['user_id']);        		
+        		$out .= '<div class="form-group">';
+        		$out .= '<label for="user_id">User</label><br />';
+        		$out .= '<select name="user_id">';
+        		$users = $this->user->fetchAll();
+        		foreach($users as $user){
+        			
+        				$out .= '<option value="'.$user->user_id.'">'.$user->username.'</option>';
+        			
+        		}
+        		$out .= '</select>';
+        		$out .= '</div>';       		
         		$out .= '<div class="form-group">';
         		$out .= '<label for="product_id">Product</label><br />';
         		$out .= '<select name="product_id">';    		
-        		$products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));
+        		$products = $this->product->fetchAll();
     		    foreach($products as $product){      			
         			if($product->product_id == $r->product_id) {  
         				$out .= '<option selected value="'.$product->product_id.'">'.$product->name.'</option>';
@@ -199,10 +223,7 @@ class Listings extends CI_Controller {
         		}
         		$out .= '</select>';      		
         		$out .= '</div>';       		
-    			$out .= '<div class="form-group">';
-    			$out .= '<label for="listing_name">Listing Name</label><br />';
-    			$out .= form_input(array('name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => $r->listing_name));
-    			$out .= '</div>';   	
+    			
     			$out .= '<div class="form-group">';
     			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
     			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time'));

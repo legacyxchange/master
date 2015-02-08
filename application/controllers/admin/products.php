@@ -13,23 +13,19 @@ class Products extends CI_Controller {
 
         $this->load->model('user_model', 'user', true);
         
-        $this->load->model('profile_model', 'profile', true);
-        
         $this->load->model('products_model', 'product', true);
         
         $this->load->model('product_types_model', 'product_type', true);
         
         $this->load->library('library');
+        
+        $this->functions->checkLoggedIn();
     }
 
-    public function index(product_$id = null) {
-    	if ($this->session->userdata('logged_in') == false){
-        	header('Location: /'); exit;
-        }
+    public function index($product_id = null) {
+    	$body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
-        
-        $header['headscript'] = $this->functions->jsScript('jquery-1.6.min.js jquery.reveal.js products.js');
+        $header['headscript'] = $this->functions->jsScript('products.js');
         
         if(is_null($product_id)){
         	try {
@@ -37,8 +33,8 @@ class Products extends CI_Controller {
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
-        }else{
-        	$products = $this->product->fetchAll('product_id = '.$product_id);        	
+        }else{ 
+        	$products = $this->product->fetchAll(array('where' => 'product_id = '.$product_id));        	
         }
         
         foreach($products as $product){        	
@@ -53,13 +49,25 @@ class Products extends CI_Controller {
         $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
         $this->load->view('admin/template/header', $header);
         $this->load->view('admin/products', $body);
-        $this->load->view('template/footer');
+        $this->load->view('admin/template/footer');
     }
     
     public function add() {    	 
     	if (!empty($_POST)) {
     		$params = $_POST;
     		
+    		if($_POST['list-item-now'] != 'on'){
+    			unset($_POST['listing_id']);
+    			unset($_POST['start_date']);
+    			unset($_POST['start_time']);
+    			unset($_POST['end_date']);
+    			unset($_POST['end_time']);
+    			unset($_POST['buynow_price']);
+    			unset($_POST['reserve_price']);
+    			unset($_POST['list-item-now']);
+    			unset($_POST['submit']);
+    		}
+    		var_dump($_POST); exit;
     		try {
     		
     		$product_id = $this->product->save(); 
@@ -87,18 +95,21 @@ class Products extends CI_Controller {
     	return $this->index();
     }
     
-    public function edit($product_id) {
+    public function edit($product_id) { 
     	if(!$product_id)
     		header('Location: /admin/dashboard');
     
     	$body['user_id'] = $this->session->userdata['user_id'];
-    	
+    	//var_dump($body); exit;
     	if (!empty($_POST)) {
     		$params = $_POST;
-
-    		//var_dump($_POST, $_FILES['userfile']['name']); exit;
+    		
+            if(!empty($_POST['userfile'])){
+            	//var_dump($_POST['userfile']); exit;
+            }
     		if(!empty($_FILES['userfile']['name'])){
-    			
+    			//var_dump($params); exit;
+    			//var_dump($_FILES); exit;
     			$ret = $this->doUpload($product_id);
     			//var_dump($ret); exit;
     			if(!empty($ret['file_name'])){
@@ -130,7 +141,7 @@ class Products extends CI_Controller {
     		header('Location: /'); exit;
     	}
     	 
-    	$this->product->delete('product_id', $product_id);
+    	//$this->product->delete('product_id', $product_id);
     	 
     	$this->session->set_flashdata('SUCCESS', 'Your data has been updated.');
     	echo $this->index(); exit;
@@ -148,7 +159,7 @@ class Products extends CI_Controller {
                 <div class="modal-body">
     			';
     			$out .= '<div role="form">';    	        
-    			$out .= form_open_multipart('/admin/products/edit/'.$r->product_id); 
+    			$out .= form_open_multipart('/admin/products/edit/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();')); 
     			
         		$out .= form_hidden('product_id', $r->product_id);
         		$out .= form_hidden('user_id', $r->user_id);
@@ -195,9 +206,10 @@ class Products extends CI_Controller {
     			$out .= '</div>';
     			$out .= '<div class="form-group">';
     			
-    			$out .= '<input type="file" name="userfile" size="20" />'; 
+    			//$out .= form_upload(array('type' => 'file', 'id' => 'file-select', 'style' => 'width:80%;', 'name' => 'name', 'placeholder' => 'Image', 'value' => ''));
+    			$out .= '<input type="file" id="userfile" name="userfile" size="20" onSubmit="return products.submitForm();"/>'; 
     			
-    		    $out .= 'Current Image: <img src="/admin/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
+    		    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     			
     			$out .= '</div>';   							
     			//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
@@ -213,7 +225,8 @@ class Products extends CI_Controller {
                 <div class="modal-body">
     	    ';
     		$out .= '<div role="form">';
-    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id);
+    		$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form', 'onSubmit' => 'return products.submitForm();'));
+    		//$out .= form_open_multipart('/admin/products/add/'.$r->product_id, array('name' => 'product_edit_form', 'id' => 'product_edit_form')); 
     		 
     		$out .= form_hidden('product_id', $r->product_id);
     		$out .= form_hidden('user_id', $this->session->userdata['user_id']);
@@ -253,11 +266,39 @@ class Products extends CI_Controller {
     		$out .= '<div class="form-group">';
     		$out .= '<input type="file" name="userfile" size="20" />';
     		
-    	    $out .= 'Current Image: <img src="/admin/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
+    	    $out .= 'Current Image: <img src="/products/productimg/100/'.$product_id.'/'.$r->image.'" />';
     		
     		$out .= '</div>';
-    		//$out .= '<input type="button" class="sign_cancel" value="Cancel" />';
+    		
+    		$out .= '<div class="listing-addon" style="display:none;">';
+    		$out .= form_hidden('listing_id', null);
+    		
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="start_date">Start Date</label>  <label style="margin-left:100px;" for="start_time">Start Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Date', 'value' => date('Y-m-d', strtotime(date('Y-m-d')))));
+    		$out .= form_input(array('type' => 'time', 'name' => 'start_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime(date('H:i:s')))));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="end_date">End Date</label>  <label style="margin-left:108px;" for="end_time">End Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'end_date', 'placeholder' => 'End Date', 'value' => date('Y-m-d', strtotime(date('Y-m-d').' + 1 day'))));
+    		$out .= form_input(array('type' => 'time', 'name' => 'end_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime(date('H:i:s')))));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="buynow_price">Buy Now Price</label><br />';
+    		$out .= '$'.form_input(array('name' => 'buynow_price', 'placeholder' => 'Buy Now Price', 'value' => number_format($r->buynow_price, 2)));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="reserve_price">Reserve Price</label><br />';
+    		$out .= '$'.form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => number_format($r->reserve_price, 2)));
+    		$out .= '</div>';
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="list-item-now">List this Product</label><br />';
+    		$out .= '<input onclick="toggleAddon(this)" type="checkbox" name="list-item-now" />';
+    		$out .= '</div>';
+    		//$out .= '<input type="button" class="sign_list_product" value="List Product" onclick="toggleAddon()" />';
     		$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
+    		//$out .= '<input type="button" class="sign_save">Save</button>';
     		$out .= '</form>';
     		$out .= '</div>';
     	} 
@@ -295,7 +336,7 @@ class Products extends CI_Controller {
 
             if (empty($img)) {
                 $path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
-                $img = 'dude.gif';
+                $img = 'no_photo.png';
             }
 
             $is = getimagesize($path . $img);
