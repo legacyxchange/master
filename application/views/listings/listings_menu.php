@@ -1,11 +1,7 @@
 <!-- page top menu -->
 		<div class="page-menu">
 			<div class="row">
-<<<<<<< HEAD
-				<div class="col-lg-6">
-=======
 				<div class="col-lg-12" style="border:1px solid #ccc; background:#d4eee6;">
->>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 					<span class="page-item">
 						<ul class="nav nav-tabs">
 							<li class="dropdown">
@@ -70,21 +66,6 @@
 									</li>
 								</ul>
 							</li>
-<<<<<<< HEAD
-							<li><a href="#">SECONDARY ITEMS</a></li>
-						</ul>
-					</span>
-				</div>
-				<div class="col-lg-6 ">
-					<div class="filter-item">
-						<form>
-							<span> <input type="text" class="form-control"
-								placeholder="SELLER">
-							</span> 
-							<span class="sort-list">
-								<ul class="nav nav-tabs">
-									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Sort<span class="caret"></span></a>
-=======
 							<li>
 							    <li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -279,7 +260,6 @@
 							<span class="sort-list">
 								<ul class="nav nav-tabs">
 									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
->>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 										<ul class="dropdown-menu">
 											<li><a href="#">For Auction</a></li>
 											<li><a href="#">For Sale</a></li>
@@ -293,11 +273,6 @@
 						</form>
 					</div>
 				</div>
-<<<<<<< HEAD
-			</div>
-		</div>
-<!-- End page top menu -->
-=======
 			</div>			
 		</div>
 <!-- End page top menu -->
@@ -309,4 +284,3 @@
   						<input type="submit" value="GO" class="form-submit" />
 						<?php echo form_close(); ?>
     		</div>
->>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9

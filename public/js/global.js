@@ -60,16 +60,9 @@ $(function () {
 	$("div.origional_item_container_main").mouseleave(function() {
 		$('.origional_item_container').hide();
 	});
-<<<<<<< HEAD
-		
-	$('.child_thumb').click(function(){
-		var link=$(this).attr('src');
-		$('.thumbnail_image img').attr('src',link);
-=======
 	$('#secondary_item').hover(function(){
 		$('.secondary_item_container').show();
 		//$('.page-item .dropdown-menu').show();
->>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 	});
 	
 	$('.secondary_item_close .fa').click(function(event){
