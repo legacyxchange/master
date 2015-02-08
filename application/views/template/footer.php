@@ -215,6 +215,73 @@
 	</div>
 </div>
 
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
+	aria-labelledby="paymentModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">LegacyXchange Payment</h4>
+			</div>
+			<div class="alerts">
+            <?php require 'application/views/partials/flash_messages.php';?>
+            </div>
+			<div class="modal-body">
+				<div class="row">
+					
+					<div class="col-lg-12">
+						<div class="reg-title">
+							<h4>Checkout</h4>							
+						</div>
+						<?php echo form_open('#', array('name' => 'paymentform', 'id' => 'paymentform'))?>
+        				    
+        				<div class="form-group">
+							<label for="fname">First Name</label> <input type='text'
+								class='form-control' name='firstName' id='firstName' value=""
+								placeholder='FIRST NAME' onchange="global.checkFirstName();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lname">Last Name</label> <input type='text'
+								class='form-control' name='lastName' id='lastName' value=""
+								placeholder='LAST NAME' onchange="global.checkLastName();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lname">Credit Card Number</label> 
+							<input type='text' class='form-control' name='credit_card_number' id='credit_card_number' value="" placeholder='Credit Card Number' onchange="global.checkCreditCardNumber();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<b>By clicking "Save" you agree that:</b>
+							<ul class="terms">
+								<li>You accept our <a href="/terms-of-service">Terms</a> and <a
+									target="_blank" href="/privacy">Privacy Policy</a></li>
+								<li>You may receive communications from LegacyXChange</li>
+								<li>You are at least 18 years of age</li>
+							</ul>
+						</div>												  
+        				<?php echo form_close();?>
+        				<div class="form-action">
+							<button type="button" class="btn btn-primary btn-sm"
+								id='submitPaymentBtn'>Continue</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="modal fade" id="advancedSearchModal" tabindex="-1"
 	role="dialog" aria-labelledby="advancedSearchLabel" aria-hidden="true">
 	<div class="modal-dialog">

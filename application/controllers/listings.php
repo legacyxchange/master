@@ -27,6 +27,8 @@ class Listings extends CI_Controller {
         
         $this->load->model('bidding_model', 'bidding', true);
         
+        $this->load->model('bid_tracking_model', 'bid_tracking', true);
+        
         $this->load->library('cart');
         
         $this->load->helper('form');
@@ -215,19 +217,14 @@ class Listings extends CI_Controller {
     	$_POST['user_id'] = $user_id = $this->session->userdata['user_id'];
     	$_POST['listing_id'] = $listing_id;
     	$query = $this->db->query('select * from bid_tracking where user_id = '.$user_id.' AND listing_id = '.$listing_id);
-    	$tBid = $query->result()[0]->tracking;
+    	$tracking = $query->result()[0]->tracking;
     	$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$listing_id))[0];
     	$reserve_price = $listing->reserve_price;
     
-        var_dump($_POST, $tBid, $listing); exit;
+        //var_dump($_POST, $tracking, $listing); exit;
     
-    	if($bid > $listing->minimum_bid && $bid > $top_bid){
-    		// add bid to db
-    		$lid = $this->bid_tracking->save();
-    		return $this->product($listing->product_id);
-    	} else {
-    			 
-    	}
+    	$btid = $this->bid_tracking->save();
+    	return $this->product($listing->product_id);
     }
     
     public function buynow($listing_id){
@@ -251,6 +248,6 @@ class Listings extends CI_Controller {
     		$this->cart->insert($data);
     	}
     	if($this->cart->total_items() > 1) { $c = $this->cart->total_items().' items'; }else{ $c = $this->cart->total_items().' item'; }
-    	echo ($c.'<br /><span style="position:relative;top:-8px;left:-3px;font-size:11px;">$'.number_format($this->cart->total(),2).'</span>'); exit;
+    	echo json_encode(array('status' => 'SUCCESS', 'message' => $c.'<br /><span style="position:relative;top:-8px;left:-3px;font-size:11px;">$'.number_format($this->cart->total(),2).'</span>')); exit;
     }
 }

@@ -72,10 +72,10 @@
 									Secondary Items<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#" id="origional_item">Secondary Items?</a>
-										<div class="origional_item_container_main">
-											<div class="origional_item_container" style="display: none;">
-												<div class="origional_item_close">
+									<li><a href="#" id="secondary_item">Secondary Items?</a>
+										<div class="secondary_item_container_main">
+											<div class="secondary_item_container" style="display: none;">
+												<div class="secondary_item_close">
 													<i class="fa fa-times-circle"></i>
 												</div>
 												<p>Secondary Items are items which have been DNA marked and
@@ -135,16 +135,16 @@
 									Stores<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#" id="origional_item">Store Items?</a>
-										<div class="origional_item_container_main">
-											<div class="origional_item_container" style="display: none;">
-												<div class="origional_item_close">
+									<li><a href="#" id="store_item">Store Items?</a>
+										<div class="store_item_container_main">
+											<div class="store_item_container" style="display: none;">
+												<div class="store_item_close">
 													<i class="fa fa-times-circle"></i>
 												</div>
 												<p>Stores Items are items which have been....
 												</p>
 												<p>LegacyXchange documents and follows strict
-													chain-of-custody procedures for all Original items.the
+													chain-of-custody procedures for all store items.the
 													documentation, as well as the DNA mark, is 100% verifiable.
 												</p>
 												<p>
@@ -195,16 +195,16 @@
 									Flash Sales<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#" id="origional_item">Flash Sale Items?</a>
-										<div class="origional_item_container_main">
-											<div class="origional_item_container" style="display: none;">
-												<div class="origional_item_close">
+									<li><a href="#" id="flash_item">Flash Sale Items?</a>
+										<div class="flash_item_container_main">
+											<div class="flash_item_container" style="display: none;">
+												<div class="flash_item_close">
 													<i class="fa fa-times-circle"></i>
 												</div>
 												<p>Flash Sale Items are items which have been...
 												</p>
 												<p>LegacyXchange documents and follows strict
-													chain-of-custody procedures for all Original items.the
+													chain-of-custody procedures for all flash items.the
 													documentation, as well as the DNA mark, is 100% verifiable.
 												</p>
 												<p>

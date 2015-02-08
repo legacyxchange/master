@@ -54,6 +54,7 @@
 	                                <div style="text-align:center;margin-top:20px;">
 										Buy Now Price: <span style="margin-right:10px;">$<?php echo number_format($listing->buynow_price,2);?></span>										
 										<button class="btn btn-primary btn-sm" token_name="<?php echo $this->security->get_csrf_token_name();?>" token_value="<?php echo $this->security->get_csrf_hash();?>" id="listing-buynow-button" value="<?php echo $listing->listing_id;?>">Buy</button>										
+									    <div id="buy_now_message">&nbsp;</div>
 									</div>
 	                                <?php endif;?>
 	                            </div>
