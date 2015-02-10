@@ -26,7 +26,7 @@ $(document).ready(function(e){
     <!--header start-->
     <!-- INGINES -->
     <nav role="navigation" class="navbar navbar-default navbar-static-top">
-      <div class="container" style="max-width:1018px;">
+      <div class="container">
         <div class="navbar-header">
           <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
             <span class="sr-only">Toggle navigation</span>
@@ -67,14 +67,17 @@ $(document).ready(function(e){
                 </ul>
             </div>
             <?php else:?>
-            <ul class="nav navbar-nav">
-                 <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Legacy</a></li>
-            </ul>
+            <!-- <ul class="nav navbar-nav">
+                 <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
+            </ul> -->
             <?php endif;?>   
           
 
-          <ul class="nav navbar-nav navbar-right inline">
-            <li>
+          <ul class="nav navbar-nav navbar-right inline" style="margin-right:0px;">
+          <?php if (!$this->session->userdata('logged_in')): ?>
+            <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
+          <?php endif;?>
+            <!-- <li>
 			<span class="sel-item">
                 <div class="dropdown">
 				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="max-width:80px;">
@@ -94,11 +97,11 @@ $(document).ready(function(e){
 				</div>
                     
 			</span>
-			</li>
+			</li> -->
 			<li style="height:54px;max-width:320px;">			
 			        <?php echo form_open('/search/index', false); ?>
                     <div class="input-group stylish-input-group" style="max-width:172px;">
-                    <input style="height:34px;type="text" class="input-text form-control" placeholder="Find Items, Shops" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <input style="height:34px;type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
                     <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
@@ -108,7 +111,7 @@ $(document).ready(function(e){
                     <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>		
 			</li>
             
-            <li><a href="/mark-item">Mark Item</a></li>
+            <li><a href="/news">News</a></li>
 			<li><a href="/help">Help</a></li>
 			
 			<?php if ($this->session->userdata('logged_in')) : ?> 
@@ -126,5 +129,8 @@ $(document).ready(function(e){
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <?php //include_once 'alert.php'; ?>
+    <div style="background:#ccc;height:3px;width:100%;">&nbsp;</div>
+    <div class="container">
+    <?php include APPPATH.'/views/partials/listings_menu.php'; ?>
+    </div>
     <?php require_once 'application/views/partials/flash_messages.php';?>

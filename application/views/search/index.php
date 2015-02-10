@@ -1,11 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<img style="width: 100%; margin-top: 0px;" class="img-responsive"
-	src="/public/images/b1.jpg" />
-<!--container start-->
 <section class="dark-bg ptb25">
 	<div class="container">
 		<div class="section-header" style="margin-top: -20px;">
+		    
 			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
+			<img src="/public/images/logo.gif" style="height:40px;text-align:center;"><br />
 				Original Items
 			</div>
 			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
@@ -34,6 +33,15 @@
         </div>
 	</div>
 </section>
+<div style="font-size:16px;color:#333;position:relative;z-index:1001;margin:-34px auto; padding-top:10px;padding-bottom:10px; background:#fff;text-align:center;display:block;" class="container">
+<i>Original Items have been marked with tracer materials that can be scientifically verified.  They are supplied to the originator 
+(owner/seller) solely for the purpose of creating items that can be guaranteed as 100% authentic.</i>
+</div>
+
+<img src='/public/images/game-slide.gif' />
+
+<!--container start-->
+
 <section style="height: 68px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>

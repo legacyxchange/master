@@ -16,7 +16,7 @@ class Functions extends PHPFunctions {
     private $ci;
     private $site_name = 'legacyXchange';
     public $useImage = TRUE;
-    private $site_logo = '<img src="/public/images/logo.png" />';
+    private $site_logo = '<img src="/public/images/logo.gif" />';
 
     public function __construct() {
         $this->ci = & get_instance();
