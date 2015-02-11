@@ -31,20 +31,21 @@
         <?php endforeach;?>
         <?php endif; ?>
         </div>
+        <div style="font-size:16px;color:#333;position:relative;z-index:1001;margin: 20px auto; margin-bottom:30px; padding-top:10px;padding-bottom:10px; background:#fff;text-align:center;display:block;" class="container">
+            <i>Original Items have been marked with tracer materials that can be scientifically verified.  They are supplied to the originator 
+               (owner/seller) solely for the purpose of creating items that can be guaranteed as 100% authentic.</i>
+		</div>
 	</div>
 </section>
-<div style="font-size:16px;color:#333;position:relative;z-index:1001;margin:-34px auto; padding-top:10px;padding-bottom:10px; background:#fff;text-align:center;display:block;" class="container">
-<i>Original Items have been marked with tracer materials that can be scientifically verified.  They are supplied to the originator 
-(owner/seller) solely for the purpose of creating items that can be guaranteed as 100% authentic.</i>
-</div>
 
-<img src='/public/images/game-slide.gif' />
+<img class="img-responsive" src='/public/images/game-slide.gif' />
 
 <!--container start-->
 
 <section style="height: 68px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>
+<div style="background:#f4f4f4;height:40px;text-align:center;padding-top:5px;padding-bottom:5px;" class=""><img src="/public/images/s2blogo.gif" /></div>
 <img style="width: 100%; margin-top: 0px; max-height: 180px;" class="img-responsive" src="/public/images/b2.jpg" />
 <section style="background: #f4f4f4; height: auto; width: 100%; font-family: Georgia;">
 	<div class="container-min" style="max-width: 966px; margin: 0 auto;">
