@@ -1469,9 +1469,9 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 
 .products-container-border{max-width:966px;margin:0 auto; border:1px solid #ccc;}
 .products-bgcolor{max-width:966px;margin:0 auto; background:#e9f3f7;clear:both;padding-bottom:10px;}
-.product-container-no-border-4{background:#fff;margin: 8px;width: 218px;height: 218px;border: 0px solid #ccc;}
-.product-container-border-4{background:#fff;margin: 8px;width: 218px;height: 218px;border: 1px solid #ccc;}
-.product-container-border-flash{background:#fff;margin: 8px;width: 218px;height: 218px;border: 1px solid #ccc;}
+.product-container-no-border-4{background:#fff;margin: 11px;width: 218px;height: 218px;border: 0px solid #ccc;}
+.product-container-border-4{background:#fff;margin: 11px;width: 218px;height: 218px;border: 1px solid #ccc;}
+.product-container-border-flash{background:#fff;margin: 11px;width: 218px;height: 218px;border: 1px solid #ccc;}
 .product-container-no-border-5{background:#fff;margin: 3px;width: 180px;height: 180px;border: 0px solid #ccc;}
 .product-container-border-5{background:#fff;margin: 3px;width: 180px;height: 180px;border: 1px solid #ccc;}
 .product-container-no-border-6{background:#fff;margin: 1px;width: 153px;height: 153px;border: 0px solid #ccc;}

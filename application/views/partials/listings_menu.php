@@ -67,16 +67,16 @@
 							<li>
 							    <li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									S2BExchange<span class="caret"></span>
+									S2BXchange<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#" id="secondary_item">S2BExchange Items?</a>
+									<li><a href="#" id="secondary_item">S2BXchange Items?</a>
 										<div class="secondary_item_container_main">
 											<div class="secondary_item_container" style="display: none;">
 												<div class="secondary_item_close">
 													<i class="fa fa-times-circle"></i>
 												</div>
-												<p>S2BExchange Items are items which have been DNA marked and
+												<p>S2BXchange Items are items which have been DNA marked and
 													Registered with LegacyXchange. Marking for original Items
 													is done either at the point when the item is created
 													(manufactured) or when it is signed or otherwise endorsed.
