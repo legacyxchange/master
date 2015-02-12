@@ -92,7 +92,7 @@
 				</ul>
 			</div>
 		</div>
-		<div style="text-align: center;color:#006a8a;">&copy; 2014 LegacyXChange</div>
+		<div style="text-align: center;color:#006a8a;">&copy; 2015 LegacyXChange, S2BXChange</div>
 	</div>
 </footer>
 <!--footer end-->
