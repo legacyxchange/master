@@ -4,7 +4,7 @@
 		<div class="section-header" style="margin-top: -20px;">
 		    
 			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
-			<img class="img-responsive" src="/public/images/logo.gif" style="height:35px;text-align:center;"><br />
+			<img class="img-responsive" src="/public/images/logo.gif" style="height:35px;text-align:center;margin:0 auto;"><br />
 				Original Items
 			</div>
 			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
@@ -45,7 +45,8 @@
 <section style="height: 68px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>
-<div style="background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class=""><img class="img-responsive" src="/public/images/s2blogo.gif" /></div>
+<div style="margin:0 auto;background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class="">
+<img style="margin:0 auto;" class="img-responsive" src="/public/images/s2blogo.gif" /></div>
 <section style="height: 220px; width: 100%; background: #00698a;border-top:3px outset #f4f4f4;border-bottom:4px inset #333;">
 	<div class="s2bheading" style="font-family:geargia;font-size:48px;color:#fff;text-align:center;">
 	   Sellers 2 Buyers
