@@ -43,7 +43,7 @@
 					<a href="/about#rates">Volume Sellers</a></li>					
 				</ul>
 			</div>
-			<div class="col-lg-3 col-sm-4" style="margin:0;">
+			<div class="col-lg-2 col-sm-4" style="margin:0;">
 				<div class="footer-links-heading">
 					<a href="/about">Partners</a>
 				</div>
@@ -70,7 +70,8 @@
 					<li><a href="/contact">Contact Us</a></li>
 					<li><a href="/faqs">FAQ's</a></li>
 				</ul>
-			
+			</div>
+			<div class="col-lg-2 col-sm-4">
 				<div class="footer-links-heading">
 					<a href="/corporate">Corporate</a>
 				</div>
@@ -92,7 +93,7 @@
 				</ul>
 			</div>
 		</div>
-		<div style="text-align: center;color:#006a8a;">&copy; 2015 LegacyXChange, S2BXChange</div>
+		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 LegacyXChange, S2BXChange</div>
 	</div>
 </footer>
 <!--footer end-->
