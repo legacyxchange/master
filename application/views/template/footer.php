@@ -33,12 +33,14 @@
 					<a href="/about">About</a>
 				</div>
 				<ul class="footer-menu">
-					<li><a href="/about#why-legacyxchange">Why legacyXchange</a></li>
+					<li><a href="/about#why-legacyxchange">Our Site</a></li>
 					<li><a href="/about#how-to-sell">Selling</a></li>
 					<li><a href="/about#how-to-buy">Buying</a></li>
-					<li><a href="/about#rates">Rates</a></li>
-					<li><a href="/about#stores">Store Front</a></li>
-					<li><a href="/about#news">News</a></li>
+					
+					<li style="line-height: 14px;"><a href="/about#stores">Store Fronts:</a><br/>
+					<a href="/about#rates">Retailers</a><br/>
+					<a href="/about#rates">Dealers</a><br/>
+					<a href="/about#rates">Volume Sellers</a></li>					
 				</ul>
 			</div>
 			<div class="col-lg-3 col-sm-4" style="margin:0;">
@@ -46,8 +48,7 @@
 					<a href="/about">Partners</a>
 				</div>
 				<ul class="footer-menu" style="width:400px;">
-					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities | Agents</a></li>
-					<li><a href="/dealers">Dealers</a></li>
+					<li><a href="/athletes-celebrities-agents">Athletes, Celebrities</a></li>
 					<li><a href="/manufacturers">Manufacturers</a></li>
 				</ul>
 			</div>
@@ -76,6 +77,7 @@
 				<ul class="footer-menu">
 					<li><a href="/careers">Careers</a></li>
 					<li><a href="/press">Press Release</a></li>
+					<li><a href="/press">Stock Quote</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">
