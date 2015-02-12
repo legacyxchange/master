@@ -84,17 +84,17 @@
 			<div class="store-img">
 				<img class="img-responsive" src="/public/images/rsampson.gif" width="174" />
 			</div>
-			<div class="store-text">store or image name</div>
+			<div class="store-text">Ralph Sampson Super Store</div>
 			
 			<div class="store-img">
 				<img class="img-responsive" src="/public/images/furniture-store.gif" width="174" />
 			</div>
-			<div class="store-text">store or image name</div>
+			<div class="store-text">The Vintage Mark Store</div>
 			
 			<div class="store-img">
 				<img class="img-responsive" src="/public/images/bgrich.gif" width="174" />
 			</div>
-			<div class="store-text">store or image name</div>
+			<div class="store-text">Bobby Grich Player's Stop</div>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 5%;">
 			<img class="img-responsive" src="/public/images/watches.gif" />

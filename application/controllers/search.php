@@ -56,7 +56,7 @@ class Search extends CI_Controller {
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js timer.js');
         
         if($iStr !== 'no matches'){ 
-        	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'orderby' => 'end_time ASC'));
+        	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'limit' => 5, 'orderby' => 'end_time ASC'));
         	//var_dump($this->db->last_query()); exit;
         	foreach($listings as $key=>$listing){ 
         		$listing->original = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 1'))[0];
