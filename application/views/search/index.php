@@ -4,7 +4,7 @@
 		<div class="section-header" style="margin-top: -20px;">
 		    
 			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
-			<img src="/public/images/logo.gif" style="height:35px;text-align:center;"><br />
+			<img class="img-responsive" src="/public/images/logo.gif" style="height:35px;text-align:center;"><br />
 				Original Items
 			</div>
 			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
@@ -45,7 +45,7 @@
 <section style="height: 68px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
 </section>
-<div style="background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class=""><img src="/public/images/s2blogo.gif" /></div>
+<div style="background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class=""><img class="img-responsive" src="/public/images/s2blogo.gif" /></div>
 <section style="height: 220px; width: 100%; background: #00698a;border-top:3px outset #f4f4f4;border-bottom:4px inset #333;">
 	<div class="s2bheading" style="font-family:geargia;font-size:48px;color:#fff;text-align:center;">
 	   Sellers 2 Buyers
@@ -81,31 +81,31 @@
 			<div style="width:174px;height:174px;">&nbsp;</div>
 			
 			<div class="store-img">
-				<img src="/public/images/rsampson.gif" width="174" />
+				<img class="img-responsive" src="/public/images/rsampson.gif" width="174" />
 			</div>
 			<div class="store-text">store or image name</div>
 			
 			<div class="store-img">
-				<img src="/public/images/furniture-store.gif" width="174" />
+				<img class="img-responsive" src="/public/images/furniture-store.gif" width="174" />
 			</div>
 			<div class="store-text">store or image name</div>
 			
 			<div class="store-img">
-				<img src="/public/images/bgrich.gif" width="174" />
+				<img class="img-responsive" src="/public/images/bgrich.gif" width="174" />
 			</div>
 			<div class="store-text">store or image name</div>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 5%;">
-			<img src="/public/images/watches.gif" />
+			<img class="img-responsive" src="/public/images/watches.gif" />
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img src="/public/images/sneakers.gif" />
+			<img class="img-responsive" src="/public/images/sneakers.gif" />
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img src="/public/images/jewelery.gif" />
+			<img class="img-responsive" src="/public/images/jewelery.gif" />
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img src="/public/images/electronics.gif" />
+			<img class="img-responsive" src="/public/images/electronics.gif" />
 		</div>
 	</div>
 </section>
@@ -172,7 +172,7 @@
 	</div>
 </section>
 <section style="background-color: #f4f4f4; height: auto; width: 100%; font-family: Georgia; margin-top: 100px; margin-bottom: 40px;">
-	<img src="/public/images/sports_image_bg.gif" width="100%" />
+	<img class="img-responsive" src="/public/images/sports_image_bg.gif" width="100%" />
 </section>
 <section style="height: 0px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>
