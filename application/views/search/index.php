@@ -31,7 +31,7 @@
         <?php endforeach;?>
         <?php endif; ?>
         </div>
-        <div style="font-size:16px;color:#333;position:relative;z-index:1001;margin: 20px auto; margin-bottom:30px; padding-top:10px;padding-bottom:10px; background:#fff;text-align:center;display:block;" class="container">
+        <div style="font-size:16px;color:#333;position:relative;z-index:1001;margin: 20px auto; margin-bottom:-27px; padding-top:10px;padding-bottom:10px; background:#fff;text-align:center;display:block;" class="container">
             <i>Original Items have been marked with tracer materials that can be scientifically verified.  They are supplied to the originator 
                (owner/seller) solely for the purpose of creating items that can be guaranteed as 100% authentic.</i>
 		</div>
