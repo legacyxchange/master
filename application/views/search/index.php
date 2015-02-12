@@ -4,7 +4,7 @@
 		<div class="section-header" style="margin-top: -20px;">
 		    
 			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
-			<img class="img-responsive" src="/public/images/logo.gif" style="height:35px;text-align:center;margin:0 auto;"><br />
+			<img class="img-responsiv" src="/public/images/logo.gif" style="height:35px;text-align:center;margin:0 auto;"><br />
 				Original Items
 			</div>
 			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
