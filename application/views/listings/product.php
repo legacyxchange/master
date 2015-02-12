@@ -1,7 +1,7 @@
 <?php if($listing):?> 	
 <section id="original-item" class="">
 	<div class="container product-page-container">
-	<?php require_once "listings_menu.php";?>
+	<?php //require_once "listings_menu.php";?>
 		<!-- content section -->
 		<div class="section-content">
 			<div class="col-lg-6">
