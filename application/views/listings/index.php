@@ -2,7 +2,7 @@
 	<div class="container product-page-container">
 		<!-- original items -->
 		<div class="container">
-			<?php require "listings_menu.php";?> 
+			<?php //require "listings_menu.php";?> 
 			<div class="section-content">
 			<?php if($listings): ?>
 				<div class="row">
