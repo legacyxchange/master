@@ -157,12 +157,17 @@
 					</div>
 				</div>
 			</div>
+			<?php $save = $listing->retail_price - $listing->sale_price;?>
 			<div style="margin-top: -19px; padding: 16px; width: 228px; background: #fff;" class="item-sale-info">
 				<div style="font-weight: bold;">
-					Was: <span style="background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center;">$<?php echo number_format($listing->retail_price,2); ?></span>
+				<!-- background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center; -->
+					WAS:&nbsp;&nbsp; <span style="">$<?php echo number_format($listing->retail_price,2); ?></span>
 				</div>
-				<div style="font-weight: bold; text-align: right;">
-					Now: <span style="color: #ff0000;">$<?php echo number_format($listing->sale_price,2); ?></span>
+				<div style="font-weight: bold; text-align:left;">
+					NOW: <span style="color: #000;">$<?php echo number_format($listing->sale_price,2); ?></span>
+				</div>
+				<div style="font-weight: bold; text-align:right;">
+					SAVE: <span style="color: #ff0000;">$<?php echo number_format($save,2); ?></span>
 				</div>
 				</div>
 			</div>
