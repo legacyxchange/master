@@ -3068,16 +3068,9 @@ h3.subtitle{font-size:24px; font-weight:normal; margin-bottom:15px; font-style:i
 .page-item  .dropdown-menu  .submenu{margin-bottom:15px;}
 .page-item  .dropdown-menu  .submenu  a{font-size:12px; padding:3px 10px; color:#006a8a; text-decoration:none;}
 .page-item  .dropdown-menu li{position:relative;}
-<<<<<<< HEAD
-.page-item  .dropdown-menu li .origional_item_container{position:absolute; left:0; top:0; width:300px; z-index:1005; background:#fff; border:solid 1px #ccc; border-radius:4px; padding:10px;}
-.origional_item_close{text-align:right;}
-.origional_item_close .fa{cursor:pointer;}
-.page-item  .dropdown-menu li .origional_item_container p{font-size:12px;font-family:arial,helvetica,san-serif; }
-=======
 .origional_item_container, .secondary_item_container, .store_item_container, .flash_item_container{position:absolute; left:0; top:0; width:300px; z-index:3; background:#fff; border:solid 1px #ccc; border-radius:4px; padding:10px;font-size:12px;}
 .origional_item_close .fa, .secondary_item_close .fa, .store_item_close .fa, .flash_item_close .fa{position:absolute; right:10px; top:2px; cursor:pointer;}
 .origional_item_container p,.secondary_item_container p,.store_item_container p,.flash_item_container p {font-size:12px;font-family:arial,helvetica,san-serif; }
->>>>>>> 3c7b7d59da0307e3520f486d26b13595a3d419b9
 .mg{margin:10px;}
 .pdr{padding:10px;}
 .page-item  .dropdown-menu  .submenu li{list-style:none;}
@@ -3129,12 +3122,6 @@ float: right;
 margin-right: 20px;
 }
 .listings_form {
-<<<<<<< HEAD
-float: right;
-margin-right: 8px;
-margin-top: -40px;
-}
-=======
 	
 	margin-right:24px;
 margin-top: -33px;
@@ -3147,4 +3134,3 @@ margin-top: -33px;
     border-top: 13px solid #000000;
     border-top-color:#555;
 }
->>>>>>> fda15abd422c8f7330b2782ab0a62bcc88a72188
