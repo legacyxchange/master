@@ -133,7 +133,7 @@
 
 <section id="flash-sale-items" style="padding-top: 20px; padding-bottom: 20px;">
 <div class="section-header" style="margin-top: -20px;text-align:center;background:#29809c;">
-			<img src="/public/images/s2bpluslogo.gif" class="img-responsive" />
+			<img src="/public/images/s2bpluslogo.gif" class="img-responsive sb2pluslogo" />
 		</div>
 	<div class="container">
 		
@@ -146,33 +146,35 @@
 				</div>
 			</div>
        		<?php else: ?> 
-        	<div class="col-lg-12 flash-sale-items flash-cont" style="width:966px;border: 2px solid #056c8c;margin:0 auto; height: 100%; background: #fff; padding: 20px; padding-bottom: 0px;">     
-        		<?php foreach($flash_listings as $listing): ?>
-        	<div style="width:218px;float:left;">
-        	<div class="cont-4 product-container-border-flash col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="hover-img" style="width:218px;height:218px;">
-					<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="product-name"><?=$listing->name;?></div>
+        	<div class="col-lg-12 flash-sale-items flash-cont">     
+        		<div class="inner-container" style="width:930px;height:300px;">
+        		<?php foreach($flash_listings as $listing): ?> 
+        		<div style="width:230px;float:left;">
+        			<div class="cont-4 product-container-border-flash col-lg-3 col-md-3 col-sm-6 col-xs-12">
+						<div class="hover-img" style="width:100%;height:218px;">
+							<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
+							<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
+								<div class="product-name"><?=$listing->name;?></div>
+							</div>
+						</div>
+					</div>
+					<?php $save = $listing->retail_price - $listing->sale_price;?>
+					<div style="margin-top: -19px; padding: 16px; width: 100%; background: #fff;" class="item-sale-info">
+						<div style="font-weight: bold;">
+							<!-- background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center; -->
+							WAS:&nbsp;&nbsp; <span style="">$<?php echo number_format($listing->retail_price,2); ?></span>
+						</div>
+						<div style="font-weight: bold; text-align:left;">
+							NOW: <span style="color: #000;">$<?php echo number_format($listing->sale_price,2); ?></span>
+						</div>
+						<div class="save"> 
+							SAVE: <span style="color: #ff0000;">$<?php echo number_format($save,2); ?></span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<?php $save = $listing->retail_price - $listing->sale_price;?>
-			<div style="margin-top: -19px; padding: 16px; width: 228px; background: #fff;" class="item-sale-info">
-				<div style="font-weight: bold;">
-				<!-- background: url('/public/images/xout.gif'); background-repeat: no-repeat; background-position: center; -->
-					WAS:&nbsp;&nbsp; <span style="">$<?php echo number_format($listing->retail_price,2); ?></span>
-				</div>
-				<div style="font-weight: bold; text-align:left;">
-					NOW: <span style="color: #000;">$<?php echo number_format($listing->sale_price,2); ?></span>
-				</div>
-				<div style="font-weight: bold; text-align:right;">
-					SAVE: <span style="color: #ff0000;">$<?php echo number_format($save,2); ?></span>
-				</div>
-				</div>
-			</div>
         		<?php endforeach;?>
         	<?php endif; ?>
+        	</div>
         	</div>
 		</div>
 	</div>
