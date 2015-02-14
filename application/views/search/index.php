@@ -64,7 +64,7 @@
 </style>
 <section style="background: #fff; height: auto; width: 100%; font-family: Georgia;">
 	<div class="container cat-list">
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-left: 5px; padding-right: 5%;">
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 collectables-list-center" style="padding-left: 5px; padding-right: 5%;">
 			<div class="category_heading" style="font-weight:bold;font-size:20px;">
 				Categories<br /><br />
 			</div>
