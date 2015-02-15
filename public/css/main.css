@@ -1493,7 +1493,7 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
        				 margin-left:3%;       				
    				 }
 			}
-			@media screen and (max-width: 340px) {
+			@media screen and (max-width: 420px) {
    				 .flash-cont {
        				width:240px;
        			    height:100%;

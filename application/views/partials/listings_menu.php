@@ -1,8 +1,10 @@
-
+<style>
+.listings { margin-left:22px; }
+</style>
 <div class="col-lg-12 listings_menu" style="border:1px solid #ccc; border-right:0;border-left:0; background:#fff;margin-bottom:40px;margin-top:30px;padding-top:4px;">
 					
-						<ul class="nav nav-tabs">
-							<li class="dropdown">
+						<ul class="nav nav-tabs" style="margin:0 auto;">
+							<li class="dropdown listings">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									LegacyXChange<span class="caret"></span>
 								</a>
@@ -65,7 +67,7 @@
 								</ul>
 							</li>
 							<li>
-							    <li class="dropdown">
+							    <li class="dropdown listings">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									S2BXchange<span class="caret"></span>
 								</a>
@@ -128,7 +130,7 @@
 								</ul>
 							</li>
 							<li>
-							    <li class="dropdown">
+							    <li class="dropdown listings">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									Stores<span class="caret"></span>
 								</a>
@@ -188,7 +190,7 @@
 								</ul>
 							</li>
 							<li>
-							    <li class="dropdown">
+							    <li class="dropdown listings">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									S2BPlus<span class="caret"></span>
 								</a>
@@ -249,17 +251,13 @@
 							</li>
 							<li>							
 							<span> 
-							<input type="text" class="form-control" style="margin-right: -40px;position:relative;z-index:100;height:28px;margin-top:1px;" placeholder="SELLER">
+							<input style="margin-left:22px;height:25px;" type="text" class="form-control" placeholder="SELLER">
 							</span> 
 						    <li>
 				
-				
-					
-						<form>
-							
-							<span class="sort-list">
+							<span class="sort-list" style="margin-left:10px;">
 								<ul class="nav nav-tabs">
-									<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
+									<li class="dropdown listings"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="#">For Auction</a></li>
 											<li><a href="#">For Sale</a></li>
@@ -270,19 +268,7 @@
 									</li>
 								</ul>
 							</span>
-						</form>
-					
+						
 			         </li>
-			         <li>
-<!-- End page top menu -->
-        <div class="container">    
-        				<?php echo form_open('/listings/search/'.$product_type, array('name' => 'search_form', 'method' => 'post', 'class' => 'listings_form')); ?>
-  						<input type="text" placeholder="Search" name="q" id="q" />
-  						
-  						<!-- <input type="hidden" name="category_id" value="2" /> -->
-  						<input type="submit" value="GO" class="form-submit" />
-						<?php echo form_close(); ?>
-    		</div>
-    		</li>
     	</ul>
 	</div>

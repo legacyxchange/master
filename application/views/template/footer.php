@@ -27,7 +27,7 @@
 <!--footer start-->
 <footer class="ptb25">
 	<div class="container">
-		<div class="row">
+		<div class="row" style='padding-left:5%;'>
 			<div class="col-lg-2 col-sm-4">
 				<div class="footer-links-heading">
 					<a href="/about">About</a>
