@@ -72,36 +72,17 @@ $(document).ready(function(e){
             </ul> -->
             <?php endif;?>   
           
-
+<style>
+.nav-li{margin-left:15px;}
+</style>
           <ul class="nav navbar-nav navbar-right inline" style="margin-right:0px;">
           <?php if (!$this->session->userdata('logged_in')): ?>
-            <li class=""><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
-          <?php endif;?>
-            <!-- <li>
-			<span class="sel-item">
-                <div class="dropdown">
-				  <button class="btn btn-default my-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="max-width:80px;">
-					Explore
-					<span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/listings/original " class="menu_custom_item">Original Items</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="/listings/secondary" class="menu_custom_item">Secondary Items</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Stores</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Sell</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Buy</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Rates</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">How to Profit</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="menu_custom_item">Promotions</a></li>
-				  </ul>
-				</div>
-                    
-			</span>
-			</li> -->
-			<li style="height:54px;max-width:320px;">			
-			        <?php echo form_open('/search/index', false); ?>
+            <li class="nav-li"><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
+          <?php endif;?>           
+			<li class="nav-li" style="height:54px;max-width:320px;">			
+			        <?php echo form_open('/listings/search', false); ?>
                     <div class="input-group stylish-input-group" style="max-width:172px;">
-                    <input style="height:34px;type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <input style="height:34px;" type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
                     <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
@@ -111,19 +92,19 @@ $(document).ready(function(e){
                     <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>		
 			</li>
             
-            <li><a href="/news">News</a></li>
-			<li><a href="/help">Help</a></li>
+            <li class="nav-li"><a href="/news">News</a></li>
+			<li class="nav-li"><a href="/help">Help</a></li>
 			
 			<?php if ($this->session->userdata('logged_in')) : ?> 
-			<li>
+			<li class="nav-li">
 			    <a href="/shopping-cart">
 			        <i style="font-size:20px;" class="fa fa-shopping-cart"></i>
 			        <div id="cart-items" style="position:relative;top:-8px;left:-3px;font-size:11px;"></div>			
 			    </a>
 			</li>	
 			<?php else:?>
-			<li style="text-align:center;margin-top:0px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register</a></li>
-			<li class=""><a href="/shopping-cart" ><i class="fa fa-shopping-cart"></i></a></li>
+			<li class="nav-li" style="text-align:center;margin-top:0px;"><a href="#" data-toggle="modal" data-target="#myLegacy">Register</a></li>
+			<li class="nav-li"><a href="/shopping-cart" ><i class="fa fa-shopping-cart"></i></a></li>
 			<?php endif;?>
           </ul>
         </div><!--/.nav-collapse -->

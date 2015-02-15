@@ -110,10 +110,10 @@ class Listings extends CI_Controller {
         $this->load->view('template/footer');
     }
     
-    public function search($product_type=null) { 
+    public function search() {
     	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js timer.js');
     	//$listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id));
-    	 
+    	
     	if (! empty ( $_POST )) { 
 			$iStr = $this->_sphinx ();
 			if($iStr){
@@ -138,7 +138,7 @@ class Listings extends CI_Controller {
 				if (! is_null ( $product_type )) {
 					$sql .= ' and product_type_id = ' . $ptype[0]->product_type_id ;
 				}
-				
+				//echo $sql; exit;
 				$query = $this->db->query($sql);
 			
 				$listings = $query->result();
@@ -150,7 +150,7 @@ class Listings extends CI_Controller {
     	$body['listings'] = $listings;
     	$this->load->view('template/header', $header);
     	$this->load->view('listings/index', $body);
-    	$this->load->view('template/footer');  
+    	$this->load->view('template/footer');   
     }
     
     public function _sphinx(){

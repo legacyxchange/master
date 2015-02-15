@@ -7,7 +7,7 @@
 			<?php if($listings): ?>
 				<div class="row">
 					<div class="col-lg-12 available-item">
-						<strong>CURRENTLY:</strong> <?php echo count($listings);?> <?php echo ucfirst($product_type);?> Items Available
+						<strong>CURRENTLY:</strong> <?php echo $_count = count($listings);?> <?php echo ucfirst($product_type);?> <?php echo $_count > 1 ? 'Listings' : 'Listing'; ?> Available
 					</div>					
 				</div>
 				<div class="row">                     
@@ -31,6 +31,12 @@
 All Original Items are 100% Guaranteed Authentic.</div>
 				</div>
 			</div>
+			<?php else: ?>
+			    <div class="row">
+					<div class="col-lg-12 available-item">
+						<strong>Sorry but there are no listings matching that criteria.</strong>
+					</div>					
+				</div>
 			<?php endif;?>
 		</div>
 	</div>
