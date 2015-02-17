@@ -1479,19 +1479,31 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 .centered-img{margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;}
 .hover-img{ margin:0 auto; }
 .save {font-weight: bold; text-align:right;width:210px;}
-			@media screen and (max-width: 360px) {
+@media screen and (max-width: 767px) {
+   				 
+   				 .collectables-list-center{margin-left: 33%;}
+			}
+			
+			@media screen and (max-width: 568px) {
+   				 .flash-cont {
+       				width:520px;
+       			    height:100%;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
+                    margin:0 auto;
+       				 margin-left:0%;   
+   				 }
    				 .cont-4 {
    				     margin:0 auto;
-       				 margin-left:8%;       				
+       				        				
    				 }
-   				 .cont-5 {
-   				     margin:0 auto;
-       				 margin-left:15%;       				
+   				 .save {
+   				     width:200px;
+       				 font-weight: bold; text-align:right;       				
    				 }
-   				 .cont-6 {
-   				     margin:0 auto;
-       				 margin-left:3%;       				
-   				 }
+   				 .cat-list{margin-left:20%}
+   				 .sb2pluslogo{height:46px;}
+   				 .collectables-list-center{margin-left: 16%;}
 			}
 			@media screen and (max-width: 420px) {
    				 .flash-cont {
@@ -1513,4 +1525,18 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
    				 .sb2pluslogo{height:46px;}
    				 .collectables-list-center{margin-left: 16%;}
 			}
-			
+			@media screen and (max-width: 360px) {
+   				 .cont-4 {
+   				     margin:0 auto;
+       				 margin-left:8%;       				
+   				 }
+   				 .cont-5 {
+   				     margin:0 auto;
+       				 margin-left:15%;       				
+   				 }
+   				 .cont-6 {
+   				     margin:0 auto;
+       				 margin-left:3%;       				
+   				 }
+   				 .collectables-list-center{margin-left: 8%;}
+			}
