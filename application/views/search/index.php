@@ -23,21 +23,21 @@
 		    
 			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
 			<img class="img-responsiv" src="/public/images/logo.gif" style="height:35px;text-align:center;margin:0 auto;"><br />
-				Original Items
+				<a href="/listings/original">Original Items</a>
 			</div>
 			<div class="subtitle" style="margin-top: -18px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
 			    Documented Authenticity - Scientifically Marked &amp; Registered
 			</div>
 		</div>
 		<div class="container">
-        <?php if(!is_array($listings['original'])):?>
+        <?php if(!is_array($listings)):?>
 		    <div class="row">
 				<div class="col-lg-12">
 					<h1 style="text-align: center;">Sorry...There are no listings matching that criteria.</h1>
 				</div>
 			</div>
-        <?php else: ?>      
-        <?php foreach($listings['original'] as $listing):?>
+        <?php else:?>      
+        <?php foreach($listings as $listing): //var_dump($listing->name); exit;?>
             <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
 				<div class="hover-img" style="width:218px;height:218px;">
 					<img class="centered-img" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
@@ -64,10 +64,10 @@
 	<div class="container">&nbsp;</div>
 </section>
 <div style="margin:0 auto;background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class="">
-<img style="margin:0 auto;" class="img-responsive" src="/public/images/s2blogo.gif" /></div>
+<a href="/listings/sb2xchange"><img style="margin:0 auto;" class="img-responsive" src="/public/images/s2blogo.gif" /></a></div>
 <section style="height: 220px; width: 100%; background: #00698a;border-top:3px outset #f4f4f4;border-bottom:4px inset #333;">
 	<div class="s2bheading" style="">
-	   Sellers 2 Buyers
+	   <a href="/listings/sb2xchange">Sellers 2 Buyers</a>
     </div>
     <div class="s2bsubheading" style="">
 	   General Merchandise - Deal Direct<br/>

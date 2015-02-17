@@ -65,6 +65,8 @@ $route['careers'] = 'static_pages/page/careers';
 $route['shopping-cart'] = 'shoppingcart';
 $route['listings/bid/(:num)'] = 'listings/bid/$1';
 $route['listings/^(search)([a-z]+)'] = 'listings/index/$1';
+$route['listings/(:any)'] = 'listings/index/$1';
+$route['listings/original/(:num)/(:num)'] = 'listings/index/original/$1/$2';
 
 $route['admin/products/(:num)'] = 'admin/products/index/$1';
 
