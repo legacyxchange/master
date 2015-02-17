@@ -1,12 +1,22 @@
 <style>
-.listings { margin-left:22px; }
+.page-menu{
+    text-align:left;
+    
+    font-size:12px;
+}
+.listings_menu{border:1px solid #ccc; border-right:0;border-left:0; background:#fff;margin-bottom:40px;margin-top:30px;padding-top:4px;}
+@media screen and (max-width: 990px) {
+   				 .listings_menu {
+       				margin-top:60px;
+   				 }
+   				 
+			}
 </style>
-<div class="col-lg-12 listings_menu" style="border:1px solid #ccc; border-right:0;border-left:0; background:#fff;margin-bottom:40px;margin-top:30px;padding-top:4px;">
+<div class="listings_menu">
 					
 						<ul class="nav nav-tabs" style="margin:0 auto;">
-							<li class="dropdown listings">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									LegacyXChange<span class="caret"></span>
+							<li class="dropdown page-menu">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:14px;">LegacyXChange<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="#" id="origional_item">LegacyXChange Items?</a>
@@ -66,10 +76,8 @@
 									</li>
 								</ul>
 							</li>
-							<li>
-							    <li class="dropdown listings">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									S2BXchange<span class="caret"></span>
+							<li class="dropdown page-menu">							    
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:14px;">S2BXchange<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="#" id="secondary_item">S2BXchange Items?</a>
@@ -129,10 +137,8 @@
 									</li>
 								</ul>
 							</li>
-							<li>
-							    <li class="dropdown listings">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									Stores<span class="caret"></span>
+							<li class="dropdown page-menu">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:14px;">Stores<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="#" id="store_item">Store Items?</a>
@@ -189,10 +195,8 @@
 									</li>
 								</ul>
 							</li>
-							<li>
-							    <li class="dropdown listings">
-								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									S2BPlus<span class="caret"></span>
+							<li class="dropdown page-menu">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size:14px;">S2BPlus<span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="#" id="flash_item">S2BPlus Items?</a>
@@ -249,26 +253,18 @@
 									</li>
 								</ul>
 							</li>
-							<li>							
-							<span> 
-							<input style="margin-left:22px;height:25px;" type="text" class="form-control" placeholder="SELLER">
-							</span> 
-						    <li>
-				
-							<span class="sort-list" style="margin-left:10px;">
-								<ul class="nav nav-tabs">
-									<li class="dropdown listings"><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;">Sort<span class="caret"></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="#">For Auction</a></li>
-											<li><a href="#">For Sale</a></li>
-											<li><a href="#">Newest Listings</a></li>
-											<li><a href="#">Ending Soon</a></li>
-											<li><a href="#">Bid Or Sale Price</a></li>
-										</ul>
-									</li>
+							<li class="page-menu">													
+								<input style="height:25px;width:120px;margin-right: 59px;" type="text" class="form-control" placeholder="SELLER">
+							</li>										
+							<li class="dropdown page-menu">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="margin-right:15px;font-size:14px;">Sort<span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">For Auction</a></li>
+									<li><a href="#">For Sale</a></li>
+									<li><a href="#">Newest Listings</a></li>
+									<li><a href="#">Ending Soon</a></li>
+									<li><a href="#">Bid Or Sale Price</a></li>
 								</ul>
-							</span>
-						
-			         </li>
+							</li>
     	</ul>
 	</div>

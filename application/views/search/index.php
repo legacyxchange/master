@@ -1,4 +1,22 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<style>
+
+.s2bheading{
+    font-family:geargia;font-size:48px;color:#fff;text-align:center;
+}
+.s2bsubheading{
+    margin-top:20px;font-family:geargia;font-size:38px;color:#fff;text-align:center;
+}
+@media screen and (max-width: 990px) {
+   				 .slides {
+       				margin-top:30px;
+       				min-height:166px;
+   				 }
+   				 .s2bheading{ font-size:40px; }
+   				 .s2bsubheading{ font-size:24px; }
+			}
+</style>
+
 <section class="dark-bg ptb25">
 	<div class="container">
 		<div class="section-header" style="margin-top: -20px;">
@@ -38,7 +56,7 @@
 	</div>
 </section>
 
-<img class="img-responsive" src='/public/images/game-slide.gif' />
+<img class="img-responsive game-slide slides" src='/public/images/game-slide.gif' />
 
 <!--container start-->
 
@@ -48,10 +66,10 @@
 <div style="margin:0 auto;background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class="">
 <img style="margin:0 auto;" class="img-responsive" src="/public/images/s2blogo.gif" /></div>
 <section style="height: 220px; width: 100%; background: #00698a;border-top:3px outset #f4f4f4;border-bottom:4px inset #333;">
-	<div class="s2bheading" style="font-family:geargia;font-size:48px;color:#fff;text-align:center;">
+	<div class="s2bheading" style="">
 	   Sellers 2 Buyers
     </div>
-    <div class="s2bsubheading" style="margin-top:20px;font-family:geargia;font-size:38px;color:#fff;text-align:center;">
+    <div class="s2bsubheading" style="">
 	   General Merchandise - Deal Direct<br/>
 	   <i>Free Listings - No Commissions</i>
     </div>
@@ -180,7 +198,7 @@
 	</div>
 </section>
 <section style="background-color: #f4f4f4; height: auto; width: 100%; font-family: Georgia; margin-top: 100px; margin-bottom: 40px;">
-	<img class="img-responsive" src="/public/images/sports_image_bg.gif" width="100%" />
+	<img class="img-responsive slides" src="/public/images/sports_image_bg.gif" width="100%" />
 </section>
 <section style="height: 0px; width: 100%; background: #fff;">
 	<div class="container">&nbsp;</div>

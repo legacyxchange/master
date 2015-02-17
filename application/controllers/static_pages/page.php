@@ -14,15 +14,8 @@ class Page extends CI_Controller {
     
     public function about(){
     	$body['title'] = 'About Us';
-    	$this->load->view('template/header', $header);
-    	 
+    	$this->load->view('template/header', $header);	 
     	$this->load->view('static_pages/about', $body);
-    	$this->why_legacyxchange();
-    	$this->how_to_sell();
-    	$this->how_to_buy();
-    	$this->rates();
-    	$this->stores();
-    	$this->news();
     	$this->load->view('template/footer');
     }
     

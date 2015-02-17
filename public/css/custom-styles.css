@@ -3039,7 +3039,7 @@ ul.terms li{font-size:12px;}
 .footer-menu li{list-style:none; padding:0;}
 .footer-menu li a{font-family:arial,helvetica,san-serif; font-size:13px; font-weight:bold; color:#006a8a; text-decoration:none;}
 footer{background:url(/public/images/footer-bg.png) repeat-x 0 0;}
-.page-menu{background:transparent; padding:5px 10px; border-radius:5px; margin-bottom:40px;}
+.page-menu{background:transparent; padding:0px 0px; border-radius:5px; margin-bottom:0px;}
 .page-menu span{display:inline-block; margin-right:50px; vertical-align:middle;}
 .page-menu .filter-item{text-align:right;}
 .page-menu .filter-item span:nth-last-child(1){margin-right:0;}
@@ -3131,7 +3131,7 @@ margin-top: -33px;
     margin-top:-3px;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 13px solid #000000;
+    border-top: 11px solid #000000;
     border-top-color:#555;
 }
 .flash-sale-items{
