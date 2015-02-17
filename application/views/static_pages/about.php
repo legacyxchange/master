@@ -161,8 +161,8 @@ is offset with bonus advertising dollars that we credit to your account.
     	</table>
     </section>
     
-    <section>        
-        <div class="content-heading" id="how-to-buy">Buying:</div>              
+    <div class="heading" id="how-to-buy">Buying:</div>   
+    <section>                   
     	
     	<div class="acontent">
     	Register, and then choose the item you want to purchase. If the item is being sold in an auction, place a bid based
@@ -174,8 +174,9 @@ Each item sold will indicate method of payment and shipping terms.
     	</div>
     </section>
     
+    <div class="heading" id="stores">Storefronts:</div>
     <section>        
-        <div class="content-heading" id="stores">Storefronts:</div>
+        
         <div class="blue-content-sub-heading"><strong>Retailers / Dealers / Volume Sellers</strong></div>             
     	
     	<div class="content-sub-heading" id="rates"><strong>Retailers / Dealers</strong></div>
