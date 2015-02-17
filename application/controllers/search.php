@@ -56,25 +56,16 @@ class Search extends CI_Controller {
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js timer.js');
         
         if($iStr !== 'no matches'){ 
-        	$listings = $this->listing->fetchAll(array('where' => 'start_time <= NOW() AND end_time >= NOW()'.$iStr, 'limit' => 5, 'orderby' => 'end_time ASC'));
-        	//var_dump($this->db->last_query()); exit;
-        	foreach($listings as $key=>$listing){ 
-        		$listing->original = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 1'))[0];
-        		
-        		$listing->secondary = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id.' AND product_type_id = 2'))[0];
-        		
-        		if(!is_null($listing->original)){
-        			$listings['original'][] = $listing->original;
-        		}
-        		if(!is_null($listing->secondary)){
-        			$listings['secondary'][] = $listing->secondary;
-        		}
-        	}        
+        	$query = $this->db->query('SELECT * from listings join products using(product_id) where start_time <= NOW() AND end_time >= NOW()'.$iStr.' order by end_time ASC LIMIT 4');
+        	$listings = $query->result();      
         } 
-        
-        $body['stores'] = $this->getStores();                      
+        //var_dump($listings[1]); exit;
+        $body['stores'] = $this->getStores(); 
+                          
         $body['flash_listings'] = $this->getFlashListings();
+        
         $body['listings'] = $listings;
+        
         $this->load->view('template/header', $header);
         $this->load->view('search/index', $body);
         $this->load->view('template/footer');

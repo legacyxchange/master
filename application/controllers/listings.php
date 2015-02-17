@@ -34,51 +34,35 @@ class Listings extends CI_Controller {
         $this->load->helper('form');
     }
 
-    public function index($product_type = null, $limit = null, $offset = null) {  
+    public function index($product_type = null, $limit = 16, $offset = 0) {  
     	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
         try {
         	if($product_type){ 
         		$body['product_type'] = $product_type;
-        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
-        				                           where NOW() BETWEEN start_time and end_time and product_types.type = "'.$product_type.'" LIMIT 16');
-        		$listings = $query->result();
-        		
-        		foreach($listings as $listing){
-        			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
-        			$listing->product->product_type = $this->product_types->fetchAll(array('where' => 'product_type_id = '.$listing->product->product_type_id))[0];
-        			$listing->product->product_images = $this->product_image->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'order_index ASC'));
-        			$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));
-        			$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
-        			$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));       			       			
+        		if($product_type != 'original'){ // s2b
+        			$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id <> 1 LIMIT '.$limit.' OFFSET '.$offset);
+        		}else{ // original
+        			$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 1 LIMIT '.$limit.' OFFSET '.$offset);
         		}
-        		        		
-        		$body['listings'] = $listings;
-        	}else { 
-        		
+        		        		       		
+        	}else { // all      		
         		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
-        				                           where NOW() BETWEEN start_time and end_time LIMIT 16');
-        		$listings = $query->result();
-        	
-        		foreach($listings as $listing){
-        			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
-        			$listing->product->product_type = $this->product_types->fetchAll(array('where' => 'product_type_id = '.$listing->product->product_type_id))[0];
-        			$listing->product->product_images = $this->product_image->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'order_index ASC'));
-        			$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));
-        			$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
-        			$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));
-        		}
-        		$body['listings'] = $listings;
-        	} 
-
-        	if($product_type == 'secondary'){
-        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
-        				                           where NOW() BETWEEN start_time and end_time AND product_type_id = 1 LIMIT 4');
-        		$body['listings2'] = $query->result();
-        	}else{
-        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
-        				                           where NOW() BETWEEN start_time and end_time AND product_type_id = 2 LIMIT 4');
-        		$body['listings2'] = $query->result();
+        				                           where NOW() BETWEEN start_time and end_time LIMIT '.$limit.' OFFSET '.$offset);       		
         	}
+
+        	$listings = $query->result();
+        	
+        	foreach($listings as $listing){
+        		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
+        		$listing->product->product_type = $this->product_types->fetchAll(array('where' => 'product_type_id = '.$listing->product->product_type_id))[0];
+        		$listing->product->product_images = $this->product_image->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'order_index ASC'));
+        		$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));
+        		$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
+        		$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));
+        	}
+        	$body['listings'] = $listings;
         } catch (Exception $e) { 
             $this->functions->sendStackTrace($e);
         }
