@@ -46,9 +46,9 @@ if (!defined('BASEPATH'))
         <?= $this->functions->cssScript('media.css') ?>
 
         <link rel='stylesheet' type='text/css' href='/public/css/animate.css' />
-        <link rel="stylesheet" href="/public/js/owl-carousel/owl.carousel.css">
+        
         <script src="/public/js/owl-carousel/owl.carousel.min.js"></script>
-        <link rel="stylesheet" href="/public/js/owl-carousel/owl.theme.css">
+        
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
 
         <script type="text/javascript" src="/public/js/velocity/jquery.velocity.js"></script>
@@ -183,3 +183,5 @@ EOS;
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
 <script type="text/javascript" src="/public/js/advanced_search.js"></script>
+
+<script src="/public/js/jssor.slider.mini.js"></script>

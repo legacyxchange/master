@@ -1357,7 +1357,7 @@ display:inline;
 .product-image img{ background: #fff;text-align:center;vertical-align:middle;}
 .large-img{ color:blue;cursor:pointer; text-align:center;  font-family:Palatino;}
 
-.hover-info{text-shadow:none;letter-spacing:0px;padding:5px;display:none;position: absolute;bottom: 0px; left: 0px;opacity:.7; background:silver;color:#fff; vertical-align:middle;width:100%;height:60px;font-size:13px;cursor:pointer;font-family:arial,helvetica,san-serif; }
+.hover-info{text-shadow:none;letter-spacing:0px;padding:5px;display:none;position: absolute;bottom: 0px; left: 0px;opacity:.9; background:silver;color:#fff; vertical-align:middle;width:100%;height:60px;font-size:13px;cursor:pointer;font-family:arial,helvetica,san-serif; }
 .hover-info b{font-weight:bold; color:#fff;}
 .hover-info p{font-weight:normal; color:#eee;line-height:14px; font-size:12px;}
 
@@ -1373,7 +1373,7 @@ height: 220px;
 .product-price{color:lime;margin-right:10px;}
 .product-price a{color:lime;margin-right:10px;}
 .product-buynow-button{float:right;color:lime;}
-.product-name{font-size:16px;font-weight:bold;color:#000;text-align:center;}
+.product-name{font-size:13px;font-weight:bold;color:#00698a;font-family:arial;text-align:center;}
 .item-img{background:#fff; padding:0px; text-align:center; width:218px;height:218px;margin:0px auto; vertical-align:middle; margin-bottom:20px; position:relative;}
 .item-img img{vertical-align:middle; position:absolute; top:0; bottom:0; left:0; right:0; margin:auto; display:block;}
 
@@ -1471,17 +1471,21 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
 .products-bgcolor{max-width:966px;margin:0 auto; background:#e9f3f7;clear:both;padding-bottom:10px;}
 .product-container-no-border-4{background:#fff;margin: 11px;width: 218px;height: 218px;border: 0px solid #ccc;}
 .product-container-border-4{background:#fff;margin: 11px;width: 218px;height: 218px;border: 1px solid #ccc;}
+.product-container-border-3{background:#fff;margin: 5px;width: 220px;height: 220px;border: 1px solid #ccc;}
 .product-container-border-flash{background:#fff;margin: 11px;width: 218px;height: 218px;border: 1px solid #ccc;}
 .product-container-no-border-5{background:#fff;margin: 3px;width: 180px;height: 180px;border: 0px solid #ccc;}
 .product-container-border-5{background:#fff;margin: 3px;width: 180px;height: 180px;border: 1px solid #ccc;}
 .product-container-no-border-6{background:#fff;margin: 1px;width: 153px;height: 153px;border: 0px solid #ccc;}
-.product-container-border-6{background:#fff;margin: 1px;width: 153px;height: 153px;border: 1px solid #ccc;}
-.centered-img{margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;}
-.hover-img{ margin:0 auto; }
-.save {font-weight: bold; text-align:right;width:210px;}
-@media screen and (max-width: 767px) {
-   				 
-   				 .collectables-list-center{margin-left: 33%;}
+.product-container-border-6{background:#fff;margin: 4px;width: 153px;height: 153px;border: 1px solid #ccc;}
+.centered-img{margin: 0; position: absolute; top: 0; left: 0; bottom: 0; right: 0;}
+.hover-img{ margin:0 auto; height:100%;}
+.checkoutthesegreatitems{color:#ff0000;font-weight:bold;font-size:32px;text-shadow:2px 2px #aaa;font-family:arial;}
+.save {font-weight: bold; text-align:right;width:180px;}
+            @media screen and (max-width: 767px) {			 
+   				.collectables-list-center{margin-left: 33%;}
+   				.store-img { width:174px;height:174px;border:3px solid #000;border-radius:5px;overflow:hidden; }
+				.store-text { width:174px;text-align:center;font-size:18px;font-weight:bold;margin-bottom:30px;font-style:italic; }
+				
 			}
 			
 			@media screen and (max-width: 568px) {
@@ -1494,7 +1498,7 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
        				 margin-left:0%;   
    				 }
    				 .cont-4 {
-   				     margin:0 auto;
+   				     margin:10px auto;
        				        				
    				 }
    				 .save {
@@ -1504,8 +1508,9 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
    				 .cat-list{margin-left:20%}
    				 .sb2pluslogo{height:46px;}
    				 .collectables-list-center{margin-left: 16%;}
+   				 .checkoutthesegreatitems{font-size:26px;}
 			}
-			@media screen and (max-width: 420px) {
+			@media screen and (max-width: 430px) {
    				 .flash-cont {
        				width:240px;
        			    height:100%;
@@ -1515,7 +1520,7 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
        				 margin-left:8%;   
    				 }
    				 .cont-4 {
-   				     margin:0 auto;
+   				     margin:10px auto;
        				        				
    				 }
    				 .save {
@@ -1524,10 +1529,11 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
    				 }
    				 .sb2pluslogo{height:46px;}
    				 .collectables-list-center{margin-left: 16%;}
+   				 .checkoutthesegreatitems{font-size:22px;}
 			}
 			@media screen and (max-width: 360px) {
    				 .cont-4 {
-   				     margin:0 auto;
+   				     margin:10px auto;
        				 margin-left:8%;       				
    				 }
    				 .cont-5 {
@@ -1539,4 +1545,10 @@ footer{background:url(../images/footer-bg.png) repeat-x 0 0;}
        				 margin-left:3%;       				
    				 }
    				 .collectables-list-center{margin-left: 8%;}
+   				 .product-container-border-6{ margin-left:60px; }
+   				 .checkoutthesegreatitems{font-size:18px;}
 			}
+			
+			
+
+.nav-tabs>li { margin-left:10px;}

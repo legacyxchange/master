@@ -46,7 +46,8 @@ class Products extends CI_Controller {
         }
         
         $body['products'] = $prods;
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
+        $menu['menu_products'] = 1;
+        $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         $this->load->view('admin/template/header', $header);
         $this->load->view('admin/products', $body);
         $this->load->view('admin/template/footer');

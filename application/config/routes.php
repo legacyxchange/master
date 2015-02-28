@@ -63,10 +63,14 @@ $route['manufacturers'] = 'static_pages/page/manufacturers';
 $route['news'] = 'static_pages/page/about#news';
 $route['careers'] = 'static_pages/page/careers';
 $route['shopping-cart'] = 'shoppingcart';
+$route['listings/product/(:num)'] = 'listings/product/$1';
+$route['listings/buynow/(:num)'] = 'listings/buynow/$1';
 $route['listings/bid/(:num)'] = 'listings/bid/$1';
 $route['listings/^(search)([a-z]+)'] = 'listings/index/$1';
 $route['listings/(:any)'] = 'listings/index/$1';
-$route['listings/original/(:num)/(:num)'] = 'listings/index/original/$1/$2';
+$route['listings/(:any)/(:num)/(:num)'] = 'listings/index/$1/$2/$3';
+$route['admin/account'] = 'admin/dashboard';
+
 
 $route['admin/products/(:num)'] = 'admin/products/index/$1';
 

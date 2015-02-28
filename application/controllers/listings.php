@@ -35,25 +35,37 @@ class Listings extends CI_Controller {
     }
 
     public function index($product_type = null, $limit = 16, $offset = 0) {  
+    	
     	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
         try {
-        	if($product_type){ 
+        	if($product_type){ //echo $product_type; exit;
         		$body['product_type'] = $product_type;
-        		if($product_type != 'original'){ // s2b
-        			$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
-        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id <> 1 LIMIT '.$limit.' OFFSET '.$offset);
+        		if($product_type == 'original'){ // original
+        			//echo 'original';
+        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 1 LIMIT '.$limit.' OFFSET '.$offset);
+        		}elseif($product_type == 's2bxchange'){ // s2bxchange 
+        			//echo 'sb2xchange';
+        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 2 LIMIT '.$limit.' OFFSET '.$offset);
+        		}elseif($product_type == 's2bplus'){ // s2bplus
+        			//echo 'sb2plus';
+        			$query = $this->db->query('Select * from listings join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        				                           where NOW() BETWEEN start_time and end_time LIMIT '.$limit.' OFFSET '.$offset);
         		}else{ // original
-        			$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id)
+        			//echo 'here';
+        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
         				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 1 LIMIT '.$limit.' OFFSET '.$offset);
         		}
         		        		       		
-        	}else { // all      		
-        		$query = $this->db->query('Select * from listings join products using(product_id) join product_types using(product_type_id) 
+        	}else { // all 
+        			
+        		$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) 
         				                           where NOW() BETWEEN start_time and end_time LIMIT '.$limit.' OFFSET '.$offset);       		
         	}
 
         	$listings = $query->result();
-        	
+        	//var_dump($listings, $this->db->last_query(), $product_type); exit;
         	foreach($listings as $listing){
         		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
         		$listing->product->product_type = $this->product_types->fetchAll(array('where' => 'product_type_id = '.$listing->product->product_type_id))[0];
@@ -66,13 +78,14 @@ class Listings extends CI_Controller {
         } catch (Exception $e) { 
             $this->functions->sendStackTrace($e);
         }
+        $body['left_menu'] = $this->load->view('partials/left_menu', $body, true);
         
         $this->load->view('template/header', $header);
         $this->load->view('listings/index', $body);
         $this->load->view('template/footer');
     }
 
-    public function product($product_id) {
+    public function product($product_id) { 
     	$header['headscript'] = $this->functions->jsScript('listing-product.js search.js timer.js');
     	$listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id));
     	
@@ -89,6 +102,7 @@ class Listings extends CI_Controller {
     	$body['listings_other'] = $query->result();
     	
         $body['listing'] = $listings[0];
+        //var_dump($body['listing']->product->product_type->type); exit;
         $this->load->view('template/header', $header);
         $this->load->view('listings/product', $body);
         $this->load->view('template/footer');
@@ -211,9 +225,11 @@ class Listings extends CI_Controller {
     	return $this->product($listing->product_id);
     }
     
-    public function buynow($listing_id){
+    public function buynow($listing_id = null){ 
+    	//$this->functions->checkLoggedIn();
     	$user_id = $this->session->userdata['user_id'];
     	if(!$user_id){
+    		
     		echo json_encode(array('status' => 'FAILURE', 'message' => 'Not Logged In')); exit;
     	}
     	
@@ -232,6 +248,6 @@ class Listings extends CI_Controller {
     		$this->cart->insert($data);
     	}
     	if($this->cart->total_items() > 1) { $c = $this->cart->total_items().' items'; }else{ $c = $this->cart->total_items().' item'; }
-    	echo json_encode(array('status' => 'SUCCESS', 'message' => $c.'<br /><span style="position:relative;top:-8px;left:-3px;font-size:11px;">$'.number_format($this->cart->total(),2).'</span>')); exit;
+    	echo json_encode(array('status' => 'SUCCESS', 'message' => $c.'<br /><span style="position:relative;top:-8px;left:-3px;font-size:11px;">$'.number_format($this->cart->total(),2).'</span>')); exit; 
     }
 }

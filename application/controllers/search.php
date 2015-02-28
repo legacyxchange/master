@@ -66,6 +66,7 @@ class Search extends CI_Controller {
         
         $body['listings'] = $listings;
         
+        $body['left_menu'] = $this->load->view('partials/left_menu', $body, true);
         $this->load->view('template/header', $header);
         $this->load->view('search/index', $body);
         $this->load->view('template/footer');

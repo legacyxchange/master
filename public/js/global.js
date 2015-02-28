@@ -47,58 +47,61 @@ $(function () {
 			html +=' <span class="caret"></span>';
 		$('#dropdownMenu1').html(html);
 	});
+    
+    //hovers on top menu
 	$('#origional_item').hover(function(){
-		$('.origional_item_container').show();
+		//$('.origional_item_container').show();
 		//$('.page-item .dropdown-menu').show();
 	});
 	
 	$('.origional_item_close .fa').click(function(event){
 	event.stopPropagation();
-		$('.origional_item_container').hide();
+		//$('.origional_item_container').hide();
 	});
 	
 	$("div.origional_item_container_main").mouseleave(function() {
-		$('.origional_item_container').hide();
+		//$('.origional_item_container').hide();
 	});
 	$('#secondary_item').hover(function(){
-		$('.secondary_item_container').show();
+		//$('.secondary_item_container').show();
 		//$('.page-item .dropdown-menu').show();
 	});
 	
 	$('.secondary_item_close .fa').click(function(event){
 	event.stopPropagation();
-		$('.secondary_item_container').hide();
+		//$('.secondary_item_container').hide();
 	});
 	
 	$("div.secondary_item_container_main").mouseleave(function() {
-		$('.secondary_item_container').hide();
+		//$('.secondary_item_container').hide();
 	});
 	$('#store_item').hover(function(){
-		$('.store_item_container').show();
+		//$('.store_item_container').show();
 		//$('.page-item .dropdown-menu').show();
 	});
 	
 	$('.store_item_close .fa').click(function(event){
 	event.stopPropagation();
-		$('.store_item_container').hide();
+		//$('.store_item_container').hide();
 	});
 	
 	$("div.store_item_container_main").mouseleave(function() {
 		$('.store_item_container').hide(); 
 	});
 	$('#flash_item').hover(function(){
-		$('.flash_item_container').show();
+		//$('.flash_item_container').show();
 		//$('.page-item .dropdown-menu').show();
 	});
 	
 	$('.flash_item_close .fa').click(function(event){
 	event.stopPropagation();
-		$('.flash_item_container').hide();
+		//$('.flash_item_container').hide();
 	});
 	
 	$("div.flash_item_container_main").mouseleave(function() {
 		$('.flash_item_container').hide(); 
 	});
+	// end hovers on top menu
 	
 	$('.child_thumb').click(function(){
 		var link=$(this).attr('src');
