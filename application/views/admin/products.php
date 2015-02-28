@@ -2,7 +2,7 @@
         <div class="container main-content">
         
         <?php echo $admin_menu; ?>
-        <div class="add_new_butt admin_add_new_butt">
+        <div class="admin_add_new_butt">
 			<a href="#" class="products-big-link" data-toggle="modal" data-target="#productsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
         	<div class="war">

@@ -1,9 +1,13 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
+<?php if($advertisements): ?>
 
+<div class="section-header" style="margin-top: 0px;background:#e9f3f7;height:60px;padding-top:10px;text-align:center;">
+    <span class="checkoutthesegreatitems"><i>CHECK OUT THESE GREAT ITEMS!</i></span>
+</div>
 <!-- advertisements -->
 <section>
-	<div class="container" style="padding:0px;max-width:960px;">						
-	<?php if($advertisements): ?>
+	<div class="container">						
+	
 		<?php foreach($advertisements as $ad): //var_dump($ad); exit;?>
 		<div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
 			<div class="hover-img" style="width:153px;height:153px;">
@@ -23,7 +27,9 @@
 	<?php endif; ?>				
 	</div>
 </section>
-
+<style>
+.footer-menu li a, .footer-links-heading a{letter-spacing: 1px; font-family:arial; font-weight:normal; }
+</style>
 <!--footer start-->
 <footer class="ptb25">
 	<div class="container">
@@ -37,7 +43,7 @@
 					<li><a href="/about#how-to-sell">Selling</a></li>
 					<li><a href="/about#how-to-buy">Buying</a></li>
 					
-					<li style="line-height: 14px;"><a href="/about#stores">Store Fronts:</a><br/>
+					<li style="line-height: 18px;"><a href="/about#stores">Store Fronts:</a><br/>
 					<a href="/about#rates">Retailers</a><br/>
 					<a href="/about#rates">Dealers</a><br/>
 					<a href="/about#rates">Volume Sellers</a></li>					
@@ -52,7 +58,7 @@
 					<li><a href="/manufacturers">Manufacturers</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-2 col-sm-4" style="padding-left:35px;">
 				<div class="footer-links-heading">
 					<a href="/legal">Legal</a>
 				</div>
@@ -62,7 +68,7 @@
 					<li><a href="/privacy">Privacy</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-2 col-sm-4" style="padding-left:25px;">
 				<div class="footer-links-heading">
 					<a href="/help">Help</a>
 				</div>
@@ -82,7 +88,7 @@
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">
-				<div class="footer-links-heading">
+				<div class="footer-links-heading" style="margin-bottom:6px;">
 					<a href="/follow-us">Follow Us</a>
 				</div>
 				<ul class="s-icon" style="list-style: none; padding: 0px;">

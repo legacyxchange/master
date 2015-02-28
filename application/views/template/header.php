@@ -19,6 +19,7 @@ $(document).ready(function(e){
 <?php endif; ?>
 <style>
 .followBtn{display:none;} 
+li a { letter-spacing:1px; }
 </style>
 </head>
 
@@ -73,23 +74,23 @@ $(document).ready(function(e){
             <?php endif;?>   
           
 <style>
-.nav-li{margin-left:15px;}
+.nav-li{margin-left:8px;}
 </style>
           <ul class="nav navbar-nav navbar-right inline" style="margin-right:0px;">
           <?php if (!$this->session->userdata('logged_in')): ?>
             <li class="nav-li"><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
           <?php endif;?>           
-			<li class="nav-li" style="height:54px;max-width:320px;">			
+			<li class="nav-li" style="height:54px;max-width:190px;">			
 			        <?php echo form_open('/listings/search', false); ?>
-                    <div class="input-group stylish-input-group" style="max-width:172px;">
-                    <input style="height:34px;" type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <div class="input-group stylish-input-group" style="max-width:140px;">
+                    <input style="height:34px;width:140px;float:right;" type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
-                    <button class="button" title="Search" type="submit" style="max-height:20px;"><i class="fa fa-search"></i></button>
+                    <button class="button" title="Search" type="submit" style="max-height:20px;width:20px;"><i class="fa fa-search"></i></button>
 					</span>
 					</div>
                     <?php echo form_close(); ?>	
-                    <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>		
+                    <!-- <div class="label pull-right advance-search" data-toggle="modal" data-target="#advancedSearchModal">Advanced</i></div>	 -->	
 			</li>
             
             <li class="nav-li"><a href="/news">News</a></li>

@@ -13,9 +13,9 @@ class AdMeister {
 	 * Todo: Add create new db table for each day
 	 *       to make the data manageable.
 	 */
-	public function run(){
-		if(!empty($_POST['advertisement_id'])){
-			$this->chargeUserForClick();
+	public function run(){ 
+		if(!empty($_POST['advertisement_id'])){ //if and ad is clicked // not in use now
+			//$this->chargeUserForClick();
 		}
 		 
 		$page = new ad_pages_model();
@@ -23,12 +23,13 @@ class AdMeister {
 		$this->db = $page->db;
 		$pages = $page->fetchAll();
 		
-		$limit = 4; // for testing
+		$limit = 3; // for testing
 		
-		foreach($pages as $r){
+		foreach($pages as $r){ 
 			$patternPaginated = $r->ad_page.'/'.$limit.'/\d';
 			
-			if($r->ad_page == $_SERVER['REQUEST_URI']){ // if match perfectly is a level 1 advertisement
+			if(stristr($_SERVER['REQUEST_URI'], $r->ad_page)){ // if match perfectly is a level 1 advertisement
+				//var_dump($r->ad_page); exit;
 				return $this->placeAds($r, 1);
 			}elseif(preg_match("~^$patternPaginated$~", $_SERVER['REQUEST_URI'], $matches)){ //paginated pages get level 2 and higher charges
 				$level = explode('/', $_SERVER['REQUEST_URI'])[4];

@@ -24,7 +24,7 @@ $(document).ready(function(){
 		var listing_id = $(this).attr('value');
 		var csrfTokenName = $(this).attr('token_name');
 		var csrfTokenValue = $(this).attr('token_value');
-		
+		//alert(csrfTokenValue);
 		listing_product.buynow(listing_id, csrfTokenName, csrfTokenValue);
 	});
 });
@@ -38,11 +38,12 @@ listing_product.buynow = function(listing_id, csrfTokenName, csrfTokenValue){
 		dataType: "json"
 	});
 			 
-	request.done(function( msg ) { console.log(msg)
+	request.done(function( msg ) { 
 		if(msg.status == 'FAILURE'){
-			//console.log(msg);
+			//console.log('test');
+			
 			$('#myLegacy').modal('show')
-		}else{
+		}else{ 
 			$('#cart-items').html(msg.message);
 			$('#buy_now_message').html(msg.message+' <a href="/shoppingcart/index/'+listing_id+'" class="btn btn-primary btn-sm">Check Out</a>');
 		}		

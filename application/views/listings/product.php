@@ -6,7 +6,7 @@
 		<div class="section-content">
 			<div class="col-lg-6">
 				<div class="border-item mg ">
-					<div class="product-image product-big-img parent_div" style="height:380px;">
+					<div class="product-image product-big-img parent_div" style="max-height:300px;">
 						<img class="parent_thumb" src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
 					</div>
 					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:100px;">
@@ -23,7 +23,7 @@
 					<div class="bid-desc">
 						<div class="row" style="margin-bottom: 20px;">
 						    <div class="type_of_sale" style="font-weight:bold;float:left;">
-						        Type of Sale: <span style="color:#227593;">Auction w/Reserve</span>
+						        Type of Sale: <span style="color:#227593;">Auction</span>
 						    </div>
 							<div class="time-left">
 								<p>
@@ -77,15 +77,19 @@
 						<p>
 							<b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span>
 						</p>
-						
+						<?php if($listing->product->product_type->type == 'original'): ?>
 						<p>
-							<b>Qty: </b><span> <?php echo $listing->product->quantity;?></span>
+							<b>Origination Date:</b> <span><?php echo date('Y-m-d H:i:s', strtotime($listing->product->created));?></span>
+						</p>
+						<?php endif;?>
+						<p>
+							<b>QTY: </b><span> <?php echo $listing->product->quantity;?></span>
 						</p>
 						<p>
-							<b>Type of Sale:</b><span>AUCTION W/ BUY NOW</span>
+							<b>TYPE OF SALE:</b><span>AUCTION</span>
 						</p>
 						<p>
-							<b>Current Bid: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
+							<b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
 						</p>
 						<p>
 							<b>Number of Times Previously Sold on LXC: </b><span> 0</span>
@@ -120,11 +124,12 @@
 <!-- Also Intrest  -->
 <section id="intrested-item"> 
 <div class="row" style="margin-top:55px;">
-				<div class="col-lg-12" style="background: url('/public/images/lightblue_gradient_bar.gif');background-repeat:no-repeat;">
-					<h3 class="subtitle" style="color:#ff0000;font-weight:bold;text-decoration:italisize;">ALSO CHECK OUT THESE GREAT ITEMS!</h3>
-				</div>
+				
 			</div>
 	<div class="container">	
+	<div class="col-lg-12">
+					<div class="subtitle" ><i style="text-align:left;background: #fff;font-size:24px;color:#000;font-weight:normal;text-decoration:italisize;font-family:georgia;">You may also like to see:</i><a href="/listings/original" style="margin-top:10px;float:right;">SEE ALL ORIGINAL ITEMS</a></div>
+				</div>
 			<section class="products-container-no-border">
 	   <div class="container">    
         <?php foreach($listings_other as $listing):?>

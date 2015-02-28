@@ -1,79 +1,74 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
+<?php if($advertisements): ?>
 
+<div class="section-header" style="margin-top: 0px;background:#e9f3f7;height:60px;padding-top:10px;text-align:center;">
+    <span class="checkoutthesegreatitems"><i>CHECK OUT THESE GREAT ITEMS!</i></span>
+</div>
 <!-- advertisements -->
-<section id="intrested-item" class="ptb25">
-	<div class="container">
-		<div class="section-content">
-			<div class="row">
-				<div class="col-lg-12 advertisements_area">
-				    <?php if($advertisements): ?>
-					<?php foreach($advertisements as $ad):?>
-					    <div class="advertistement col-lg-3 col-md-3"
-						style="width: 270px; height: 200px; margin-right: 7px; border: 1px solid #aaa;"
-						id="<?php echo $ad->advertisement_id; ?>"
-						onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
-					    	<?php //var_dump($ad, $_SERVER); exit;?> 
-					    	<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
-					    		<input type="hidden" name="advertisement_id"
-							value="<?php echo $ad->advertisement_id;?>" /> <input
-							type="hidden" name="click" value="1" /> <input type="hidden"
-							name="user_id" value="<?php echo $ad->user_id;?>" /> <input
-							type="hidden" name="ad_page_location"
-							value="<?php echo $_SERVER['REQUEST_URI'];?>" />
-					    	<?php echo form_close();?>
-					    </div>
-					<?php endforeach; ?>
-					<?php endif; ?>
+<section>
+	<div class="container">						
+	
+		<?php foreach($advertisements as $ad): //var_dump($ad); exit;?>
+		<div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
+			<div class="hover-img" style="width:153px;height:153px;">
+			    <img src="/products/productimg/140/<?php echo $ad->product->product_id?>/<?php echo $ad->product->image?>" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;" />
+				<?php echo form_open($ad->link, array('method' => 'post', 'id' => 'advertisement_form'.$ad->advertisement_id, 'name' => 'advertisement_form'.$ad->advertisement_id));?>
+				<input type="hidden" name="advertisement_id" value="<?php echo $ad->advertisement_id;?>" /> 
+				<input type="hidden" name="click" value="1" /> 
+				<input type="hidden" name="user_id" value="<?php echo $ad->user_id;?>" /> 
+				<input type="hidden" name="ad_page_location" value="<?php echo $_SERVER['REQUEST_URI'];?>" />					    	
+				<?php echo form_close();?>
+				<div hover-info-id="<?php echo $ad->product_id;?>" class="hover-info">
+						<div style="font-size:12px;" class="product-name"><?=$ad->product->name;?></div>
 				</div>
 			</div>
 		</div>
+		<?php endforeach; ?>
+	<?php endif; ?>				
 	</div>
 </section>
-
-</div>
-<!-- main-content -->
-</div>
-<!-- /.contentbg -->
-
+<style>
+.footer-menu li a, .footer-links-heading a{letter-spacing: 1px; font-family:arial; font-weight:normal; }
+</style>
 <!--footer start-->
 <footer class="ptb25">
 	<div class="container">
-		<div class="row">
+		<div class="row" style='padding-left:5%;'>
 			<div class="col-lg-2 col-sm-4">
 				<div class="footer-links-heading">
 					<a href="/about">About</a>
 				</div>
 				<ul class="footer-menu">
-					<li><a href="/about#why-legacyxchange">Why legacyXchange</a></li>
+					<li><a href="/about#why-legacyxchange">Our Site</a></li>
 					<li><a href="/about#how-to-sell">Selling</a></li>
 					<li><a href="/about#how-to-buy">Buying</a></li>
-					<li><a href="/about#rates">Rates</a></li>
-					<li><a href="/about#stores">Store Front</a></li>
-					<li><a href="/about#news">News</a></li>
+					
+					<li style="line-height: 18px;"><a href="/about#stores">Store Fronts:</a><br/>
+					<a href="/about#rates">Retailers</a><br/>
+					<a href="/about#rates">Dealers</a><br/>
+					<a href="/about#rates">Volume Sellers</a></li>					
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-2 col-sm-4" style="margin:0;">
 				<div class="footer-links-heading">
 					<a href="/about">Partners</a>
 				</div>
-				<ul class="footer-menu">
-					<li><a href="/athletes-celebrities-agents">Athletes | Celebrities |
-							Agents</a></li>
-					<li><a href="/dealers">Dealers</a></li>
+				<ul class="footer-menu" style="width:400px;">
+					<li><a href="/athletes-celebrities-agents">Athletes, Celebrities</a></li>
 					<li><a href="/manufacturers">Manufacturers</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-2 col-sm-4" style="padding-left:35px;">
 				<div class="footer-links-heading">
 					<a href="/legal">Legal</a>
 				</div>
 				<ul class="footer-menu">
-					<li><a href="/terms">Terms</a></li>
+					<li><a href="/terms-of-service">Terms</a></li>
 					<li><a href="/disclaimers">Disclaimers</a></li>
 					<li><a href="/privacy">Privacy</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-2 col-sm-4">
+			<div class="col-lg-2 col-sm-4" style="padding-left:25px;">
 				<div class="footer-links-heading">
 					<a href="/help">Help</a>
 				</div>
@@ -89,10 +84,11 @@
 				<ul class="footer-menu">
 					<li><a href="/careers">Careers</a></li>
 					<li><a href="/press">Press Release</a></li>
+					<li><a href="/press">Stock Quote</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">
-				<div class="footer-links-heading">
+				<div class="footer-links-heading" style="margin-bottom:6px;">
 					<a href="/follow-us">Follow Us</a>
 				</div>
 				<ul class="s-icon" style="list-style: none; padding: 0px;">
@@ -103,7 +99,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 LegacyXChange, S2BXChange</div>
 	</div>
 </footer>
 <!--footer end-->
@@ -223,6 +219,73 @@
 					class='input-block-level btn  btn-social btn-facebook'>
 					<i class="fa fa-facebook"></i>LOG IN WITH FACEBOOK
 				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
+	aria-labelledby="paymentModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">LegacyXchange Payment</h4>
+			</div>
+			<div class="alerts">
+            <?php require 'application/views/partials/flash_messages.php';?>
+            </div>
+			<div class="modal-body">
+				<div class="row">
+					
+					<div class="col-lg-12">
+						<div class="reg-title">
+							<h4>Checkout</h4>							
+						</div>
+						<?php echo form_open('#', array('name' => 'paymentform', 'id' => 'paymentform'))?>
+        				    
+        				<div class="form-group">
+							<label for="fname">First Name</label> <input type='text'
+								class='form-control' name='firstName' id='firstName' value=""
+								placeholder='FIRST NAME' onchange="global.checkFirstName();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lname">Last Name</label> <input type='text'
+								class='form-control' name='lastName' id='lastName' value=""
+								placeholder='LAST NAME' onchange="global.checkLastName();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<label for="lname">Credit Card Number</label> 
+							<input type='text' class='form-control' name='credit_card_number' id='credit_card_number' value="" placeholder='Credit Card Number' onchange="global.checkCreditCardNumber();" />
+							<div class="alert alert-danger" style="display: none;"></div>
+						</div>
+						
+						<div class="form-group">
+							<b>By clicking "Save" you agree that:</b>
+							<ul class="terms">
+								<li>You accept our <a href="/terms-of-service">Terms</a> and <a
+									target="_blank" href="/privacy">Privacy Policy</a></li>
+								<li>You may receive communications from LegacyXChange</li>
+								<li>You are at least 18 years of age</li>
+							</ul>
+						</div>												  
+        				<?php echo form_close();?>
+        				<div class="form-action">
+							<button type="button" class="btn btn-primary btn-sm"
+								id='submitPaymentBtn'>Continue</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				
 			</div>
 		</div>
 	</div>
@@ -476,15 +539,6 @@
 <!-- /.modal -->
 
 <script type="text/javascript" src="/public/js/retina-1.3.min.js"></script>
-<!-- 
-<script type="text/javascript" src="/public/js/chat.js"></script>
 
-<div id="chat_container">
-<div id="chat_hide_show_button" class="chat_hide_show" onclick="chat.hideShow();">SHOW CHAT</div>
-<div id="chat" style="display:none;">
-    
-</div>
-</div> -->
 </body>
-
 </html>
