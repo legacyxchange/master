@@ -24,7 +24,12 @@
 			</div>
 		</div>
 		<?php endforeach; ?>
-	<?php endif; ?>				
+	<?php endif; ?>	
+	<div class="product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="location.href='/about#advertising';">
+			<div class="" style="width:153px;height:63px;margin-left:-15px;margin-top:10px;font-size:22px;cursor:pointer;color:#00698a;font-weight:bold;text-align:center;">
+			   ADVERTISE YOUR PRODUCT HERE!
+			</div>
+		</div>			
 	</div>
 </section>
 <style>
@@ -142,8 +147,7 @@
 							<!--<a href="#" data-toggle="modal" data-target="#resetPassword">Forgot Password?</a>-->
 						</div>
 						<div class="form-action">
-							<button type="button" class="btn btn-primary btn-sm"
-								id='submitLoginBtn'>LOG IN</button>
+							<button type="button" class="btn btn-primary btn-sm" id='submitLoginBtn'>LOG IN</button>
 						</div>				
 						<?php echo form_close();?>
 	   				</div>

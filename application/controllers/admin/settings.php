@@ -3,9 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Settings extends CI_Controller {
 
-    function Profile() {
+    function Settings() {
         parent::__construct();
 
         $this->load->driver('cache');
@@ -38,8 +38,10 @@ class Profile extends CI_Controller {
 
         $header['onload'] = "profile.indexInit(0,0);";
 
+        $menu['menu_settings'] = 1;
+        $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         $this->load->view('admin/template/header', $header);
-        $this->load->view('profile/index', $body);
+        $this->load->view('admin/settings', $body);
         $this->load->view('template/footer');
     }
 
@@ -353,7 +355,6 @@ class Profile extends CI_Controller {
                 $config['max_size'] = "5120";
                 $config['encrypt_name'] = true;
 
-                
                 // loads upload library
                 $this->load->library('upload', $config);
 

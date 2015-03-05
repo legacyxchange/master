@@ -489,7 +489,7 @@ global.userlogin = function ()
         	if(data.redirect != null){
         		window.location.href = data.redirect;
         	}else{
-        		window.location.href = '/admin/dashboard';
+        		window.location.href = '/admin/account';
         	}       
         }
         else{

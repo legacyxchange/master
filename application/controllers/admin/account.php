@@ -3,9 +3,9 @@ error_reporting(E_ALL & ~E_NOTICE);
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Account extends CI_Controller {
 
-    function Dashboard() {
+    function Account() {
         parent::__construct();
         $this->load->driver('cache');
         $this->load->model('user_model', 'user', true);
@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
         
         $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         $this->load->view('admin/template/header', $header);
-        $this->load->view('admin/dashboard', $body);
+        $this->load->view('admin/account', $body);
         $this->load->view('template/footer');
     }
 }

@@ -69,7 +69,8 @@ $route['listings/bid/(:num)'] = 'listings/bid/$1';
 $route['listings/^(search)([a-z]+)'] = 'listings/index/$1';
 $route['listings/(:any)'] = 'listings/index/$1';
 $route['listings/(:any)/(:num)/(:num)'] = 'listings/index/$1/$2/$3';
-$route['admin/account'] = 'admin/dashboard';
+//$route['admin/account'] = 'admin/dashboard';
+//$route['admin/settings'] = 'profile';
 
 
 $route['admin/products/(:num)'] = 'admin/products/index/$1';

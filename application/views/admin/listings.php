@@ -1,11 +1,17 @@
+<div class="admin-menu-container container ">
+	<?php echo $admin_menu;?>
+</div>
+<div  style="border-bottom:2px solid #0a6e8e;border-top:2px solid #0a6e8e;background:#f4f4f4;margin-top: 20px;padding-top: 16px;">
+    <h2 style="color:#016889;">MY LISTINGS</h2>	
+</div>
 <!--container start-->
-        <div class="container main-content">       
-        <?php echo $admin_menu;?>
+        <div class="container content">       
+        
         <div class="admin_add_new_butt">
 			<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
-        	<div class="war">
-            	<h2>My Listings</h2>                               
+        	<div>
+            	                       
                 <table class="table table-condensed">
                     <tr>
                     	<th>Listing Id</th>

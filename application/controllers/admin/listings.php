@@ -46,8 +46,9 @@ class Listings extends CI_Controller {
         	$listings = $this->listing->fetchAll('listing_id = '.$listing_id);        	
         }
         
+        $menu['menu_listings'] = 1;
         $body['listings'] = $listings;
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', null, true);
+        $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         $this->load->view('admin/template/header', $header);
         $this->load->view('admin/listings', $body);
         $this->load->view('template/footer');

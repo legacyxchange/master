@@ -95,10 +95,10 @@ body{
     margin:0px;
 }
 p{
-    font-size:18px;
+    font-size:13px;
     text-align:left;
     color:#4D4D4D;
-    line-height:26px;
+    
     padding:0px 0px 20px 0px;
     margin:0px;
 }
@@ -3140,4 +3140,5 @@ margin-top: -33px;
 .cat-list a{ margin-left:-20px; color:#545454; text-decoration:none;} 
 .store-img { width:174px;height:174px;border:3px solid #000;border-radius:5px;overflow:hidden; }
 .store-text { width:174px;text-align:center;font-size:18px;font-weight:bold;margin-bottom:30px;font-style:italic; }
-.admin-title { }
+.admin_add_new_butt, .add_new_plus{background:#fff; color:#016889; border:2px solid #016889;}
+.products-big-link:hover, .listings-add-link:hover{background:transparent; color:#016889;}
