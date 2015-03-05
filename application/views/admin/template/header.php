@@ -61,9 +61,8 @@ li a { letter-spacing:1px; }
                         </span> 
                         <i class="fa fa-caret-down icon_color"></i>
                 </a>
-                <ul class="dropdown-menu" role="menu">                   
-                    <li><a href="/profile">My Account</a></li>
-                    <li><a href="/admin/dashboard">My Dashboard</a></li>
+                <ul class="dropdown-menu" role="menu">                                       
+                    <li><a href="/admin/account">My Account</a></li>
                     <li><a href="/welcome/logout">Logout</a></li>
                 </ul>
             </div>

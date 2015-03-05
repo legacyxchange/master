@@ -1,48 +1,52 @@
+
+<div class="admin-menu-container container ">
+	<?php echo $admin_menu;?>
+</div>
+<div  style="border-bottom:2px solid #0a6e8e;border-top:2px solid #0a6e8e;background:#f4f4f4;margin-top: 20px;padding-top: 16px;">
+    <h2 style="color:#016889;">MY PRODUCTS</h2>
+</div>
 <!--container start-->
-        <div class="container main-content">
+    <div class="container content">
         
-        <?php echo $admin_menu; ?>
         <div class="admin_add_new_butt">
 			<a href="#" class="products-big-link" data-toggle="modal" data-target="#productsModal"><span class="add_new_plus">+</span> add new</a>
 		</div>
-        	<div class="war">
-            	<h2>My PRODUCTS</h2>
-                                
-                <table class="table table-condensed">
-                    <tr>
-                        <th>Product Id</th>
-                        <th>Product Type</th>
-                        <th>User Id</th>
-                        <th>Name</th>
-                        <th>Image</th>
-                        <th>&nbsp;</th>
-                    </tr>                        
-                    <?php if($products):?>
-                    <?php foreach($products as $product):?>                                            
-                    <tr>
-                        <td class="rec-text"><?php echo $product->product_id;?></td>
-                        <td class="rec-text"><?php echo $product->product_type;?></td>
-                        <td class="rec-text"><?php echo $product->user_id;?></td>
-                        <td class="rec-text"><?php echo $product->name;?></td>
-                        <td class="rec-text"><img src="/products/productimg/50/<?php echo $product->product_id;?>/<?php echo $product->image;?>" /></td>
-                        <td valign="middle" align="right" class="icon">                                            
+        <div>                               
+            <table class="table table-condensed">
+                <tr>
+                    <th>Product Id</th>
+                    <th>Product Type</th>
+                    <th>User Id</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>&nbsp;</th>
+                </tr>                        
+                <?php if($products):?>
+                <?php foreach($products as $product):?>                                            
+                <tr>
+                    <td class="rec-text"><?php echo $product->product_id;?></td>
+                    <td class="rec-text"><?php echo $product->product_type;?></td>
+                    <td class="rec-text"><?php echo $product->user_id;?></td>
+                    <td class="rec-text"><?php echo $product->name;?></td>
+                    <td class="rec-text"><img src="/products/productimg/50/<?php echo $product->product_id;?>/<?php echo $product->image;?>" /></td>
+                    <td valign="middle" align="right" class="icon">                                            
 						<a href="#" id="<?=$product->product_id;?>" class="admin_edit_button" data-toggle="modal" data-target="#productsModal"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/admin/products/delete/<?php echo $product->product_id;?>"><img src="/public/images/delete.png" /> </a> 
-						</td>
-                    </tr>                                       
+					</td>
+                </tr>                                       
                 <?php endforeach;?> 
-                </table>
-                <?php if($this->pagination):?>
-                <div class="pagination">
-        			<?php echo $this->pagination->create_links(); ?>
-    			</div>  
-    			<?php endif; ?>             
-                <?php else: ?>
-                <h3 class="alert alert-warning">Sorry there are no products.</h3>
-                <?php endif; ?>
-            </div>
+            </table>
+            <?php if($this->pagination):?>
+            <div class="pagination">
+        		<?php echo $this->pagination->create_links(); ?>
+    		</div>  
+    		<?php endif; ?>             
+            <?php else: ?>
+            <h3 class="alert alert-warning">Sorry there are no products.</h3>
+            <?php endif; ?>
         </div>
-     <!--container end-->  
+    </div>
+    <!--container end-->  
      
     <!-- start productsModal --> 
     <div id="productsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="productsModal" aria-hidden="true"> 
