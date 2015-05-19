@@ -19,7 +19,7 @@ class products_model extends abstract_model {
     public $retail_price;
     public $quantity;
     public $active;
-    public $brand;
+    public $product_condition_type_id;
     public $model;
     public $sku;
     public $image;

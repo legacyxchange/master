@@ -1,24 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<style>
-.title{ font-family:georgia;text-align:center;font-size:26px;font-weight:bold;color:#00698a;background:#dadce4;height:40px;width:100%;border-top:2px solid #07bdb7;border-bottom:2px solid #07bdb7; }
-.heading{ font-family:arial;font-size:22px;font-weight:bold;color:#00698a;margin:30px;margin-left:0; }
-.content-heading{ font-size:20px;font-weight:bold;color:#333;text-align:center;font-family:arial; }
-.content-sub-heading{ text-align:center;font-style:italic;font-family:arial;font-size:15px; }
-.blue-content-sub-heading{ color:#00698a;text-align:center;font-style:italic;font-family:arial;font-size:15px; }
-.acontent{ font-family:arial;margin-left:0;font-size:15px;color:#5b5b5b; }
-section{margin-bottom:60px;}
-p { font-size:15px; }
-</style>   
 
-<div class="container">         
+<section class="whitish">  
+  
     <div class="title">
         ABOUT
     </div>
+    
+<div class="container">  
     <div class="heading" id="our-site">
             Our Site:
-    </div>  
-    
-    <section>
+    </div>           
+    <section class="bottom-margin60">
     	<div class="content-heading" id="why-legacyxchange">Why LegacyXChange?</div>              
     	<div class="content-sub-heading">Transforming the Collectable and Memorabilia Business</div>
     	<div class="content-sub-heading">Ending Counterfeit as We Know It</div>
@@ -32,7 +24,7 @@ with invisible trace material.
     	</div>
     </section>
     
-    <section>        
+    <section class="bottom-margin60">        
         <div class="content-heading" id="why-sb2xchange">Why SB2XChange?</div>              
     	<div class="content-sub-heading">Where Sellers Go Direct To Buyers</div>
     	     	
@@ -44,7 +36,7 @@ decide if they want to spend to promote their products.
     	</div>
     </section>
     
-    <section>        
+    <section class="bottom-margin60">        
         <div class="content-heading" id="why-sb2plus">Why S2B Plus Items?</div>              
     	
     	<div class="acontent">
@@ -60,7 +52,7 @@ item will be seen. If you want to sell items faster, “On Sale Items” is the plac
             Selling:
     </div>  
     
-    <section>
+    <section class="bottom-margin60">
     	<div class="acontent">
     	There is no charge for listing the first 150 items in any 30-day period. There are no fees for selling any item. If you 
 choose to offer more than 150 items in a 30-day period, you can either choose a listing package that offers more 
@@ -162,7 +154,7 @@ is offset with bonus advertising dollars that we credit to your account.
     </section>
     
     <div class="heading" id="how-to-buy">Buying:</div>   
-    <section>                   
+    <section class="bottom-margin60">                   
     	
     	<div class="acontent">
     	Register, and then choose the item you want to purchase. If the item is being sold in an auction, place a bid based
@@ -175,7 +167,7 @@ Each item sold will indicate method of payment and shipping terms.
     </section>
     
     <div class="heading" id="stores">Storefronts:</div>
-    <section>        
+    <section class="bottom-margin60">        
         
         <div class="blue-content-sub-heading"><strong>Retailers / Dealers / Volume Sellers</strong></div>             
     	
@@ -259,3 +251,4 @@ To setup your Storefront, go to Set Up Storefront in your Dashboard
     	</div>
     </section>
 </div>
+</section>

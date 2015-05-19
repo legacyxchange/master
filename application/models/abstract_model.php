@@ -31,40 +31,36 @@ abstract class abstract_model extends CI_Model {
     	return $query->result();
     }
     
-    public function countAll($where = null){
-    	if(!is_null($where)){
-    		$this->db->where($where);
-    	}
-    	return $this->db->get($this->table)->num_rows;
-    }
-    
-    public function test(){
-    	var_dump($this->cleanseParams($_POST), $this); exit;
-    }
-    
     public function save($where = null) {
     	
     	$params = $this->cleanseParams($_POST);
     	
-    	if(!empty($where)) {
-    		$data = $this->fetchAll(array('where' => $where));
-    		
-    		if(count($data) > 0){
-    			$this->db->where($where);
-    			$this->db->update($this->table, $params);
-    			//echo $this->db->last_query(); exit; // write to log file or db 
-    		}
+    	if(!empty($where)) {    		    
+    	    $data = $this->fetchAll(array('where' => $where));
+    	} elseif(!empty($_POST[$this->primary_key])) {
+    		$where = $this->primary_key.' = '.$_POST[$this->primary_key];    		
+    		$data = $this->fetchAll(array('where' => $where));    	   
     	}
-    	else {    		
+    	
+    	if(count($data) > 0){ //echo 'here'; exit;
+    	    $this->db->where($where);
+    	    $u = $this->db->update($this->table, $params);
+    	    		
+    	    echo $this->db->last_query(); exit; // write to log file or db
+    	    return $u;
+    	}
+    	else {  
     		if(!empty($params[$this->primary_key]))
     			unset($params[$this->primary_key]);
 
     		$this->db->insert($this->table, $params);
+    		return $this->db->insert_id();
     	}
         
     	//echo $this->db->last_query(); 
     	//file_put_contents('/var/www/html/public/logs/abstract.txt', "\n\n".$this->db->last_query(), FILE_APPEND);
-    	return $this->db->insert_id();
+    	
+    	
     }
     
     public function delete($key, $id){
@@ -76,6 +72,17 @@ abstract class abstract_model extends CI_Model {
    			$this->db->delete($this->table); 
     	}
     	return $id;
+    }  
+
+    public function countAll($where = null){
+    	if(!is_null($where)){
+    		$this->db->where($where);
+    	}
+    	return $this->db->get($this->table)->num_rows;
+    }
+    
+    public function test(){
+    	var_dump($this->cleanseParams($_POST), $this); exit;
     }
     
     protected function cleanseParams($params) {

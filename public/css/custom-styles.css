@@ -1138,7 +1138,7 @@ h2{
     font-size:26px;
     text-align:left;
     font-weight:normal;
-    text-transform:uppercase;
+    
     padding:0px 0px 20px 0px;
     margin:0px;
 }
@@ -2278,14 +2278,12 @@ h2{
     padding:0px 90px 0px 0px;
 }
 .add_new_butt, .admin_add_new_butt{
-    width:175px;
-    height:57px;    
+    width:auto;
+    height:30px;    
     float:right;
-    margin:25px 0px 15px 0px;
-    border:3px solid #000066;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius:8px;
+    margin:0px 0px 0px 0px;
+    border:0px solid #000066;
+   
 }
 
 .add_new_plus{padding-left:7px;padding-right:8px;padding-bottom:3px;border:3px solid #000033;border-radius:30px;height:30px;width:20px;font-weight:bold;margin-right:20px;}
@@ -2293,12 +2291,12 @@ h2{
     color: #000033;  
     padding:10px 20px 10px 20px;
     /* background:url(../images/add_new.png) no-repeat left center; */
-    line-height:50px;  
+    line-height:30px;  
     text-align:center;
     text-decoration: none;
-    font-family: 'LatoBold';
+    font-family: 'arial';
     font-size:16px;
-    text-transform:uppercase;
+    
     border:0px;	
 }
 .add_new_butt a:hover, .admin_add_new_butt a:hover {
@@ -3010,7 +3008,7 @@ span.no-link{padding:0px 0 0 15px;display:block;}
 .stylish-input-group  .form-control{border-right:0; border-radius:4px 0 0 4px!important;}
 .navbar-brand{ font-size:30px; font-weight:700; height:auto; color:#000!important; line-height:30px; padding-top:12px;}
 .navbar-nav{margin-top:15px!important;}
-.navbar{margin-bottom:0; height:80px;}
+.navbar{margin-bottom:0; height:80px; background:#fff;}
 
 .nav>li>a.combo-link{padding-bottom:0;}
 .nav>li>a.combo-down-link{padding-bottom:0; padding-top:0;}
@@ -3140,5 +3138,55 @@ margin-top: -33px;
 .cat-list a{ margin-left:-20px; color:#545454; text-decoration:none;} 
 .store-img { width:174px;height:174px;border:3px solid #000;border-radius:5px;overflow:hidden; }
 .store-text { width:174px;text-align:center;font-size:18px;font-weight:bold;margin-bottom:30px;font-style:italic; }
-.admin_add_new_butt, .add_new_plus{background:#fff; color:#016889; border:2px solid #016889;}
+
 .products-big-link:hover, .listings-add-link:hover{background:transparent; color:#016889;}
+.admin-menu-container { background:#fff; }
+.admin-heading{color:#016889;text-transform:none;letter-spacing:1px;font-size:26px;font-weight:bold;font-family:arial;}
+.whitish { background: #ffffff; padding:20px;margin:0 auto;}
+.greyish { background:#f4f4f4; padding:20px;margin:0 auto;}
+.bluish { background:#e9f3f7; padding:10px;margin:0 auto;}
+.bordered { border:1px solid #ccc; padding:10px;margin:0 auto; }
+.rounded { border-radius: 10px; margin:20px;}
+.page-heading {text-align: center; color: #000; font-family: georgia regular; font-size: 36px; font-weight: normal;}
+.max-width{ max-width:500px;margin:0 auto;}
+.min-height{ min-height:500px;margin:0 auto;}
+.title{ font-family:georgia;text-align:center;font-size:26px;font-weight:bold;color:#00698a;background:#dadce4;height:40px;width:100%;border-top:2px solid #07bdb7;border-bottom:2px solid #07bdb7; }
+.heading{ font-family:arial;font-size:22px;font-weight:bold;color:#00698a;margin:30px;margin-left:0; }
+.content-heading{ font-size:20px;font-weight:bold;color:#333;text-align:center;font-family:arial; }
+.content-sub-heading{ text-align:center;font-style:italic;font-family:arial;font-size:15px; }
+.blue-content-sub-heading{ color:#00698a;text-align:center;font-style:italic;font-family:arial;font-size:15px; }
+.acontent{ font-family:arial;margin-left:0;font-size:15px;color:#5b5b5b; }
+.bottom-margin60{margin-bottom:60px;}
+.admeister-heading{font-family:georgia;font-size:32px;font-weight:normal;color:#00698a;margin-top: 0px;background:#e9f3f7;height:60px;padding-top:10px;text-align:center;border-top:3px outset #aaa;font-style:italic;}
+.page-menu{
+    text-align:left;
+    
+    font-size:12px;
+}
+.listings_menu{width:100%;border:1px solid #ccc; border-right:0;border-left:0; background:#fff;margin-top:30px;margin-bottom:80px;padding-top:4px;}
+@media screen and (max-width: 990px) {
+   				 .listings_menu {
+       				margin-top:60px;
+   				 }
+   				 
+			}
+.dropdown-menu>li>a {
+  margin-left: 0px;
+}
+.btn{letter-spacing:1px;padding:2px;padding-left:5px;padding-right:5px;}
+.btn-blue {
+color: #fff;
+background-color: #006989;
+border-color: #006989;
+}
+.btn-red {
+color: #fff;
+background-color: #ff0000;
+border-color: #ff0000;
+}
+.btn-green {
+color: #fff;
+background-color: #008000;
+border-color: #008000;
+}
+.btn:hover{color:#000;}

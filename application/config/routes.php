@@ -60,7 +60,7 @@ $route['disclaimers'] = 'static_pages/page/disclaimers';
 $route['dealers'] = 'static_pages/page/dealers';
 $route['athletes-celebrities-agents'] = 'static_pages/page/athletes_celebrities_agents';
 $route['manufacturers'] = 'static_pages/page/manufacturers';
-$route['news'] = 'static_pages/page/about#news';
+$route['news'] = 'static_pages/page/news';
 $route['careers'] = 'static_pages/page/careers';
 $route['shopping-cart'] = 'shoppingcart';
 $route['listings/product/(:num)'] = 'listings/product/$1';
@@ -69,8 +69,7 @@ $route['listings/bid/(:num)'] = 'listings/bid/$1';
 $route['listings/^(search)([a-z]+)'] = 'listings/index/$1';
 $route['listings/(:any)'] = 'listings/index/$1';
 $route['listings/(:any)/(:num)/(:num)'] = 'listings/index/$1/$2/$3';
-//$route['admin/account'] = 'admin/dashboard';
-//$route['admin/settings'] = 'profile';
+$route['phpinfo'] = 'phpinfo';
 
 
 $route['admin/products/(:num)'] = 'admin/products/index/$1';

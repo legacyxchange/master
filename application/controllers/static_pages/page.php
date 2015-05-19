@@ -55,10 +55,10 @@ class Page extends CI_Controller {
     }
     
     public function news(){
-    	$body['title'] = 'In the News';
-    	
+    	$body['title'] = 'In the News';  	
+    	$this->load->view('template/header', $header);
     	$this->load->view('static_pages/news', $body);
-    	
+    	$this->load->view('template/footer');
     }
     
     public function careers(){

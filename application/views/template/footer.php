@@ -1,13 +1,12 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
-<?php if($advertisements): ?>
 
-<div class="section-header" style="margin-top: 0px;background:#e9f3f7;height:60px;padding-top:10px;text-align:center;">
-    <span class="checkoutthesegreatitems"><i>CHECK OUT THESE GREAT ITEMS!</i></span>
+<?php if($advertisements): ?>
+<div class="section-header admeister-heading">
+    SPECIAL ITEMS
 </div>
 <!-- advertisements -->
 <section>
-	<div class="container">						
-	
+	<div class="container">							
 		<?php foreach($advertisements as $ad): //var_dump($ad); exit;?>
 		<div class="cont-6 product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="$('#advertisement_form<?php echo $ad->advertisement_id;?>').submit();">
 			<div class="hover-img" style="width:153px;height:153px;">
@@ -24,14 +23,15 @@
 			</div>
 		</div>
 		<?php endforeach; ?>
-	<?php endif; ?>	
-	<div class="product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="location.href='/about#advertising';">
+		
+		<div class="product-container-border-6 col-lg-2 col-md-2 col-sm-4 col-xs-12" onclick="location.href='/about#advertising';">
 			<div class="" style="width:153px;height:63px;margin-left:-15px;margin-top:10px;font-size:22px;cursor:pointer;color:#00698a;font-weight:bold;text-align:center;">
 			   ADVERTISE YOUR PRODUCT HERE!
 			</div>
 		</div>			
 	</div>
 </section>
+<?php endif; ?>	
 <style>
 .footer-menu li a, .footer-links-heading a{letter-spacing: 1px; font-family:arial; font-weight:normal; }
 </style>
@@ -104,7 +104,7 @@
 				</ul>
 			</div>
 		</div>
-		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 LegacyXChange, S2BXChange</div>
+		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 <?php echo $this->site->getName();?></div>
 	</div>
 </footer>
 <!--footer end-->
@@ -118,7 +118,7 @@
 					<span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
 					<span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">LegacyXchange</h4>
+				<h4 class="modal-title" id="myModalLabel">LegacyXChange</h4>
 			</div>
 			<div class="alerts">
             <?php require 'application/views/partials/flash_messages.php';?>

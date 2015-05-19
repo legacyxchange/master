@@ -20,6 +20,7 @@ $(document).ready(function(e){
 <style>
 .followBtn{display:none;} 
 li a { letter-spacing:1px; }
+#alert-s, #alert-d{text-align:center;display:none;}
 </style>
 </head>
 
@@ -111,7 +112,11 @@ li a { letter-spacing:1px; }
       </div>
     </nav>
     <div style="background:#ccc;height:3px;width:100%;">&nbsp;</div>
-    <div class="container">
-    
-    </div>
+    <div style="background:#fff;">
     <?php require_once 'application/views/partials/flash_messages.php';?>
+    
+    
+    	<h3 class="alert alert-success" id="alert-s"><?php echo $this->session->flashdata('SUCCESS'); ?></h3>
+    
+        <h3 class="alert alert-danger" id="alert-d"><?php echo $this->session->flashdata('FAILURE'); ?></h3>
+    </div> 
