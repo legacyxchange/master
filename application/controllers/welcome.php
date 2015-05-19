@@ -11,6 +11,7 @@ class Welcome extends CI_Controller {
         $this->load->model('welcome_model', 'welcome', true);
         $this->load->model('user_model', 'user', true);
         $this->load->model('search_model', 'search', true);
+        $this->load->model('notifications_model', 'notifications', true);
     }
 
     public function index() {
@@ -115,10 +116,22 @@ class Welcome extends CI_Controller {
                     $user_id = $this->user->create();
 
                     $this->functions->setLoginSession($user_id);
+                    
+                    $firstName = $_POST['firstName']; 
+                     
+                    $notification = "Hi $firstName , thank you for registering with LegacyXChange.com. This is your account area. Here you can add products, listings, update personal info., and much more. \n
+                    		         if you have any questions or comments, please send us a message from our contact page.\n Please continue to fill out your personal information on the My Settings page.";
+                    
+                    $email_notification = 'Hi '.$firstName.', thank you for registering with LegacyXChange.com. Login and go to your account area. There you can add products, listings, update personal info., and much more.
+                    		               <br />Please continue to fill out your personal information on the My Settings page.<br />
+                    		               if you have any questions or comments, please send us a message from our <a href="http://legacyxchange.com/contact">contact page</a>.<br />support@legacyxchange.com';
+                    
+                    $this->notifications->fromSystem($user_id, $notification, $subject = 'Welcome to LegacyXChange.com', $importance_level = 1, $email_notification);
 
                     $this->session->set_flashdata('SUCCESS', 'Account has been created!');
                     
                     $this->functions->jsonReturn('SUCCESS', 'Account has been created!');
+                                   
                 } elseif(!$usernameAvail && $emailAvail) {
                     echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;
                 } elseif($usernameAvail && !$emailAvail) {

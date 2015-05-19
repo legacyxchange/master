@@ -7,10 +7,10 @@ class Phpinfo extends CI_Controller {
 
     function Phpinfo() {
         parent::__construct();
+        $this->load->model('test_model', 'test', true);
     }
     
-    // user that is not logged in will be redirected to this function
-    public function index($location_id = null){
-    	phpinfo();
+    public function index(){
+    	phpinfo(); exit;
     }
 }

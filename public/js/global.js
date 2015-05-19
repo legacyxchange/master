@@ -119,6 +119,14 @@ $(function () {
     	fb.login($(this), true);
     });
 
+    $('#loginform').keypress(function(e){
+    	if(e.charCode == 13)
+    		global.userlogin();    	
+    });
+    $('#signupform').keypress(function(e){
+    	if(e.charCode == 13)
+    		global.checkRegisterForm();
+    });
     $('#submitLoginBtn').click(function (e) {
         global.userlogin();
     });
@@ -574,20 +582,6 @@ global.setForgotPasswordEnter = function ()
     });
 }
 
-global.setRegEnter = function ()
-{
-    $(window).unbind('keypress');
-
-    $(window).bind('keypress', function (e) {
-        var code = e.keyCode || e.which;
-
-        if (code == 13)
-        {
-            //console.log("FORGOT ENTER!");
-            global.checkRegisterForm();
-        }
-    });
-}
 
 global.styleSelect = function (sel)
 {
@@ -690,6 +684,12 @@ global.checkUsername = function(){
 	else
 		global.resetError($('#username'));
 }
+global.checkAddress = function(){
+	if($('#addressLine1').val().length < 3)
+        global.setError($('#addressLine1'), 'Last Name must be at least 3 characters.');
+	else
+		global.resetError($('#addressLine1'));
+}
 global.checkEmail = function(){	
 	if($('#email').val().length < 4)
         global.setError($('#email'), 'Email must be at least 4 characters.');
@@ -753,7 +753,7 @@ global.checkRegisterForm = function ()
     	
 		if (data.status == 'SUCCESS')
 		{   
-			location.href = '/profile';
+			location.href = '/admin/account';
 		}
         else if (data.status == 'FAILURE')
         {

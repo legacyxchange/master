@@ -229,8 +229,7 @@ if(empty($_SESSION))
  * And away we go...
  *
  */
-
-require_once BASEPATH.'core/Controller.php';
+require_once BASEPATH.'core/Controller.php'; 
 require_once BASEPATH.'core/CodeIgniter.php';
 
 //var_dump($results);

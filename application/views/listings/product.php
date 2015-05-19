@@ -6,10 +6,10 @@
 		<div class="section-content">
 			<div class="col-lg-6">
 				<div class="border-item mg ">
-					<div class="product-image product-big-img parent_div" style="max-height:300px;">
-						<img class="parent_thumb" src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
+					<div class="product-image product-big-img parent_div" style="height:340px;">
+						<img class="parent_thumb" src="/products/productimg/240/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
 					</div>
-					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:100px;">
+					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:140px;">
 						<img src="/products/productimg/100/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>"class="child_thumb"> 
 					<?php if(!empty($listing->product->product_images)):?>
 					<?php foreach($listing->product->product_images as $i):?>					    					
@@ -73,10 +73,18 @@
 						<h4>Item Name: <?php echo ucfirst($listing->product->name);?></h4>
 					</div>
 					<div class="product-description">
-						<p><strong>Item Description:</strong> <?php echo html_entity_decode($listing->product->description);?></p>
+						<p style="height:60px;">
+							<?php echo html_entity_decode($listing->product->description);?>
+						</p>
 						<p>
 							<b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span>
 						</p>
+						
+						<p>
+							<b>Condition:</b> <span><?php echo ucfirst($listing->product->product_condition_type->product_condition);?></span>
+						</p>
+						
+						<p>
 						<?php if($listing->product->product_type->type == 'original'): ?>
 						<p>
 							<b>Origination Date:</b> <span><?php echo date('Y-m-d H:i:s', strtotime($listing->product->created));?></span>

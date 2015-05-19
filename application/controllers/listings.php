@@ -21,6 +21,8 @@ class Listings extends CI_Controller {
         
         $this->load->model('product_types_model', 'product_types', true);
         
+        $this->load->model('product_condition_types_model', 'product_condition_types', true);
+        
         $this->load->model('listings_model', 'listings', true);
         
         $this->load->model('product_ownership_records_model', 'product_ownership_record', true);
@@ -35,32 +37,35 @@ class Listings extends CI_Controller {
     }
 
     public function index($product_type = null, $limit = 16, $offset = 0) {  
-    	
     	$header['headscript'] = $this->functions->jsScript('listing-product.js  search.js timer.js');
-        try {
+        try { 
         	if($product_type){ //echo $product_type; exit;
         		$body['product_type'] = $product_type;
-        		if($product_type == 'original'){ // original
-        			//echo 'original';
-        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        		$view = 'listings/index';
+        		if($product_type == 'original' || $product_type == 1){ 
+        			$body['product_type_heading'] = 'Original';
+        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) join product_condition_types using(product_condition_type_id)
         				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 1 LIMIT '.$limit.' OFFSET '.$offset);
-        		}elseif($product_type == 's2bxchange'){ // s2bxchange 
-        			//echo 'sb2xchange';
-        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        		}elseif($product_type == 'marketplace' || $product_type == 2){ // s2bxchange 
+        			$body['product_type_heading'] = 'The Marketplace';
+        			$view = 'listings/index';
+        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) join product_condition_types using(product_condition_type_id)
         				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 2 LIMIT '.$limit.' OFFSET '.$offset);
-        		}elseif($product_type == 's2bplus'){ // s2bplus
-        			//echo 'sb2plus';
-        			$query = $this->db->query('Select * from listings join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
+        		}elseif($product_type == 'legacyxplus' || $product_type == 3){ // s2bplus
+        			$body['product_type_heading'] = 'Legacy X Plus';
+        			$view = 'listings/index';
+        			$query = $this->db->query('Select * from listings join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) join product_condition_types using(product_condition_type_id)
         				                           where NOW() BETWEEN start_time and end_time LIMIT '.$limit.' OFFSET '.$offset);
-        		}else{ // original
-        			//echo 'here';
-        			$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id)
-        				                           where NOW() BETWEEN start_time and end_time and products.product_type_id = 1 LIMIT '.$limit.' OFFSET '.$offset);
+        			//echo $this->db->last_query(); 
+        		}else{ 
+        			$body['product_type_heading'] = 'Legacy Stores';
+        			$view = '/stores/index';
+        			$query = $this->db->query('Select * from stores');
         		}
         		        		       		
         	}else { // all 
         			
-        		$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) 
+        		$query = $this->db->query('Select * from listings left join flash_sale_listings using(listing_id) join products using(product_id) join product_types using(product_type_id) join product_condition_types using(product_condition_type_id)
         				                           where NOW() BETWEEN start_time and end_time LIMIT '.$limit.' OFFSET '.$offset);       		
         	}
 
@@ -78,7 +83,8 @@ class Listings extends CI_Controller {
         } catch (Exception $e) { 
             $this->functions->sendStackTrace($e);
         }
-        $body['left_menu'] = $this->load->view('partials/left_menu', $body, true);
+        //var_dump($listings); exit;  
+        $body['left_menu'] = $this->load->view('partials/listings_menu', $body, true);
         
         $this->load->view('template/header', $header);
         $this->load->view('listings/index', $body);
@@ -92,10 +98,12 @@ class Listings extends CI_Controller {
     	foreach($listings as $listing){
     		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$product_id))[0];
     		$listing->product->product_type = $this->product_types->fetchAll(array('where' => 'product_type_id = '.$listing->product->product_type_id))[0];
+    		$listing->product->product_condition_type = $this->product_condition_types->fetchAll(array('where' => 'product_condition_type_id = '.$listing->product->product_condition_type_id))[0];
     		$listing->product->product_images = $this->product_image->fetchAll(array('where' => 'product_id = '.$product_id, 'orderby' => 'order_index ASC'));  		    		
     		$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));  
     		$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
     	}
+    	//var_dump($listing->product->product_condition_type->product_condition); exit;
     	$listings[0]->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listings[0]->listing_id));
     	
     	$query = $this->db->query('Select * from listings as l join products as p using(product_id) where p.product_id <> '.$listings[0]->product->product_id.' AND p.user_id = '.$listings[0]->product->user->user_id);
@@ -189,7 +197,10 @@ class Listings extends CI_Controller {
     	if(!empty($_POST)){
     		$_POST['user_id'] = $user_id = $this->session->userdata['user_id'];
     		$_POST['listing_id'] = $listing_id;
-    		$query = $this->db->query('select sum(bid_amount) as top_bid, user_id from bidding where listing_id = '.$listing_id);
+    		$query = $this->db->query('select max(bid_amount) as top_bid, products.user_id from bidding 
+									   join listings using(listing_id) 
+									   join products using(product_id) 									   
+									   where listing_id =  = '.$listing_id);
     		$top_bid = $query->result()[0]->top_bid;
     		$listing = $this->listings->fetchAll(array('where' => 'listing_id = '.$listing_id))[0];
     		$_POST['bid_amount'] = $bid = $_POST['bid'];

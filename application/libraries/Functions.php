@@ -234,6 +234,11 @@ class Functions extends PHPFunctions {
 
         return $data;
     }
+    
+    public function redirectWithMessage($redirect_url = null, $message = null, $message_type = 'NOTICE'){
+    	$this->ci->sessions->set_flashdata('NOTICE', $message);
+    	header("Location: $redirect_url"); exit;
+    }
 
     public function checkLoggedIn($loginRedirect = true) {
         $ci = $this->ci;

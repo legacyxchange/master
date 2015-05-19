@@ -21,7 +21,7 @@ include 'sphinxsearch.php';
 | path to your installation.
 |
 */
-$config['base_url']	= '/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ $config['base_url']	= '/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -363,3 +363,18 @@ $config['rewrite_short_tags'] = FALSE;
 |
 */
 $config['proxy_ips'] = '';
+
+$site = new stdClass();
+$site->name = 'LegacyXChange.com';
+$site->logo = 'logo.gif';
+$site->contactEmail = 'nicolino101@gmail.com';
+$site->contactPhone = '213-278-8264';
+$site->contactAddress1 = '123 Main Street';
+$site->contactAddress2 = null;
+$site->contactCity = 'Las Vegas';
+$site->contactState = 'NV';
+$site->contactZipcode = '89032';
+$site->contactFax = null;
+$site->domain = 'legacyxchange.com';
+
+$config['site'] = $site;

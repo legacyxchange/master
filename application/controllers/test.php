@@ -25,10 +25,85 @@ class Test extends CI_Controller {
         
         $this->load->model('bidding_model', 'bidding', true);
         
+        $this->load->model('notifications_model', 'notifications', true);
+        
         $this->load->library('cart');
         
         $this->load->helper('form');
         $this->load->helper('url');
+    }
+    
+    public function redirecting(){ 
+    	redirect('/listings'); exit;
+    }
+    
+    public function testaim(){
+    	require_once APPPATH.'vendor/sdk-php-master/autoload.php';
+    	define("AUTHORIZENET_API_LOGIN_ID", "2D5Wh7paL");
+    	define("AUTHORIZENET_TRANSACTION_KEY", "2qT3G95ahZC8W7Uk"); 
+    	define("AUTHORIZENET_SANDBOX", true);
+    	$sale = new AuthorizeNetAIM(); 
+    	
+    	$sale = new AuthorizeNetAIM;
+    	$sale->setFields(
+    			array(
+    					//'invoiceNumber', 'invoice_number' => 'tewf03r23r',
+    					'description' => 'Test Item form LXC',
+    					'amount' => rand(1, 1000),
+    					'card_num' => '6011000000000012',
+    					'exp_date' => '0415'
+    			)
+    	);
+    	$sale->addLineItem(
+    			'item1', // Item Id
+    			'Golf tees', // Item Name
+    			'Blue tees', // Item Description
+    			'2', // Item Quantity
+    			'5.00', // Item Unit Price
+    			'N' // Item taxable
+    	);
+    	
+    	$sale->setCustomFields(array("coupon_code" => "SAVE2011", "description" => "Test Item from LXC"));
+    	
+    	$customer = (object)array();
+    	$customer->first_name = "Jane";
+    	$customer->last_name = "Smith";
+    	$customer->company = "Jane Smith Enterprises Inc.";
+    	$customer->address = "20 Main Street";
+    	$customer->city = "San Francisco";
+    	$customer->state = "CA";
+    	$customer->zip = "94110";
+    	$customer->country = "US";
+    	$customer->phone = "415-555-5557";
+    	$customer->fax = "415-555-5556";
+    	$customer->email = "foo@example.com";
+    	$customer->cust_id = "55";
+    	$customer->customer_ip = "98.5.5.5";
+    	$sale->setFields($customer);
+    	
+    	$response = $sale->authorizeAndCapture();
+    	//echo '<pre>';
+		//var_dump($response); exit;
+		$body['response'] = $response;
+    	$this->load->view('template/header', $header);
+        $this->load->view('test/aim', $body);
+        $this->load->view('template/footer');
+    }
+    
+    public function notifications(){
+    	$to_user_id = 302; //Mike Romano | nicolino101@gmail.com
+    	$notification = 'Thank you for registering with LegacyXChange.com. This is your account area. Here you can add products, listings, update personal info. and more.';
+                    
+        $this->notifications->fromSystem($this->session->userdata['user_id'], $notification, $subject = 'Welcome to LegacyXChange.com', $importance_level = 1, $addEmail = TRUE);
+    }
+    
+    public function email($to_user_id = 220, $from_user_id = 0, $subject = null, $notification = null){
+    	
+    	//$this->notifications->fromSystem($to_user_id, 'Testing the email System.');
+    	
+    	$this->notifications->fromUser($to_user_id, 154, 'Testing the email System.');
+    	
+    	exit;
     }
     
     public function listings(){

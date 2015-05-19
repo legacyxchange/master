@@ -15,122 +15,110 @@
    				 .s2bheading{ font-size:38px; }
    				 .s2bsubheading{ font-size:28px; }
 			}
+.original-heading{font-size:34px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;}
+.original-sub-heading{letter-spacing:.3px;font-size:30px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;font-style:italic;}
+.original-subsub-heading{letter-spacing:.3px;color:#6d6d6d;font-size:14px;font-weight:normal;text-align:center;text-decoration:none;font-family:arial;font-style:italic;"}
+.original-middle-sub-heading{padding-top:10px;padding-bottom:10px;letter-spacing:.3px;font-size:30px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;font-style:italic;}
+.marketplace-heading{margin-top:40px;margin-bottom:10px;font-size:34px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;}
+.lxplus-heading{margin-top:40px;margin-bottom:10px;font-size:34px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;}
+.img-label{position:absolute;top:10px;left:25px;background:#fff;padding-left:5px;padding-right:5px;border:1px solid #e9f3f7;max-width:140px;}
+.original-bottom-sub-heading{padding-top:10px;padding-bottom:10px;letter-spacing:.3px;font-size:26px;font-weight:normal;color:#000;text-align:center;text-decoration:none;font-family:georgia;font-style:italic;font-weight:bold;}
+.cont-marketplace{margin-bottom:10px;}
+.continer div { margin-bottom:20px; }
+.margin-bottom-10{margin-bottom:10px;}
+.margin-bottom-20{margin-bottom:20px;}
+.margin-bottom-30{margin-bottom:30px;}
 </style>
 
-<div style="margin:0 auto;background:#f4f4f4;height:49px;text-align:center;padding-top:5px;padding-bottom:5px;" class="">
-	<a href="/listings/s2bxchange"><img style="margin:0 auto;width:240px;" class="img-responsive" src="/public/images/s2bxchange.gif" /></a>
+<div style="margin:0 auto;background:#fff;height:49px;text-align:center;padding-top:5px;margin-bottom:10px;margin-top:30px;" class="">
+	<a href="/listings/original" class="original-heading" style="text-decoration:none;">Original Items</a>
 </div>
-<section style="height: 160px; width: 100%; background: #00698a;border-top:3px outset #f4f4f4;border-bottom:4px inset #333;">
-	<div class="s2bheading">
-	   <a style="font-size:38px;color:#fff;text-decoration:none;font-family:georgia" href="/listings/s2bxchange">Sellers 2 Buyers</a>
+<section style="height: auto; width: 100%; background: #f4f4f4; padding:0;margin:0;">
+    <div class="container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-bottom-20">
+	   		<a href=""><img src="/public/images/sports-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	   		<a href=""><img src="/public/images/celebrities-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
     </div>
-    <div class="s2bsubheading" style="font-size:28px;">   
-	   <i>Free Listings - No Commissions</i>
+</section>
+
+<section style="height: 10px; width: 100%; background: #fff;">
+    
+</section>
+
+<section style="height: auto; width: 100%; background: #f4f4f4; padding:0;margin-top:20px;border-bottom:3px #aaa outset;">
+    <div class="original-sub-heading">
+        The Science of Verifiable History
+    </div>
+    <div class="original-subsub-heading" style="padding-bottom: 5px;">
+        Original Items have been marked with tracer materials that can be scientifically verified.
     </div>
 </section>
 
-<section style="background: #fff; height: auto; width: 100%; font-family: arial;">
-	<div class="container cat-list">
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 Collectibles-list-center" style="padding-left: 5px; padding-right: 5%;">
-			<?php echo $left_menu;?>
-			
-			<div style="width:174px;height:174px;">&nbsp;</div>
-			
-			<div class="store-img">
-				<img class="img-responsive" src="/public/images/rsampson.gif" width="174" />
-			</div>
-			<div class="store-text">Ralph Sampson Super Store</div>
-			
-			<div class="store-img">
-				<img class="img-responsive" src="/public/images/furniture-store.gif" width="174" />
-			</div>
-			<div class="store-text">The Vintage Mark Store</div>
-			
-			<div class="store-img">
-				<img class="img-responsive" src="/public/images/bgrich.gif" width="174" />
-			</div>
-			<div class="store-text">Bobby Grich Player's Stop</div>
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 5%;">
-			<img class="img-responsive" src="/public/images/watches.gif" />
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img class="img-responsive" src="/public/images/sneakers.gif" />
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img class="img-responsive" src="/public/images/jewelery.gif" />
-		</div>
-		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12" style="padding-left: 10px; padding-right: 10px;">
-			<img class="img-responsive" src="/public/images/electronics.gif" />
-		</div>
-	</div>
+<section> 
+    <div class="container marketplace-heading">
+    The Marketplace
+    </div>
+    <div class="container cont-marketplace">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+	   		<a href="">
+	   			<div class="img-label">Watches</div>
+	   			<img src="/public/images/watches-home-img.gif" alt="image" class="img img-responsive margin-bottom-20"/>
+	   		</a>
+    	</div>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    		<div class="img-label">Jewelery</div>
+	   		<a href=""><img src="/public/images/jewelry-home-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
+    </div>
+
+    <div class="container cont-marketplace">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="img-label">Fashion</div>
+	   		<a href=""><img src="/public/images/fashion-home-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    		<div class="img-label">Art &amp; Books</div>
+	   		<a href=""><img src="/public/images/art-books-home-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
+    </div>
+
+    <div class="container cont-marketplace">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="img-label">Stamps &amp; Coins</div>
+	   		<a href=""><img src="/public/images/coins-home-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>    	
+    </div>
+
+    <div class="container cont-marketplace">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="img-label">Antiques</div>
+	   		<a href=""><img src="/public/images/antiques-home-img.gif" alt="image" class="img img-responsive margin-bottom-20"/></a>
+    	</div>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    		<div class="img-label">Collectibles</div>
+	   		<a href=""><img src="/public/images/collectibles-home-img.gif" alt="image" class="img img-responsive"/></a>
+    	</div>
+    </div>
 </section>
 
-<img class="img-responsive game-slide slides" src='/public/images/game-slide.gif' />
-
-<section class="dark-bg ptb25">
-	<div class="container">
-		<div class="section-header" style="margin-top: -20px;">
-		    
-			<div style="text-align: center; color: #000; font-family: georgia regular; font-size: 44px; font-weight: normal;">
-			<img class="img" src="/public/images/logo.gif" style="height:35px;text-align:center;margin:0 auto;"><br />
-				<a href="/listings/original">Original Items</a>
-			</div>
-			<div class="subtitle" style="margin-top: -10px; text-align: center; color: #000; font-family: georgia regular; font-size: 34px; font-weight: normal;">
-			    Guaranteed - Scientifically Marked
-			</div>
-		</div>
-		<div class="container">
-        <?php if(!is_array($listings)):?>
-		    <div class="row">
-				<div class="col-lg-12">
-					<h1 style="text-align: center;">Sorry...There are no listings matching that criteria.</h1>
-				</div>
-			</div>
-        <?php else:?>      
-        <?php foreach($listings as $listing): //var_dump($listing->name); exit;?>
-            <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-				<div class="hover-img" style="width:218px;height:218px;">
-					<img class="centered-img" src="/products/productimg/218/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-					<div hover-info-id="<?php echo $listing->product_id;?>" class="hover-info">
-						<div class="product-name"><?=$listing->name;?></div>
-					</div>
-				</div>
-			</div>
-        <?php endforeach;?>
-        <?php endif; ?>
-        </div>
-        <a href="/listings/original" style="text-align: right;float:right;color:#00698a;font-size:12px;font-weight:bold;" class="see-more">&lt;See More&gt;</a>
-	</div>
-	<div style="font-size:14px;color:#6d6d6d;position:relative;z-index:1001;margin: 20px auto; margin-bottom:-27px; padding:10px; padding-top:10px;padding-bottom:10px;text-align:center;display:block;" class="container">
-            <i>Original Items have been marked with tracer materials that can be scientifically verified.</i>
-		</div>
+<section style="height: auto; width: 100%; background: #f4f4f4;border-bottom:3px #aaa outset;margin-bottom:10px;">
+    <div class="original-middle-sub-heading">
+        Where Buyers Go Direct to Sellers for Valued Merchandise
+    </div>
 </section>
 
-<style>
-
-</style>
-
-
-<script>
-    jQuery(document).ready(function ($) {
-        //var options = { $AutoPlay: false };
-        //var jssor_slider1 = new $JssorSlider$('slider1_container', options);
-        //$('#slider1_container').find('div').css('top', '');
-        //$('#slider1_container').find('div').css('left', '');
-        //$('#slider1_container').find('div').css('margin-top', '0');
-    });
-</script>
-
-<section id="flash-sale-items" style="padding-top: 20px; padding-bottom: 20px;margin-bottom:60px;">
-	<div class="section-header" style="margin-top: 60px;text-align:center;">
-		<a style="margin:0 auto;width:240px;" href="/listings/s2bplus"><img src="/public/images/s2bpluslogo.gif" class="sb2pluslogo" /></a>
-	</div>
-	<div class="s2bplussubheading" style="font-family:georgia;width:100%;height:60px;font-size:38px;color:#000;text-align:center;font-weight:bold;">
-		<i>ON SALE NOW</i>
-	</div>
-	<div class="container">         
-        <?php foreach($flash_listings as $listing):?>
+<section style="height: auto; width: 100%; background: #fff; padding:0px;margin:0;">
+    <div class="container lxplus-heading">
+    Legacy X Plus
+    </div>
+</section>
+<section style="height: auto; width: 100%; background: #e9f3f7; padding:0px;margin:0;">
+    <div class="container">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		    <?php foreach($flash_listings as $listing):?>
             <div class="cont-4 product-container-border-4 col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-bottom:60px;heigth:218px;">
 				<div class="hover-img">
 					<img class="centered-img" src="/products/productimg/210/<?=$listing->product_id;?>/<?=$listing->image;?>" />
@@ -151,9 +139,19 @@
 					</div>
 				</div>
 			</div>
-        <?php endforeach;?>        
-	</div>
+        <?php endforeach;?>     	
+    	</div> 
+    </div>
 </section>
 
-<div class="clear"></div>
-<div class="clear"></div>
+<section style="height: 30px; width: 100%; background: #fff;">
+    
+</section>
+
+<section style="height: auto; width: 100%; background: #e9f3f7;border-bottom:3px #aaa outset;margin-bottom:10px;">
+    <div class="original-bottom-sub-heading">
+        ON SALE NOW
+    </div>
+</section>
+
+<div class="clear" style="margin-bottom:40px;"></div>

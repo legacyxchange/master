@@ -39,8 +39,7 @@
 
 $autoload['packages'] = array
 	(
-		//APPPATH . 'third_party' . DS . 'bms',
-		//APPPATH . 'third_party' . DS . 'phpfunctions'
+		
 	);
 
 
@@ -56,7 +55,7 @@ $autoload['packages'] = array
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('functions', 'session', 'alerts', 'email', 'places');
+$autoload['libraries'] = array('functions', 'session', 'email', 'Mailer', 'Site');
 
 
 /*

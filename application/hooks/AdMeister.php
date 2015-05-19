@@ -15,9 +15,9 @@ class AdMeister {
 	 */
 	public function run(){ 
 		if(!empty($_POST['advertisement_id'])){ //if and ad is clicked // not in use now
-			//$this->chargeUserForClick();
+			//var_dump($_POST); exit;
+			$this->chargeUserForClick();
 		}
-		 
 		$page = new ad_pages_model();
 		
 		$this->db = $page->db;
@@ -52,23 +52,21 @@ class AdMeister {
 	    
 		if($level > 1){ 
 			$arr = array('where' => 'advertisement_id IS NOT NULL', 'orderby' => 'per_view_amount DESC, created ASC', 'limit' => $limit, 'offset' => ($limit * ($level-1)));
-			//$arr = array('orderby' => 'per_view_amount DESC, created ASC', 'limit' => $limit);
+			
 			$obj = $ads->fetchAll($arr);	
 				
 		}else{    
 			$obj = $ads->fetchAll(array('orderby' => 'per_view_amount DESC, created ASC', 'limit' => $limit));			
 		}
 
-		foreach($obj as $ad){
-			$ad->product = $product->fetchAll(array('where' => 'product_id = '.$ad->product_id))[0];
-			$this->chargeUserForView($ad, $level);
+		foreach($obj as $ad){ 
+			$ad->product = $product->fetchAll(array('where' => 'product_id = '.$ad->listing_id))[0];
+			//$this->chargeUserForView($ad, $level); // not charging for views at this point
 		}
-		//var_dump($obj); exit;
+		
 		$body['advertisements'] = $obj;
 		
-		//var_dump($body); exit;
-		$this->CI->load->view('/listings/index', $body, true); 
-		//$this->CI->load->view('/listings/index', $body, true); // insignificant, can be any valid view
+		$this->CI->load->view('/listings/index', $body, true); 		
 	}
 	
 	private function chargeUserForView($ad, $level){
@@ -78,9 +76,9 @@ class AdMeister {
 		$_POST['view'] = 1;
 		$_POST['ad_link'] = $ad->link;
 		$_POST['user_id'] = $ad->user_id;
-				
+		$_POST['click'] = 0;		
 		$metrics = new ad_metrics_model();
-		
+		//var_dump($_POST); exit;
 		$metrics->save(); 
 	}
 	

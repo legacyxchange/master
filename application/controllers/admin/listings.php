@@ -79,7 +79,7 @@ class Listings extends CI_Controller {
     
     public function edit($listing_id) {
     	if(!$listing_id)
-    		header('Location: /admin/dashboard');
+    		header('Location: /admin/account');
     
     	$body['user_id'] = $this->session->userdata['user_id'];
     	
@@ -93,7 +93,7 @@ class Listings extends CI_Controller {
     
     			$this->session->set_flashdata('SUCCESS', 'Your listing has been updated!');
     
-    			header('Location: /admin/listings'); exit;
+    			header('Location: /admin/products'); exit;
     
     		} catch (Exception $e) {
     			$this->functions->sendStackTrace($e);

@@ -2,7 +2,7 @@
 	<?php echo $admin_menu;?>
 </div>
 <div  style="border-bottom:2px solid #0a6e8e;border-top:2px solid #0a6e8e;background:#f4f4f4;margin-top: 20px;padding-top: 16px;">
-    <h2 style="color:#016889;">MY LISTINGS</h2>	
+    <h2 class="admin-heading">My Listings</h2>	
 </div>
 <!--container start-->
         <div class="container content">       

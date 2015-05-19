@@ -17,18 +17,27 @@ class Products extends CI_Controller {
         
         $this->load->model('product_types_model', 'product_type', true);
         
+        $this->load->model('listings_model', 'listing', true);
+        
+        $this->load->model('bidding_model', 'bidding', true);
+        
+        $this->load->model('user_accounts_model', 'user_accounts', true);
+        
+        $this->load->model('advertisements_model', 'advertisements', true);
+        
         $this->load->library('library');
         
         $this->functions->checkLoggedIn();
     }
 
-    public function index($product_id = null) {
+    public function index($product_id = null){
+    	
     	$body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('products.js');
+        $header['headscript'] = $this->functions->jsScript('products.js listings.js advertisements.js');
         
         if(is_null($product_id)){
-        	try {
+        	try { 
         		$products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id, 'orderby' => 'product_id DESC'));        		               		
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
@@ -37,14 +46,39 @@ class Products extends CI_Controller {
         	$products = $this->product->fetchAll(array('where' => 'product_id = '.$product_id));        	
         }
         
-        foreach($products as $product){        	
-        	$types = $this->product_type->fetchAll(array('where' => 'product_type_id = '.$product->product_type_id));
-        	foreach($types as $type){
+        $query = $this->db->query('select count(*) as listings_count from listings join products using(product_id) where products.user_id = '.$this->session->userdata['user_id']);
+        
+        $body['listings_count'] = $query->result()[0]->listings_count;
+        $listings_count = 0; 
+        $current_bid = 0;
+        foreach($products as $product){ 
+        	$query = $this->db->query('select listings.*, max(bidding.bid_amount) as bid_amount from listings join listing_types using(listing_type_id) join bidding using(listing_id) where listings.product_id = '.$product->product_id);
+        	$product->listing = $query->result()[0];
+            $product->listing->advertisements = $this->advertisements->fetchAll(array('where' => 'listing_id = '.$product->listing->listing_id))[0];
+            
+            $qListingTypes = $this->db->query('Select listing_type from listing_types where listing_type_id = '.$query->result()[0]->listing_type_id);
+            $product->listing_type = $qListingTypes->result()[0]->listing_type;
+            
+        	$product->reserve_price = $query->result()[0]->reserve_price;
+        	$bid = $query->result()[0]->bid_amount; 
+        	if($bid > $current_bid){
+        		$current_bid = $bid;
+        	}
+        	$product->listing_id = $query->result()[0]->listing_id;
+        	$product->current_bid = $current_bid;
+        	
+        	$product->expires = $query->result()[0]->end_time;
+        	//$product->current_bid = 
+        	$listings_count++;
+        	$product_types = $this->product_type->fetchAll(array('where' => 'product_type_id = '.$product->product_type_id));
+        	foreach($product_types as $type){        		
         		$product->product_type = $type->type;
         	}
         	$prods []= $product; 
+        	
         }
-        
+        //var_dump($products); exit;
+        $body['listings_count'] = $listings_count;
         $body['products'] = $prods;
         $menu['menu_products'] = 1;
         $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
@@ -68,7 +102,7 @@ class Products extends CI_Controller {
     			unset($_POST['list-item-now']);
     			unset($_POST['submit']);
     		}
-    		var_dump($_POST); exit;
+    		//var_dump($_POST, $_FILES); exit;
     		try {
     		
     		$product_id = $this->product->save(); 
@@ -155,7 +189,7 @@ class Products extends CI_Controller {
     		foreach($products as $r){ 
     			$out .= '
     			<div class="modal-header">                
-                <h3 class="modal-title">'.$r->name.'</h3>
+                <h3 class="modal-title">Edit '.$r->name.'</h3>
                 </div> <!-- modal-header -->
                 <div class="modal-body">
     			';
@@ -314,6 +348,132 @@ class Products extends CI_Controller {
                 </div> <!-- modal-footer -->
     			';
         echo $out; exit;
+    }
+    
+    public function listingsform($listing_id = null){
+    	$out = null;
+    	 
+        //var_dump($product_id); exit;
+    	if(!is_null($listing_id)){
+    
+    		$listings = $this->listing->fetchAll(array('where' => 'listing_id = '.$listing_id, 'orderby' => 'listing_id DESC'));
+    			
+    		foreach($listings as $r){
+    			$out .= '
+    			<div class="modal-header">
+                <h3 class="modal-title">Edit Listing Number '.$listing_id.'</h3>
+                </div> <!-- modal-header -->
+                <div class="modal-body">
+    			';
+    			$out .= '<div role="form">';
+    			$out .= form_open_multipart('/admin/listings/edit/'.$r->listing_id);
+    			$out .= form_hidden('listing_id', $r->listing_id);
+    			$out .= form_hidden('user_id', $r->user_id);
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="product_id">Product</label><br />';
+    			$out .= '<select name="product_id">';
+    			$products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));
+    			foreach($products as $product){
+    				if($product->product_id == $r->product_id) {
+    					$out .= '<option selected value="'.$product->product_id.'">'.html_entity_decode($product->name).'</option>';
+    				}else{
+    					$out .= '<option value="'.$product->product_id.'">'.$product->name.'</option>';
+    				}
+    			}
+    			$out .= '</select>';
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="listing_name">Listing Name</label><br />';
+    			$ln = html_entity_decode($r->listing_name);
+    			 
+    			$out .= form_input(array('style' => 'width:80%;', 'name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => 'etset\'s'));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
+    			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time', 'value' => date('Y-m-d', strtotime($r->start_time))));
+    			$out .= form_input(array('type' => 'time', 'name' => 'start_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime($r->start_time))));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="end_date">End Date</label>  <label for="end_time">End Time</label><br />';
+    			$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'end_date', 'placeholder' => 'End Time', 'value' => date('Y-m-d', strtotime($r->end_time))));
+    			$out .= form_input(array('type' => 'time', 'name' => 'end_time', 'placeholder' => 'Start Time', 'value' => date('H:i:s', strtotime($r->end_time))));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="buynow_price">Buy Now Price</label><br />';
+    			$out .= '$'.form_input(array('name' => 'buynow_price', 'placeholder' => 'Buy Now Price', 'value' => number_format($r->buynow_price, 2)));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="reserve_price">Reserve Price</label><br />';
+    			$out .= '$'.form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => number_format($r->reserve_price, 2)));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= '<label for="advertise">Advertise this listing?</label><br />';
+    			$out .= '$'.form_input(array('type' => 'checkbox', 'name' => 'advertise', 'placeholder' => 'Advertise this listing', 'value' => ''));
+    			$out .= '</div>';
+    			$out .= '<div class="form-group">';
+    			$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
+    			$out .= '</div>';
+    			$out .= '</form>';
+    			$out .= '</div>';
+    		}
+    	} else {
+    
+    		$out = '
+    			<div class="modal-header">
+                <h3 class="modal-title">Add Listing</h3>
+                </div> <!-- modal-header -->
+                <div class="modal-body">
+    	    ';
+    		$out .= '<div role="form">';
+    		$out .= form_open_multipart('/admin/listings/add');
+    		$out .= form_hidden('listing_id', $r->listing_id);
+    		$out .= form_hidden('user_id', $this->session->userdata['user_id']);
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="product_id">Product</label><br />';
+    		$out .= '<select name="product_id">';
+    		$products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));
+    		foreach($products as $product){
+    			if($product->product_id == $product_id) {
+    				$out .= '<option selected value="'.$product->product_id.'">'.$product->name.'</option>';
+    			}else{
+    				$out .= '<option value="'.$product->product_id.'">'.$product->name.'</option>';
+    			}
+    		}
+    		$out .= '</select>';
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="listing_name">Listing Name</label><br />';
+    		$out .= form_input(array('name' => 'listing_name', 'placeholder' => 'Listing Name', 'value' => html_entity_decode($r->listing_name)));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="start_date">Start Date</label>  <label for="start_time">Start Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'start_date', 'placeholder' => 'Start Time'));
+    		$out .= form_input(array('type' => 'time', 'name' => 'start_time', 'placeholder' => 'Start Time'));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="end_date">End Date</label>  <label for="end_time">End Time</label><br />';
+    		$out .= form_input(array('type' => 'date', 'min' => date('Y-m-d'), 'name' => 'end_date', 'placeholder' => 'End Time'));
+    		$out .= form_input(array('type' => 'time', 'name' => 'end_time', 'placeholder' => 'Start Time'));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="buynow_price">Buy Now Price</label><br />';
+    		$out .= form_input(array('name' => 'buynow_price', 'placeholder' => 'Buy Now Price', 'value' => $r->buynow_price));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="reserve_price">Reserve Price</label><br />';
+    		$out .= form_input(array('name' => 'reserve_price', 'placeholder' => 'Reserve Price', 'value' => $r->reserve_price));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= '<label for="advertise">Advertise this listing?</label><br />';
+    		$out .= '$'.form_input(array('type' => 'checkbox', 'name' => 'advertise', 'placeholder' => 'Advertise this listing', 'value' => ''));
+    		$out .= '</div>';
+    		$out .= '<div class="form-group">';
+    		$out .= form_submit(array('name' => 'submit', 'value' => 'Save', 'class' => 'sign_save'));
+    		$out .= '</div>';
+    		$out .= '</form>';
+    		$out .= '</div>';
+    	}
+    	echo $out; exit;
     }
    
     public function productimg($size = 50, $product_id = 0, $file = null) {

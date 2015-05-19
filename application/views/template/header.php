@@ -35,7 +35,7 @@ li a { letter-spacing:1px; }
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/" class="navbar-brand"><?php echo $this->functions->getSiteName();?></a>
+          <a style="margin-top:-5px;" href="/" class="navbar-brand"><img src="/public/images/<?php echo $this->site->getLogo();?>" class="img-responsive" /></a>
         </div>
        <div class="navbar-collapse collapse" id="navbar" aria-expanded="false" style="height: 1px;">
            <?php if ($this->session->userdata('logged_in') && $this->session->userdata['permissions'] > 0) : ?> 
@@ -79,13 +79,13 @@ li a { letter-spacing:1px; }
           <?php if (!$this->session->userdata('logged_in')): ?>
             <li class="nav-li"><a href="#" data-toggle="modal" data-target="#myLegacy">My Account</a></li>
           <?php endif;?>           
-			<li class="nav-li" style="height:54px;max-width:190px;">			
+			<li class="nav-li" style="height:54px;max-width:190px;display:inline-block;">			
 			        <?php echo form_open('/listings/search', false); ?>
-                    <div class="input-group stylish-input-group" style="max-width:140px;">
-                    <input style="height:34px;width:140px;float:right;" type="text" class="input-text form-control" placeholder="Search" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
+                    <div class="input-group stylish-input-group">
+                    <input style="height:34px;width:140px;float:right;" type="text" class="input-text form-control" placeholder="Find" name="q" value="<?php echo $q; ?>" id="serch" autocomplete="on">
                     <input type="hidden" name="location" id="loc" value="<?php echo $this->uri->segment(1);?>">
 					  <span class="input-group-addon">
-                    <button class="button" title="Search" type="submit" style="max-height:20px;width:20px;"><i class="fa fa-search"></i></button>
+                    <button class="button" title="Find" type="submit" style="max-height:20px;width:20px;"><i class="fa fa-search"></i></button>
 					</span>
 					</div>
                     <?php echo form_close(); ?>	

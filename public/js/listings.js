@@ -16,8 +16,10 @@ $(document).ready(function(){
 		e.preventDefault();
 		var listing_id = $(this).attr('id');
 		
-	    var request = $.ajax({
-		  url: "/admin/listings/listingsform/"+listing_id,
+		console.log('/admin/products/listingsform/'+listing_id)
+		
+	    var request = $.ajax({  
+		  url: '/admin/products/listingsform/'+listing_id,
 		  type: "GET",
 		  dataType: "html"
 		});

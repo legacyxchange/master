@@ -13,10 +13,10 @@ class advertisements_model extends abstract_model {
     public $user_id;
     public $title;
     public $description;
-    public $image;
-    public $link;
+    public $link; 
     public $per_click_amount;
     public $per_view_amount;
+    public $total_amount;
     public $created;
     public $modified;
     
