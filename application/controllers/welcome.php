@@ -12,6 +12,7 @@ class Welcome extends CI_Controller {
         $this->load->model('user_model', 'user', true);
         $this->load->model('search_model', 'search', true);
         $this->load->model('notifications_model', 'notifications', true);
+        $this->load->model('user_model', 'users', true);
     }
 
     public function index() {
@@ -80,6 +81,7 @@ class Welcome extends CI_Controller {
 
     public function checkUsername(){ 
     	$usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
+    	
     	if ($usernameAvail !== true) {
     		echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;
     	}else{
@@ -106,7 +108,8 @@ class Welcome extends CI_Controller {
     }
     
     public function register() {
-    	if (!empty($_POST)) {         	
+    	if (!empty($_POST)) {  
+    		      	
             try {           	
                 $emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
                 $usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
@@ -192,16 +195,26 @@ class Welcome extends CI_Controller {
         if ($_POST) {
             try {
                 // get user ID from email address
-                $user = $this->welcome->getIDFromEmail($_POST['email']);
-
-                if ($user !== false) {
-                    $requestID = $this->welcome->insertPasswordResetRequest($user);
+                $user = $this->users->fetchAll(array('where' => 'email = "'.$_POST['user_email'].'"'))[0];
+//var_dump($user); exit;
+                if ($user !== false && !is_null($user)) {
+                    $tempPass = $this->welcome->updateUserPass($user);
 
                     $subject = "Password Reset";
 
-                    $msg = "<h1>Password Reset</h1><p><a href='http://" . $_SERVER['HTTP_HOST'] . "/welcome/resetpassword/?requestID=" . urlencode($requestID) . "' target='_blank'>Click here to reset your password</a></p>";
+                    $msg = '<h1>New Temporary Password: '.$tempPass.'</h1><p><a href="http://' . $_SERVER['HTTP_HOST'] . '/login">Click Here to Login with your temporary password.</a></p>';
 
-                    $this->functions->sendEmail($subject, $msg, $_POST['email']);
+                    $this->load->library('Mailer', 'mailer', true);
+                    //var_dump($tempPass, $this->mailer); exit;
+                    $sent = $this->mailer->send($user->email, $subject, $msg, $user->firstName.' '.$user->lastName, 'service@legacyxchange.com', 'legacyxchange.com');
+                    
+                    if(!$sent){
+                    	$this->session->set_flashdata('FAILURE', 'You must supply a valid email.');
+                    	header('Location: /welcome/forgotpassword'); exit;
+                    }else{
+                    	$this->session->set_flashdata('SUCCESS', 'We just sent you an email with your new TEMPORARY PASSWORD.');
+                    	header('Location: /login'); exit;
+                    }
                 }
 
                 $this->functions->jsonReturn('SUCCESS', "An e-mail will be sent to <strong>{$_POST['email']}</strong> with instructions on how to reset the password if there is an account associated with that e-mail address.", $requestID);
@@ -209,6 +222,8 @@ class Welcome extends CI_Controller {
                 $this->functions->sendStackTrace($e);
                 $this->functions->jsonReturn('ERROR', $e->getMessage());
             }
+        } else {
+        	$this->layout->load('welcome/forgotpassword', $data);
         }
     }
 

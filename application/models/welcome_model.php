@@ -183,21 +183,17 @@ class welcome_model extends CI_Model
         return $data;
     }
 
-    public function insertPasswordResetRequest ($user)
+    public function updateUserPass ($user = null)
     {
-        if (empty($user)) throw new Exception("User ID is empty!");
-        $requestID = uniqid(null, true);
+        if (is_null($user)) throw new Exception("User ID is empty!");
+        
+        $tempPass = uniqid(null, false);
 
-        $data = array
-            (
-                'datestamp' => DATESTAMP,
-                'userid' => $user,
-                'company' => $this->config->item('bmsCompanyID'),
-                'requestID' => $requestID,
-            );
+        $_POST['user_id'] = $user->user_id;
+        $_POST['passwd'] = $tempPass;
+        
+        $this->users->save();
 
-        $this->db->insert('passwordResets', $data);
-
-        return $requestID;
+        return $tempPass;
     }
 }

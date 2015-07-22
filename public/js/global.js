@@ -1,7 +1,7 @@
 var global = {}
 
 global.CSRF_token = 'token';
-global.CSRF_hash = '';
+global.CSRF_hash = ''; 
 
 global.bmsUrl;
 
@@ -478,7 +478,7 @@ global.userlogin = function ()
     {
         global.renderAlert('Please enter your E-mail Address!', undefined, 'loginAlert');
         $('#user_email').focus();
-        $('#user_email').effect('highlight');
+        //$('#user_email').effect('highlight');
         return false;
     }
 
@@ -486,11 +486,11 @@ global.userlogin = function ()
     {
         global.renderAlert('Please enter your password!', undefined, 'loginAlert');
         $('#user_pass').focus();
-        $('#user_pass').effect('highlight');
+        //$('#user_pass').effect('highlight');
         return false;
     }
     
-    $.post("/welcome/login", $('#loginform').serialize(), function (data) { 
+    $.post("/welcome/login", $('#loginform').serialize(), function (data) { console.log(data)
     	if (data.status == 'SUCCESS' && data.permissions > 0){ 
         	window.location.href = data.redirect;
         }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
@@ -671,7 +671,7 @@ global.checkUsername = function(){
 	if($('#username').val().length < 6)
         global.setError($('#username'), 'Username must be at least 6 characters.');
 	else if($('#username').val().length >= 4){ 
-		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { console.log(data)
+		$.post("/welcome/checkUsername", $('#signupform').serialize(), function (data) { 
 	    	if (data.status == 'FAILURE')
 	        { 
 	            global.setError($('#'+data.id), data.msg);
@@ -749,7 +749,7 @@ global.checkRegisterForm = function ()
 		$('.modal-body').html('<img height="100" style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
 	}
 	
-	$.post("/welcome/register", $formData, function (data) { //console.log(data)
+	$.post("/welcome/register", $formData, function (data) { console.log(data)
     	
 		if (data.status == 'SUCCESS')
 		{   

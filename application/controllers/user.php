@@ -19,12 +19,9 @@ class User extends CI_Controller {
         $this->load->model('user_model', 'user', true);
        
         //$this->load->model('profile_model', 'profile', true);
-        $this->load->model('users_model', 'user', true);
-        $this->load->model('products_model', 'product', true);
-        $this->load->model('listings_model', 'listing', true);
-        //$this->load->model('association_model', 'association', true);
-        //$this->load->model('wall_model', 'wall', true);
-        //$this->load->library('library');
+        
+        $this->load->model('products_model', 'products', true);
+        $this->load->model('listings_model', 'listings', true);       
     }
 
     // could accept user_id or username
@@ -37,17 +34,18 @@ class User extends CI_Controller {
         	$user = $this->user->fetchAll(array('where' => 'user_id = '.$uid))[0];
         	$user_id = $uid;
         }
-        
-        $user->products = $this->product->fetchAll(array('where' => 'user_id = '.$user_id));
-        foreach($user->products as $product){
-        	$product->listing = $this->listing->fetchAll(array('where' => 'product_id = '.$product->product_id))[0]; 	 		
+        //var_dump($user); exit;
+        $products = $this->products->fetchAll(array('where' => 'user_id = '.$user_id));
+        foreach($products as $product){
+        	$product->listing[] = $this->listings->fetchAll(array('where' => 'product_id = '.$product->product_id))[0];
         }
-        
+        // get reviews, ratings
+        //$this->functions->dump($products);
+        $body['products'] = $products;
         $body['user'] = $user;
-        //$body['title'] = 'User '.$user_id;
-        $this->load->view('template/header');
-        $this->load->view('user/index', $body);
-        $this->load->view('template/footer');
+        $body['userid'] = $user->user_id;
+        $body['title'] = $user->username;
+        $this->layout->load('user/index', $body);
     } 
 
     /*
@@ -105,20 +103,17 @@ class User extends CI_Controller {
 
     public function profileimg($size = 50, $user_id = 0, $file = null) { 
     	
-    	if (empty($user_id))
-            $user_id = $this->session->userdata('user_id');
-
         $path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'avatars' . DS . $user_id . DS;
 
         if (!empty($file))
             $file = urlencode($file);
-
+        
         try {
 
             if (!empty($user_id)){
-                $user = $this->user->fetchAll(array('where' => 'user_id = '.$user_id));               
+                $user = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];               
             }
-
+            
             if (!empty($file))
                 $img = $file;
 
@@ -131,7 +126,7 @@ class User extends CI_Controller {
             }
 
             $is = getimagesize($path . $img);
-
+            
             if ($is === false)
                 throw new exception("Unable to get image size for ({$path}{$img})!");
 
@@ -164,6 +159,7 @@ class User extends CI_Controller {
                 $srcImg = imagecreatefrompng($path . $img);
 
             $destImg = imagecreatetruecolor($nw, $nh); // new image
+            
             imagecopyresized($destImg, $srcImg, $leftBuffer, $topBuffer, 0, 0, $nw, $nh, $width, $height);
         } catch (Exception $e) {
             PHPFunctions::sendStackTrace($e);

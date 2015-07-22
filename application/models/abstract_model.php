@@ -4,6 +4,8 @@ if (!defined('BASEPATH'))
 
 abstract class abstract_model extends CI_Model {
     
+	protected $unique_key;
+	
     public function fetchAll(array $preds = null){
     	if(!empty($preds['where']))
     		$this->db->where($preds['where']);
@@ -41,12 +43,19 @@ abstract class abstract_model extends CI_Model {
     		$where = $this->primary_key.' = '.$_POST[$this->primary_key];    		
     		$data = $this->fetchAll(array('where' => $where));    	   
     	}
-    	
+    	if(property_exists($this, 'unique_key') && is_array($this->unique_key)){
+    		//solves the duplicate key for unique field issue
+    		foreach($this->unique_key as $uk){
+    			if(!empty($params[$uk]) && $params[$uk] == $data[0]->{$uk}){
+    				unset($params[$uk]);
+    			}
+    		}
+    	}
     	if(count($data) > 0){ //echo 'here'; exit;
     	    $this->db->where($where);
     	    $u = $this->db->update($this->table, $params);
     	    		
-    	    echo $this->db->last_query(); exit; // write to log file or db
+    	    //echo $this->db->last_query(); exit; // write to log file or db
     	    return $u;
     	}
     	else {  
@@ -63,7 +72,7 @@ abstract class abstract_model extends CI_Model {
     	
     }
     
-    public function delete($key, $id){
+    public function delete($key, $id){ 
     	if(!$id){
     		$this->session->set_flashdata('FAILURE', 'You must supply a primary key when attempting to delete an item.');
     		return false;

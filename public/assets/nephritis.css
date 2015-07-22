@@ -1,0 +1,92 @@
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus,
+.dropdown-menu li a:hover {
+	box-shadow: -5px 0px 0px 0px #239151,220px 0px 0px 0px #27ae60 inset;
+}
+.blog-tags li:hover {
+	box-shadow: inset 0 -120px #27ae60;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus,
+.dropdown-menu li a:hover,
+.top,
+.tp-leftarrow.default, .tp-rightarrow.default, #slidecontrol-prev, #slidecontrol-next,
+#myTab .active a, #myTab li a:hover,
+.team:hover .id, .skill,
+#blog .posting.hover-active .get,
+.portfolio-block .get:hover,
+.hover .get:hover,
+.button:hover,
+.dates,.post-title-icon, .stylish-button, .post-excerpt:after,
+.post-info, .post-hover,
+.bg,
+.contact-details h1,
+input[type="submit"],
+.widget-tags li a,
+.ui-accordion-header span,
+#qt .pager a.selected, #home-slide .pager a.selected{
+	background-color: #27ae60;
+}
+.ui-accordion-header-active span,
+.ui-accordion-header:hover span,
+.widget-tags li a:hover {
+	background-color: #239151;
+}
+.details{
+	background-color: rgba(39, 174, 96, 0.5);
+}
+.tab-border li.active a:after,
+.portfolio-block .get, .hover .get,
+.portfolio-block .get:after, .hover .get:after,
+.post-title h3:hover .post-title-icon:after,
+.contact-details h1:after, .contact-details h1:hover{
+	box-shadow: 0 0 0 3px #27ae60;
+}
+.button:after{
+	box-shadow: 0 0 0 2px #27ae60;
+}
+a,
+.color,
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus,
+.tab-border li a, #myTab li.active a::before, #myTab li .active a:hover::before, #myTab li a:hover::before,
+.team-name,
+#filters ul li span:hover, #filters ul li span.active,
+.portfolio-block .get, .hover .get, .portfolio-block .title,
+.button,
+.highlight,
+.contact-details h1:hover,
+.contact-details h2,
+.footer .fa,
+.team-social li a:hover,
+.blog-tags a, .blog-tags .date, .commentlists .comment-body .comment-meta .reply a,
+.search-widget input[type="search"], #searchform input[type="text"], .search-widget button i,
+.blog-tags li a i,.meta-name a{
+	color: #27ae60;
+}
+a:hover,
+.blog-tags li a:hover{
+	color: #239151;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus,
+.dropdown-menu li a:hover,
+.team,
+.button,
+.milestone-counter,
+.border:after,
+.post:hover,
+input[type="submit"],
+.image-polaroid .img-circle, .comment-body:hover, 
+.commentlists .comment-children li:hover .img-circle,
+.comment-title:after,
+blockquote,
+.search-widget input[type="search"]:focus, #searchform input[type="text"]:focus,
+.blog-tags li:hover,
+#qt .pager a, #home-slide .pager a{
+	border-color: #27ae60 !important;
+}
+.comment-body:hover:before,.right:hover:before{
+	border-right: 15px solid #27ae60;
+}
+.bg, .bg:hover{
+	color: #252525;
+	border: none;
+}

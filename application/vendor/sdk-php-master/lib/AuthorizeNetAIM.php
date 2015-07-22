@@ -39,6 +39,9 @@
  * @package    AuthorizeNet
  * @subpackage AuthorizeNetAIM
  */
+//require_once '/var/www/idev/master/application/vendor/sdk-php-master/lib/AuthorizeNetAIM.php';
+require_once '/var/www/idev/master/application/vendor/sdk-php-master/lib/shared/AuthorizeNetRequest.php';
+require_once '/var/www/idev/master/application/vendor/sdk-php-master/lib/shared/AuthorizeNetResponse.php';
 class AuthorizeNetAIM extends AuthorizeNetRequest
 {
 
@@ -109,6 +112,7 @@ class AuthorizeNetAIM extends AuthorizeNetRequest
         ($card_num ? $this->card_num = $card_num : null);
         ($exp_date ? $this->exp_date = $exp_date : null);
         $this->type = "AUTH_CAPTURE";
+        
         return $this->_sendRequest();
     }
     
@@ -344,6 +348,8 @@ class AuthorizeNetAIM extends AuthorizeNetRequest
      */
     protected function _handleResponse($response)
     {
+    	//var_dump($response, __METHOD__); exit;
+    	//if($response->reasonCode)
         return new AuthorizeNetAIM_Response($response, $this->_x_post_fields['delim_char'], $this->_x_post_fields['encap_char'], $this->_custom_fields);
     }
     

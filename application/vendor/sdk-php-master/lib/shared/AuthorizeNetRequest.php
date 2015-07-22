@@ -87,25 +87,28 @@ abstract class AuthorizeNetRequest
         $curl_request = curl_init($post_url);
         curl_setopt($curl_request, CURLOPT_POSTFIELDS, $this->_post_string);
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
-        curl_setopt($curl_request, CURLOPT_TIMEOUT, 45);
+        curl_setopt($curl_request, CURLOPT_TIMEOUT, 90);
         curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl_request, CURLOPT_SSL_VERIFYHOST, 2);
-
+        curl_setopt($curl_request, CURLOPT_SSL_VERIFYHOST, 1);
+        
+        // for testing purposes
+        $this->VERIFY_PEER = false;
+        
         if ($this->VERIFY_PEER) {
             curl_setopt($curl_request, CURLOPT_CAINFO, dirname(dirname(__FILE__)) . '/ssl/cert.pem');
         } else {
 			if ($this->_log_file) {
 				file_put_contents($this->_log_file, "----Request----\nInvalid SSL option\n", FILE_APPEND);
 			}
-			return false;
+			//return false; // uncomment in production with cert.pem
         }
         
         if (preg_match('/xml/',$post_url)) {
-            curl_setopt($curl_request, CURLOPT_HTTPHEADER, Array("Content-Type: text/xml"));
+            curl_setopt($curl_request, CURLOPT_HTTPHEADER, Array("Content-Type: text/josn"));
         }
         
         $response = curl_exec($curl_request);
-        
+        //var_dump($response); exit;
         if ($this->_log_file) {
         
             if ($curl_error = curl_error($curl_request)) {
@@ -118,7 +121,7 @@ abstract class AuthorizeNetRequest
         }
         curl_close($curl_request);
         
-        return $this->_handleResponse($response);
+        return($this->_handleResponse($response)); exit;
     }
 
 }

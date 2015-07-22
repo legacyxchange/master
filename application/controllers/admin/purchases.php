@@ -28,12 +28,13 @@ class Purchases extends CI_Controller {
     }
     
 	public function index() {
+		$data['title'] = 'My Purchases';
 		$header['headscript'] = $this->functions->jsScript('purchases.js');
         $menu['menu_purchases'] = 1;
-        $body['user'] = $this->user;
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
-        $this->load->view('admin/template/header', $header);
-        $this->load->view('admin/purchases', $body);
-        $this->load->view('template/footer');
+        $data['user'] = $this->user;
+        
+        $data['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
+        
+        $this->layout->load('admin/purchases', $data, 'admin');
     }
 }

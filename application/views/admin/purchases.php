@@ -7,7 +7,7 @@
 <!--container start-->
 <div class="container content">          
     <div class="admin_add_new_butt">
-		<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
+		
 	</div>
     <div>
             	

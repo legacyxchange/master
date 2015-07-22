@@ -1,5 +1,4 @@
 <?php 
-//testswt
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -14,10 +13,13 @@ class Search extends CI_Controller {
         $this->load->model('products_model', 'product', true);
         $this->load->model('product_types_model', 'product_type', true);
         $this->load->model('listings_model', 'listing', true);
+        $this->load->library('library');
     }
 
-    public function index($word = null, $location = null) {    	
-    	if(!empty($_POST['q'])){
+    
+    public function index($word = null, $location = null) { 
+    	
+    	/* if(!empty($_POST['q'])){
     	    $q = $_POST['q'];
     	    
     	    $header['q'] = $q;
@@ -51,12 +53,13 @@ class Search extends CI_Controller {
             
     	}else{
     		$iStr = '';
-    	}
+    	} */
     	
         $header['headscript'] = $this->functions->jsScript('search.js welcome.js timer.js');
+        //var_dump($this->db); exit;
         
         if($iStr !== 'no matches'){ 
-        	$query = $this->db->query('SELECT * from listings join products using(product_id) where start_time <= NOW() AND end_time >= NOW()'.$iStr.' order by end_time ASC LIMIT 4');
+        	$query = $this->db->query('SELECT * from listings left join products using(product_id) where start_time <= NOW() AND end_time >= NOW()'.$iStr.' order by end_time ASC LIMIT 4');
         	$listings = $query->result();      
         } 
         //var_dump($listings[1]); exit;
@@ -67,9 +70,113 @@ class Search extends CI_Controller {
         $body['listings'] = $listings;
         
         $body['left_menu'] = $this->load->view('partials/left_menu', $body, true);
-        $this->load->view('template/header', $header);
-        $this->load->view('search/index', $body);
-        $this->load->view('template/footer');
+        $this->layout->load('search/index', $body);
+    } 
+    
+    public function getdescription(){
+    	
+    	if($this->input->post('product_id')){
+            //$this->functions->dump($this->input->post()); exit;
+            $product = $this->product->fetchAll(array('product_id = '.$this->input->post('product_id')))[0];
+            
+            if($product){
+            	$desc = html_entity_decode($product->description);
+            	echo json_encode(array('status' => 'SUCCESS', 'results' => $desc));
+            	exit;
+            }
+    	}
+    }
+    
+    public function getprice(){
+    	
+    	if(($listing_id = $this->input->post('listing_id'))){
+    		$this->db->select('*');
+    		$this->db->from('listings l');
+    		$this->db->join('products p', 'p.product_id = l.product_id');
+    		$this->db->join('flash_sale_listings fsl', 'fsl.listing_id = l.listing_id');
+    		$this->db->where('l.listing_id = '.$listing_id);
+    		
+    		$listing = $this->db->get()->result()[0];
+    		//echo $this->db->last_query(); exit;
+    		if($listing){
+    			$message = $this->formatPrice($listing);
+    			echo json_encode(array('status' => 'SUCCESS', 'message' => $message));
+    			exit;
+    		}
+    	}
+    }
+    
+    public function getChat(){
+    	
+    }
+    
+    public function getMoreImages(){
+    	
+    }
+    
+    public function getReviews(){
+    	
+    }
+    
+    public function purchaseItem(){
+    	
+    }
+    
+    public function getvideo(){
+    	 var_dump('test'); exit;
+    	if(($listing_id = $this->input->post('listing_id'))){
+    		$this->db->select('*');
+    		$this->db->from('listings l');
+    		$this->db->join('products p', 'p.product_id = l.product_id');
+    		$this->db->join('product_videos pv', 'pv.product_id = p.product_id');
+    		$this->db->join('flash_sale_listings fsl', 'fsl.listing_id = l.listing_id');
+    		$this->db->where('l.listing_id = '.$listing_id);
+    
+    		$listing = $this->db->get()->result()[0];
+    		//echo $this->db->last_query(); exit;
+    		var_dump($listing); exit;
+    		if($listing){
+    			$message = $this->formatPrice($listing);
+    			echo json_encode(array('status' => 'SUCCESS', 'message' => $message));
+    			exit;
+    		}
+    	}
+    }
+    
+    private function formatVideos($listing){
+    	$out = '<div id="desc<?php echo $key+1;?>">';
+    	$save = $listing->retail_price - $listing->sale_price;
+    	$out .= '<div style="height:100px;">';
+    	$out .= '<div style="font-weight: bold;">';
+    	$out .= 'WAS:&nbsp;&nbsp; <span style="">$'.number_format($listing->retail_price,2).'</span>';
+    	$out .= '</div>';
+    	$out .= '<div style="font-weight: bold; text-align:left;">';
+    	$out .= 'NOW: <span style="color: #000;">$'.number_format($listing->sale_price,2).'</span>';
+    	$out .= '</div>';
+    	$out .= '<div class="save">';
+    	$out .= '<i style="color: #ff0000;">SAVE: $'.number_format($save,2).'</i>';
+    	$out .= '</div>
+    	</div>
+    	</div>';
+    	return $out;
+    }
+    
+    private function formatPrice($listing){
+    	$out = '<div id="desc<?php echo $key+1;?>">';
+    	$save = $listing->retail_price - $listing->sale_price;
+    	$out .= '<div style="height:100px;">';
+    	$out .= '<div style="font-weight: bold;">';								
+    	$out .= 'WAS:&nbsp;&nbsp; <span style="">$'.number_format($listing->retail_price,2).'</span>';
+    	$out .= '</div>';
+    	$out .= '<div style="font-weight: bold; text-align:left;">';
+    	$out .= 'NOW: <span style="color: #000;">$'.number_format($listing->sale_price,2).'</span>';
+    	$out .= '</div>';
+    	$out .= '<div class="save">';
+    	$out .= '<i style="color: #ff0000;">SAVE: $'.number_format($save,2).'</i>';
+    	$out .= '</div>
+    	</div>
+    	</div>';
+    	return $out;
     }
     
     protected function getStores($limit = 6){
@@ -170,4 +277,9 @@ class Search extends CI_Controller {
     	exit;
     } 
     */
+    			
+    public function indexOLK(){
+    	echo '<h1>This sw</h1>'; exit;
+    	$this->layout->load('search/index', $body);
+    }
 }

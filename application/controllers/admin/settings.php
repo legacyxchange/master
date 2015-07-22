@@ -9,9 +9,9 @@ class Settings extends CI_Controller {
         parent::__construct();
 
         $this->load->driver('cache');
-        $this->load->model('profile_model', 'profile', true);
-       
+        $this->load->model('profile_model', 'profile', true);      
         $this->load->model('user_model', 'user', true);
+        $this->load->model('user_accounts_model', 'user_accounts', true);
         $this->load->model('user_addresses_model', 'user_addresses', true);
         $this->load->model('products_model', 'product', true);
         
@@ -31,36 +31,37 @@ class Settings extends CI_Controller {
         	$body['usershipfrom'] = $usershipfrom = $userinfo;
         }
         $body['products'] = $products = $this->product->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
-            
+        $body['user_account'] = $this->user_accounts->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']))[0];
         $menu['menu_settings'] = 1;
         $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
-        $this->load->view('admin/template/header', $header);
-        $this->load->view('admin/settings', $body);
-        $this->load->view('template/footer');
+              
+        $this->layout->load('admin/settings', $body, 'admin');
     }
     
-    public function imageupload(){
-    	return $this->uploadavatar();
-    	var_dump($_FILES); exit;
-    }
-    public function save() { //var_dump($_FILES['userfile']); exit;
-    	if (!empty($_POST)) {
+    public function save() { 
+    	
+    	if (!empty($_POST)) {   	
+    		try {
+    			$_POST['user_id'] = $this->session->userdata['user_id'];
     		
-    		if ($_FILES) { 
-    			var_dump($_FILES); exit;
-    		}
+    			$this->user->save();
     		
-    		$this->user->save('user_id = '.$this->session->userdata['user_id']);
-    		//var_dump($_POST); exit;
-    		$allgood = $this->user_addresses->save('user_id = '.$this->session->userdata['user_id']);
-    		//var_dump($allgood); exit;
-    		if($allgood){
-    			$this->session->set_flashdata('SUCCESS', 'You successfully updated your information.');
-    			echo json_encode(array('status'=>'SUCCESS', 'message'=>'You successfully updated your information.'));
-    		}else{   			
-    			$this->session->set_flashdata('FAILURE', 'Sorry, you failed to update all of your information.');
-    			echo json_encode(array('status'=>'FAILURE', 'message'=>'Sorry, you failed to update all of your information.'));    			
-    			exit;
+    			if(!empty($_FILES['avatar']['name'])){ 
+    				$imageDetails = $this->upload_image();
+    		        
+    				$_POST['profileimg'] = $imageDetails['file_name'];
+    				
+    				$this->user->save();     				
+    			}
+    		   		
+    			$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
+    
+    			header('Location: /admin/settings'); exit;
+    
+    	    } catch (Exception $e) {
+    			
+    			$this->session->set_flashdata('FAILURE', $e->getMessage());
+    			header('Location: /admin/settings/'); exit;
     		}
     	}
     }
@@ -76,35 +77,15 @@ class Settings extends CI_Controller {
     	$config['encrypt_name'] = true;
     	
     	$this->load->library('upload', $config);
+    	//var_dump($_FILES); exit;    	
     	
-    	//$imgOrder = $this->profile->getNextImgOrder($location);
-    	var_dump($_FILES); exit;
-    	//foreach ($_FILES['image']['name'] as $k => $img) {
-    		//$imgPostID = 0;
-    		//if (!empty($img)) {
-    			$_FILES['userfile']['name'] = $_FILES['image']['name'][$k];
-    			$_FILES['userfile']['type'] = $_FILES['image']['type'][$k];
-    			$_FILES['userfile']['tmp_name'] = $_FILES['image']['tmp_name'][$k];
-    			$_FILES['userfile']['error'] = $_FILES['image']['error'][$k];
-    			$_FILES['userfile']['size'] = $_FILES['image']['size'][$k];
+    	if (!$this->upload->do_upload('avatar')) {
+    		throw new Exception("Unable to upload profile image!" . $this->upload->display_errors());
+    	}
     	
-    			if (!$this->upload->do_upload('userfile')) {
-    				throw new Exception("Unable to upload profile image!" . $this->upload->display_errors());
-    			}
-    	
-    			$uploadData = $this->upload->data();
-    	
-    			// must now save post attachment
-    			$imgData = array(
-    					'user_id' => $this->session->userdata['user_id'],
-    					'profileimg' => $uploadData['file_name']    					
-    			);
-    	
-    			$insertId = $this->user->save();
-    	
-    		//}
-    		return;
-    	//}
+    	$uploadData = $this->upload->data();
+    			
+    	return $uploadData;
     }
     
     public function connectfb() {

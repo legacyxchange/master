@@ -1,3 +1,5 @@
+<script src="/public/js/timer.js"></script>
+
 <?php if($listing):?> 	
 <section id="original-item" class="">
 	<div class="container product-page-container">
@@ -7,27 +9,24 @@
 			<div class="col-lg-6">
 				<div class="border-item mg ">
 					<div class="product-image product-big-img parent_div" style="height:340px;">
-						<img class="parent_thumb" src="/products/productimg/240/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
+						<img class="parent_thumb" src="/products/productimg/240/<?php echo $listing->product_id;?>/<?php echo $listing->product->product_images[0]->product_image;?>" />
 					</div>
-					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:140px;">
-						<img src="/products/productimg/100/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>"class="child_thumb"> 
+					<div class="product-thumbnail" style="overflow: scroll-x;padding:4px;width:100%;height:140px;">					 
 					<?php if(!empty($listing->product->product_images)):?>
-					<?php foreach($listing->product->product_images as $i):?>					    					
-						<img src="/products/productimg/100/<?php echo $listing->product_id;?>/<?php echo $i->image;?>"class="child_thumb">
-					<?php endforeach;?>
-					<?php else:?>
-					    <img src="/products/productimg/100/<?php echo $listing->product_id;?>/<?php echo $i->image;?>"class="child_thumb">
-					    <img src="/products/productimg/100/<?php echo $listing->product_id;?>/<?php echo $i->image;?>"class="child_thumb">
+					<?php for($i = 0; $i < 4; $i++):?>					    					
+						<img src="/products/productimg/100/<?php echo $listing->product->product_images[$i]->product_id;?>/<?php echo $listing->product->product_images[$i]->product_image;?>"class="child_thumb">
+					<?php endfor;?>
+					
 					<?php endif;?>
 					</div>
 					<div class="bid-desc">
 						<div class="row" style="margin-bottom: 20px;">
 						    <div class="type_of_sale" style="font-weight:bold;float:left;">
-						        Type of Sale: <span style="color:#227593;">Auction</span>
+						        Type of Sale: <span style="color:#227593;"><?php echo $listing->product->product_type->type; ?>&nbsp;|&nbsp;</span>
 						    </div>
 							<div class="time-left">
 								<p>
-									Time Left: <span class="timer" id="<?php echo $listing->listing_id;?>"></span>
+									 Time Left: <span class="timer" id="<?php echo $listing->listing_id;?>"></span>
 									<br />
 								    Sale Ends: <?php echo date('M. d, Y \\a\\t g:i:a', strtotime($listing->end_time));?>
 								</p>
@@ -35,8 +34,7 @@
 						</div>
 						<div class="row">
 							<div class="current-bid">
-								<div class="product-prices">
-									
+								<div class="product-prices">									
 										Current Bid Price: <span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>
 										<?php echo form_open('/listings/bid/'.$listing->listing_id, array('method' => 'post', 'class' => 'form-horizontal'));?>
 										<input type="hidden" name="listing_id" value="<?php echo $listing->listing_id;?>" />
@@ -77,7 +75,7 @@
 							<?php echo html_entity_decode($listing->product->description);?>
 						</p>
 						<p>
-							<b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span>
+							<b>Item Type:</b> <span><?php echo ucfirst($listing->product->product_type->type);?></span>
 						</p>
 						
 						<p>
@@ -94,7 +92,7 @@
 							<b>QTY: </b><span> <?php echo $listing->product->quantity;?></span>
 						</p>
 						<p>
-							<b>TYPE OF SALE:</b><span>AUCTION</span>
+							<b>TYPE OF SALE:</b><span><?php echo $listing->listing_type;?></span>
 						</p>
 						<p>
 							<b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span>

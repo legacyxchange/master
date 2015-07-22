@@ -7,7 +7,7 @@
 <!--container start-->
 <div class="container content">          
     <div class="admin_add_new_butt">
-		<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
+		<a href="/admin/store/add" class="stores-add-link" data-toggle="modal" data-target="#storeModal"><span class="add_new_plus">+</span> Add New Store</a>
 	</div>
     <div>
             	
@@ -17,7 +17,7 @@
      
 <div id="addStoreModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addStoreModal" aria-hidden="true"> 
     <div class="modal-dialog">
-        <div class="modal-header" style="text-align: right;">Add Store</div>       
+              
         <div class="modal-content">          
         </div>
     </div>    

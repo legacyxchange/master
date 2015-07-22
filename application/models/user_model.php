@@ -9,6 +9,7 @@ class user_model extends abstract_model {
 
     protected $table = 'users';
     protected $primary_key = 'user_id';
+    protected $unique_key = 'username';
     public $user_id;
     public $email;
     public $passwd;
@@ -54,20 +55,19 @@ class user_model extends abstract_model {
     }
     
     public function save($where = null){
-    	if(empty($where) && empty($_POST['passwd']))
-    		return parent::save($where);
-    	
-    	$rows = $this->fetchAll(array('where' => $where));
-    	
-    	if(sizeof($rows) > 0){
-    		$pass = $rows[0]->passwd;
-    	}
-    	
-    	if(!empty($_POST['passwd']) && $_POST['passwd'] != $pass){
-    		
-    		$_POST['passwd'] = sha1($_POST['passwd']);
-    	}
-    	
+    	if(!empty($_POST['passwd']) && !empty($_POST['user_id'])){
+    		$rows = $this->fetchAll(array('where' => 'user_id = "'.htmlentities($_POST['user_id'], ENT_QUOTES).'"'));
+    		if(sizeof($rows) > 0){
+    			$pass = $rows[0]->passwd;
+    			if($_POST['passwd'] != $pass){    			
+    				$_POST['passwd'] = sha1($_POST['passwd']);
+    			}
+    		}    		
+    	} else {
+    		unset($_POST['user_id']);
+    		unset($_POST['passwd']);
+    	}  
+    	//var_dump($_POST); exit;
     	return parent::save($where);
     }
     

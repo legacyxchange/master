@@ -1,11 +1,40 @@
 var search = {}
 
-/*$(document).ready(function(){
-	$('#search').change(function(e){
-		search.criteria();
-	});
+//<a href="#" onclick="getprice($product_id, $div_id, $this->security->get_csrf_hash());">Ajax Call</a>
+
+getprice = function(listing_id, div_id, token) {    
 	
-});*/
+	console.log(listing_id, div_id, token)
+	
+	$.ajax({
+		  method: "POST",
+		  url: "/search/getprice/",
+		  data: {"karateToken":token, listing_id:listing_id},
+	      dataType: 'json'
+	}).done(function( data ) {
+		console.log( "Data Saved in div id="+div_id+": " + data.message );
+		$('#'+div_id).html(data.message);
+	}).fail(function( jqXHR, textStatus ) {
+		  console.log( "Request failed: " + textStatus );
+	});
+};
+
+getvideo = function(listing_id, div_id, token) {    
+	
+	console.log(listing_id, div_id, token)
+	
+	$.ajax({
+		  method: "POST",
+		  url: "/search/getvideo",
+		  data: {"karateToken":token, listing_id:listing_id},
+	      dataType: 'html'
+	}).done(function( data ) {
+		console.log( "Data Saved in div id="+div_id+": " + data.message );
+		$('#'+div_id).html(data.message);
+	}).fail(function( jqXHR, textStatus ) {
+		  console.log( "Request failed: " + textStatus );
+	});
+};
 
 search.indexInit = function (lat, lng)
 {
@@ -67,7 +96,6 @@ search.indexInit = function (lat, lng)
         search.setWellWidth();
     });
 };
-
 
 search.setWellWidth = function ()
 {

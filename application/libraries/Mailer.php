@@ -9,16 +9,11 @@ class Mailer
     }
     
     public function send($to_email, $subject, $message, $full_name = null, $from_email = null, $from_name = null){
-    	if(!$email)
+    	if(!$to_email)
     	{
-    		$this->session->set_flashdata('FAILURE', 'You must supply a valid email.');
-    		header('Location: /contact'); exit;
-    	}
-    	if(!$message)
-    	{
-    		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
-    		header('Location: /contact'); exit;
-    	}
+    		$this->ci->session->set_flashdata('FAILURE', 'You must supply a valid email.');
+    		return false;    		
+    	}    	
     	
     	require_once BASEPATH.'libraries/Email.php';
     	$mailer = new CI_Email();
@@ -33,12 +28,12 @@ class Mailer
     	 
     	$mailer->initialize($config);
     	
-    	$mailer->from($email, $full_name);
-    	$mailer->to($email);
+    	$mailer->from($from_email, $from_name);
+    	$mailer->to($to_email);
     	
     	$mailer->subject($subject);
     	$mailer->message($message);
-    	 
+    	$mailer->mailtype = 'html';
     	$s = $mailer->send();
     	 
     	//var_dump($s, $email, $subject, $message, $full_name); exit;

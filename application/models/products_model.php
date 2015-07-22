@@ -11,18 +11,21 @@ class products_model extends abstract_model {
     protected $primary_key = 'product_id';
     public $product_id;
     public $product_type_id;
+    public $product_condition_type_id;
     public $user_id;
     public $name;
     public $description;
-    public $short_description;
+    public $details;
+    public $weight;
     public $cost;
     public $retail_price;
     public $quantity;
     public $active;
-    public $product_condition_type_id;
     public $model;
-    public $sku;
+    public $legacy_number;
+    public $original_passcode; // if original product else null
     public $image;
+    public $keywords;
     public $created;
     public $modified;
     

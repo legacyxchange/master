@@ -14,9 +14,7 @@ class Contact extends CI_Controller {
     
     // user that is not logged in will be redirected to this function
     public function index(){ 
-    	$this->load->view('template/header', $header);
-        $this->load->view('contact/index', $body);         
-        $this->load->view('template/footer');
+    	$this->layout->load('contact/index', $body, 'admin');         
     }
     
     public function send(){
@@ -30,6 +28,12 @@ class Contact extends CI_Controller {
     		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
     		header('Location: /contact'); exit;
     	}
+    	if(!empty($_POST['messages']))
+    	{ 		
+    		$this->site->se($_POST['message']);
+    		exit;    		
+    	}
+    	
     	$config['protocol'] = 'mail';
     	$config['mailpath'] = '/bin/mail';
     	$config['charset'] = 'iso-8859-1';

@@ -19,44 +19,44 @@ class Listings extends CI_Controller {
         
         $this->load->model('product_types_model', 'product_type', true);
         
-        $this->load->model('listings_model', 'listing', true);
+        $this->load->model('listings_model', 'listings', true);
         
-        $this->load->library('library');
+        $this->load->model('listing_types_model', 'listing_types', true);
     }
 
-    public function index(listing_$id = null) { 
+    public function index($listing_id = null) { 
     	$this->functions->checkLoggedIn();
         
         $body['user_id'] = $user_id = $this->session->userdata('user_id'); 
         
-        $header['headscript'] = $this->functions->jsScript('listings.js');
-        
-        if(is_null($listing_id)){        	
+        //$header['headscript'] = $this->functions->jsScript('listings.js');
+        $body['listing_types'] = $this->listing_types->fetchAll();
+        if(is_null($listing_id)){     	
         	try {
-        		$listings = $this->listing->fetchAll(array('join' => 'products', 'on' => 'listings.product_id = products.product_id', 'where' => 'products.user_id = '.$this->session->userdata['user_id'], 'orderby' => 'listing_id DESC'));
+        		$listings = $this->listings->fetchAll();
         		
         		foreach($listings as $listing){ 
-        			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];        			
+        			$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0]; 
+        			$listing->type = $this->listing_types->fetchAll(array('where' => 'listing_type_id = '.$listing->listing_type_id))[0];
         		}
         		
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
         }else{
-        	$listings = $this->listing->fetchAll('listing_id = '.$listing_id);        	
+        	$listings = $this->listings->fetchAll(array('where' => 'listing_id = '.$listing_id));   
+        	foreach($listings as $listing){
+        		$listing->product = $this->product->fetchAll(array('where' => 'product_id = '.$listing->product_id))[0];
+        	}    	
         }
         
         $menu['menu_listings'] = 1;
         $body['listings'] = $listings;
         $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
-        $this->load->view('admin/template/header', $header);
-        $this->load->view('admin/listings', $body);
-        $this->load->view('template/footer');
+        $this->layout->load('admin/listings/edit', $body, 'admin');
     }
     
     public function add() {   
-    	if(!$listing_id)
-    		header('Location: /admin/dashboard');
     	
     	if (!empty($_POST)) {   		
     		try { 
@@ -73,34 +73,46 @@ class Listings extends CI_Controller {
     
     			$this->session->set_flashdata('FAILURE', $e->getMessage());
     		}
+    	}else{
+    		
     	}
     	return $this->index();
     }
     
     public function edit($listing_id) {
     	if(!$listing_id)
-    		header('Location: /admin/account');
+    		header('Location: /admin/products');
     
+    	$listing = $this->listings->fetchAll(array('listing_id = '.$listing_id))[0];
+    	$lt = $this->listing_types->fetchAll(array('listing_type_id = '.$listing->listing_type_id))[0];
+    	$listing->type = $lt->listing_type;
+    	
+    	$body['listing_types'] = $this->listing_types->fetchAll();
+    	
     	$body['user_id'] = $this->session->userdata['user_id'];
     	
     	if (!empty($_POST)) {   		
     		try {
-    			$this->listing->setPostStartAndEndTimes();
+    			$this->listings->setPostStartAndEndTimes();
     			
     			$where = 'listing_id = "'.$listing_id.'"';
     			 
-    			$this->listing->save($where);
+    			$this->listings->save($where);
     
     			$this->session->set_flashdata('SUCCESS', 'Your listing has been updated!');
     
-    			header('Location: /admin/products'); exit;
+    			header('Location: /admin/listings/edit/'.$listing_id); exit;
     
     		} catch (Exception $e) {
     			$this->functions->sendStackTrace($e);
     
     			$this->session->set_flashdata('FAILURE', $e->getMessage());
     		}
-    	}      	
+    	}  
+    	$menu['menu_listings'] = 1;
+    	$body['listing'] = $listing;
+    	$body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
+    	$this->layout->load('admin/listings/edit', $body, 'admin');
     }
     
     public function delete($listing_id){

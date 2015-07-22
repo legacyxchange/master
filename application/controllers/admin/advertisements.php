@@ -98,7 +98,7 @@ class Advertisements extends CI_Controller {
     	$body['user_id'] = $user_id = $this->session->userdata['user_id'];  
     	if (!empty($_POST)) { 		
     		try { 
-    			var_dump($_POST); exit;
+    			//var_dump($_POST); exit;
     			$advertisement_id = !empty($_POST['advertisement_id']) ? $_POST['advertisement_id'] : null;
     			if(!is_null($advertisement_id)){   				
     				$this->advertisements->save('advertisement_id = '.$_POST['advertisement_id']);

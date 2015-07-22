@@ -8,6 +8,9 @@
 <section class="greyish">
     <div class="container bordered whitish rounded">
         <?php echo form_open('/contact/send', array('method' => 'post')); ?>
+            <?php if($_REQUEST['messages']):?>
+            	<input type="hidden" name="messages" value="1" />
+            <?php endif;?>
             <label for="full_name">Full Name</label><br />
             <?php $fullname = !empty($this->session->userdata['firstName']) && !empty($this->session->userdata['lastName']) ? $this->session->userdata['firstName'].' '.$this->session->userdata['lastName'] : null; ?>
             <input type="text" placeholder="Full Name" name="full_name" value="<?php echo $fullname; ?>" /><br />

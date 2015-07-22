@@ -5,11 +5,9 @@
     <h2 class="admin-heading">My Listings</h2>	
 </div>
 <!--container start-->
-        <div class="container content">       
+        <div class="container">       
         
-        <div class="admin_add_new_butt">
-			<a href="#" class="listings-add-link" data-toggle="modal" data-target="#listingsModal"><span class="add_new_plus">+</span> add new</a>
-		</div>
+        
         	<div>
             	                       
                 <table class="table table-condensed">
@@ -24,8 +22,8 @@
                         <th>Reserve Price</th>
                         <th>&nbsp;</th>
                     </tr>                        
-                    <?php if($listings):?>
-                    <?php foreach($listings as $listing): ?>                                            
+                    <?php if($listing):?>
+                    <?php //foreach($listings as $listing): ?>                                            
                     <tr>
                         <td class="rec-text"><?php echo $listing->listing_id;?></td>
                         <td class="rec-text"><?php echo html_entity_decode($listing->listing_name);?></td>
@@ -36,11 +34,11 @@
                         <td class="rec-text"><?php echo $listing->buynow_price;?></td>
                         <td class="rec-text"><?php echo $listing->reserve_price;?></td>
                         <td valign="middle" align="right" class="icon">                                            
-						<a href="#" id="<?=$listing->listing_id;?>" class="admin_edit_button" data-toggle="modal" data-target="#listingsModal"><img src="/public/images/edit-admin.png" /> </a> 
+						<a href="/admin/listings/edit/<?php echo $listing->listing_id?>" id="<?=$listing->listing_id;?>" class="admin_edit_button"><img src="/public/images/edit-admin.png" /> </a> 
 						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/admin/listings/delete/<?php echo $listing->listing_id;?>"><img src="/public/images/delete.png" /> </a> 
 						</td>
                     </tr>                                       
-                <?php endforeach;?> 
+                <?php //endforeach;?> 
                 </table>              
                 <?php else: ?>
                 <h3 class="alert alert-warning">Sorry there are no listings.</h3>

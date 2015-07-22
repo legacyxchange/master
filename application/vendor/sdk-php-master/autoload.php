@@ -16,7 +16,7 @@ spl_autoload_register(function($className) {
         include $classMap[$className];
     } else {
     	if($className != 'CI_Exceptions'){
-        	//echo 'Class not loaded: ' . $className; 
+        	echo 'Class not loaded: ' . $className; 
     	}
     }
 });

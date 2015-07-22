@@ -300,7 +300,7 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_cookie_name' = The cookie name
 | 'csrf_expire' = The number in seconds the token should expire.
 */
-$config['csrf_protection'] = true;
+$config['csrf_protection'] = false;
 $config['csrf_token_name'] = 'karateToken';
 $config['csrf_cookie_name'] = 'karateCookie';
 $config['csrf_expire'] = 3600;

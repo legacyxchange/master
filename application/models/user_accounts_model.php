@@ -19,4 +19,13 @@ class user_accounts_model extends abstract_model {
     function __construct() {
         parent::__construct();
     }
+    
+    public function save(){
+    	$user_account = $this->fetchAll(array('where' => 'user_id ='.$_POST['user_id']))[0];
+    	
+    	$_POST['user_account_id'] = $user_account->user_account_id;
+    	$_POST['balance'] = $user_account->balance + $_POST['amount'];
+    	//var_dump($_POST); exit;
+        return parent::save();
+    }
 }

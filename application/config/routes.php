@@ -41,6 +41,8 @@
 $route['default_controller'] = "search";
 $route['404_override'] = 'search';
 
+$route['logout'] = 'welcome/logout';
+
 $route['seller/(:any)'] = 'user/index/$1';
 $route['test/(:num)'] = 'test/index/$1';
 $route['deals/(:num)'] = 'deals/index/$1';
@@ -71,8 +73,17 @@ $route['listings/(:any)'] = 'listings/index/$1';
 $route['listings/(:any)/(:num)/(:num)'] = 'listings/index/$1/$2/$3';
 $route['phpinfo'] = 'phpinfo';
 
-
-$route['admin/products/(:num)'] = 'admin/products/index/$1';
+$route['admin/products/checkFunds'] = 'admin/products/checkFunds';
+$route['admin/products/checklegacynumber/(:any)'] = 'admin/products/checklegacynumber/$1';
+$route['admin/products/checkoriginalpasscode/(:any)'] = 'admin/products/checkoriginalpasscode/$1';
+$route['admin/products/add'] = 'admin/products/add';
+$route['admin/products/edit/(:num)'] = 'admin/products/edit/$1';
+$route['admin/products/edit'] = 'admin/products/edit';
+$route['admin/products/delete/(:num)'] = 'admin/products/delete/$1';
+$route['admin/products/(:any)'] = 'admin/products/index/$1';
+$route['admin/listings/(:num)'] = 'admin/listings/index/$1';
+$route['user/profileimg/(:any)/(:any)/(:any)'] = 'user/profileimg/$1/$2/$3';
+$route['user/(:any)'] = 'user/index/$1';
 
 /* foreach(array_keys($route) as $r){
 	echo '"/'.$r,'", ';

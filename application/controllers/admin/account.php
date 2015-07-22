@@ -9,6 +9,7 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->driver('cache');
         $this->load->model('user_model', 'user', true);
+        $this->load->model('user_accounts_model', 'user_accounts', true);
         $this->load->model('products_model', 'products', true);
         $this->load->model('dashboard_model', 'dashboard', true);
         $this->load->model('listings_model', 'listings', true);
@@ -19,25 +20,23 @@ class Account extends CI_Controller {
     }
     
 	public function index() {
-		
+		$data['title'] = 'My Account';
         $header['headscript'] = $this->functions->jsScript('notifications.js');
         $menu['menu_account'] = 1;
-        
+        $data['account_type'] = 'Individual';
         $user_id = $this->session->userdata['user_id'];
         
-        $body['user'] = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];
+        $data['user'] = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];
         
         $query = $products = $this->db->query('select count(distinct listing_id) as bid_count from bidding join listings using(listing_id) join products using(product_id) where products.user_id = '.$this->session->userdata('user_id'));
-        $body['bid_count'] = $query->result()[0]->bid_count;
+        $data['bid_count'] = $query->result()[0]->bid_count;
         
-        $body['products'] = $products = $this->products->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
-        $body['listings'] = $listings = $this->listings->fetchAll(array('join' => 'products', 'on' => 'products.product_id = listings.product_id', 'where' => 'products.user_id = '.$this->session->userdata('user_id')));
-        $body['notifications'] = $notifications = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id').' AND active=1'));
-        $body['watching'] = $watching = $this->watching->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
-        
-        $body['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
-        $this->load->view('admin/template/header', $header);
-        $this->load->view('admin/account', $body);
-        $this->load->view('template/footer');
+        $data['products'] = $products = $this->products->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
+        $data['listings'] = $listings = $this->listings->fetchAll(array('join' => 'products', 'on' => 'products.product_id = listings.product_id', 'where' => 'products.user_id = '.$this->session->userdata('user_id')));
+        $data['notifications'] = $notifications = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id').' AND active=1'));
+        $data['watching'] = $watching = $this->watching->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
+        $data['user_account'] = $this->user_accounts->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']))[0];
+        $data['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
+        $this->layout->load('admin/account', $data, 'admin');
     }
 }

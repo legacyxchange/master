@@ -8,6 +8,12 @@ $(document).ready(function(e){
 	
 });
 
+validate.notEmpty = function(obj){ console.log('notempty')
+	if($(obj).val().length < 1)
+        validate.setError($(obj), 'Please Enter a Valid Amount.');
+	else
+		validate.resetError($(obj));
+}
 validate.setError = function(id, msg){	
     $(id).focus();
     $(id).css('background', 'rgb(252, 252, 170)');
@@ -52,7 +58,7 @@ validate.checkEmail = function(obj){
 	if($(obj).val().length < 4)
         validate.setError($(obj), 'Please provide a valid email address.');
 	else if($(obj).val().length >= 4){
-		$.post("/welcome/checkEmail", $('#signupform').serialize(), function (data) { //console.log(data)
+		$.post("/welcome/checkEmail", $('#signupform').serialize(), function (data) { console.log(data)
 	    	if (data.status == 'FAILURE')
 	        { 
 	            validate.setError($('#'+data.id), data.msg);
@@ -117,4 +123,43 @@ validate.checkForm = function ()
         	}       	
     	}, 'html');
     }
+}
+
+validate.originalPasscode = function(obj){
+	console.log($(obj).val().length)
+	if($(obj).val().length < 4)
+        validate.setError($(obj), 'Passcode must be atleast 4 characters.');
+	else if($(obj).val().length >= 4){
+		validate.resetError($(obj));
+		$.get("/admin/products/checkoriginalpasscode/"+$('#original_passcode').val(), null, function (data) { console.log(data)
+	    	if (data.status == 'FAILURE')
+	        { 
+	    		validate.setError($(obj), data.message);
+	        }
+	    	else if (data.status == 'SUCCESS'){  
+	    		validate.resetError($(obj));
+	    	}
+	    }, 'html');
+	}
+	else
+		validate.resetError($(obj));
+}
+validate.legacyNumber = function(obj){
+	console.log($(obj).val().length)
+	if($(obj).val().length < 4)
+        validate.setError($(obj), 'Legacy Number must be atleast 4 characters.');
+	else if($(obj).val().length >= 4){
+		validate.resetError($(obj));
+		$.get("/admin/products/checklegacynumber/"+$('#legacy_number').val(), null, function (data) { console.log(data)
+	    	if (data.status == 'FAILURE')
+	        { 
+	    		validate.setError($(obj), data.message);
+	        }
+	    	else if (data.status == 'SUCCESS'){  
+	    		validate.resetError($(obj));
+	    	}
+	    }, 'html');
+	}
+	else
+		validate.resetError($(obj));
 }

@@ -1,0 +1,11 @@
+/* Loading CSS Stylesheet */
+@import '/public/assets/bootstrap.min.css';
+@import '/public/assets/font-awesome.min.css';
+@import '/public/assets/magnific-popup.css';
+@import '/public/assets/uikit/uikit.min.css';
+@import '/public/assets/flexslider/flexslider.css';
+@import '/public/assets/demo/color-picker.css';
+@import url(http://fonts.googleapis.com/css?family=Engagement:800,700,400,300);
+@import url(http://fonts.googleapis.com/css?family=Oswald:800,700,600,400,300);
+@import url(http://fonts.googleapis.com/css?family=Raleway:800,700,600,400,300);
+@import url(http://fonts.googleapis.com/css?family=Roboto:800,700,600,400,300);

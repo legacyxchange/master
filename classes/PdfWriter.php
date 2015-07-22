@@ -1,7 +1,7 @@
 <?php
   
-require "lib/fpdf.php";
-require "lib/tcpdf/tcpdf.php";
+require "../lib/fpdf.php";
+require "../lib/tcpdf/tcpdf.php";
 
 class PdfWriter{
 	public function __construct(){

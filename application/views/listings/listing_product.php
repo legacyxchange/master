@@ -15,7 +15,7 @@
 											<div class="origional_item_container_main">	 
 												<div class="origional_item_container" style="display:none;">
 													<div class="origional_item_close"><i class="fa fa-times-circle"></i></div>
-													<p>Origingal Items are items which have been DNA marked and Registered with LegacyXchange. Marking for original Items is done either at the point when the item is created (manufactured) or when it is signed or otherwise endorsed.</p>
+													<p>rigingal Items are items which have been DNA marked and Registered with LegacyXchange. Marking for original Items is done either at the point when the item is created (manufactured) or when it is signed or otherwise endorsed.</p>
 													<p>LegacyXchange documents and follows strict chain-of-custody procedures for all Original items.the documentation, as well as the DNA mark, is 100% verifiable.</p>
 													<p><b><i>All original items are Guaranteed 100% to be Authentic.</i></b></p>
 												</div>
@@ -91,15 +91,16 @@
 	<!-- End page top menu -->
 	<!-- content section -->
 			<div class="section-content">
+			<?php var_dump($listing); exit;?>
 				<div class="col-lg-6">
 					<div class="border-item mg ">
 						<div class="product-image product-big-img thumbnail_image">
-							<img src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" />
+							<img class="absolute-center" src="/products/productimg/300/<?=$listing->product_images[0]->product_id;?>/<?=$listing->product_images[2]->product_image;?>" />
 						</div>
 						<div class="product-thumbnail">
-							<span><img src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" class="child_thumb"></span>
-							<span><img src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" class="child_thumb"></span>
-							<span><img src="/products/productimg/300/<?php echo $listing->product_id;?>/<?php echo $listing->product->image;?>" class="child_thumb"></span>
+						    <?php foreach($listing->product_images as $image): ?>
+							    <img class="absolute-center" src="/products/productimg/196/<?=$image->product_id;?>/<?=$image->product_image;?>" class="child_thumb" /> 
+							<?php endforeach; ?>							
 						</div>
 						<div class="bid-desc">
 							<div class="row">
@@ -147,7 +148,7 @@
 							<p><b>Item Type:</b> <span>Registered <?php echo ucfirst($listing->product->product_type->type);?></span></p>
 							<p><b>Date Signed:</b> <span>7/14/14</span></p>
 							<p><b>QTY: </b><span> <?php echo $listing->product->quantity;?></span></p>
-							<p><b>TYPE of SALE:</b><span>AUCTION W/ BUY NOW</span></p>
+							<p><b>TYPE of SALE:</b> <span><?php echo $listing->listing_type;?></span></p>
 							<p><b>CURRENT BID: </b><span>$<?php echo number_format($listing->bidding[count($listing->bidding)-1]->bid_amount,2);?></span></p>
 							<p><b># OF TIMES PREVIOUSLY SOLD: </b><span> 0</span></p>
 							<div class="seller-detail row">

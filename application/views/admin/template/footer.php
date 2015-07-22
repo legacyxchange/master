@@ -1,6 +1,5 @@
 <?php if(!defined('BASEPATH')) die('Direct access not allowed');?>
 <?php if($advertisements): ?>
-
 <div class="section-header" style="margin-top: 0px;background:#e9f3f7;height:60px;padding-top:10px;text-align:center;">
     <span class="checkoutthesegreatitems"><i>CHECK OUT THESE GREAT ITEMS!</i></span>
 </div>
@@ -31,6 +30,7 @@
 .footer-menu li a, .footer-links-heading a{letter-spacing: 1px; font-family:arial; font-weight:normal; }
 </style>
 <!--footer start-->
+<div class="header_line_image" style="background:url('/public/images/header_line.png') repeat-x;padding:0;border:0;margin:0;">&nbsp;</div>
 <footer class="ptb25">
 	<div class="container">
 		<div class="row" style='padding-left:5%;'>
@@ -74,7 +74,7 @@
 				</div>
 				<ul class="footer-menu">
 					<li><a href="/contact">Contact Us</a></li>
-					<li><a href="/faqs">FAQ's</a></li>
+					<li><a href="/about#faqs">FAQ's</a></li> 
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">
@@ -99,14 +99,14 @@
 				</ul>
 			</div>
 		</div>
-		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 LegacyXChange, S2BXChange</div>
+		<div style="text-align: center;color:#006a8a;font-size:11px;">&copy; 2015 LegacyXChange</div>
 	</div>
 </footer>
 <!--footer end-->
 
 <div class="modal fade" id="myLegacy" tabindex="-1" role="dialog"
 	aria-labelledby="myLegacyLabel" aria-hidden="true">
-	<div class="modal-dialog">
+	
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
@@ -221,7 +221,7 @@
 				</button>
 			</div>
 		</div>
-	</div>
+	
 </div>
 
 <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog"
@@ -537,8 +537,6 @@
 	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-
-<script type="text/javascript" src="/public/js/retina-1.3.min.js"></script>
 
 </body>
 </html>

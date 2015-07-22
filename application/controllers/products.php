@@ -58,17 +58,19 @@ class Products extends CI_Controller {
         $path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'products' . DS . $product_id . DS;
 
         if (!empty($file))
-            $file = urlencode($file);
+            $img = $file = urlencode($file);
 
         try {
 
-            if (!empty($product_id)){
-                $user = $this->product->fetchAll(array('where' => 'product_id = '.$product_id));               
+            if (!empty($product_id) && !$img){
+                $product = $this->product->fetchAll(array('where' => 'product_id = '.$product_id))[0]; 
+                //var_dump($product); exit;
+                $img = $product->image;              
             }
 
-            if (!empty($file))
-                $img = $file;
-
+            //echo $path.$img;
+            //var_dump(file_exists($path . $img)); exit; 
+            
             if (!file_exists($path . $img))
                 $img = null;
 
