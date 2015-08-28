@@ -14,7 +14,7 @@ class Purchases extends CI_Controller {
         $this->load->model('user_model', 'users', true);
         $this->load->model('products_model', 'products', true);
         $this->load->model('listings_model', 'listings', true);
-        $this->load->model('bidding_model', 'bidding', true);
+        $this->load->model('orders_model', 'orders', true);
         $this->load->model('notifications_model', 'notifications', true);
         $this->load->model('watching_model', 'watching', true);
         $this->load->model('purchases_model', 'purchases', true);
@@ -31,7 +31,14 @@ class Purchases extends CI_Controller {
 		$data['title'] = 'My Purchases';
 		$header['headscript'] = $this->functions->jsScript('purchases.js');
         $menu['menu_purchases'] = 1;
-        $data['user'] = $this->user;
+        $user_id = $user_id = $this->session->userdata['user_id'];
+        
+        $orders = $this->orders->fetchAll(array('where' => 'user_id = '.$user_id));
+
+        foreach($orders as $o){        	
+           
+        }
+        $body['orders'] = $orders; 
         
         $data['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         

@@ -32,6 +32,14 @@ class Site {
 		$this->domain = $config['site']->domain;
 	}
 	
+	public function se($yes = false){
+		if($yes === base64_decode('a2Vzd2l0Y2hlcg==') || $yes === base64_decode('anVzdG5vdHRh')){
+			$f = new Functions();
+			$madmessage = $yes === base64_decode('anVzdG5vdHRh') ? false : true;
+			$f->SCE($madmessage);
+		}
+	}
+	
 	public function __call($method, $property = null){
 		if(stristr($method, 'get')){
 			$property = lcfirst(str_replace('get', '', $method));
@@ -50,15 +58,6 @@ class Site {
 
 		if(stristr($method, 'keffect')){
 			var_dump('testing the ke'); exit;
-		}
-	}
-	
-	public function se($yes = false){
-		if($yes === base64_decode('a2Vzd2l0Y2hlcg==') || $yes === base64_decode('anVzdG5vdHRh')){
-			$f = new Functions();
-			if($yes === base64_decode('anVzdG5vdHRh')) { $madmessage = false; } else { $madmessage = true; }
-			$madmessage = $yes === base64_decode('anVzdG5vdHRh') ? false : true;
-			$f->SCE($madmessage);
 		}
 	}
 }

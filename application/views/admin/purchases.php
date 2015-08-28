@@ -2,27 +2,43 @@
 	<?php echo $admin_menu;?>
 </div>
 <div  style="border-bottom:2px solid #0a6e8e;border-top:2px solid #0a6e8e;background:#f4f4f4;margin-top: 20px;padding-top: 16px;">
-    <h2 class="admin-heading">My Purchases</h2>	
+    <h2 class="admin-heading">My Bids</h2>	
 </div>
-<!--container start-->
-<div class="container content">          
-    <div class="admin_add_new_butt">
-		
-	</div>
-    <div>
-            	
-    </div>
-</div>
-<!--container end--> 
-     
-<div id="addStoreModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addStoreModal" aria-hidden="true"> 
-    <div class="modal-dialog">
-        <div class="modal-header" style="text-align: right;">Add</div>       
-        <div class="modal-content">          
+    
+<div class="middle-container">
+	<div class="container" style="background:#fff;">
+		<div class="container">                               
+            <table class="table table-condensed table-hover products-headings" data-toggle="table"> 
+                <tr style="background:#ccc;">
+                	<th>Date</th>
+                	<th>Item#</th>
+                    <th>Legacy Number</th>
+                    <th>Amount</th>
+                    <th>Item Type</th>
+                    <th>Sale Type</th>
+                    <th>Seller</th>                    
+                    <th>&nbsp;</th>
+                </tr>                        
+               
+                <?php foreach($orders as $o): ?>                                            
+                <tr>
+                	<td class="rec-text"><?php //echo $p->name;?> / <?php echo $product->description;?></td>
+                    <td class="rec-text"><?php echo $o->order_id;?></td>
+                    <td class="rec-text"><?php echo $o->amount;?></td>
+                    <td class="rec-text"><?php //echo $p->bidding->bid_amount;?></td>
+                    <td class="rec-text"><?php echo $o->created;?></td>                   
+                    <td class="rec-text"><?php //echo $p->username;?></td>
+                    
+                    <td valign="middle" align="right" class="icon edit-delete-buttons">                                            
+						<a href="/admin/products/edit/<?=$product->product_id;?>" id="<?=$o->order_id;?>" class="admin_edit_butt"><img src="/public/images/edit-admin.png" /></a> 
+						<a class="delete_button" data-toggle="modal" data-target="#modalConfirm" href="/admin/products/delete/<?php echo $o->order_id;?>"><img src="/public/images/delete.png" /> </a> 
+					</td>
+                </tr>                                       
+                <?php endforeach;?> 
+            </table>            
         </div>
-    </div>    
-</div>    
-     
+	</div>
+</div> 
 <div id="modalConfirm" class="modal fade" tabindex="-2" role="dialog" aria-labelledby="modalConfirm" aria-hidden="true">
 	<div class="modal-dialog" style="background: #fff;">
      	<div class="modal-header" style="text-align: right;">
