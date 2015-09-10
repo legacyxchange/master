@@ -2250,8 +2250,8 @@ form input,
 form textarea{
 	display: block;
 	margin-bottom: 20px;
-	padding: 10px;
-	width: 100%;
+	padding: 0px;
+	
 	border: 2px solid #888888;
 	background: transparent;
 	color: #888888;
@@ -2841,7 +2841,7 @@ border-color: #008000;
 }
 .btn:hover{color:#000;}
    
-button, input, select, textarea { height: 28px; }
+button, input, select, textarea {  }
 
 .originalOption{
 					    display:none;

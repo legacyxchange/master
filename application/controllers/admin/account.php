@@ -33,7 +33,7 @@ class Account extends CI_Controller {
         
         $data['products'] = $products = $this->products->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
         $data['listings'] = $listings = $this->listings->fetchAll(array('join' => 'products', 'on' => 'products.product_id = listings.product_id', 'where' => 'products.user_id = '.$this->session->userdata('user_id')));
-        $data['notifications'] = $notifications = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id').' AND active=1'));
+        $data['notifications'] = $notifications = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id').' AND status=1'));
         $data['watching'] = $watching = $this->watching->fetchAll(array('where' => 'user_id = '.$this->session->userdata('user_id')));
         $data['user_account'] = $this->user_accounts->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']))[0];
         $data['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
