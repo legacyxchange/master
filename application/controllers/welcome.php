@@ -133,7 +133,7 @@ class Welcome extends CI_Controller {
 
                     $this->session->set_flashdata('SUCCESS', 'Account has been created!');
                     
-                    $this->functions->jsonReturn('SUCCESS', 'Account has been created!');
+                    echo json_encode(array('status' => 'SUCCESS', 'msg' => 'Account has been created!')); exit;
                                    
                 } elseif(!$usernameAvail && $emailAvail) {
                     echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;

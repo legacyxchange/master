@@ -1,7 +1,7 @@
 <?php 
 //phpinfo(); exit; 
 //exit; 
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 ini_set('display_errors', 1);
 
 date_default_timezone_set('America/Los_Angeles');
@@ -23,7 +23,7 @@ ini_set('html_errors', false);
 ini_set('error_log', $_SERVER['DOCUMENT_ROOT'] . '..' . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'error_log.txt');
 
 if(empty($_SESSION))
-	session_start();
+	@session_start();
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
