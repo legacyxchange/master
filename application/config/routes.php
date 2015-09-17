@@ -82,7 +82,10 @@ $route['admin/products/edit'] = 'admin/products/edit';
 $route['admin/products/delete/(:num)'] = 'admin/products/delete/$1';
 $route['admin/products/(:any)'] = 'admin/products/index/$1';
 $route['admin/listings/(:num)'] = 'admin/listings/index/$1';
-$route['user/profileimg/(:any)/(:any)/(:any)'] = 'user/profileimg/$1/$2/$3';
+$route['user/profileimg/(:num)/(:num)'] = 'user/profileimg/$1/$2';
+$route['user/profileimg/(:num)/(:num)/(:any)'] = 'user/profileimg/$1/$2/$3';
+
+
 $route['user/(:any)'] = 'user/index/$1';
 
 /* foreach(array_keys($route) as $r){

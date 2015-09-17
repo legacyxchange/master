@@ -30,4 +30,5 @@ width:120px;
     <a <?php echo !empty($menu_purchases) ? 'style="background:#006989;color:#fff;"' : ''; ?> class="btn btn-default" href="/admin/purchases">MY PURCHASES</a>
     <a <?php echo !empty($menu_sales) ? 'style="background:#006989;color:#fff;"' : ''; ?> class="btn btn-default" href="/admin/sales">MY SALES</a>
     <a <?php echo !empty($menu_store) ? 'style="background:#006989;color:#fff;"' : ''; ?> class="btn btn-default" href="/admin/store">MY STORE</a>
+    <a <?php echo !empty($menu_notifications) ? 'style="background:#006989;color:#fff;"' : ''; ?> class="btn btn-default" href="/admin/notifications">MY NOTIFICATIONS</a>
 </div>

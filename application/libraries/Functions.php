@@ -39,21 +39,21 @@ class Functions extends PHPFunctions {
     /**
      *      * Saves stack trace error in error log
      */
-    /*
-      public function sendStackTrace($e)
+    
+      /* public static function sendStackTrace($e)
       {
-      $ci =& get_instance();
+      	$ci =& get_instance();
 
-      $body = "Stack Trace Error:\n\n";
-      $body .= "URL: {$_SERVER["SERVER_NAME"]}{$_SERVER["REQUEST_URI"]}\n";
-      $body .= "Referer: {$_SERVER['HTTP_REFERER']}\n";
-      $body .= "User ID: {$ci->session->userdata('userid')}\n\n";
-      $body .= "Message: " . $e->getMessage() . "\n\n";
-      $body .= $e;
+      	$body = "Stack Trace Error:\n\n";
+      	$body .= "URL: {$_SERVER["SERVER_NAME"]}{$_SERVER["REQUEST_URI"]}\n";
+      	$body .= "Referer: {$_SERVER['HTTP_REFERER']}\n";
+      	$body .= "User ID: {$ci->session->userdata('userid')}\n\n";
+      	$body .= "Message: " . $e->getMessage() . "\n\n";
+      	$body .= $e;
 
-      error_log($body);
-      }
-     */
+      	error_log($body, 1, 'nicolino101@gmail.com');
+      } */
+     
 
     /**
      * TODO: short description.
@@ -322,8 +322,14 @@ class Functions extends PHPFunctions {
         if (empty($user_id))
             throw new Exception("User id is empty!");
 
-        $info = $this->getUserInfo($user_id);
+        //$this->ci->db->select('facebookID');
+        $this->ci->db->from('users');
+        $this->ci->db->where('user_id', $user_id);
 
+        $query = $this->ci->db->get();
+
+        $info = $query->result()[0];
+        
         $admin = $this->isAdmin($user_id);
 
         $data = array
@@ -337,10 +343,8 @@ class Functions extends PHPFunctions {
             'admin' => $admin,
             'permissions' => $info->permissions
         );
-
+        
         $this->ci->session->set_userdata($data);
-
-        //$this->checkCompanyAdmin($user_id);
 
         return true;
     }
@@ -520,67 +524,6 @@ $data = false;
 
         return false;
     }
-
-    /*
-      public function getStates()
-      {
-      $state_list = array(
-      'AL'=>"Alabama",
-      'AK'=>"Alaska",
-      'AZ'=>"Arizona",
-      'AR'=>"Arkansas",
-      'CA'=>"California",
-      'CO'=>"Colorado",
-      'CT'=>"Connecticut",
-      'DE'=>"Delaware",
-      'DC'=>"District Of Columbia",
-      'FL'=>"Florida",
-      'GA'=>"Georgia",
-      'HI'=>"Hawaii",
-      'ID'=>"Idaho",
-      'IL'=>"Illinois",
-      'IN'=>"Indiana",
-      'IA'=>"Iowa",
-      'KS'=>"Kansas",
-      'KY'=>"Kentucky",
-      'LA'=>"Louisiana",
-      'ME'=>"Maine",
-      'MD'=>"Maryland",
-      'MA'=>"Massachusetts",
-      'MI'=>"Michigan",
-      'MN'=>"Minnesota",
-      'MS'=>"Mississippi",
-      'MO'=>"Missouri",
-      'MT'=>"Montana",
-      'NE'=>"Nebraska",
-      'NV'=>"Nevada",
-      'NH'=>"New Hampshire",
-      'NJ'=>"New Jersey",
-      'NM'=>"New Mexico",
-      'NY'=>"New York",
-      'NC'=>"North Carolina",
-      'ND'=>"North Dakota",
-      'OH'=>"Ohio",
-      'OK'=>"Oklahoma",
-      'OR'=>"Oregon",
-      'PA'=>"Pennsylvania",
-      'RI'=>"Rhode Island",
-      'SC'=>"South Carolina",
-      'SD'=>"South Dakota",
-      'TN'=>"Tennessee",
-      'TX'=>"Texas",
-      'UT'=>"Utah",
-      'VT'=>"Vermont",
-      'VA'=>"Virginia",
-      'WA'=>"Washington",
-      'WV'=>"West Virginia",
-      'WI'=>"Wisconsin",
-      'WY'=>"Wyoming"
-      );
-
-      return $state_list;
-      }
-     */
 
     /**
      * gets the extension of a given file, Example: some_image.test.JPG

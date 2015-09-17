@@ -49,6 +49,8 @@ class user_model extends abstract_model {
     public $weight;
     public $weightType;
     public $relationshipStatus;
+    public $created;
+    public $modified;
     
     function __construct() {
         parent::__construct();
@@ -64,8 +66,11 @@ class user_model extends abstract_model {
     			}
     		}    		
     	} else {
+    		if(isset($_POST['passwd'])){
+    			$_POST['passwd'] = sha1(htmlentities($_POST['password'], ENT_QUOTES));
+    		}
     		unset($_POST['user_id']);
-    		unset($_POST['passwd']);
+    		unset($_POST['passwd_confirm']);
     	}  
     	//var_dump($_POST); exit;
     	return parent::save($where);
@@ -83,7 +88,7 @@ class user_model extends abstract_model {
     	$_POST['status'] = 1;
     	   	
     	if (!empty($_POST['facebookID'])) $data['facebookID'] = $_POST['facebookID'];
-    	
+    	//var_dump($_POST); exit;
     	$user_id = $this->save();
     	
     	return $user_id;

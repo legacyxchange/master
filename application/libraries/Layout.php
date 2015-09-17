@@ -26,6 +26,16 @@ class Layout {
 				$this->ci->load->view($view, $data);
 				$this->ci->load->view('administrator/template/footer', $data);
 				break;
+			case 'new_admin':
+				$this->ci->load->view('admin/new_admin/header', $data);
+				$this->ci->load->view($view, $data);
+				$this->ci->load->view('admin/new_admin/footer', $data);
+				break;
+			case 'ecommerce':
+				$this->ci->load->view('admin/ecommerce/template/header', $data);
+				$this->ci->load->view($view, $data);
+				$this->ci->load->view('admin/ecommerce/template/footer', $data);
+				break;
 			default:
 				$this->ci->load->view('template/header', $data);
 				$this->ci->load->view($view, $data);

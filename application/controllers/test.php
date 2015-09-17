@@ -258,4 +258,10 @@ class Test extends CI_Controller {
     	$this->load->view('test/timer', $body);
     	$this->load->view('template/footer');
     }
+    
+    public function loginsession($user_id){
+    	$results = $this->functions->setLoginSession($user_id);
+    	
+    	var_dump($results); exit;
+    }
 }

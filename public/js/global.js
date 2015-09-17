@@ -749,19 +749,28 @@ global.checkRegisterForm = function ()
 		$('.modal-body').html('<img height="100" style="margin: auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;" src="/public/images/download.gif" />');
 	}
 	
-	$.post("/welcome/register", $formData, function (data) { console.log(data)
+	$.post("/welcome/register", $formData, function (data) { console.log(data);
     	
 		if (data.status == 'SUCCESS')
 		{   
+			if(data.cl){
+        		global.renderAlert(data.msg, 'alert-success');
+        	}else{
+        		global.renderAlert(data.msg, 'alert-danger');
+        	}
 			location.href = '/admin/account';
 		}
         else if (data.status == 'FAILURE')
         {
-            global.setError($('#'+data.id), data.msg);
+        	if(data.cl){
+        		global.renderAlert(data.msg, 'alert-success');
+        	}else{
+        		global.setError($('#'+data.id), data.msg);
+        	}
         }
         else
         {
-            //global.renderAlert('Please enter your password!', 'alert-danger', 'loginAlert');
+            global.renderAlert('Please enter your password!', 'alert-danger', 'loginAlert');
         }
     }, 'json');
 }

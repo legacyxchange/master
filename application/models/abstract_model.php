@@ -35,7 +35,7 @@ abstract class abstract_model extends CI_Model {
     
     public function save($where = null) {
     	
-    	$params = $this->cleanseParams($_POST);
+    	$params = $this->cleanseParams($_POST); // protects against sql injection
     	
     	if(!empty($where)) {    		    
     	    $data = $this->fetchAll(array('where' => $where));
@@ -61,7 +61,7 @@ abstract class abstract_model extends CI_Model {
     	else {  
     		if(!empty($params[$this->primary_key]))
     			unset($params[$this->primary_key]);
-
+ 
     		$this->db->insert($this->table, $params);
     		return $this->db->insert_id();
     	}

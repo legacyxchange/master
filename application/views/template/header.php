@@ -70,7 +70,7 @@ include_once 'headinclude.php';
                     			<a href="#signup-modal" class="btn btn-link login-mobile" data-toggle="modal"><i class="fa fa-user"></i></a>                  				
                   				<?php if($this->session->userdata['logged_in']):?>                  			
                   				<a href="/logout" class="btn btn-link login">Logout</a>                  	    	
-                 				<a href="/admin/account" class="btn btn-link login">My Account</a> 
+                 				<a href="/ecommerce/account" class="btn btn-link login">My Account</a> 
                   				<?php else:?>
                   				<a href="#signup-modal" class="btn btn-link signup" data-toggle="modal">Sign Up</a>
                   				<a href="#signup-modal" class="btn btn-link login" data-toggle="modal">Login</a>                  	

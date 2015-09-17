@@ -135,6 +135,10 @@ class Products extends CI_Controller {
     }
     
     public function add() { 
+    	if(!empty($_POST)){
+    		var_dump($_POST, $_FILES);
+    	}
+    	exit;
     	$product_id = is_null($product_id) ? $_POST['product_id'] : $product_id;
     	
     	$data = $this->getData($product_id);

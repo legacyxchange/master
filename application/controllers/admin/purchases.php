@@ -18,6 +18,7 @@ class Purchases extends CI_Controller {
         $this->load->model('notifications_model', 'notifications', true);
         $this->load->model('watching_model', 'watching', true);
         $this->load->model('purchases_model', 'purchases', true);
+        $this->load->model('payment_types_model', 'payment_types', true);
         $this->functions->checkLoggedIn();
         
         $this->user_id = $user_id = $this->session->userdata['user_id'];
@@ -33,12 +34,34 @@ class Purchases extends CI_Controller {
         $menu['menu_purchases'] = 1;
         $user_id = $user_id = $this->session->userdata['user_id'];
         
-        $orders = $this->orders->fetchAll(array('where' => 'user_id = '.$user_id));
-
-        foreach($orders as $o){        	
-           
+        $and = null;
+        if($this->input->post('start_date') && $this->input->post('end_date')){
+        	$and = ' and created between "'.$this->input->post('start_date').'" AND "'.$this->input->post('end_date').'" ';
         }
-        $body['orders'] = $orders; 
+        if($this->input->post('transaction_id')){
+        	$and = ' and transaction_id LIKE("'.$this->input->post('transaction_id').'%")';
+        }
+        if($this->input->post('payment_type')){
+        	$and = ' and payment_type = '.$this->input->post('payment_type');
+        }
+        if($this->input->post('amount')){
+        	$and = ' and amount LIKE("'.$this->input->post('amount').'%")';
+        }
+        if($this->input->post('order_id')){
+        	$and = ' and order_id LIKE("'.$this->input->post('order_id').'%")';
+        }
+       
+        $orders = $this->orders->fetchAll(array('where' => 'user_id = '.$user_id.$and));
+
+        foreach($orders as $o){ 
+            if(!is_null($o->payment_type)){
+        		$o->payment_type = $this->payment_types->fetchAll(array('where' => 'payment_type_id = '.$o->payment_type ))[0]->payment_type;
+            }else{
+            	$o->payment_type = 'Visa';
+            }
+        }
+        //var_dump($orders); exit;
+        $data['orders'] = $orders; 
         
         $data['admin_menu'] = $this->load->view('admin/admin_menu', $menu, true);
         

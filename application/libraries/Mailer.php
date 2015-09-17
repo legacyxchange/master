@@ -36,7 +36,24 @@ class Mailer
     	$mailer->mailtype = 'html';
     	$s = $mailer->send();
     	 
+    	
     	//var_dump($s, $email, $subject, $message, $full_name); exit;
     	return true;
+    }
+    
+    public function archive($notification_id){
+    	
+    }
+    
+    public function unarchive($notification_id){
+    	 	
+    }
+    
+    public function trash($notification_id){
+    	
+    }
+    
+    public function moveToFolder($notification_id){
+    	
     }
 }

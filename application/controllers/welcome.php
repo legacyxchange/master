@@ -107,9 +107,9 @@ class Welcome extends CI_Controller {
     	}
     }
     
-    public function register() {
+    public function register() { 
     	if (!empty($_POST)) {  
-    		      	
+    		    
             try {           	
                 $emailAvail = $this->functions->checkEmailAvailable($_POST['email']);
                 $usernameAvail = $this->functions->checkUsernameAvailable($_POST['username']);
@@ -119,9 +119,9 @@ class Welcome extends CI_Controller {
                     $user_id = $this->user->create();
 
                     $this->functions->setLoginSession($user_id);
-                    
+                                        
                     $firstName = $_POST['firstName']; 
-                     
+                    
                     $notification = "Hi $firstName , thank you for registering with LegacyXChange.com. This is your account area. Here you can add products, listings, update personal info., and much more. \n
                     		         if you have any questions or comments, please send us a message from our contact page.\n Please continue to fill out your personal information on the My Settings page.";
                     
@@ -130,10 +130,8 @@ class Welcome extends CI_Controller {
                     		               if you have any questions or comments, please send us a message from our <a href="http://legacyxchange.com/contact">contact page</a>.<br />support@legacyxchange.com';
                     
                     $this->notifications->fromSystem($user_id, $notification, $subject = 'Welcome to LegacyXChange.com', $importance_level = 1, $email_notification);
-
-                    $this->session->set_flashdata('SUCCESS', 'Account has been created!');
                     
-                    echo json_encode(array('status' => 'SUCCESS', 'msg' => 'Account has been created!')); exit;
+                    echo json_encode(array('status' => 'SUCCESS', 'cl' => 'alert', 'msg' => 'Account has been created!')); exit; 
                                    
                 } elseif(!$usernameAvail && $emailAvail) {
                     echo json_encode(array('status' => 'FAILURE', 'id' => 'username', 'msg' => 'Username is already in use!')); exit;
@@ -141,9 +139,11 @@ class Welcome extends CI_Controller {
                 	echo json_encode(array('status' => 'FAILURE', 'id' => 'email', 'msg' => 'Email is already in use!')); exit;
                 }
             } catch (Exception $e) {
-                $this->functions->sendStackTrace($e);
-                $this->functions->jsonReturn('ERROR', $e->getMessage());
+                //Functions::sendStackTrace($e);
+                echo json_encode(array('status' => 'FAILURE', 'cl' => 'alert', 'msg' => $e->getMessage())); exit;
             }
+        }else{
+        	var_dump(__METHOD__); exit;
         }
     }
 

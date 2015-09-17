@@ -140,7 +140,7 @@
     	</div>
     </div>
 
-    <div class="container cont-marketplace">
+    <div class="container cont-marketplace" style="margin-bottom:8px;">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		 	<a href="">
 				<div class="img-label">Stamps &amp; Coins</div>
@@ -153,7 +153,7 @@
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<a href="">
 				<div class="img-label">Antiques</div>
-	   			<img src="/public/images/antiques-home-img.gif" alt="image" class="img img-responsive margin-bottom-20"/>
+	   			<img src="/public/images/antiques-home-img.gif" alt="image" class="img img-responsive"/>
 	   		</a>
     	</div>
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

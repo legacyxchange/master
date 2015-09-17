@@ -19,7 +19,7 @@ class AdMeister {
 			$this->chargeUserForClick();
 		}
 		$page = new ad_pages_model();
-		
+		//var_dump($page); exit;
 		$this->db = $page->db;
 		$pages = $page->fetchAll();
 		

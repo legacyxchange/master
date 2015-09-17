@@ -87,7 +87,9 @@ class Listings extends CI_Controller {
         		$listing->product->product_videos = $this->product_videos->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'product_video_id ASC'));
         		$listing->product->ownership_records = $this->product_ownership_record->fetchAll(array('where' => 'product_id = '.$listing->product_id, 'orderby' => 'product_ownership_record_id DESC', 'limit' => 5));
         		$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
-        		$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));
+        		if(isset($listing->listing_id)){
+        			$listing->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listing->listing_id));
+        		}
         		$listing->product->product_videos = $this->product_videos->fetchAll(array('where' => 'product_id = '.$listing->product_id));
         	}
         	$body['listings'] = $listings;
@@ -116,12 +118,14 @@ class Listings extends CI_Controller {
     		$listing->product->user = $this->user->fetchAll(array('where' => 'user_id = '.$listing->product->user_id))[0];
     		$listing->listing_type = $this->listing_types->fetchAll(array('where' => 'listing_type_id = '.$listing->listing_type_id))[0]->listing_type;
     	}
-    	$listings[0]->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listings[0]->listing_id));
+    	if(!empty($lisings[0])){
+    		$listings[0]->bidding = $this->bidding->fetchAll(array('where' => 'listing_id = '.$listings[0]->listing_id));
     	
-    	$query = $this->db->query('Select * from listings as l join products as p using(product_id) where p.product_id <> '.$listings[0]->product->product_id.' AND p.user_id = '.$listings[0]->product->user->user_id);
-    	$body['listings_other'] = $query->result();
+    		$query = $this->db->query('Select * from listings as l join products as p using(product_id) where p.product_id <> '.$listings[0]->product->product_id.' AND p.user_id = '.$listings[0]->product->user->user_id);
+    		$body['listings_other'] = $query->result();
     	
-        $body['listing'] = $listings[0];
+       		$body['listing'] = $listings[0];
+    	}
         //var_dump($listings[0]->product->product_images[0]->product_image); exit;
         //var_dump($listings); exit;
         $this->load->view('template/header', $header);

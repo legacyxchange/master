@@ -26,24 +26,24 @@ class User extends CI_Controller {
 
     // could accept user_id or username
     public function index($uid = 0) {
+    	
     	if(is_string($uid)) { 
             $user = $this->user->fetchAll(array('where' => 'username = "'.$uid.'"'))[0];
             $user_id = $user->user_id;
             
-        }else if(is_numeric($uid)){ 
-        	$user = $this->user->fetchAll(array('where' => 'user_id = '.$uid))[0];
-        	$user_id = $uid;
+        }if(is_numeric($uid)){ 
+        	$user = $this->user->fetchAll(array('where' => 'user_id = '.(int)$uid))[0];
+        	$user_id = (int)$uid;
         }
-        //var_dump($user); exit;
+        //var_dump($user_id); exit;
         $products = $this->products->fetchAll(array('where' => 'user_id = '.$user_id));
-        foreach($products as $product){
+        foreach($products as $product){ 
         	$product->listing[] = $this->listings->fetchAll(array('where' => 'product_id = '.$product->product_id))[0];
         }
-        // get reviews, ratings
-        //$this->functions->dump($products);
+        //var_dump($products); exit;
         $body['products'] = $products;
         $body['user'] = $user;
-        $body['userid'] = $user->user_id;
+        $body['user_id'] = $user->user_id;
         $body['title'] = $user->username;
         $this->layout->load('user/index', $body);
     } 
@@ -101,26 +101,26 @@ class User extends CI_Controller {
         $this->image_lib->resize();
     }
 
-    public function profileimg($size = 50, $user_id = 0, $file = null) { 
+    public function profileimg($size = 50, $user_id = null, $file = null) { 
     	
         $path = $_SERVER["DOCUMENT_ROOT"] . 'public' . DS . 'uploads' . DS . 'avatars' . DS . $user_id . DS;
 
-        if (!empty($file))
+        if (!is_null($file))
             $file = urlencode($file);
         
         try {
 
-            if (!empty($user_id)){
+            if (!is_null($user_id)){
                 $user = $this->user->fetchAll(array('where' => 'user_id = '.$user_id))[0];               
             }
             
-            if (!empty($file))
+            if (!is_null($file))
                 $img = $file;
 
             if (!file_exists($path . $img))
                 $img = null;
 
-            if (empty($img)) {
+            if (is_null($img)) {
                 $path = $_SERVER["DOCUMENT_ROOT"] . DS . 'public' . DS . 'images' . DS;
                 $img = 'dude.gif';
             }
@@ -131,7 +131,7 @@ class User extends CI_Controller {
                 throw new exception("Unable to get image size for ({$path}{$img})!");
 
             $ext = PHPFunctions::getFileExt($img); 
-
+	
             list ($width, $height, $type, $attr) = $is;
 
             if ($width == $height) {

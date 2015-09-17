@@ -14,21 +14,17 @@ class Notifications extends CI_Controller {
     }
     
 	public function index() { 
-        $n = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id'].' AND active = 1'));   
+        $data['notifications'] = $notifications = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']));   
         
-        $out = null;
-        if($n){
-        foreach($n as $notification){
-        	$out .= '<div class="notification">'.$notification->notification.'<button class="btn btn-danger" onclick="notifications.archive('.$notification->notification_id.');">Archive</button></div>';
+        if(is_null($notifications)){
+        	$data['notifications'] = 'No New Messages.';
         }
-        }else{
-        	$out .= 'No New Messages.';
-        }
-        echo $out; exit;	
+        
+        $this->layout->load('admin/notifications/new', $data);
     }
     
     public function last() {
-    	$n = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id'].' AND active = 1'));
+    	$n = $this->notifications->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id'].' AND status = 1'));
     
     	$out = null;
     	foreach($n as $notification){
@@ -37,9 +33,9 @@ class Notifications extends CI_Controller {
     	echo $out; exit;
     }
     
-    public function archive(){ 
+    public function archive($notification_id = null){ 
     	
-    	$this->notifications->archive('notification_id = '.$_REQUEST['notification_id']);
+    	$this->notifications->archive('notification_id = '.$notification_id);
     	echo json_encode(array('status' => 'SUCCESS', 'message' => 'You successfully archived the message'));
     	exit;
     }

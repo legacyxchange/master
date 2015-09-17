@@ -12,18 +12,20 @@ class notifications_model extends abstract_model {
     public $notification_id;
     public $user_id;
     public $from_user_id;
+    public $subject;
     public $notification;
-    public $importance_level = 1; 
+    public $attachment;
+    public $status;
     public $email_sent;
-    public $active;
     public $created;
+    public $modified;
     
     function __construct() {
         parent::__construct();
     }
     
     //sends a notification to a user from the system
-    public function fromSystem($to_user_id, $notification, $subject = 'Notification from LegacyXChange.com', $importance_level = 1, $email_notification = 'same'){
+    public function fromSystem($to_user_id, $notification, $subject = 'Notification from LegacyXChange.com', $email_notification = 'same'){
     	
     	if(!$to_user_id || !$notification)
     	{
@@ -31,8 +33,7 @@ class notifications_model extends abstract_model {
     	}   	
     	
     	$_POST['user_id'] = $to_user_id;
-    	$_POST['notification'] = $notification;
-    	$_POST['importance_level'] = $importance_level;    	    	
+    	$_POST['notification'] = $notification;    	  	    	
     	
     	if($email_notification){
     		if($email_notification != 'same')
@@ -40,15 +41,15 @@ class notifications_model extends abstract_model {
     		if(!$subject)
     			$subject = 'Notification from LegacyXChange.com';
     		
-    		$_POST['email_sent'] = 1;
-    		$this->email($to_user_id, 0, $notification, $subject, $importance_level);
+    		$_POST['status'] = 2; //sent
+    		$this->email($to_user_id, 0, $notification, $subject, 1);
     	}
     	
     	$notifications = new notifications_model();
     	$notifications->save();
     }
     
-    public function fromUser($to_user_id, $from_user_id, $notification, $subject = null, $importance_level = 1, $addEmail = TRUE){
+    public function fromUser($to_user_id, $from_user_id, $notification, $subject = null, $addEmail = TRUE){
     	if(!$to_user_id || !$from_user_id || !$notification)
     	{
     		return false;
@@ -57,7 +58,6 @@ class notifications_model extends abstract_model {
     	$_POST['user_id'] = $to_user_id;
     	$_POST['from_user_id'] = $from_user_id;
     	$_POST['notification'] = $notification;
-    	$_POST['importance_level'] = $importance_level; 	
     	
     	if($addEmail){
     		$fuser = $this->user->fetchAll(array('where' => 'user_id = '.$from_user_id))[0];
@@ -65,8 +65,8 @@ class notifications_model extends abstract_model {
     		if(!$subject)
     			$subject = $fuser->username.' sent you a message.';
     		
-    		$_POST['email_sent'] = 1;
-    		$this->email($to_user_id, $from_user_id, $notification, $subject, $importance_level);
+    		$_POST['status'] = 2;
+    		$this->email($to_user_id, $from_user_id, $notification, $subject, 1);
     	}
     	
     	$this->save();
@@ -104,7 +104,7 @@ class notifications_model extends abstract_model {
     
     public function archive(){
     	$notification_id = $_REQUEST['notification_id'];
-    	$_POST['active'] = 0;
+    	$_POST['status'] = 0;
     	//var_dump($_POST); exit;
     	$this->save('notification_id = '.$notification_id);
     	return true;

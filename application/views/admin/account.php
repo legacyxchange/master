@@ -21,7 +21,7 @@
 <div class="middle-container">
 	<div class="container" style="background:#fff;">
 	    <div class="right-container col-lg-3 col-md-3 pull-right" style="padding-left:50px;"><br />
-    		<img src="/user/profileimg/140/<?=$this->session->userdata('user_id')?>/<?php echo $user->profileimg; ?>">
+    		<img src="/user/profileimg/140/<?=$this->session->userdata('user_id')?>/<?php echo isset($user->profileimg) ? $user->profileimg : 0; ?>">
     		<div style="font-size:12px;">ACCOUNT TYPE: <?php echo $account_type;?></div>
     		<a href="/admin/settings" class="btn btn-blue btn-xs pull-right">Change</a>
     	</div>
