@@ -15,8 +15,16 @@ include_once 'headinclude.php';
               			<!--branding/logo-->
               			<a class="navbar-brand" href="/" title="Home" style="margin-top:-14px;">
               				<img src="/public/images/<?php echo $this->site->getLogo();?>" />
-              			</a>             
-            			
+              			</a>
+              			<div style="float:left;margin-top:5px;">             
+            			<?php if($this->session->userdata['logged_in']):?>                  			
+                  				<a href="/logout" class="btn btn-link login">Logout</a>                  	    	
+                 				<a href="/ecommerce/account" class="btn btn-link login">My Account</a> 
+                  				<?php else:?>
+                  				<a href="#signup-modal" class="btn btn-link signup" data-toggle="modal">Sign Up</a>
+                  				<a href="#signup-modal" class="btn btn-link login" data-toggle="modal">Login</a>                  	
+                  				<?php endif;?>   
+                  		</div>
             <style>.alternate-link{color:#000;font-weight:bold;}</style>
           				<!--everything within this div is collapsed on mobile-->
           				<div class="navbar-collapse collapse" >

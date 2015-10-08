@@ -4,15 +4,13 @@
 .form-heading{font-size:14px;}
 </style>
 
-<div class="admin-heading-container">
-    <h2 class="admin-heading">My Settings</h2>
-</div>
-<div class='row' style="background:#e9f3f7;">
-    <div class='col-md-8 col-md-offset-2 main-container' style="background: #fff;">
+<hr>
+<div class='row' style="background:#fff;">
+    <div class='col-md-7 col-md-offset-1 main-container' style="background: #fff;">
     	<div class='col-bg'>        
 			<div class="container main-content">   
 			    <div class="col-lg-6 pull-right">	
-					<?php echo form_open_multipart('/admin/settings/save', array('name' => 'userform', 'id' => 'userform'));?>
+					<?php echo form_open_multipart('/ecommerce/settings/save', array('name' => 'userform', 'id' => 'userform'));?>
 					<div class='row'>
 						<div class='col-md-6'>
 							<img src='/user/profileimg/300/<?=$this->session->userdata('user_id')?>/<?php echo $userinfo->profileimg; ?>' class='img-thumbnail avatar'>
@@ -325,9 +323,10 @@
 		<div class="stats col-lg-1">BALANCE :</div>
     	<div class="stats col-lg-4">
     		<span class="uline-count" style="text-decoration:none;border:1px solid #ccc;padding:5px;padding-left:24px;padding-right:24px;margin-bottom:0px;">$<?php echo number_format($user_account->balance,2);?></span>
-    		<a href="/admin/addfunds" class="btn btn-xs btn-silver add-money-button" style="margin-top:0px;">Add Funds</a>
+    		<a href="/ecommerce/addfunds" class="btn btn-xs btn-silver add-money-button" style="margin-top:0px;">Add Funds</a>
     	</div> 
 			
 	</div> <!-- col8 -->
 	
 </div> <!-- row -->
+<hr>

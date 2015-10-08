@@ -28,6 +28,12 @@ class Contact extends CI_Controller {
     		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
     		header('Location: /contact'); exit;
     	}    	
+    	if(empty($_POST['messages']))
+    	{
+    		$this->functions->KE($_POST['message']);
+    		$this->session->set_flashdata('FAILURE', 'Message cannot be empty.');
+    		header('Location: /contact'); exit;
+    	}
     	
     	$config['protocol'] = 'mail';
     	$config['mailpath'] = '/bin/mail';

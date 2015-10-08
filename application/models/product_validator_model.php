@@ -10,12 +10,14 @@ class product_validator_model {
 	public $errors = array();
 		
     public function validate($fields){
-    	//var_dump($fields);
+    	var_dump($this); exit;
     	foreach($fields as $field => $value){
     		if(method_exists($this, $field)){
-    			$this->$field();
+    			var_dump($field);
+    			//$this->$field();
     		}
     	}
+    	exit;
     	$this->format();
         return $this->errors;	
     }

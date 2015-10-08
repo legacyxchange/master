@@ -53,15 +53,35 @@ class Products extends CI_Controller {
         
         $this->functions->checkLoggedIn();
     }
+    
+    public function indexNEW($sortby = 'Drafts'){
+    	$body['user_id'] = $user_id = $this->session->userdata('user_id');
+    	if(is_numeric($sortby)){
+    		$product_id = $sortby;
+    	}elseif($sortby == 'add'){
+    		$product_id == null;
+    		$sortby = 'Drafts';
+    		$add = true;
+    	}
+    	
+    	//$sortby = product_type
+    	$data['products'] = $products = $this->products->getProductsByUserId($user_id, $sortby);
+    	$product_id = is_null($product_id) ? $products[0]->product_id : $product_id;
+    	 
+    	$data['productListingObject'] = $productListingObject = $this->products->getProductListingObject($product_id);
+    	$this->functions->dump($data);
+    }
 
     public function index($sortby = 'Drafts'){
     	if(is_numeric($sortby)){
     		$product_id = $sortby;
+    	}elseif($sortby == 'add'){
+    		$product_id == null;
+    		$sortby = 'Drafts';
+    		$add = true;
     	}
     	
     	$body['user_id'] = $user_id = $this->session->userdata('user_id'); 
-        
-        //$header['headscript'] = $this->functions->jsScript('products.js listings.js advertisements.js');
         
         $body['sortby'] = $sortby = !empty($_POST['sortby']) ? $_POST['sortby'] : $sortby;
         
@@ -102,12 +122,15 @@ class Products extends CI_Controller {
         	} catch (Exception $e) {
         		$this->functions->sendStackTrace($e);
         	}
-        }else{ 
+        }else{
+        	$this->products->getProductListingObject($product_id); exit;
         	$query = $this->db->query('select * from products left join listings using(product_id)
         					                   where user_id = '.$this->session->userdata['user_id'].' and products.product_id = '.$product_id
         	);      	
         }
-        $body = $this->getData($product_id);
+        $body = $this->getGeneralData($product_id);
+        array_push($body, $this->getSingleProductData($product_id));
+        
         foreach($products as $product){        	
         	$query = $this->db->query('select listings.*, max(bidding.bid_amount) as bid_amount from listings join listing_types using(listing_type_id) join bidding using(listing_id) where listings.product_id = '.$product->product_id);
         	$product->listing = $query->result()[0];
@@ -128,7 +151,8 @@ class Products extends CI_Controller {
         	}
         	$prods []= $product;         	
         }
-        $body['product'] = $prods[0];
+        //var_dump($prods); exit;
+        $body['product'] = $add == true ? null : $prods[0];
         $body['products'] = $prods;
         $menu['menu_products'] = 1;
         $body['admin_menu'] = $this->load->view('admin/ecommerce/template/menu', $menu, true);
@@ -138,6 +162,7 @@ class Products extends CI_Controller {
     public function save() {
     	
     		if(!empty($_POST['product_id'])){
+    			
     			return $this->edit($_POST['product_id']);
     		}else{
     			return $this->add();
@@ -146,112 +171,94 @@ class Products extends CI_Controller {
     	exit;
     }
     
-    
-    public function add() { 
+    public function add() { 	
+    	$data = $this->getGeneralData();
     	
-    	$product_id = $_POST['product_id'];
-    	
-    	$data = $this->getData($product_id);
-    	//var_dump($data, $_POST, $_FILES); exit;
-    	
-    		/* $data['errors'] = $errors = $this->product_validator->validate($_POST);
-    		//var_dump($errors); exit;
-    		if(count($errors) > 0){ 
-    			$menu['menu_products'] = 1;
-    			$data['admin_menu'] = $this->load->view('admin/ecommerce/template/menu', $menu, true);
-    			
-    			return $this->layout->load('admin/ecommerce/products/', $data, 'ecommerce'); 
-    		} */
-    		try {
-    			$_POST['user_id'] = $this->session->userdata['user_id'];
-    			if($_POST['product_type_id'] == ''){
-    				$_POST['product_type_id'] = 2;
-    			}
-    			//var_dump($_POST); exit;
-    			$product_id = $_POST['product_id'] = $this->products->save();
-    			
-    			if(!empty($_POST['end_time'])){
-    				$this->listings->save();
-    				//$this->shipping->save();
-    			}
-    			
-    			if(!empty($_POST['cid'])){ 
-    				$this->product_categories->delete('product_id', $product_id);   				    				    				   				
-    				foreach($_POST['cid'] as $cid){
-    					$_POST['category_id'] = $cid;
-    					$this->product_categories->save();
-    				}
-    			}
-    			
-    			if(!empty($_FILES)){    				
-    				foreach($_FILES as $key => $file){ 
-    					if(!empty($file['name'])){
-    						$active_key = $key;
-    						$ext = explode('.', $file['name']);   						
-    					}else{    						
-    						unset($_FILES[$key]);
-    					}
-    				}
-    				
-    				if(!is_null($product_id) && !empty($_FILES)){ 
-    					if(in_array(strtolower($ext[1]), array('jpg', 'jpeg', 'gif', 'png'))){
-    						$details = $this->uploadimage($product_id, $active_key);
-    						//var_dump($product_id, $_FILES, $details); exit;
-    						$_POST['product_id'] = $product_id;
-    						$_POST['product_image'] = $details['file_name'];
-    						$_POST['order_index'] = $_POST['order_index'] == 0 ? '0' : $_POST['order_index'];
-    						
-    						$this->products->save();
-    					}else{
-    						$details = $this->uploadvideo($product_id, $active_key);
-    						//var_dump($details); exit; 
-    						$_POST['product_id'] = $product_id;
-    						$_POST['product_video'] = $details['file_name'];
-    						//$_POST['order_index'] = $_POST['order_index'] == 0 ? '0' : $_POST['order_index'];
-    						//var_dump($_POST, $_FILES, $details); exit;
-    						$this->product_videos->save();
-    						$_POST['amount'] = -2; // subtract $2 from balance
-    						$this->user_accounts->save();
-    					}
-    					//var_dump($_POST, $_FILES, $details); exit;
-    					$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
-    					
-    					header('Location: /ecommerce/products/edit/'.$product_id); exit;
-    				}    				
-    			}
-    			
-    			$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
-    			
-    			header('Location: /ecommerce/products'); exit;
-    
-    	    } catch (Exception $e) {    			
-    			$this->session->set_flashdata('FAILURE', $e->getMessage());
-    			header('Location: /ecommerce/products'); exit;
+    	try {
+    		$_POST['user_id'] = $this->session->userdata['user_id'];
+    		if($_POST['product_type_id'] == ''){
+    			$_POST['product_type_id'] = 2;
     		}
+    		//var_dump($_POST); exit;
+    		$product_id = $_POST['product_id'] = $this->products->save();
+    			
+    		if(!empty($_POST['end_time'])){
+    			$this->listings->save();
+    			//$this->shipping->save();
+    		}
+    			
+    		if(!empty($_POST['cid'])){ 
+    			$this->product_categories->delete('product_id', $product_id);   				    				    				   				
+    			foreach($_POST['cid'] as $cid){
+    				$_POST['category_id'] = $cid;
+    				$this->product_categories->save();
+    			}
+    		}
+    			
+    		if(!empty($_FILES)){      	
+    			
+    			foreach($_FILES as $key => $file){ 
+    				
+    				if(!empty($file['name'])){
+    					$active_key = $key;
+    					$ext = explode('.', $file['name']);   						
+    				}else{    						
+    					unset($_FILES[$key]);
+    				}
+    			}
+    				
+    			if(!is_null($product_id) && !empty($_FILES)){ 
+    				if(in_array(strtolower($ext[1]), array('jpg', 'jpeg', 'gif', 'png'))){
+    					$details = $this->uploadimage($product_id, $active_key);
+    					//var_dump($product_id, $_FILES, $details); exit;
+    					$_POST['product_id'] = $product_id;
+    					$_POST['image'] = $details['file_name'];
+    					$_POST['quantity'] = !empty($_POST['quantity']) ? $_POST['quantity'] : 1;
+    					$this->products->save();
+    				}else{
+    					$details = $this->uploadvideo($product_id, $active_key);
+    					//var_dump($details); exit; 
+    					$_POST['product_id'] = $product_id;
+    					$_POST['product_video'] = $details['file_name'];
+    					//$_POST['order_index'] = $_POST['order_index'] == 0 ? '0' : $_POST['order_index'];
+    					//var_dump($_POST, $_FILES, $details); exit;
+    					$this->product_videos->save();
+    					$_POST['amount'] = -2; // subtract $2 from balance
+    					$this->user_accounts->save();
+    				}
+    				//var_dump($_POST, $_FILES, $details); exit;
+    				$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
+    					
+    				header('Location: /ecommerce/products/edit/'.$product_id); exit;
+    			}    				
+    		}
+    			
+    		$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
+    			
+    		header('Location: /ecommerce/products'); exit;
+    
+    	} catch (Exception $e) {    			
+    		$this->session->set_flashdata('FAILURE', $e->getMessage());
+    		header('Location: /ecommerce/products'); exit;
+    	}
     	
     	$menu['menu_products'] = 1;
         $data['admin_menu'] = $this->load->view('ecommerce/menu', $menu, true);
         
-        $this->layout->load('admin/ecommerce/products/', $data, 'ecommerce');
+        $this->layout->load('/ecommerce/products/', $data, 'ecommerce');
     }
     
     public function edit($product_id = null) {     	
     	
     	$data['product_id'] = $product_id = is_null($product_id) ? $_POST['product_id'] : $product_id;
     	
-    	$data = $this->getData($product_id);
-    	//var_dump($data); exit;
+    	$data = $this->getSingleProductData($product_id);
+    	
     	if(!empty($_POST)){	
-    		/* $data['errors'] = $errors = $this->product_validator->validate($_POST);
-    		if(count($errors) > 0){ 
-    			$menu['menu_products'] = 1;
-    			$data['admin_menu'] = $this->load->view('admin/ecommerce/template/menu', $menu, true);    			
-    			return $this->layout->load('ecommerce/products/', $data, 'ecommerce');
-    		} */
     		
     		try {
     			$_POST['user_id'] = $this->session->userdata['user_id'];
-    					
+    			//var_dump($_POST); exit;	
     			$this->products->save();
     			
     			if(!empty($_POST['cid'])){ 
@@ -309,7 +316,7 @@ class Products extends CI_Controller {
     	if(!is_null($product_id))
         	$data['product'] = $this->products->fetchAll(array('where' => 'product_id = '.$product_id))[0];
     	
-    	$data['admin_menu'] = $this->load->view('admin/ecommerce/template/menu', $menu, true);
+    	$data['admin_menu'] = $this->load->view('/ecommerce/template/menu', $menu, true);
     	
     	$this->layout->load('admin/ecommerce/products', $data, 'ecommerce');
     }
@@ -334,7 +341,21 @@ class Products extends CI_Controller {
     	var_dump($this->db->last_query(), $user_account); exit;
     }
     
-    private function getData($product_id = null){
+    private function getSingleProductData($product_id){
+    	if(!is_null($product_id) && $product_id != ''){
+    		$data['product'] = $product =  $this->products->fetchAll(array('where' => 'product_id = '.$product_id))[0];
+    		$data['product_categories'] = $this->product_categories->fetchAll(array('where' => 'product_id = '.$product_id, 'join' => array('categories', 'product_category_id')));
+    		foreach($data['product_categories'] as $key=>$val){
+    			$data['pCatArray'][] = $val->category_id;
+    		}
+    		$data['product_images'] = $product_images = $this->product_images->fetchAll(array('where' => 'product_id ='.$product_id, 'orderby' => 'order_index'));
+    		$data['product_videos'] = $product_videos = $this->product_videos->fetchAll(array('where' => 'product_id ='.$product_id));
+    		$data['listings'] = $listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id))[0];
+    	    return $data;
+    	}
+    }
+    
+    private function getGeneralData($product_id = null){
     	$data['user_id'] = $this->session->userdata['user_id'];
     	
     	$data['user_account'] = $this->user_accounts->fetchAll(array('where' => 'user_id = '.$this->session->userdata['user_id']))[0];
@@ -347,17 +368,6 @@ class Products extends CI_Controller {
     	
     	$data['listing_types'] = $this->listing_types->fetchAll();  
     	
-    	if(!is_null($product_id) && $product_id != ''){
-    		$data['product'] = $product =  $this->products->fetchAll(array('where' => 'product_id = '.$product_id))[0];
-    		$data['product_categories'] = $this->product_categories->fetchAll(array('where' => 'product_id = '.$product_id, 'join' => array('categories', 'product_category_id')));
-    		foreach($data['product_categories'] as $key=>$val){
-    			$data['pCatArray'][] = $val->category_id;
-    		}
-    		$data['product_images'] = $product_images = $this->product_images->fetchAll(array('where' => 'product_id ='.$product_id, 'orderby' => 'order_index'));
-    		$data['product_videos'] = $product_videos = $this->product_videos->fetchAll(array('where' => 'product_id ='.$product_id));
-    		$data['listings'] = $listings = $this->listings->fetchAll(array('where' => 'product_id = '.$product_id))[0];    		
-    		  		
-    	}
     	$data['payment_types'] = $this->payment_types->fetchAll();
     	$data['shipping_types'] = $this->shipping_types->fetchAll();
     	return $data;
@@ -399,11 +409,11 @@ class Products extends CI_Controller {
     			return $uploadData = $this->upload->data();
     		} catch (Exception $e) {
     			$this->session->set_flashdata('FAILURE', 'Sorry...Unable to upload your video at this time.');
-    			header("Location: /admin/products");
+    			header("Location: /ecommerce/products");
     			exit;
     		}
     		$this->session->set_flashdata('SUCCESS', 'You successfully uploaded your new video!');
-    		header("Location: /admin/products");
+    		header("Location: /ecommerce/products");
     		exit;
     	}
     }
@@ -430,12 +440,12 @@ class Products extends CI_Controller {
     			return $uploadData = $this->upload->data();
     		} catch (Exception $e) { 
     			$this->session->set_flashdata('FAILURE', 'Sorry...Unable to upload your image at this time.');
-    			header("Location: /admin/products");
+    			header("Location: /ecommerce/products");
     			exit;
     		}
     		
     		$this->session->set_flashdata('SUCCESS', 'You successfully uploaded your new image!');
-    		header("Location: /admin/products");
+    		header("Location: /ecommerce/products");
     		exit;
     	}
     }

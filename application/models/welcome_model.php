@@ -53,7 +53,7 @@ class welcome_model extends CI_Model
         $query = $this->db->get();
         
         $results = $query->result();
-
+//var_dump($this->db->last_query()); exit;
         if (empty($results)) return false;
 
         return $results[0];

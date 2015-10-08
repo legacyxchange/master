@@ -39,7 +39,7 @@ class Welcome extends CI_Controller {
         
         if (empty($check)){        	
             $this->functions->jsonReturn('ERROR', 'Invalid Username and/or Password'); exit;
-        }elseif($check->permissions > 0){
+        }elseif($check->permissions > 0){ 
         	$this->functions->setLoginSession($check->user_id);
         	 
         	if(!empty($_SESSION['redirectUri'])){

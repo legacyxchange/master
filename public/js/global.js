@@ -188,13 +188,13 @@ $(function () {
     //console.log(window.location.pathname);
 
 
-    global.adjustLayout();
+    //global.adjustLayout();
 
-    $(window).resize(function () {
-        global.adjustLayout();
-    });
+    //$(window).resize(function () {
+       // global.adjustLayout();
+    //});
 
-    global.setClearAlertTimeout();
+    //global.setClearAlertTimeout();
 });
 
 $.fn.preload = function () {
@@ -493,11 +493,11 @@ global.userlogin = function ()
     $.post("/welcome/login", $('#loginform').serialize(), function (data) { console.log(data)
     	if (data.status == 'SUCCESS' && data.permissions > 0){ 
         	window.location.href = data.redirect;
-        }else if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
+        }if(data.status == 'SUCCESS' && (data.permissions < 1 || data.permissions == undefined)){ 
         	if(data.redirect != null){
         		window.location.href = data.redirect;
         	}else{
-        		window.location.href = '/admin/account';
+        		window.location.href = '/ecommerce/account';
         	}       
         }
         else{

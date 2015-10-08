@@ -8,26 +8,26 @@
                         
                         <ul class="mailbox-list">
                             <li<?php echo $active_menu == 'inbox' ? " class='active' " : null;?>>
-                                <a href="/admin/notifications">
+                                <a href="/ecommerce/notifications">
                                     <span class="pull-right"><?php echo $counted_inbox_notifications;?></span>
                                     <i class="fa fa-envelope"></i> Inbox
                                 </a>
                             </li>
                             <li<?php echo $active_menu == 'sent' ? " class='active' " : null;?>>
                                 <span class="pull-right"><?php echo $counted_sent_notifications;?></span>
-                                <a href="/admin/notifications/sent">
+                                <a href="/ecommerce/notifications/sent">
                                 	<i class="fa fa-paper-plane"></i> Sent
                                 </a>
                             </li>
                             <li<?php echo $active_menu == 'draft' ? " class='active' " : null;?>>
                             	<span class="pull-right"><?php echo $counted_draft_notifications;?></span>
-                                <a href="/admin/notifications/draft">
+                                <a href="/ecommerce/notifications/draft">
                                 	<i class="fa fa-pencil"></i> Draft
                                 </a>
                             </li>
                             <li<?php echo $active_menu == 'trash' ? " class='active' " : null;?>>
                             	<span class="pull-right"><?php echo $counted_trash_notifications;?></span>
-                                <a href="/admin/notifications/trash">
+                                <a href="/ecommerce/notifications/trash">
                                 	<i class="fa fa-trash"></i> Trash
                                 </a>
                             </li>
@@ -281,5 +281,3 @@
   });
   </script>
   <!-- END: PAGE SCRIPTS -->
-
-  pt>

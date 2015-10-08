@@ -19,6 +19,12 @@ class Page extends CI_Controller {
     	$this->load->view('template/footer');
     }
     
+    public function comingsoon(){
+    	
+    	$this->layout->load('static_pages/comingsoon', $body);
+    	
+    }
+    
     public function why_legacyxchange(){
     	$body['title'] = 'Why LegacyXchange';
     	

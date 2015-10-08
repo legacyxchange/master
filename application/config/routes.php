@@ -49,6 +49,7 @@ $route['deals/(:num)'] = 'deals/index/$1';
 $route['admin/deals/(:num)'] = 'admin/deals/index/$1';
 $route['how-to-sell'] = 'static_pages/page/about#how-to-sell';
 $route['how-to-buy'] = 'static_pages/page/about#how-to-buy';
+$route['coming-soon'] = 'static_pages/page/comingsoon';
 $route['why-legacy-exchange'] = 'static_pages/page/about#why-legacyxchange';
 $route['privacy'] = 'static_pages/page/privacy';
 $route['terms-of-service'] = 'static_pages/page/terms';

@@ -24,7 +24,7 @@ if (!defined('BASEPATH'))
 <!-- JS plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
 
 <!--Custom scripts mainly used to trigger libraries/plugins -->
-    <!-- <script src="/public/js/script.min.js"></script> -->
+    <script src="/public/js/script.min.js"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->

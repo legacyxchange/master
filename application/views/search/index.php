@@ -86,80 +86,83 @@
 </div>
 <section style="height: auto; width: 100%; background: #f4f4f4; padding:0;margin:0;">
     <div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-bottom-20">
-	   		<a href=""><div class="img-label">Sports</div><img src="/public/images/sports-img.gif" alt="image" class="img img-responsive"/></a>
-    	</div>
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-	   		<a href=""><div class="img-label">Celebrities</div><img src="/public/images/celebrities-img.gif" alt="image" class="img img-responsive"/></a>
-    	</div>
+    <div style="font-size:14px;font-weight:bold;line-height:16px;text-align:center;font-family:arial;"><i>Collectibles Marked with proprietary technology by Athletes and Celebrities.<br />
+Scientifically verifiable - forever.</i></div><br />
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-20" style="margin-left:25%;">
+		    
+	   		<a href=""><img src="/public/images/sports-img.gif" alt="image" class="img img-responsive"/></a>
+	   		<div style="font-size:24px;font-family:arial;font-weight:bold;">The thrill was real...<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;your memorabilia should be too.</div>  
+    	</div> 
+    	 	
     </div>
-</section>
-
-<section style="height: 10px; width: 100%; background: #fff;">
     
 </section>
 
-<section style="height: auto; width: 100%; background: #f4f4f4; padding:0;margin-top:20px;border-bottom:3px #aaa outset;">
-    <div class="original-sub-heading">
-        The Science of Verifiable History
-    </div>
-    <div class="original-subsub-heading" style="padding-bottom: 5px;">
-        Original Items have been marked with tracer materials that can be scientifically verified.
-    </div>
+<section style="height: 40px; width: 100%; background: #fff;">
+    <br /><br /><br />
 </section>
 
-<section> 
+
+<style>
+.margin60 { margin-bottom:50px; }
+</style>
+<section style="background:#f1f1f1;padding:20px;"> 
     <div class="container marketplace-heading">
     The Marketplace
     </div>
-    <div class="container cont-marketplace">
+    <div class="container cont-marketplace margin60">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 	   		<a href="">
 	   			<div class="img-label">Watches</div>
-	   			<img src="/public/images/watches-home-img.gif" alt="image" class="img img-responsive margin-bottom-20"/>
+	   			<img src="/public/images/watches.png" width="400" height="230" alt="image" class="img img-responsive margin-bottom-20"/>
 	   		</a>
     	</div>
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     		<a href="">
     			<div class="img-label">Jewelery</div>
-	   			<img src="/public/images/jewelry-home-img.gif" alt="image" class="img img-responsive"/>
+	   			<img src="/public/images/jewelery.png" width="400" height="230" alt="image" class="img img-responsive"/>
 	   		</a>
     	</div>
     </div>
 
-    <div class="container cont-marketplace">
+    <div class="container cont-marketplace margin60">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="img-label">Fashion</div>
-	   		<a href=""><img src="/public/images/fashion-home-img.gif" alt="image" class="img img-responsive"/></a>
+	   		<a href=""><img src="/public/images/purse.png" alt="image" width="400" height="230" class="img img-responsive"/></a>
     	</div>
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     		<a href="">
     			<div class="img-label">Art &amp; Books</div>
-	   			<img src="/public/images/art-books-home-img.gif" alt="image" class="img img-responsive"/>
+	   			<img src="/public/images/books.png" width="400" height="230" alt="image" class="img img-responsive"/>
 	   	    </a>
     	</div>
     </div>
 
-    <div class="container cont-marketplace" style="margin-bottom:8px;">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		 	<a href="">
-				<div class="img-label">Stamps &amp; Coins</div>
-	   			<img src="/public/images/coins-home-img.gif" alt="image" class="img img-responsive"/>
-	   		</a>
-    	</div>    	
+    <div class="container cont-marketplace margin60">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="img-label">Stamps &amp; Coins</div>
+	   		<a href=""><img src="/public/images/stamps.png" width="400" height="230" alt="image" class="img img-responsive"/></a>
+    	</div>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    		<a href="">
+    			<div class="img-label">Sports</div>
+	   			<img src="/public/images/sports.png" width="400" height="230" alt="image" class="img img-responsive"/>
+	   	    </a>
+    	</div>   	
     </div>
 
-    <div class="container cont-marketplace">
+    <div class="container cont-marketplace margin60">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<a href="">
 				<div class="img-label">Antiques</div>
-	   			<img src="/public/images/antiques-home-img.gif" alt="image" class="img img-responsive"/>
+	   			<img src="/public/images/antiques.png" width="400" height="230" alt="image" class="img img-responsive"/>
 	   		</a>
     	</div>
     	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     		<a href="">
     			<div class="img-label">Collectibles</div>
-	   			<img src="/public/images/collectibles-home-img.gif" alt="image" class="img img-responsive"/>
+	   			<img src="/public/images/collectibles.png" width="400" height="230" alt="image" class="img img-responsive"/>
 	   		</a>
     	</div>
     </div>
@@ -167,51 +170,26 @@
 
 <section style="height: auto; width: 100%; background: #f4f4f4;border-bottom:3px #aaa outset;margin-bottom:10px;">
     <div class="original-middle-sub-heading">
-        Where Buyers Go Direct to Sellers for Valued Merchandise
+        &nbsp;
     </div>
 </section>
 
-<section style="height: auto; width: 100%; background: #fff; padding:0px;margin:0;">
+<section style="height: auto; width: 100%; background: #000; padding:20px;padding-top:1px;margin:0;">
     <div class="container lxplus-heading">
-        <a href="/listings/legacyxplus">Legacy X Plus</a>
+        <a href="/listings/legacyxplus" style="color:#ff0000;font-weight:bold;font-family:arial;font-size:28px;text-align:center;">LegacyXSales</a>
     </div>
 </section>
-<section style="height: auto; width: 100%; background: #e9f3f7; padding:0px;margin:0;">
+<section style="height: auto; width: 100%; background: #f1f1f1; padding:20px;margin:0;">
     <div class="container">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		    <?php foreach($flash_listings as $key=>$listing):?>		    
-		    <div class="col-md-3" >
-				<div class="team">
-					<a href="javascript:void(0);" class="img-team button-slide<?php echo ($key+1)?>">
-						<img class="absolute-center" src="/products/productimg/196/<?=$listing->product_id;?>/<?=$listing->image;?>" />
-						<div class="details">
-							<i class="fa fa-camera fa-2x"></i>
-							<p style="color:#000;background:#ccc;padding:10px;"><?=$listing->name;?></p>
-						</div>						
-					</a>
-					<div id="panel-detail<?php echo ($key+1);?>" class="dl-horizontal" style="background:#ccc;color:#000">
-						
-					</div>
-					<div class="team-social">
-						<ul>
-							<li><a class="video"><i style="font-size:42px;color:#000;" class="fa fa-youtube-play"></i></a></li>
-							<li><a onclick="getprice('<?php echo $listing->listing_id;?>', 'panel-detail<?php echo ($key+1);?>', '<?php echo $this->security->get_csrf_hash(); ?>');" href="javascript:void(0);" class="price"><i style="font-size:40px;color:#000;" class="fa fa-money"></i></a></li>
-							<li><a onclick="$('#panel-detail<?php echo ($key+1);?>').html('<?php echo $listing->description;?>')" href="javascript:void(0);" class="desc"><i style="font-size:34px;color:#000;" class="fa fa-image"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>			
-        <?php endforeach;?>     	
+		    <div style="font-family:arial;font-size:12px;text-align:center;"><i>Price-Reduced - Best Deals</i></div>
+		    <img src="/public/images/fourimages.png" />	
     	</div> 
     </div>
-</section>
 
-<section style="height: 30px; width: 100%; background: #fff;">
-    
-</section>
+<br />
 
-<section style="height: auto; width: 100%; background: #e9f3f7;border-bottom:3px #aaa outset;margin-bottom:10px;">
-    <div class="original-bottom-sub-heading">
+    <div style="font-weight:bold;" class="original-bottom-sub-heading">
         ON SALE NOW
     </div>
 </section>

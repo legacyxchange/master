@@ -123,7 +123,7 @@ class Search extends CI_Controller {
     }
     
     public function getvideo(){
-    	 var_dump('test'); exit;
+    	 
     	if(($listing_id = $this->input->post('listing_id'))){
     		$this->db->select('*');
     		$this->db->from('listings l');

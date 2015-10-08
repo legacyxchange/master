@@ -126,11 +126,10 @@ class Listings extends CI_Controller {
     	
        		$body['listing'] = $listings[0];
     	}
+    	$body['listing'] = $listings[0];
         //var_dump($listings[0]->product->product_images[0]->product_image); exit;
         //var_dump($listings); exit;
-        $this->load->view('template/header', $header);
-        $this->load->view('listings/product', $body);
-        $this->load->view('template/footer');
+        $this->layout->load('listings/product', $body);
     }
     
     public function search() {

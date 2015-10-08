@@ -56,12 +56,12 @@ class Settings extends CI_Controller {
     		   		
     			$this->session->set_flashdata('SUCCESS', 'Your info has been updated!');
     
-    			header('Location: /admin/settings'); exit;
+    			header('Location: /ecommerce/settings'); exit;
     
     	    } catch (Exception $e) {
     			
     			$this->session->set_flashdata('FAILURE', $e->getMessage());
-    			header('Location: /admin/settings/'); exit;
+    			header('Location: /ecommerce/settings/'); exit;
     		}
     	}
     }

@@ -124,13 +124,13 @@ li h3 { font-family:arial; }
 						<p id='forgotPWText' style='display: none'>Please enter your
 							E-Mail address associated with your account.</p>
 						<div class="form-group  login-form">
-							<label for="inputEmail">Email</label> <input type='text'
+							<label for="user_email">Email</label> <input type='text'
 								class='form-control' name='user_email' id='user_email' value=""
 								placeholder='E-MAIL ADDRESS'>
 						</div>
 						<!-- .form-group -->
 						<div class="form-group" id='passwordFormGroup'>
-							<label for="inputPassword">Password</label> <input
+							<label for="user_pass">Password</label> <input
 								type='password' class='form-control' name='user_pass'
 								id='user_pass' value="" placeholder='PASSWORD'>
 						</div>
