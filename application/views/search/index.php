@@ -79,104 +79,93 @@
 .img-label{z-index:2000;position:relative;top:40px;left:25px;background:#ccc;color:#fff;padding-left:5px;padding-right:5px;border:1px solid #e9f3f7;max-width: 100px;
   text-align: center;
   opacity: .85;}
+  body { font-family:arial; }
 </style>
 
-<div style="margin:0 auto;background:#fff;height:49px;text-align:center;padding-top:5px;margin-bottom:10px;margin-top:30px;" class="">
-	<a href="/listings/original" class="original-heading" style="text-decoration:none;">Original Items</a>
+<div style="margin:0 auto;background:#fff;height:49px;text-align:center;padding-top:5px;margin-bottom:0px;margin-top:50px;" class="">
+	<div class="original-heading" style="font-family:arial;text-decoration:none;">Original Items</div>
 </div>
-<section style="height: auto; width: 100%; background: #f4f4f4; padding:0;margin:0;">
+<section style="height: auto; width: 100%; background: #f1f1f1; padding:0;margin:0;">
     <div class="container">
-    <div style="font-size:14px;font-weight:bold;line-height:16px;text-align:center;font-family:arial;"><i>Collectibles Marked with proprietary technology by Athletes and Celebrities.<br />
+    <div style="margin-top:10px;margin-left:-20px;font-size:18px;font-weight:normal;line-height:26px;text-align:center;font-family:arial;"><i>Collectibles Marked with proprietary technology by Athletes and Celebrities.<br />
 Scientifically verifiable - forever.</i></div><br />
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-20" style="margin-left:25%;">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-20" style="margin-left:12%;">
 		    
-	   		<a href=""><img src="/public/images/sports-img.gif" alt="image" class="img img-responsive"/></a>
-	   		<div style="font-size:24px;font-family:arial;font-weight:bold;">The thrill was real...<br />
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;your memorabilia should be too.</div>  
+	   		<a href=""><img style="width:650px;" src="/public/images/sports-img.gif" alt="image" class="img img-responsive"/></a>
+	   		<div style="font-size:32px;font-family:arial;color:#3b3b3b;padding-top:20px;margin-bottom:20px;">The thrill was real...<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;your memorabilia should be too.</div>  
     	</div> 
     	 	
     </div>
     
 </section>
+<div class="header_line_image" style="background:url('/public/images/header_line.png') repeat-x;padding:0;border:0;margin:0;">&nbsp;</div>
 
-<section style="height: 40px; width: 100%; background: #fff;">
-    <br /><br /><br />
+<section style="height: 100px; width: 100%; background: #fff;">
+<br /><br/>
+    <div style="font-family:arial;margin-top:8px;margin-left:auto;" class="container marketplace-heading">
+    The Marketplace
+    </div>
 </section>
 
 
 <style>
-.margin60 { margin-bottom:50px; }
+.margin60 { margin-bottom:50px; margin-left:auto;  }
 </style>
-<section style="background:#f1f1f1;padding:20px;"> 
-    <div class="container marketplace-heading">
-    The Marketplace
-    </div>
+
+<section style="background:#f4f4f4;padding-top:10px;"> 
+    <div style="font-family:arial;font-size:16px;text-align:center;font-weight:normal;margin:20px;margin-top:0px;margin-left:auto;"><i>Non-marked Items of Value</i></div>
     <div class="container cont-marketplace margin60">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-	   		<a href="">
-	   			<div class="img-label">Watches</div>
-	   			<img src="/public/images/watches.png" width="400" height="230" alt="image" class="img img-responsive margin-bottom-20"/>
-	   		</a>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">   		
+	   		<div class="img-label">Watches</div>
+	   		<a href=""><img src="/public/images/watches.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>
     	</div>
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    		<a href="">
-    			<div class="img-label">Jewelery</div>
-	   			<img src="/public/images/jewelery.png" width="400" height="230" alt="image" class="img img-responsive"/>
-	   		</a>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    		
+    		<div class="img-label">Jewelery</div>
+	   		<a href=""><img src="/public/images/jewelery.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>   		
     	</div>
     </div>
 
     <div class="container cont-marketplace margin60">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="img-label">Fashion</div>
-	   		<a href=""><img src="/public/images/purse.png" alt="image" width="400" height="230" class="img img-responsive"/></a>
+	   		<a href=""><img src="/public/images/purse.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>
     	</div>
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    		<a href="">
-    			<div class="img-label">Art &amp; Books</div>
-	   			<img src="/public/images/books.png" width="400" height="230" alt="image" class="img img-responsive"/>
-	   	    </a>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  		
+    		<div class="img-label">Art &amp; Books</div>
+	   		<a href=""><img src="/public/images/books.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>   	   
     	</div>
     </div>
 
     <div class="container cont-marketplace margin60">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="img-label">Stamps &amp; Coins</div>
-	   		<a href=""><img src="/public/images/stamps.png" width="400" height="230" alt="image" class="img img-responsive"/></a>
+	   		<a href=""><img src="/public/images/stamps.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>
     	</div>
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    		<a href="">
-    			<div class="img-label">Sports</div>
-	   			<img src="/public/images/sports.png" width="400" height="230" alt="image" class="img img-responsive"/>
-	   	    </a>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    		
+    		<div class="img-label">Sports</div>
+	   		<a href=""><img src="/public/images/sports.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>
     	</div>   	
     </div>
 
     <div class="container cont-marketplace margin60">
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<a href="">
-				<div class="img-label">Antiques</div>
-	   			<img src="/public/images/antiques.png" width="400" height="230" alt="image" class="img img-responsive"/>
-	   		</a>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">			
+			<div class="img-label">Antiques</div>
+	   		<a href=""><img src="/public/images/antiques.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>	   		
     	</div>
-    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    		<a href="">
-    			<div class="img-label">Collectibles</div>
-	   			<img src="/public/images/collectibles.png" width="400" height="230" alt="image" class="img img-responsive"/>
-	   		</a>
+    	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 		
+    		<div class="img-label">Collectibles</div>
+	   		<a href=""><img src="/public/images/collectibles.png" alt="image" style="width:400px;height:240px;" class="img img-responsive"/></a>	   		
     	</div>
     </div>
 </section>
+<div class="header_line_image" style="background:url('/public/images/header_line.png') repeat-x;padding:0;border:0;margin:0;">&nbsp;</div>
 
-<section style="height: auto; width: 100%; background: #f4f4f4;border-bottom:3px #aaa outset;margin-bottom:10px;">
-    <div class="original-middle-sub-heading">
-        &nbsp;
-    </div>
-</section>
+<div style="background:#fff;height:120px;">&nbsp;</div>
 
-<section style="height: auto; width: 100%; background: #000; padding:20px;padding-top:1px;margin:0;">
+<section style="height: 70px; width: 100%; background: #000;padding-top:1px;padding-bottom:20px;">
     <div class="container lxplus-heading">
-        <a href="/listings/legacyxplus" style="color:#ff0000;font-weight:bold;font-family:arial;font-size:28px;text-align:center;">LegacyXSales</a>
+        <a href="/listings/legacyxplus" style="color:#eee;font-weight:bold;font-family:arial;font-size:34px;text-align:center;">LegacyXSales</a>
     </div>
 </section>
 <section style="height: auto; width: 100%; background: #f1f1f1; padding:20px;margin:0;">
@@ -188,10 +177,11 @@ Scientifically verifiable - forever.</i></div><br />
     </div>
 
 <br />
+<br />
 
     <div style="font-weight:bold;" class="original-bottom-sub-heading">
         ON SALE NOW
     </div>
 </section>
-
+<div class="header_line_image" style="background:url('/public/images/header_line.png') repeat-x;padding:0;border:0;margin:0;">&nbsp;</div>
 <div class="clear" style="margin-bottom:40px;"></div>

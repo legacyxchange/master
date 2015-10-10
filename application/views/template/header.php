@@ -129,7 +129,7 @@ include_once 'headinclude.php';
             				<!--main navigation-->
             				<ul class="nav navbar-nav">              
               					<li class="link">
-                					<a href="/coming-soon" class="alternate-link">Sell</a>
+                					<a href="/about#how-to-sell" class="alternate-link">Sell</a>
               					</li>
               					<li class="link">
                 					<a href="/coming-soon" class="alternate-link">News</a>
@@ -149,8 +149,8 @@ include_once 'headinclude.php';
 	<div class="header_line_image" style="background:url('/public/images/header_line.png') repeat-x;padding:0;border:0;margin:0;">&nbsp;</div>
 	<div id="content">
     	<div class="container">
-    	    <h2 style="font-size:34px;font-family:arial bold;text-align:center;">The Premier Marketplace for Authentic<br />
-Sports and Celebrity Memorabilia</h2>
+    	<div id="top_slogan" style="margin-bottom:20px;margin-bottom:30px;font-family:arial;font-weight:bold;font-size:28px;text-align:center;">The Premier Marketplace for Authentic<br/>
+Sports and Celebrity Memorabilia</div>
     		<?php include APPPATH.'/views/partials/listings_menu.php'; ?>
     	</div>
     	<?php require_once 'application/views/partials/flash_messages.php';?>

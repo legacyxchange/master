@@ -2865,8 +2865,8 @@ button, input, select, textarea {  }
 					}
 					
 .img-label{     position: absolute;
-    top: 5px;
-    left: 32px; 
+    top: 4px;
+    left: 20px; 
     background: #555;
     color: #f4f4f4;
     opacity: .8;

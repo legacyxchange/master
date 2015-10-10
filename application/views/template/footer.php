@@ -47,21 +47,21 @@ li h3 { font-family:arial; }
 			<div class="col-lg-2 col-sm-4">				
 				<ul class="footer-menu">
 				    <li><h3>About</h3></li>
-					<li><a href="/about#why-legacyxchange">Our Site</a></li>
+					<li><a href="/about">Our Site</a></li>
 					<li><a href="/about#how-to-sell">Selling</a></li>
 					<li><a href="/about#how-to-buy">Buying</a></li>
 					
-					<li style="line-height: 18px;"><a href="/about#stores">Store Fronts:</a><br/>
-					<a href="/about#rates">Retailers</a><br/>
-					<a href="/about#rates">Dealers</a><br/>
-					<a href="/about#rates">Volume Sellers</a></li>					
+					<li style="line-height: 18px;"><a href="/about#storefronts">Store Fronts:</a><br/>
+					<a href="/about#storefronts">Retailers</a><br/>
+					<a href="/about#storefronts">Dealers</a><br/>
+					<a href="/about#storefronts">Volume Sellers</a></li>					
 				</ul> 
 			</div>
 			<div class="col-lg-2 col-sm-4">
 				<ul class="footer-menu">
 				    <li><h3>Partners</h3></li>
-					<li><a href="/athletes-celebrities-agents">Athletes, Celebrities</a></li>
-					<li><a href="/manufacturers">Manufacturers</a></li>
+					<li><a href="/about#athlets-and-celebrities">Athletes, Celebrities</a></li>
+					<li><a href="/about#manufacturers">Manufacturers</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4" style="padding-left:35px;">
@@ -82,9 +82,8 @@ li h3 { font-family:arial; }
 			<div class="col-lg-2 col-sm-4">
 				<ul class="footer-menu">
 				    <li><h3>Corporate</h3></li>
-					<li><a href="/careers">Careers</a></li>
-					<li><a href="/press">Press Release</a></li>
-					<li><a href="/press">Stock Quote</a></li>
+					<li><a href="http://legacyxchange.com/news.php">News</a></li>
+					<li><a href="http://legacyxchange.com/investors.php">Investor Relations</a></li>				
 				</ul>
 			</div>
 			<div class="col-lg-2 col-sm-4">

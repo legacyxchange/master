@@ -3,7 +3,7 @@
  <section class="bluish">  
 	<div class="title">
 		<?php echo $title;?>
-	</div>	
+	</div>	 
 </section>
 <section class="greyish">
     <div class="container bordered whitish rounded min-height">
